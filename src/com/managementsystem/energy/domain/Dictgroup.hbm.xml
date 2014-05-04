@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Dictgroup" table="dictgroup">
+        <id name="groupCode" type="string">
+            <column name="group_code" length="30" />
+            <generator class="assigned" />
+        </id>
+        <property name="groupName" type="string">
+            <column name="group_name" length="50" />
+        </property>
+        <set name="dictitems" table="dictitem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="group_code" length="30" not-null="true" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Dictitem" />
+        </set>
+    </class>
+</hibernate-mapping>

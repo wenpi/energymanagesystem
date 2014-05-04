@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Meterparaminfo" table="meterparaminfo">
+        <id name="meterParamid" type="string">
+            <column name="meter_paramid" length="16" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="meterproinfo" class="com.managementsystem.energy.domain.Meterproinfo" fetch="select">
+            <column name="meter_productid" length="12" />
+        </many-to-one>
+        <property name="meterParamname" type="string">
+            <column name="meter_paramname" length="48" />
+        </property>
+         <property name="meterParamvalue" type="string">
+            <column name="meter_paramvalue" length="48"/>
+        </property>
+        <property name="meterChangerate" type="big_decimal">
+            <column name="meter_changerate" precision="18" scale="4" />
+        </property>
+        <property name="meterValuetype" type="java.lang.Integer">
+            <column name="meter_valuetype" />
+        </property>
+        <property name="meterParamstate" type="java.lang.Integer">
+            <column name="meter_paramstate" />
+        </property>
+    </class>
+</hibernate-mapping>

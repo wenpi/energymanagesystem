@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>系统首页</title>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="public/css/main.css">
+<link rel="stylesheet" type="text/css" href="public/css/index.css">
+<script type="text/javascript" src="lib/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="public/js/main.js"></script>
+</head>
+<body>
+<div id="top_navigation">
+	<p>阿里巴巴淘宝城 | LIGHT能效管理系统 </p>
+	<div class="right_bar">
+		<i class="slash"></i>
+		<div><img src="public/images/weather.png"/><p>15℃~25℃</p></div>
+		<i class="slash"></i>
+		<div class="user"><img src="public/images/user.png"/><p>Administrator</p></div>
+	</div>
+</div>
+<div class="content">
+	<div id="navigation">
+		<ul>
+			<li class="index"><a href=""><i></i><p>系统首页</p></a></li>
+			<li class="monitor"><a href=""><i></i><p>运行监测</p></a></li>
+			<li class="energy"><a href=""><i></i><p>能耗统计</p></a></li>
+			<li class="energy_analysis"><a href=""><i></i><p>能效分析</p></a></li>
+			<li class="error"><a href=""><i></i><p>故障诊断</p></a></li>
+			<li class="form"><a href=""><i></i><p>报表管理</p></a></li>
+			<li class="save_energy"><a href=""><i></i><p>节能评估</p></a></li>
+		</ul>
+	</div>
+	<div id="main">
+		<div class="key_information">
+			<div class="title_block">
+				<p>关键信息</p>
+				<span><i>目标建筑物的关键信息与趋势分析</i></span>
+			</div>
+			<div class="tab">
+				<div class="tab_menu">
+					<ul>
+						<li>
+							<div>	
+								<img src="public/images/dot.png" />
+								<p>基本信息</p>
+							</div>
+							
+						</li>
+						<li>
+							<div>	
+								<img src="public/images/dot.png" />
+								<p>室外状态</p>
+							</div>
+						</li>
+						<li>
+							<div>	
+								<img src="public/images/dot.png" />
+								<p>客流量</p>
+							</div>
+						</li>
+						<li>
+							<div>	
+								<img src="public/images/dot.png" />
+								<p>总能耗趋势</p>
+							</div>
+						</li>
+						<li>
+							<div>	
+								<img src="public/images/dot.png" />
+								<p>总用电趋势</p>
+							</div>
+						</li>
+						<li>
+							<div>	
+								<img src="public/images/dot.png" />
+								<p>建筑用电分项</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="tab_content">
+					<div class="date_select">
+						<div>今日</div>
+						<div>本周</div>
+						<div>本月</div>
+						<div class="radius">本年</div>
+					</div>
+					<div class="charts">
+						<div class="chart"></div>
+						<div class="look_other">
+							<a href="">查看单位面积建筑总能耗</a>
+							<a href="">查看建筑总能耗分项</a>
+						</div>
+					</div>
+					<div class="detail">
+						<div>
+							<h1>建筑总能耗趋势</h1>
+							<p>分时间尺度地展示当前建筑能耗，同时通过下拉时间列表自由对比历史总能耗数据</p>
+							<div class="detail_number">
+								<div>
+									<p>2000<sup>tce</sup></p>
+									<p>当日用能总耗</p>
+								</div>
+								<div>
+									<p>10<sup>%</sup></p>
+									<p>与昨日相比</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="key_information">
+			<div class="title_block">
+				<p>其他模块</p>
+				<span><i>目标建筑物的重要模块的基本数据展示</i></span>
+			</div>
+			<div class="chart_group_1">
+				<div class="left_chart">
+					<div class="chart">
+						<div class="chart_top"></div>
+						<div class="chart_bottom">
+							<div>
+								<div>
+									<p class="device_list">冷机</p>
+									<p class="open_count">3<sup>ON</sup></p>
+									<p class="device_count">共4台</p>
+								</div>
+								<div>
+									<p class="device_list">新风机组</p>
+									<p class="open_count">3<sup>ON</sup></p>
+									<p class="device_count">共4台</p>
+								</div>
+								<div>
+									<p class="device_list">空调箱</p>
+									<p class="open_count">3<sup>ON</sup></p>
+									<p class="device_count">共4台</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="state_list err_diagnosis">
+						<div class="state_list_title">
+							故障诊断
+						</div>
+						<div class="state_list_detail">
+							<p>6月25日 星期日</p>
+							<h1>当日累计发生故障 <span>15<sup>次</sup></span></h1>
+						</div>
+						<div class="err_list">
+							<span class="what_device">冷机</span>
+							<span class="what_err">1号冷机回水温度超过最高值</span>
+							<span class="when">13:21:33</span>
+						</div>
+						<div class="err_list">
+							<span class="what_device">冷机</span>
+							<span class="what_err">1号冷机回水温度超过最高值</span>
+							<span class="when">13:21:33</span>
+						</div>
+						<div class="err_list has_border_radius_bottom">
+							<span class="what_device">冷机</span>
+							<span class="what_err">1号冷机回水温度超过最高值</span>
+							<span class="when">13:21:33</span>
+						</div>
+					</div>
+				</div>
+				<div class="middle_chart">
+					<div class="chart">
+						<div class="chart_top"></div>
+						<div class="chart_bottom">
+							<div>
+								<div>
+									<p class="device_list">日总用电量</p>
+									<p class="unit">kWh</p>
+									<p class="cosume_number">1,500</p>
+								</div>
+								<div>
+									<p class="device_list">日空调用电量</p>
+									<p class="unit">kWh</p>
+									<p class="cosume_number">1,600</p>
+								</div>
+								<div>
+									<p class="device_list">日照明用电量</p>
+									<p class="unit">kWh</p>
+									<p class="cosume_number">230</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="state_list finance">
+						<div class="state_list_title">
+							财务分析
+						</div>
+						<div class="state_list_detail">
+							<p>6月25日 星期日</p>
+							<h1>本月能源费用 <span class="finance_count">50,000<sup>元</sup></span></h1>
+						</div>
+						<div class="err_list">
+							<span class="what_device">冷机</span>
+							<span class="what_err">1号冷机回水温度超过最高值</span>
+							<span class="when">13:21:33</span>
+						</div>
+						<div class="err_list">
+							<span class="what_device">冷机</span>
+							<span class="what_err">1号冷机回水温度超过最高值</span>
+							<span class="when">13:21:33</span>
+						</div>
+						<div class="err_list has_border_radius_bottom">
+							<span class="what_device">冷机</span>
+							<span class="what_err">1号冷机回水温度超过最高值</span>
+							<span class="when">13:21:33</span>
+						</div>
+					</div>
+				</div>
+				<div class="right_chart nomargin">
+					<div class="chart">
+						<div class="chart_top"></div>
+						<div class="chart_bottom">
+							<div>
+								<div>
+									<p class="device_list">日用电指标</p>
+									<p class="unit">&nbsp;</p>
+									<p class="cosume_number">1,500</p>
+								</div>
+								<div>
+									<p class="device_list">日制冷量</p>
+									<p class="unit">kWh</p>
+									<p class="cosume_number">1,600</p>
+								</div>
+								<div>
+									<p class="device_list">日冷机COP</p>
+									<p class="unit">&nbsp;</p>
+									<p class="cosume_number">230</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="state_list accounting_reporting">
+						<div class="state_list_title">
+							核算与报告
+						</div>
+						<div class="state_list_detail"></div>
+						<div class="err_list nomal_lineheight">
+							<p>分时间尺度地展示当前建筑能耗，同时通过下拉时间列表自由对比历史总能耗数据</p>
+						</div>
+						<div class="err_list add_custom has_border_radius_bottom">
+							<i class="add_form"></i>
+							<p>添加自定义报告</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<html>

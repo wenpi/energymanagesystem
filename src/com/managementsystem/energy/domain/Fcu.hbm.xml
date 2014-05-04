@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-5-3 9:03:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Fcu" table="fcu" catalog="zhysg_energymsdb">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="buildId" type="string">
+            <column name="build_id" length="12" />
+        </property>
+        <property name="regionId" type="string">
+            <column name="region_id" length="16" />
+        </property>
+        <property name="position" type="string">
+            <column name="position" length="50" />
+        </property>
+        <property name="deviceNo" type="string">
+            <column name="device_no" length="75" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="maker" type="string">
+            <column name="maker" length="50" />
+        </property>
+        <property name="model" type="string">
+            <column name="model" length="50" />
+        </property>
+        <property name="total" type="java.lang.Integer">
+            <column name="total" />
+        </property>
+        <property name="power" type="big_decimal">
+            <column name="power" precision="10" scale="4" />
+        </property>
+        <property name="cc" type="big_decimal">
+            <column name="cc" precision="10" scale="4" />
+        </property>
+        <property name="hc" type="big_decimal">
+            <column name="hc" precision="10" scale="4" />
+        </property>
+        <property name="fr" type="big_decimal">
+            <column name="fr" precision="10" scale="4" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment_" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

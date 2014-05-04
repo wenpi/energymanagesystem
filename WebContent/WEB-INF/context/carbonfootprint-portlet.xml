@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<import resource="applicationContext.xml" />
+	
+	<bean id="carbonfootprintViewController" class="com.managementsystem.energy.portlet.energystatistic.CarbonFootprintViewController" />
+	<bean id="carbonfootprintPreferenceController" class="com.managementsystem.energy.portlet.energystatistic.CarbonFootprintPreferenceController" />
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="carbonfootprintViewController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="carbonfootprintPreferenceController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

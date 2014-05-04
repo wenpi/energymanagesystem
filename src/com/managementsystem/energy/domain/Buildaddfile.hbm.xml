@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Buildaddfile" table="buildaddfile">
+        <id name="addfileId" type="string">
+            <column name="addfile_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" fetch="select">
+            <column name="build_id" length="12" />
+        </many-to-one>
+        <property name="addfileName" type="string">
+            <column name="addfile_name" length="48" />
+        </property>
+        <property name="addfileFunctype" type="java.lang.Integer">
+            <column name="addfile_functype" />
+        </property>
+        <property name="addfileSuffix" type="string">
+            <column name="addfile_suffix" length="10" />
+        </property>
+        <property name="addfileDesc" type="string">
+            <column name="addfile_desc" length="80" />
+        </property>
+        <property name="addfileSize" type="java.lang.Long">
+            <column name="addfile_size" />
+        </property>
+        <property name="addfileDate" type="timestamp">
+            <column name="addfile_date" length="19" />
+        </property>
+        <property name="addfilePath" type="string">
+            <column name="addfile_path" length="160" />
+        </property>
+         <property name="buildCover" type="java.lang.Boolean">
+            <column name="build_cover" />
+        </property>
+    </class>
+</hibernate-mapping>

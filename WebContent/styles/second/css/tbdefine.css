@@ -1,0 +1,399 @@
+]/* li {
+	list-style: none !important;
+} */
+/* .portlet-content {
+	margin-left: 0px;
+} */
+.portlet-content {
+	margin-left: 215px;
+}
+
+/* .block_position {
+	margin-left: -215px !important;
+} */
+.tb_lefttitle {
+	width: 100%;
+	height: 60px;
+	font-size: 22px;
+	line-height: 60px;
+	text-indent: 15px;
+	color: #fff;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.tb_space>.div-table>.div-table-row {
+	height: 42px;
+}
+
+/* .tb_tab>.tab_menu li>div>img {
+	margin: 22px 10px 0px 10px !important;
+}
+
+.tb_tab>.tab_menu li:hover>div>img {
+	margin: 17px 10px 0px 10px !important;
+}
+
+.tb_tab>.tab_menu .cur_tab img {
+	margin: 17px 10px 0px 10px !important;
+}
+
+.tb_tab>.tab_menu>ul {
+	margin-left: 18px !important;
+}
+.tb_dialogh3{
+	padding: 15px 5px !important;
+}
+
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img,hr
+	{
+	margin: 0 !important;
+	padding: 0 !important
+}; */
+.key_information {
+	padding-top: 0px !important;
+}
+
+.tb_now {
+	padding-top: 15px !important;
+}
+
+.double_chart {
+	width: 330px;
+	height: 242px;
+	float: left;
+}
+
+/* .double_chartTitle{
+	width:330px;
+	height:32px;
+	float:left;
+} */
+
+/* .double_chartTitle > p {
+	font-size: 15px;
+	text-align: center;
+}
+ */
+.onlychart {
+	width: 660px !important;
+	height: 242px;
+}
+
+.tbcmp {
+	height: 13px !important;
+	width: 65px !important;
+	margin-top: 8px !important;
+	border-top-right-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+}
+
+.tb_btn {
+	height: 20px;
+	padding-top: 5px !important;
+}
+
+.detail table.tb td {
+	padding: 3px;
+	text-align: center;
+}
+
+.tbchart {
+	width: 590px !important;
+	height: 242px !important;
+}
+.home_model_width{
+	width:970px;
+	margin-top: 0px;
+}
+
+.model_width {
+	width: 944px;
+}
+
+.chart_width {
+	width: 590px !important;
+}
+
+.pic_width {
+	width: 450px !important;
+}
+
+.index_ul_margin {
+	margin-left: 43px !important;
+}
+
+.home_keyinformantion {
+	width: 970px !important;
+	height: 342px !important;
+}
+
+.home_reportmanager {
+	width: 944px !important;
+	height: 410px !important;
+}
+
+.otherframe {
+	width: 300px !important;
+	height: 345px !important;
+}
+
+.doubleColumn {
+	width: 470px;
+	height: 345px !important;
+}
+
+.btn-group>.btn,.btn-group>.dropdown-menu,.btn-group>.popover {
+	font-size: 14px !important;
+}
+
+label,input,button,select,textarea {
+	font-weight: normal !important;
+}
+
+.dialog_position {
+	margin-top: 95px;
+}
+
+.hologram_display {
+	display: block;
+}
+
+.report_page_tab .charts .chart .sub_content {
+	display: none;
+}
+
+.look_other .download {
+	position: absolute;
+	top: 8px;
+	right: 19px;
+	width: 40px;
+	height: 30px;
+	background: url("../images/download.png");
+	cursor: pointer;
+}
+
+.cursor_style {
+	cursor: default !important;
+}
+
+.dialog-zoomin-table table thead tr th {
+	text-align: center
+}
+
+.dialog-zoomin-table .page {
+	position: absolute;
+	width: auto;
+	height: 50px;
+	text-align: right;
+	bottom: 15px;
+	right: 30px;
+}
+
+.report_page_tab .charts .chart .table_content table thead tr th {
+	text-align: center;
+}
+
+.build_page {
+	display: none
+}
+
+.hologram_size {
+	width: 944px !important;
+}
+
+.back_hologram {
+	cursor: pointer;
+}
+
+.choose_build {
+	width: 940px;
+	height: auto;
+	background-color: #333a56;
+	border-radius: 4px;
+	margin-top: 20px;
+	border: 1px solid #8891AF;
+	position: relative;
+	overflow: hidden;
+}
+
+.choose_build>.tab_menu {
+	width: 100%;
+	height: 50px;
+	color: #fff;
+}
+
+.choose_build>.tab_menu>ul {
+	margin-left: 18px;
+}
+
+.choose_build>.tab_menu li {
+	float: left;
+	width: 148px;
+	height: 42px;
+	line-height: 46px;
+	text-align: center;
+	font-size: 14px;
+	margin: 0px 1px;
+	cursor: pointer;
+}
+
+.choose_build>.tab_menu li:hover {
+	height: 45px;
+	width: 146px;
+	line-height: 36px;
+	/*	border-left: 1px solid #11a8ab;
+	border-right: 1px solid #11a8ab;*/
+	border-top: 5px solid #11a8ab;
+}
+
+.choose_build>.tab_menu .cur_tab {
+	height: 45px;
+	width: 146px;
+	line-height: 36px;
+	/*	border-left: 1px solid #11a8ab;
+	border-right: 1px solid #11a8ab;*/
+	border-top: 5px solid #11a8ab;
+}
+
+.choose_build>.tab_menu .cur_tab img {
+	margin-right: 10px;
+}
+
+.choose_build>.tab_menu  li>div {
+	width: auto;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.choose_build>.tab_menu li>div>* {
+	display: inline-block;
+}
+
+.choose_build>.tab_menu li>div>img {
+	margin-right: 10px;
+}
+
+.choose_build>.tab_content {
+	width: 100%;
+	height: 290px;
+	/*background-color: grey;*/
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	display: none;
+}
+
+.choose_build>.current {
+	display: block;
+}
+
+.choose_build>.tab_content>* {
+	float: left;
+	height: 100%;
+}
+
+.fault_title_size {
+	font-size: 24.5px;
+}
+
+.hologram_margin{margin-left:-25px !important;}
+
+.hologram .tab_content .smart_chart_content {
+	width: 270px;
+	height: 220px;
+}
+
+.left_information {
+	width: 300px;
+	height: 100%;
+	background-color: #394264;
+	border-bottom-left-radius: 4px;
+	float: left;
+}
+
+.areaChart {
+	float: right;
+	width: 640px !important;
+}
+
+.area_title {
+	background-color: #11A9AC !important;
+}
+
+.floor_chart {
+	width: 560px !important;
+	height: 242px !important;
+}
+
+.today {
+	width: 140px;
+}
+
+.center_text {
+	text-align: center;
+}
+
+.floor_times {
+	font-family: 微软雅黑;
+	font-size: 13px;
+	font-weight: normal;
+	font-style: normal;
+	text-decoration: none;
+	color: #333333;
+	padding-top: 15px;
+}
+
+th {
+	font-weight: bold;
+}
+
+.floor_chart table {
+	width: 100%;
+	height: auto;
+	border-collapse: collapse;
+}
+
+.floor_chart table thead tr {
+	background-color: #bcb9d8;
+	color: #fff;
+}
+
+.floor_chart table thead tr th {
+	text-align: center;
+}
+
+.floor_chart table tr th {
+	border: 1px solid #fff;
+}
+
+.floor_chart table tr td {
+	border: 1px solid #fff;
+}
+
+.floor_chart table tr {
+	height: 30px;
+	line-height: 29px;
+	text-align: center;
+}
+
+.floor_chart table tbody tr:nth-child(even) {
+	background-color: #ededed;
+}
+
+.floor_p_style {
+	width: 100%;
+	height: 75px;
+}
+
+.floor_param_h3 {
+	line-height: 75px;
+	color: #fff;
+	height: 75px;
+	text-indent: 25px;
+	float: left;
+	font-size: 24.5px;
+}
+
+.small_chart_width {
+	width: 413px !important;	
+}

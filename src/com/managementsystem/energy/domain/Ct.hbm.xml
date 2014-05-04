@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013-5-3 9:03:00 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Ct" table="ct" catalog="zhysg_energymsdb">
+        <id name="id" type="long">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="buildId" type="string">
+            <column name="build_id" length="12" />
+        </property>
+        <property name="regionId" type="string">
+            <column name="region_id" length="16" />
+        </property>
+        <property name="position" type="string">
+            <column name="position" length="50" />
+        </property>
+        <property name="deviceNo" type="string">
+            <column name="device_no" length="75" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="maker" type="string">
+            <column name="maker" length="50" />
+        </property>
+        <property name="model" type="string">
+            <column name="model" length="50" />
+        </property>
+        <property name="total" type="java.lang.Integer">
+            <column name="total" />
+        </property>
+        <property name="frW" type="big_decimal">
+            <column name="fr_w" precision="10" scale="4" />
+        </property>
+        <property name="frOa" type="big_decimal">
+            <column name="fr_oa" precision="10" scale="4" />
+        </property>
+        <property name="totalF" type="big_decimal">
+            <column name="total_f" precision="10" scale="4" />
+        </property>
+        <property name="power" type="big_decimal">
+            <column name="power" precision="10" scale="4" />
+        </property>
+        <property name="pr" type="big_decimal">
+            <column name="pr" precision="10" scale="4" />
+        </property>
+        <property name="st" type="big_decimal">
+            <column name="st" precision="10" scale="4" />
+        </property>
+        <property name="rt" type="big_decimal">
+            <column name="rt" precision="10" scale="4" />
+        </property>
+        <property name="oat" type="big_decimal">
+            <column name="oat" precision="10" scale="4" />
+        </property>
+        <property name="oarh" type="big_decimal">
+            <column name="oarh" precision="10" scale="4" />
+        </property>
+        <property name="eff" type="big_decimal">
+            <column name="eff" precision="10" scale="4" />
+        </property>
+        <property name="totalHt" type="big_decimal">
+            <column name="total_ht" precision="10" scale="4" />
+        </property>
+        <property name="powerHt" type="big_decimal">
+            <column name="power_ht" precision="10" scale="4" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment_" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

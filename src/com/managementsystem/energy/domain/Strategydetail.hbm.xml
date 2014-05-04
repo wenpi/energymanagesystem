@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-7-31 13:05:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Strategydetail" table="strategydetail">
+        <id name="detailid" type="string">
+            <column name="detailid" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="strategy" class="com.managementsystem.energy.domain.Strategy" fetch="select">
+            <column name="strategyid" length="75" />
+        </many-to-one>
+        <property name="devicename" type="string">
+            <column name="devicename" length="50" />
+        </property>
+        <set name="strategydetailparams" table="strategydetailparam" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="detailid" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Strategydetailparam" />
+        </set>
+    </class>
+</hibernate-mapping>

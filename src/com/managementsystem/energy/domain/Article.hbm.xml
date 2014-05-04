@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-8-27 18:19:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Article" table="article">
+        <id name="articleId" type="string">
+            <column name="article_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="articlecategoryByCatId" class="com.managementsystem.energy.domain.Articlecategory" fetch="select" lazy="false">
+            <column name="cat_id" length="75" />
+        </many-to-one>
+        <many-to-one name="articlecategoryByCatField" class="com.managementsystem.energy.domain.Articlecategory" fetch="select" lazy="false">
+            <column name="cat_field" length="75" />
+        </many-to-one>
+        <many-to-one name="articlecategoryByCatBusiness" class="com.managementsystem.energy.domain.Articlecategory" fetch="select" lazy="false">
+            <column name="cat_business" length="75" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="100" />
+        </property>
+        <property name="source" type="string">
+            <column name="source" length="50" />
+        </property>
+        <property name="author" type="string">
+            <column name="author" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" />
+        </property>
+        <property name="createdbyuserid" type="java.lang.Long">
+            <column name="createdbyuserid" />
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+        <property name="lastmodifiedbyuserid" type="java.lang.Long">
+            <column name="lastmodifiedbyuserid" />
+        </property>
+        <property name="lastmodifiedondate" type="timestamp">
+            <column name="lastmodifiedondate" length="19" />
+        </property>
+        <property name="groupid" type="java.lang.Long">
+            <column name="groupid" />
+        </property>
+        <property name="companyid" type="java.lang.Long">
+            <column name="companyid" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+        <property name="statusbyuserid" type="java.lang.Long">
+            <column name="statusbyuserid" />
+        </property>
+        <property name="statusbyusername" type="string">
+            <column name="statusbyusername" length="75" />
+        </property>
+        <property name="statusdate" type="timestamp">
+            <column name="statusdate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

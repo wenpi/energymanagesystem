@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+ <class name="com.managementsystem.energy.domain.Dictitem" table="dictitem">
+        <id name="itemId" type="string">
+            <column name="item_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="dictgroup" class="com.managementsystem.energy.domain.Dictgroup" fetch="select">
+            <column name="group_code" length="20" not-null="true" />
+        </many-to-one>
+        <property name="itemCode" type="string">
+            <column name="item_code" length="20" not-null="true" />
+        </property>
+        <property name="itemName" type="string">
+            <column name="item_name" length="50" not-null="true" />
+        </property>
+        <property name="itemShortname" type="string">
+            <column name="item_shortname" length="20" not-null="true" />
+        </property>
+        <property name="itemRemark" type="string">
+            <column name="item_remark" length="250" not-null="true" />
+        </property>
+        <property name="itemOrder" type="java.lang.Integer">
+            <column name="item_order" />
+        </property>
+         <property name="itemBeginValue" type="big_decimal">
+            <column name="item_beginValue" precision="8" scale="2" />
+        </property>
+        <property name="itemEndValue" type="big_decimal">
+            <column name="item_endValue" precision="8" scale="2" />
+        </property>
+    </class>
+</hibernate-mapping>

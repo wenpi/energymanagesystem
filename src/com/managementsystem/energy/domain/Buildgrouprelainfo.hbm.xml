@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-29 11:42:33 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Buildgrouprelainfo" table="buildgrouprelainfo">
+        <composite-id name="id" class="com.managementsystem.energy.domain.BuildgrouprelainfoId">
+            <key-property name="buildId" type="string">
+                <column name="build_id" length="12" />
+            </key-property>
+            <key-property name="buildgroupId" type="string">
+                <column name="buildgroup_id" length="10" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" update="false" insert="false" fetch="select">
+            <column name="build_id" length="12" not-null="true" />
+        </many-to-one>
+        <many-to-one name="buildgroupinfo" class="com.managementsystem.energy.domain.Buildgroupinfo" update="false" insert="false" fetch="select">
+            <column name="buildgroup_id" length="10" not-null="true">
+                <comment>
+                10&#206;&#187;&#177;&#224;&#194;&#235;&#163;&#172;&#181;&#218;1-6&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#203;&#249;&#212;&#218;&#181;&#196;&#208;&#208;&#213;&#254;&#199;&#248;&#187;&#174;&#180;&#250;&#194;&#235;&#163;&#172;&#186;&#243;4&#206;&#187;&#206;&#170;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+            </column>
+        </many-to-one>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

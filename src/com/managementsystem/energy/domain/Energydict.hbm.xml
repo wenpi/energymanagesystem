@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Energydict" table="energydict">
+        <id name="energydictId" type="string">
+            <column name="energydict_id" length="16" />
+            <generator class="assigned" />
+        </id>
+        <property name="energydictName" type="string">
+            <column name="energydict_name" length="48" />
+        </property>
+        <property name="energydictCalorificvalue" type="big_decimal">
+            <column name="energydict_calorificvalue" precision="18" scale="4">
+                <comment>&#198;&#189;&#190;&#249;&#181;&#205;&#206;&#187;&#183;&#162;&#200;&#200;&#193;&#191;</comment>
+            </column>
+        </property>
+        <property name="energydictCalorificvalueKj" type="big_decimal">
+            <column name="energydict_calorificvalue_kj" precision="18" scale="4" />
+        </property>
+        <property name="energydictUnit" type="string">
+            <column name="energydict_unit" length="16" />
+        </property>
+        <property name="energydictRate" type="big_decimal">
+            <column name="energydict_rate" precision="18" scale="4" />
+        </property>
+         <property name="energyDictRateElectricity" type="big_decimal">
+            <column name="energydict_rate_electricity" precision="18" scale="4" />
+        </property>
+        
+        <set name="energyitemdicts" table="energyitemdict" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="energydict_id" length="16" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Energyitemdict" />
+        </set>
+        <set name="energyprices" table="energyprice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="energydict_id" length="16" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Energyprice" />
+        </set>
+         <set name="readmeters" table="readmeter" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="energydict_id" length="16" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Readmeter" />
+        </set>
+    </class>
+</hibernate-mapping>

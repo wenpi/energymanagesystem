@@ -1,0 +1,46 @@
+/*能效分析CSS*/
+.sub_nav {
+	background-color: #6699FF;
+}
+
+.sub_nav_bar li {
+	background-color: #4280FF;
+}
+
+.client_pic {
+	background: url('../images/chart.png') no-repeat top center;
+	width: 560px;
+	height: 100%;
+	float: left;
+}
+
+.parameter {
+	float: left;
+	width: 398px;
+	height: 290px;
+}
+
+.per_total_energy {
+	background-color: #669933;
+}
+
+.per_air_energy {
+	background-color: #333399;
+}
+
+.per_light_energy {
+	background-color: #ff6633;
+}
+
+.bulid_score {
+	background-color: #cc33ff;
+}
+
+.air_score {
+	background-color: #6699ff;
+}
+
+.cop {
+	background-color: #ff6600;
+}
+

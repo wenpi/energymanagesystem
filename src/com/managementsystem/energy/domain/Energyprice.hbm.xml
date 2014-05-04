@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-12-10 14:37:45 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Energyprice" table="energyprice">
+        <id name="priceid" type="string">
+            <column name="priceid" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="energydict" class="com.managementsystem.energy.domain.Energydict" fetch="select">
+            <column name="energydict_id" length="16" />
+        </many-to-one>
+        <property name="organizationid" type="java.lang.Long">
+            <column name="organizationid">
+                <comment>&#203;&#249;&#202;&#244;&#215;&#233;&#214;&#175;&#187;&#250;&#185;&#185;ID</comment>
+            </column>
+        </property>
+        <property name="groupid" type="java.lang.Long">
+            <column name="groupid" />
+        </property>
+        <property name="pricetype" type="java.lang.Integer">
+            <column name="pricetype">
+                <comment>0=&#178;&#187;&#198;&#244;&#211;&#195;&#202;&#213;&#183;&#209;&#183;&#189;&#202;&#189;
+                1=&#183;&#229;&#182;&#165;&#183;&#229;&#185;&#200;&#202;&#213;&#183;&#209; 2=&#189;&#215;&#204;&#221;&#202;&#213;&#183;&#209;</comment>
+            </column>
+        </property>
+        <property name="pricetypevalue" type="java.lang.Integer">
+            <column name="pricetypevalue">
+                <comment>0 &#187;&#249;&#180;&#161;&#188;&#219;&#184;&#241; 11&#183;&#229;&#185;&#200;&#188;&#219;&#184;&#241; 12&#183;&#229;&#182;&#165;&#188;&#219;&#184;&#241;
+                23&#181;&#218;&#182;&#254;&#181;&#181;&#188;&#219;&#184;&#241; 24 &#181;&#218;&#200;&#253;&#181;&#181;</comment>
+            </column>
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="22" scale="0" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="200" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status" />
+        </property>
+         <property name="begintime" type="java.lang.Integer">
+            <column name="begintime" />
+        </property>
+         <property name="endtime" type="java.lang.Integer">
+            <column name="endtime" />
+        </property>
+        <property name="creatoruserid" type="java.lang.Long">
+            <column name="creatoruserid" />
+        </property>
+        <property name="createdate" type="timestamp">
+            <column name="createdate" length="19" />
+        </property>
+        <property name="modifier" type="java.lang.Long">
+            <column name="modifier" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Buildgroupinfo" table="buildgroupinfo">
+        <id name="buildgroupId" type="string">
+            <column name="buildgroup_id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="buildgroupName" type="string">
+            <column name="buildgroup_name" length="50" not-null="true" />
+        </property>
+        <property name="buildgroupAliasname" type="string">
+            <column name="buildgroup_aliasname" length="16" />
+        </property>
+        <property name="buildgroupDesc" type="string">
+            <column name="buildgroup_desc" length="800" />
+        </property>
+       <!--  <set name="buildinfos" table="buildgrouprelainfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buildgroup_id" length="10" not-null="true">
+                    <comment>
+                    10&#206;&#187;&#177;&#224;&#194;&#235;&#163;&#172;&#181;&#218;1-6&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#203;&#249;&#212;&#218;&#181;&#196;&#208;&#208;&#213;&#254;&#199;&#248;&#187;&#174;&#180;&#250;&#194;&#235;&#163;&#172;&#186;&#243;4&#206;&#187;&#206;&#170;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+                </column>
+            </key>
+            <many-to-many entity-name="com.managementsystem.energy.domain.Buildinfo">
+                <column name="build_id" length="12" not-null="true" />
+            </many-to-many>
+        </set> -->
+         <set name="buildgrouprelainfos" table="buildgrouprelainfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buildgroup_id" length="10" not-null="true">
+                    <comment>
+                    10&#206;&#187;&#177;&#224;&#194;&#235;&#163;&#172;&#181;&#218;1-6&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#203;&#249;&#212;&#218;&#181;&#196;&#208;&#208;&#213;&#254;&#199;&#248;&#187;&#174;&#180;&#250;&#194;&#235;&#163;&#172;&#186;&#243;4&#206;&#187;&#206;&#170;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+                </column>
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Buildgrouprelainfo" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-10-30 9:57:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Subscription" table="subscription">
+        <id name="subId" type="string">
+            <column name="sub_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="groupid" type="java.lang.Long">
+            <column name="groupid">
+                <comment>&#200;&#161;Liferay&#198;&#189;&#204;&#168;&#181;&#196;&#211;&#195;&#187;&#167;&#215;&#233;ID</comment>
+            </column>
+        </property>
+        <property name="companyid" type="java.lang.Long">
+            <column name="companyid">
+                <comment>&#200;&#161;&#198;&#189;&#204;&#168;&#185;&#171;&#203;&#190;ID</comment>
+            </column>
+        </property>
+        <property name="userid" type="java.lang.Long">
+            <column name="userid">
+                <comment>&#200;&#161;&#198;&#189;&#204;&#168;&#215;&#162;&#178;&#225;&#211;&#195;&#187;&#167;&#181;&#196;ID</comment>
+            </column>
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="75">
+                <comment>&#200;&#161;&#198;&#189;&#204;&#168;&#215;&#162;&#178;&#225;&#211;&#195;&#187;&#167;&#195;&#251;</comment>
+            </column>
+        </property>
+        <property name="usertype" type="string">
+            <column name="usertype" length="20">
+                <comment>
+                &#189;&#168;&#214;&#254;&#206;&#239;&#210;&#181;&#196;&#220;&#212;&#180;&#215;&#168;&#188;&#210;&#201;&#232;&#177;&#184;&#179;&#167;&#201;&#204;&#213;&#254;&#184;&#174;&#178;&#191;&#195;&#197;</comment>
+            </column>
+        </property>
+        <property name="subDatasrctype" type="string">
+            <column name="sub_datasrctype" length="250">
+                <comment>
+                &#209;&#161;&#212;&#241;&#210;&#170;&#182;&#169;&#212;&#196;&#181;&#196;&#181;&#165;&#204;&#229;&#189;&#168;&#214;&#254;&#161;&#162;&#189;&#168;&#214;&#254;&#200;&#186;&#161;&#162;&#198;&#189;&#204;&#168;&#202;&#253;&#190;&#221;</comment>
+            </column>
+        </property>
+        <property name="subReceiverate" type="string">
+            <column name="sub_receiverate" length="20">
+                <comment>dayreport&#161;&#162;weekreport&#161;&#162;monthreport</comment>
+            </column>
+        </property>
+        <property name="subReceiveemail" type="string">
+            <column name="sub_receiveemail" length="100">
+                <comment>
+                &#196;&#172;&#200;&#207;&#206;&#170;&#211;&#195;&#187;&#167;&#215;&#162;&#178;&#225;email&#163;&#172;&#210;&#178;&#191;&#201;&#210;&#212;&#211;&#201;&#211;&#195;&#187;&#167;&#215;&#212;&#182;&#168;&#210;&#229;&#189;&#211;&#202;&#213;email</comment>
+            </column>
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+        <property name="modifiedondate" type="timestamp">
+            <column name="modifiedondate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+编辑界面常用Html元素
+
+1、标题+返回链接
+
+a、定义返回链接（定义在标题html之前）
+
+<portlet:renderURL var="变量名称" portletMode="view"></portlet:renderURL>
+
+<div class="ftitle">
+	<span>这里标题</span>
+	<span class="title-back"><a href="${变量名称}">«返回</a></span>
+</div>
+
+b、直接在链接上写入portlet元素
+<div class="ftitle">
+	<span>这里标题</span>
+	<span class="title-back"><a href="<portlet:renderURL portletMode="view"></portlet:renderURL>">«返回</a></span>
+</div>
+
+2、定义编辑内容布局(统一使用div进行布局，除非必要才使用table)
+
+以下代码示例了一个一行两列的布局：
+
+<div class="div-table">
+	<div class="div-table-row">
+		<div class="div-table-2col">
+			<div class="fitem">
+				<form:label path="deptCode">部门编码</form:label>
+				<form:input path="deptCode" cssClass="easyui-validatebox"
+						maxlength="30" required="true" />
+			</div>
+		</div>
+		<div class="div-table-2col">
+			<div class="fitem">
+				<form:label path="deptName">部门名称</form:label>
+				<form:input path="deptName" cssClass="easyui-validatebox"
+						maxlength="30" required="true" />
+			</div>
+		</div>
+	</div>
+</div>
+
+
+div-table：div表格样式名称
+div-table-row: div表格行样式名称
+div-table-1col:  div表格单元格样式名称（1列）
+div-table-2col:  div表格单元格样式名称（2列）
+div-table-2col:  div表格单元格样式名称（3列）
+
+editform: 编辑 form 样式名称
+fitem: 单元格内容样式名称
+
+详细样式请参考 assetms.css 样式表
+
+
+

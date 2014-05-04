@@ -1,0 +1,868 @@
+﻿/*全局CSS*/            
+@font-face {
+    /* This declaration targets Internet Explorer */
+    font-family: 'SegoeWPLight';
+    src: url('segeo-wp-light-webfont.eot');
+}
+
+@font-face {
+    /* This declaration targets everything else */
+    font-family: 'SegoeWPLight';
+    src: url(//:) format('no404'), url('../ttf/segeo-wp-light-webfont.woff') format('woff'), url('../ttf/segeo-wp-light-webfont.ttf') format('truetype'), url('../ttf/segeo-wp-light-webfont.svgz#SegoeWPLight') format('svg'), url('../ttf/segeo-wp-light-webfont.svg#SegoeWPLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img,hr
+	{
+	margin: 0;
+	padding: 0;
+}
+
+fieldset,img {
+	border: none;
+}
+
+img {
+	display: block;
+}
+
+h1,h2,h3 {
+	line-height: 40px;
+	font-weight: normal !important;
+}
+
+address,caption,cite,code,dfn,th,var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+ul {
+	list-style: none;
+}
+
+input {
+	padding-top: 0;
+	padding-bottom: 0;
+	font-family: "SimSun", "宋体";
+}
+
+input::-moz-focus-inner {
+	border: none;
+	padding: 0;
+}
+
+select,input {
+	vertical-align: middle;
+}
+
+select,input,textarea {
+	font-size: 12px;
+	margin: 0;
+}
+
+input[type="text"],input[type="password"],textarea {
+	outline-style: none;
+	-webkit-appearance: none;
+}
+
+textarea {
+	resize: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+.clearfix:after {
+	content: ".";
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.clearit {
+	clear: both;
+	height: 0;
+	font-size: 0;
+	overflow: hidden;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover,a:active,a:focus {
+	color: #000;
+	text-decoration: none;
+}
+
+.specially_font {
+	font-family: "SegoeWPLight" !important;
+}
+
+.header {
+	height: 40px;
+	background-color: #46afde;
+	line-height: 40px;
+	color: #fff;
+}
+
+.header span {
+	font-size: 16px;
+	padding-left: 24px;
+	float: left;
+}
+
+.header .login {
+	width: 150px;
+	height: 100%;
+	float: right;
+	background: url("../images/icon.png") -503px -8px;
+}
+
+.header .login span {
+	padding-left: 53px;
+	cursor: pointer;
+}
+
+.main>div {
+	float: left;
+	margin-left: 65px;
+	margin-top: 64px;
+	height: 980px;
+}
+
+.left_bar {
+	width: 490px;
+	height: auto;
+}
+
+.middle_bar {
+	width: 783px;
+	height: auto;
+}
+
+.dashboard_right_bar {
+	width: 304px;
+	height: auto;
+}
+
+.title {
+	width: 212px;
+	height: 50px;
+	box-shadow: 0px 0 5px #393939;
+}
+
+.title>div {
+	height: 100%;
+	float: left;
+}
+
+.title .block {
+	width: 50px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.title .title_name {
+	width: 162px;
+	line-height: 50px;
+	background-color: #000;
+	color: #fff;
+	font-size: 30px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	text-indent: .5em;
+}
+
+.left_bar .title .block {
+	background: -webkit-gradient(linear, left top, right bottom, from(#BED172),
+		to(#9AB13A));
+}
+
+.middle_bar .title .block {
+	background: -webkit-gradient(linear, left top, right bottom, from(#979FC4),
+		to(#576499));
+}
+
+.dashboard_right_bar .title .block {
+	background: -webkit-gradient(linear, left top, right bottom, from(#FBC600),
+		to(#E8A800));
+}
+
+.video {
+	width: 480px;
+	height: 300px;
+	background: url("../images/video.png");
+	box-shadow: 0px 0 5px #393939;
+	margin-top: 20px;
+}
+
+.chart_group {
+	width: 480px;
+	margin-top: 20px;
+}
+
+.chart_group>div {
+	width: 230px;
+}
+
+.left_charts_group {
+	float: left;
+}
+
+.right_charts_group {
+	float: right;
+}
+
+.customer {
+	height: 260px;
+	background: -webkit-gradient(linear, left top, right bottom, from(#AFC45B),
+		to(#869B33));
+	position: relative;
+	border-radius: 4px;
+}
+
+.customer>.chart_title {
+	font-size: 30px;
+	color: #fff;
+	padding: 15px;
+}
+
+.data * {
+	color: #999;
+}
+
+.data {
+	bottom: 0px;
+	position: absolute;
+	width: 100%;
+	background-color: #fff;
+	border-radius: 4px;
+}
+
+.customer .data {
+	height: 78px;
+}
+
+.customer .data p {
+	padding-left: 15px;
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.customer .data .people {
+	padding-left: 15px;
+	margin-top: 10px;
+}
+
+.people span {
+	font-size: 20px;
+}
+
+.people_count {
+	font-size: 40px !important;
+}
+
+.map {
+	height: 310px;
+	background-color: #fff;
+	border-radius: 4px;
+	margin-top: 16px;
+	position: relative;
+}
+
+.map .data .build_name {
+	padding-top: 23px;
+	font-size: 22px;
+}
+
+.map .data .location {
+	font-size: 14px;
+}
+
+.map .data {
+	height: 80px;
+	text-indent: 15px;
+	line-height: 24px;
+}
+
+.right_charts_group {
+	height: 587px;
+	background-color: rgba(0, 0, 0, 0.8);
+	border-radius: 4px;
+	color: #fff;
+	position: relative;
+}
+
+.chart {
+	width: 100%;
+	height: 100px;
+	background-color: grey;
+}
+
+.right_charts_group p {
+	font-size: 20px;
+	padding: 21px 15px;
+}
+
+.right_charts_group .data {
+	height: 80px;
+}
+
+.right_charts_group .data p {
+	padding: 0;
+	padding-left: 15px;
+	margin-top: 9px;
+}
+
+.right_charts_group .data .describe {
+	font-size: 12px;
+}
+
+.right_charts_group .data .para {
+	font-size: 40px;
+	line-height: 28px;
+}
+
+.right_charts_group .data .para span {
+	font-size: 20px;
+}
+
+.right_charts_group .data .para .specially_font {
+	font-size: 40px;
+}
+
+/*能源使用*/
+.middle_bar .carousel {
+	width: 780px;
+	height: 44px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#D6D8DD));
+	position: relative;
+	border-radius: 4px;
+	margin-top: 20px;
+}
+
+.carousel .display_para {
+	width: 700px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.carousel .display_para>* {
+	float: left;
+	line-height: 44px;
+}
+
+.carousel .display_para .energy_title {
+	font-size: 22px;
+	color: #999;
+	padding-left: 15px;
+}
+
+.carousel .display_para .division_line_2 {
+	height: 31px;
+	width: 1px;
+	background-color: #ccc;
+	margin: 8px 0 0 15px;
+}
+
+.carousel .display_para .energy_number {
+	float: right !important;
+	font-size: 30px;
+	padding-right: 10px;
+	color: #46AEDE;
+}
+
+.carousel .display_para .energy_number .unit {
+	font-size: 12px;
+	color: #999;
+}
+
+.carousel .btn {
+	width: 40px;
+	height: 44px;
+	z-index: 10000px;
+}
+
+.carousel .left_btn {
+	background: url("../images/left_btn.png");
+	left: 0;
+	top: 0;
+	position: absolute;
+}
+
+.carousel .right_btn {
+	background: url("../images/right_btn.png");
+	right: 0;
+	position: absolute;
+	top: 0
+}
+
+#carousel_content {
+	width: 700px;
+	height: 44px;
+	margin: 0 auto;
+}
+
+.charts_group_2 {
+	margin-top: 12px;
+}
+
+.charts_group_2>div {
+	width: 250px;
+	height: auto;
+	float: left;
+	margin-right: 15px;
+}
+
+.charts_group_2>div>.top_chart {
+	height: 364px;
+	width: 100%;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
+		to(#D6D8DD));
+	position: relative;
+	border-radius: 4px;
+}
+
+.top_chart .chart h3 {font-size:14px;position: absolute;left: 76px;top: 38px;color: #C0C0C0;}
+.top_chart .chart h1 {font-size:40px;padding-top:74px; text-align:center;}
+.top_chart .chart h4 {position: absolute;right: 80px;top: 114px;font-weight: normal;}
+
+.top_chart .data  * {
+	line-height: 60px;
+	color: #fff !important;
+}
+
+.top_chart .data>h1 {
+	float: left;
+	font-size: 36px;
+	font-weight: normal;
+	color: #fff;
+	padding-left: 15px;
+}
+
+.top_chart .data>span {
+	float: right;
+	font-size: 14px;
+	color: #fff;
+	padding-right: 10px;
+}
+
+.charts_group_2 .chart {
+	height: 180px;
+}
+
+.total_consume>p,.total_consume>span {
+	padding-left: 36px;
+}
+
+.total_consume p {
+	color: #333;
+	font-size: 22px;
+}
+
+.total_consume h1 {
+	font-size: 50px;
+	margin: 12px 0px;
+	text-align: center;
+}
+
+.total_consume span {
+	color: #666;
+	font-size: 16px;
+}
+
+.color_1 {
+	color: #854D37;
+}
+
+.color_2 {
+	color: #46AEDE;
+}
+
+.color_3 {
+	color: #90BF41;
+}
+
+.nomargin {
+	margin-right: 0 !important;
+}
+
+.charts_group_2 .data {
+	height: 60px;
+	width: 250px;
+}
+
+.bg_1 {
+	background: -webkit-gradient(linear, left top, left bottom, from(#FB723F),
+		to(#EF3D3D));
+}
+
+.bg_2 {
+	background: -webkit-gradient(linear, left top, left bottom, from(#66E2FF),
+		to(#46AFDE));
+}
+
+.bg_3 {
+	background: -webkit-gradient(linear, left top, left bottom, from(#BCCF6F),
+		to(#A7BD4E));
+}
+
+.bottom_chart {
+	width: 100%;
+	height: 189px;
+	border-radius: 4px;
+	background: rgba(255, 255, 255, 0.8);
+	margin-top: 15px;
+}
+
+.bottom_chart>* {
+	color: #666;
+}
+
+.bottom_chart .describe {
+	width: 100%;
+	height: 38px;
+	line-height: 52px;
+}
+
+.bottom_chart .describe .what_system {
+	font-size: 20px;
+	float: left;
+	padding-left: 15px;
+}
+
+.bottom_chart .describe .unit {
+	font-size: 14px;
+	float: right;
+	padding-right: 5px;
+}
+
+.charts_group_3>div {
+	width: 190px;
+	height: 260px;
+	float: left;
+	margin-right: 7px;
+	border-radius: 4px;
+	position: relative;
+	margin-top: 23px;
+}
+
+.charts_group_3 .chart_logo {
+	width: 100%;
+	height: 180px;
+	color: #fff;
+}
+
+.charts_group_3 .chart_logo h1 {
+	font-size: 26px;
+	padding: 10px 0px 10px 20px;
+}
+
+.charts_group_3 .chart_logo h2 {
+	font-size: 20px;
+	padding-left: 20px;
+}
+
+.charts_group_3 .chart_logo .icon {
+	width: 115px;
+	height: 115px;
+	display: inline-block;
+	margin: 10px 40px 5px;
+}
+
+.charts_group_3 .chart_logo .icon_air {
+	background: url("../images/icon.png") -135px -10px;
+}
+
+.charts_group_3 .chart_logo .icon_tree {
+	background: url("../images/icon.png") -389px -10px;
+}
+
+.charts_group_3 .chart_logo .icon_bulb {
+	background: url("../images/icon.png") -257px -3px;
+}
+
+.charts_group_3 .chart_logo .icon_car {
+	width: 101px;
+	height: 70px;
+	display: inline-block;
+	background: url("../images/icon.png") -21px -35px;
+	margin-left: 40px;
+}
+
+.charts_group_3 .data p {
+	padding: 0;
+	padding-left: 15px;
+	margin-top: 9px;
+}
+
+.charts_group_3 .data .describe {
+	font-size: 12px;
+}
+
+.charts_group_3 .data .para {
+	font-size: 40px;
+	line-height: 28px;
+}
+
+.car {
+	background: -webkit-gradient(linear, left top, right bottom, from(#AFC45B),
+		to(#869B33));
+}
+
+.air {
+	background: -webkit-gradient(linear, left top, right bottom, from(#FBC600),
+		to(#E8A800));
+}
+
+.tree {
+	background: -webkit-gradient(linear, left top, right bottom, from(#5DD3F5),
+		to(#46AFDE));
+}
+
+.bulb {
+	background: -webkit-gradient(linear, left top, right bottom, from(#979FC4),
+		to(#576499));
+}
+
+.charts_group_3 .data {
+	height: 81px;
+}
+/*空气污染指数箭头*/
+.arrow {
+	position: relative;
+	display: block;
+	top: 11px;
+	left: 98px;
+	border-style: solid;
+	width: 0px;
+	border-top-width: 9px;
+	border-color: #523E3A;
+	border-top-color: rgba(255, 255, 255, 255);
+	border-right-width: 10px;
+	border-left-width: 10px;
+	border-bottom-width: 0px;
+}
+/*空气污染指数指数条*/
+#wr_bar {
+	position: relative;
+	top: 12px;
+	left: 16px;
+}
+/*天气*/
+.weather_overview {
+	width: 100%;
+	height: 260px;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 4px;
+	color: #fff;
+	margin-top: 20px;
+}
+
+.weather_describe {
+	padding: 22px 0 0 13px;
+}
+
+.weather_overview i {
+	width: 34px;
+	height: 30px;
+	display: inline-block;
+	background: url("../images/icon.png") -536px -56px;
+}
+
+.maxmin {
+	margin-top: 10px;
+	padding-left: 30px;
+}
+
+.maxmin span {
+	font-size: 30px;
+}
+
+.weather_overview h1 {
+	font-size: 120px;
+	font-weight: lighter;
+	text-shadow: 3px 3px #123123;
+	margin-top: 70px;
+	padding-left: 14px;
+}
+
+.next_weather {
+	width: 100%;
+	height: 185px;
+	background-color: #000;
+	margin-top: 8px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.next_weather table {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.next_weather table tr {
+	border-top: 1px solid #a0928f;
+}
+
+.next_weather .min_temp {
+	color: #66CCFF;
+}
+
+.unit_div {
+	width: 100%;
+	height: 120px;
+	background: rgba(255, 255, 255, .2);
+	border-radius: 4px;
+	margin-top: 10px;
+}
+
+.pollution .pollution_title>p {
+	float: left;
+	padding-left: 15px;
+	font-size: 20px;
+}
+
+.pollution .pollution_title>div {
+	float: right;
+	padding-right: 5px;
+}
+
+.pollution .pollution_title>div>.number {
+	font-size: 20px;
+}
+
+.pollution .pollution_title>div>.degree {
+	font-size: 16px;
+}
+
+.air_speed .unit_title>p {
+	float: left;
+	padding-left: 15px;
+	font-size: 20px;
+}
+
+.sun_position {
+	width: 100%;
+	height: 180px;
+	background: rgba(255, 255, 255, .2);
+	border-radius: 4px;
+	margin-top: 10px;
+}
+
+.unit_title {
+	height: 40px;
+	line-height: 40px;
+	width: 96%;
+	border-bottom: 1px solid #fff;
+	margin: 0 auto;
+	color: #fff;
+}
+
+.sun_position .unit_title>p {
+	float: left;
+	padding-left: 15px;
+	font-size: 20px;
+}
+
+.wind_data>* {
+	float: left;
+	color: #fff;
+	line-height: 22px;
+	font-size: 14px;
+}
+
+.wind_data>div {
+	padding: 17px 0 0 25px;
+}
+
+.windmill {
+	width: 45px;
+	height: 55px;
+	display: inline-block;
+	background: url("../images/icon.png") -604px -45px;
+	margin: 10px 0 0 35px;
+}
+
+.board_map {
+	width: 230px;
+	height: 232px;
+	background: url("../images/zgg_map.png") no-repeat;
+}
+
+.board_div {
+	width: 1920px !important;
+	height: 1200px !important; /*overflow: hidden;*/
+	background-color: #f2f2f2 !important;
+	color: #000;
+	font: 12px/20px "Microsoft YaHei", "SimSun", "宋体", "Arial Narrow",
+		HELVETICA;
+	background: #fff; /*text-shadow: 1px 1px 1px #666;*/
+	background: url("../images/bj.jpg");
+	margin-left: -232px;
+	margin-top: -5px;
+}
+
+.wr_bar_class {
+	width: 273px;
+	position: relative;
+	background: url("../images/wr_bar.png") no-repeat;
+	top: 12px;
+	left: 11px;
+	height: 10px;
+}
+
+.sun_pic_class {
+	width: 30px;
+	height: 30px;
+	display: none;
+	background: url("../images/sun.png") no-repeat;
+}
+
+.ele_amount_class {
+	width: 22px;
+	height: 33px;
+	position: absolute;
+	right: 115px;
+	top: 145px;
+	background: url("../images/ele_amount.png") no-repeat;
+}
+
+.water_amount_class {
+	width: 22px;
+	height: 33px;
+	position: absolute;
+	right: 115px;
+	top: 145px;
+	background: url("../images/water_amount.png") no-repeat;
+}
+
+.gas_amount_class {
+	width: 26px;
+	height: 25px;
+	position: absolute;
+	right: 112px;
+	top: 145px;
+	background: url("../images/gas_amount.png") no-repeat;
+}
+
+.sun_pic_image {
+	width: 30px;
+	height: 30px;
+	display: block;
+	background: url("../images/sun.png") no-repeat;
+}

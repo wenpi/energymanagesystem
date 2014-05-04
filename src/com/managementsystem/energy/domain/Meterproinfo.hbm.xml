@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Meterproinfo" table="meterproinfo">
+        <id name="meterProductid" type="string">
+            <column name="meter_productid" length="12" />
+            <generator class="assigned" />
+        </id>
+        <property name="meterProductname" type="string">
+            <column name="meter_productname" length="48" />
+        </property>
+        <property name="meterType" type="java.lang.Integer">
+            <column name="meter_type">
+                <comment>1&#198;&#213;&#205;&#168;&#181;&#231;&#177;&#237; 2&#182;&#224;&#185;&#166;&#196;&#220;&#181;&#231;&#177;&#237; 3&#203;&#174;&#177;&#237;
+                4&#200;&#188;&#198;&#248;&#177;&#237; 5&#200;&#200;&#177;&#237; 6&#192;&#228;&#177;&#237; 7&#192;&#228;&#200;&#200;&#193;&#191;&#188;&#198;</comment>
+            </column>
+        </property>
+        <property name="meterProducter" type="string">
+            <column name="meter_producter" length="48" />
+        </property>
+        <property name="meterModel" type="string">
+            <column name="meter_model" length="48" />
+        </property>
+        <property name="meterProductdesc" type="string">
+            <column name="meter_productdesc" length="160" />
+        </property>
+        <property name="meterPhoto" type="string">
+            <column name="meter_photo" length="100" />
+        </property>
+        <set name="meterparaminfos" table="meterparaminfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="meter_productid" length="12" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Meterparaminfo" />
+        </set>
+        <set name="meteruseinfos" table="meteruseinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="meter_productid" length="12" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Meteruseinfo" />
+        </set>
+    </class>
+</hibernate-mapping>

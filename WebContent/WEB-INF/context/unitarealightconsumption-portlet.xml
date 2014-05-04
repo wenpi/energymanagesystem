@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<import resource="applicationContext.xml" />
+	
+	<bean id="unitarealightconsumptionViewController" class="com.managementsystem.energy.portlet.energyanalysis.UnitAreaLightConsumptionViewController" />
+	<bean id="unitarealightconsumptionPreferenceController" class="com.managementsystem.energy.portlet.energyanalysis.UnitAreaLightConsumptionPreferenceController" />
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="unitarealightconsumptionViewController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="unitarealightconsumptionPreferenceController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

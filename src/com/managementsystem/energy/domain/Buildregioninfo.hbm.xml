@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Buildregioninfo" table="buildregioninfo">
+        <id name="regionId" type="string">
+            <column name="region_id" length="16" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="buildregioninfo" class="com.managementsystem.energy.domain.Buildregioninfo" fetch="select">
+            <column name="region_parentid" length="16" />
+        </many-to-one>
+        <many-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" fetch="select">
+            <column name="build_id" length="12">
+                <comment>
+                &#199;&#176;6&#206;&#187;&#206;&#170;&#202;&#253;&#190;&#221;&#214;&#208;&#208;&#196;&#180;&#250;&#194;&#235;&#163;&#172;&#181;&#218;7-8&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#192;&#224;&#177;&#240;,&#181;&#218;9-12&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+            </column>
+        </many-to-one>
+        <property name="regionName" type="string">
+            <column name="region_name" length="48" />
+        </property>
+         <property name="regionType" type="string">
+            <column name="region_type" length="16" />
+        </property>
+        <property name="regionRemark" type="string">
+            <column name="region_remark" length="200" />
+        </property>
+        <property name="regionImage" type="string">
+            <column name="region_image" length="200" />
+        </property>
+         <property name="left" type="java.lang.Double">
+            <column name="left_"  precision="18" scale="4" />
+        </property>
+         <property name="top" type="java.lang.Double">
+            <column name="top_"  precision="18" scale="4" />
+        </property>
+         <property name="width" type="java.lang.Integer">
+            <column name="width" />
+        </property>
+         <property name="height" type="java.lang.Integer">
+            <column name="height" />
+        </property>
+        <property name="offset" type="java.lang.Integer">
+            <column name="offset" />
+        </property>
+         <property name="url" type="string">
+            <column name="url" length="200" />
+        </property>
+         <property name="title" type="string">
+            <column name="title" length="200" />
+        </property>
+        
+        <set name="meteruseinfos" table="meteruseinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="region_id" length="16" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Meteruseinfo" />
+        </set>
+        <set name="buildregioninfos" table="buildregioninfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="region_parentid" length="16" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Buildregioninfo" />
+        </set>
+    </class>
+</hibernate-mapping>

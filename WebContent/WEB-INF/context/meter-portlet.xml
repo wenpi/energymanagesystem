@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="applicationContext.xml" />
+	<bean id="viewMeterController" class="com.managementsystem.energy.web.ViewMeterController" />
+	<bean id="editMeterController" class="com.managementsystem.energy.web.EditMeterController" />
+	<bean id="helpMeterController" class="com.managementsystem.energy.web.HelpMeterController" />
+	
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="viewMeterController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="editMeterController" />
+				</entry>
+				<entry key="help">
+					<ref bean="helpMeterController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

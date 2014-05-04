@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-8-27 18:19:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="com.managementsystem.energy.domain.Bigdistrictinfo"
+		table="bigdistrictinfo">
+		<id name="bigdistrictId" type="string">
+			<column name="bigdistrict_id" length="75" />
+			<generator class="uuid" />
+		</id>
+		<many-to-one name="bigdistrictinfo"
+			class="com.managementsystem.energy.domain.Bigdistrictinfo" fetch="select">
+			<column name="parent_id" length="10" />
+		</many-to-one>
+		<property name="bigdistrictName" type="string">
+			<column name="bigdistrict_name" length="50" />
+		</property>
+		<property name="primaryIndicator" type="string">
+			<column name="primary_indicator" length="50" />
+		</property>
+		<property name="secondaryIndicator" type="string">
+			<column name="secondary_indicator" length="50" />
+		</property>
+		<property name="bigdistrictRemark" type="string">
+			<column name="bigdistrict_remark" length="200" />
+		</property>
+		<property name="orderNo" type="java.lang.Integer">
+			<column name="order_no" />
+		</property>
+		<set name="bigdistrictinfos" table="bigdistrictinfo" inverse="true"
+			lazy="true" fetch="select">
+			<key>
+				<column name="parent_id" length="10" />
+			</key>
+			<one-to-many class="com.managementsystem.energy.domain.Bigdistrictinfo" />
+		</set>
+		<set name="bigdistrictrelainfos" table="bigdistrictrelainfo"
+			inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="bigdistrict_id" length="10" />
+			</key>
+			<one-to-many class="com.managementsystem.energy.domain.Bigdistrictrelainfo" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.EnergyRegionalStandardDetail" table="energy_regional_standard_detail">
+        <id name="detailId" type="string">
+            <column name="detailId" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="energyStandard" class="com.managementsystem.energy.domain.EnergyStandard" fetch="select">
+            <column name="standard_id" length="75" />
+        </many-to-one>
+        <property name="bigdistrictId" type="string">
+            <column name="bigdistrict_id" length="75" />
+        </property>
+        <property name="buildFunction" type="string">
+            <column name="build_function" length="75" />
+        </property>
+        <property name="avgValue" type="big_decimal">
+            <column name="avg_value" precision="18" scale="4" />
+        </property>
+        <property name="highValue" type="big_decimal">
+            <column name="high_value" precision="18" scale="4" />
+        </property>
+        <property name="midValue" type="big_decimal">
+            <column name="mid_value" precision="18" scale="4" />
+        </property>
+        <property name="lowValue" type="big_decimal">
+            <column name="low_value" precision="18" scale="4" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="createdOnDate" type="timestamp">
+            <column name="created_on_date" length="19" />
+        </property>
+        <property name="createdByUserId" type="java.lang.Long">
+            <column name="created_by_user_id" />
+        </property>
+        <property name="createdByUserName" type="string">
+            <column name="created_by_user_name" length="75" />
+        </property>
+        <property name="lastModifiedByUserId" type="java.lang.Long">
+            <column name="last_modified_by_user_id" />
+        </property>
+        <property name="lastModifiedOnDate" type="timestamp">
+            <column name="last_modified_on_date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-7-31 13:05:34 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Strategydetailparam" table="strategydetailparam">
+        <id name="paramid" type="string">
+            <column name="paramid" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="strategydetail" class="com.managementsystem.energy.domain.Strategydetail" fetch="select">
+            <column name="detailid" length="75" />
+        </many-to-one>
+        <property name="paramtypeid" type="java.lang.Integer">
+            <column name="paramtypeid">
+                <comment>
+                &#178;&#206;&#202;&#253;&#192;&#224;&#208;&#205;&#163;&#172;&#199;&#248;&#183;&#214;&#178;&#187;&#205;&#172;&#192;&#224;&#208;&#205;&#181;&#196;&#178;&#206;&#202;&#253;&#201;&#232;&#214;&#195;
+                0&#201;&#232;&#177;&#184;&#178;&#206;&#202;&#253; 1&#200;&#203;&#193;&#247;&#193;&#191;&#178;&#206;&#202;&#253;&#201;&#232;&#214;&#195;</comment>
+            </column>
+        </property>
+        <property name="paramname" type="string">
+            <column name="paramname" length="50" />
+        </property>
+        <property name="paramvalue" type="string">
+            <column name="paramvalue" length="30" />
+        </property>
+        <property name="paramminvalue" type="string">
+            <column name="paramminvalue" length="10" />
+        </property>
+        <property name="parammaxvalue" type="string">
+            <column name="parammaxvalue" length="10" />
+        </property>
+        <property name="controlid" type="string">
+            <column name="controlid" length="50" />
+        </property>
+        <property name="tagid" type="java.lang.Integer">
+            <column name="tagid" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.managementsystem.energy.domain.QueryScheme"
+		table="queryscheme">
+		<id name="schemeId" type="string">
+            <column name="schemeId" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="num" type="string">
+            <column name="num" length="50" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="id" type="string">
+            <column name="id" length="50" />
+        </property>
+        <property name="categoryId" type="string">
+            <column name="category_id" length="50" />
+        </property>
+        <property name="regionId" type="string">
+            <column name="region_id" length="50" />
+        </property>
+        <property name="tagid" type="string">
+            <column name="tagid" length="4000" />
+        </property>
+        <property name="iscreate" type="java.lang.Long">
+            <column name="iscreate" />
+        </property>
+        <property name="ispd" type="java.lang.Long">
+            <column name="ispd" />
+        </property>
+        <property name="ismax" type="java.lang.Long">
+            <column name="ismax" />
+        </property>
+        <property name="ismin" type="java.lang.Long">
+            <column name="ismin" />
+        </property>
+        <property name="issum" type="java.lang.Long">
+            <column name="issum" />
+        </property>
+        <property name="isavg" type="java.lang.Long">
+            <column name="isavg" />
+        </property>
+        <property name="ispercent" type="java.lang.Long">
+            <column name="ispercent" />
+        </property>
+        <property name="ischange" type="java.lang.Long">
+            <column name="ischange" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="200" />
+        </property>
+        <property name="buildId" type="string">
+            <column name="build_id" length="75" />
+        </property>
+        <property name="_parentId" type="string">
+            <column name="parentId" length="75" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="createdDate" length="19" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="createdBy" />
+        </property>
+        <property name="modifiedDate" type="timestamp">
+            <column name="modifiedDate" length="19" />
+        </property>
+        <property name="modifiedBy" type="java.lang.Long">
+            <column name="modifiedBy" />
+        </property>
+        <property name="calgrade" type="string">
+            <column name="calgrade" length="50" />
+        </property>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.EnergyItemStandardDetail" table="energy_item_standard_detail">
+        <id name="detailId" type="string">
+            <column name="detail_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="energyStandard" class="com.managementsystem.energy.domain.EnergyStandard" fetch="select">
+            <column name="standard_id" length="75" />
+        </many-to-one>
+        <property name="buildFunction" type="string">
+            <column name="build_function" length="75" />
+        </property>
+        <property name="energyItemcode" type="string">
+            <column name="energy_itemcode" length="10" />
+        </property>
+        <property name="unit" type="string">
+            <column name="unit" length="75" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="standardValue" type="big_decimal">
+            <column name="standard_value" precision="18" scale="4" />
+        </property>
+        <property name="createdOnDate" type="timestamp">
+            <column name="created_on_date" length="19" />
+        </property>
+        <property name="createdByUserId" type="java.lang.Long">
+            <column name="created_by_user_id" />
+        </property>
+        <property name="createdByUserName" type="string">
+            <column name="created_by_user_name" length="75" />
+        </property>
+        <property name="lastModifiedByUserId" type="java.lang.Long">
+            <column name="last_modified_by_user_id" />
+        </property>
+        <property name="lastModifiedOnDate" type="timestamp">
+            <column name="last_modified_on_date" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Buildexinfo" table="buildexinfo">
+        <id name="buildId" type="string">
+            <column name="build_id" length="12" />
+            <generator class="foreign">
+                <param name="property">buildinfo</param>
+            </generator>
+        </id>
+        <one-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" constrained="true"></one-to-one>
+        <property name="buildWorkernum" type="java.lang.Integer">
+            <column name="build_workernum">
+                <comment>
+                &#176;&#236;&#185;&#171;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;&#163;&#172;&#200;&#161;&#201;&#207;&#210;&#187;&#196;&#234;&#200;&#213;&#198;&#189;&#190;&#249;&#202;&#253;</comment>
+            </column>
+        </property>
+        <property name="buildCustomernum" type="java.lang.Integer">
+            <column name="build_customernum">
+                <comment>
+                &#201;&#204;&#179;&#161;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;&#163;&#172;&#200;&#161;&#201;&#207;&#210;&#187;&#196;&#234;&#200;&#213;&#198;&#189;&#190;&#249;&#202;&#253;</comment>
+            </column>
+        </property>
+        <property name="buildOpenhours" type="big_decimal">
+            <column name="build_openhours" precision="18" scale="4">
+                <comment>
+                &#201;&#204;&#179;&#161;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;,&#200;&#161;&#201;&#207;&#210;&#187;&#196;&#234;&#200;&#213;&#198;&#189;&#190;&#249;&#202;&#253;</comment>
+            </column>
+        </property>
+        <property name="buildServicelevel" type="string">
+            <column name="build_servicelevel" length="16">
+                <comment>
+                &#177;&#246;&#185;&#221;&#183;&#185;&#181;&#234;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;&#163;&#172;&#206;&#196;&#215;&#214;&#195;&#232;&#202;&#246;</comment>
+            </column>
+        </property>
+        <property name="buildHotelliverate" type="big_decimal">
+            <column name="build_hotelliverate" precision="18" scale="4">
+                <comment>
+                &#177;&#246;&#185;&#221;&#183;&#185;&#181;&#234;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;&#163;&#172;&#200;&#161;&#201;&#207;&#210;&#187;&#196;&#234;&#198;&#189;&#190;&#249;&#202;&#253;</comment>
+            </column>
+        </property>
+        <property name="buildHotelbednum" type="java.lang.Integer">
+            <column name="build_hotelbednum">
+                <comment>&#177;&#246;&#185;&#221;&#183;&#185;&#181;&#234;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;</comment>
+            </column>
+        </property>
+        <property name="buildVistornum" type="java.lang.Integer">
+            <column name="build_vistornum">
+                <comment>
+                &#206;&#196;&#187;&#175;&#189;&#204;&#211;&#253;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;&#163;&#172;&#200;&#161;&#201;&#207;&#210;&#187;&#196;&#234;&#215;&#220;&#200;&#203;&#202;&#253;</comment>
+            </column>
+        </property>
+        <property name="buildStudentnum" type="java.lang.Integer">
+            <column name="build_studentnum">
+                <comment>&#206;&#196;&#187;&#175;&#189;&#204;&#211;&#253;&#189;&#168;&#214;&#254;&#204;&#238;&#208;&#180;&#184;&#195;&#207;&#238;</comment>
+            </column>
+        </property>
+        <property name="buildHospitalstandard" type="string">
+            <column name="build_hospitalstandard" length="16" />
+        </property>
+        <property name="buildHospitaltype" type="string">
+            <column name="build_hospitaltype" length="16" />
+        </property>
+        <property name="buildPatientnum" type="java.lang.Integer">
+            <column name="build_patientnum" />
+        </property>
+        <property name="buildHospitalbednum" type="java.lang.Integer">
+            <column name="build_hospitalbednum" />
+        </property>
+        <property name="buildSpectaotrnum" type="java.lang.Integer">
+            <column name="build_spectaotrnum" />
+        </property>
+        <property name="buildGroupfunc" type="string">
+            <column name="build_groupfunc" length="800" />
+        </property>
+        <property name="buildExtendfunc" type="string">
+            <column name="build_extendfunc" length="800" />
+        </property>
+        <property name="buildElectriprice" type="string">
+            <column name="build_electriprice" length="160" />
+        </property>
+        <property name="buildWaterprice" type="string">
+            <column name="build_waterprice" length="160" />
+        </property>
+        <property name="buildGasprice" type="string">
+            <column name="build_gasprice" length="160" />
+        </property>
+        <property name="buildHeatprice" type="string">
+            <column name="build_heatprice" length="160" />
+        </property>
+        <property name="buildOtherprice" type="string">
+            <column name="build_otherprice" length="320" />
+        </property>
+    </class>
+</hibernate-mapping>

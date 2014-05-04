@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Buildsettinginfo" table="buildsettinginfo">
+        <id name="buildId" type="string">
+            <column name="build_id" length="12" />
+            <generator class="foreign">
+                <param name="property">buildinfo</param>
+            </generator>
+        </id>
+        <one-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" constrained="true"></one-to-one>
+        <property name="settingSupporturl" type="string">
+            <column name="setting_supporturl" length="100" />
+        </property>
+        <property name="settingWsurl" type="string">
+            <column name="setting_wsurl" length="100">
+                <comment>web&#183;&#254;&#206;&#241;&#214;&#247;&#187;&#250;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

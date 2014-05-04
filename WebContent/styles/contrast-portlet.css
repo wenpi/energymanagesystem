@@ -1,0 +1,135 @@
+@CHARSET "UTF-8";
+
+#energycontrast .condition {
+	width:100%;
+	z-index:99999;
+}
+
+#energycontrast .ulreporttype,
+#energycontrast .datezone,
+#energycontrast .contrastzone {
+	float:left;
+	width:30%;
+	list-style:none;
+	margin:0px auto;
+}
+
+#energycontrast .ulreporttype,
+#energycontrast .contrastzone {
+	text-align:center;
+}
+
+#energycontrast .contrastzone {
+	width:36%;
+}
+#energycontrast .datezone li {
+	line-height:30px;
+}
+#energycontrast .contrastzone li {
+	float: left;
+	margin: 0px;
+	display: inline;
+	text-align: center;
+	position: relative;
+	line-height:30px;
+	width:33%;
+}
+
+
+#energycontrast ul.ulreporttype li {
+	line-height:30px;
+}
+
+#energycontrast .datesel_iconbg {
+	background:url(images/datesel.png) no-repeat top left;
+	padding:5px 2px;
+	color:#fff;
+	text-decoration: none;
+}
+
+
+#energycontrast li.datesel input {
+	border:none;
+	background:#fff;
+	font-weight:bold;
+	text-align:center;
+	
+}
+
+ .reporttype a {
+	background:url(images/round_green.png) no-repeat center center;
+	padding:10px;
+	color:#fff;
+	text-align:center;
+	text-decoration: none;
+}
+.reporttype a.active {
+	background:url(images/round_back.png) no-repeat center center;
+	padding:10px;
+	color:#fff;
+	text-align:center;
+	text-decoration: none;
+}
+
+
+
+#energycontrast a.round_back {
+	background:url(images/round_back.png) no-repeat center center;
+	padding:10px;
+	color:#fff;
+	text-align:center;
+	text-decoration: none;
+}
+
+#energycontrast a.round_green {
+	background:url(images/round_green.png) no-repeat center center;
+	padding:10px;
+	color:#fff;
+	text-align:center;
+	text-decoration: none;
+}
+
+#energycontrast .timerang_text {}
+#energycontrast .timerang_sel input {background:#fff;padding:2px 0;margin:0px;}
+
+
+#energycontrast #tab-container {margin:10px 0 0 0;}
+
+#contrastbuildinfos {
+	width:98%;
+	padding:0px;
+	margin:4px;
+}
+#contrastbuildinfos li {
+	list-style:none;
+	padding:2px;
+	line-height:23px;
+}
+
+#contrastbuildinfos li.title {
+	background:#f4f4f4;
+	
+}
+
+#contrastbuildinfos li span.text {
+	float:left;
+	width:80%;
+}
+
+#contrastbuildinfos li input {
+	float:left;
+	width:15%;
+}
+
+.histday {background:url(images/month.png) no-repeat 30% 50%;}
+.lastmonth {background:url(images/clock.png) no-repeat 30% 50%;}
+.histweek {background:url(images/week.png) no-repeat 30% 50%;}
+.histday,.lastmonth,.histweek{
+	padding:2px 0px 2px 30px;
+	text-decoration: none;
+	color:#000;
+	cursor:pointer;
+}
+
+
+

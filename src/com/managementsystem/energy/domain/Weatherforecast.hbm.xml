@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Weatherforecast" table="weatherforecast">
+        <id name="id" type="string">
+            <column name="id" length="75" />
+            <generator class="assigned" />
+        </id>
+        <property name="districtcode" type="string">
+            <column name="districtcode" length="6" not-null="true" />
+        </property>
+        <property name="worid" type="string">
+            <column name="worid" length="10" />
+        </property>
+        <property name="lastbuilddate" type="string">
+            <column name="lastbuilddate" length="50" not-null="true" />
+        </property>
+        <property name="locationCity" type="string">
+            <column name="location_city" length="50" />
+        </property>
+        <property name="locationRegion" type="string">
+            <column name="location_region" length="50" />
+        </property>
+        <property name="locationCountry" type="string">
+            <column name="location_country" length="50" />
+        </property>
+        <property name="unitTemperature" type="string">
+            <column name="unit_temperature" length="6" />
+        </property>
+        <property name="unitDistance" type="string">
+            <column name="unit_distance" length="6" />
+        </property>
+        <property name="unitPressure" type="string">
+            <column name="unit_pressure" length="6" />
+        </property>
+        <property name="unitSpeed" type="string">
+            <column name="unit_speed" length="6" />
+        </property>
+        <property name="windChill" type="java.lang.Integer">
+            <column name="wind_chill" />
+        </property>
+        <property name="windDirection" type="java.lang.Integer">
+            <column name="wind_direction" />
+        </property>
+        <property name="windSpeed" type="java.lang.Float">
+            <column name="wind_speed" precision="12" scale="0" />
+        </property>
+        <property name="atmosphereHumidity" type="java.lang.Integer">
+            <column name="atmosphere_humidity" />
+        </property>
+        <property name="atmosphereVisibility" type="java.lang.Float">
+            <column name="atmosphere_visibility" precision="12" scale="0" />
+        </property>
+        <property name="atmospherePressure" type="java.lang.Float">
+            <column name="atmosphere_pressure" precision="12" scale="0" />
+        </property>
+        <property name="atmosphereRising" type="java.lang.Integer">
+            <column name="atmosphere_rising" />
+        </property>
+        <property name="astronomySunrise" type="string">
+            <column name="astronomy_sunrise" length="10" />
+        </property>
+        <property name="astronomySunset" type="string">
+            <column name="astronomy_sunset" length="10" />
+        </property>
+        <property name="geoLat" type="big_decimal">
+            <column name="geo_lat" precision="18" scale="4" />
+        </property>
+        <property name="geoLong" type="big_decimal">
+            <column name="geo_long" precision="18" scale="4" />
+        </property>
+        <property name="conditionText" type="string">
+            <column name="condition_text" length="10" />
+        </property>
+        <property name="conditionCode" type="string">
+            <column name="condition_code" length="10" />
+        </property>
+        <property name="conditionTemp" type="java.lang.Float">
+            <column name="condition_temp" precision="12" scale="0" />
+        </property>
+        <property name="conditionDate" type="string">
+            <column name="condition_date" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="1000" />
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

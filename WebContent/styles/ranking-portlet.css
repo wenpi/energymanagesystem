@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+.rankingContainer {
+	margin:0 10px;
+}
+
+.buildTypes {
+}
+
+.buildTypes ul {
+	margin:0px;padding:0px;
+}
+.buildTypes ul li {
+	float:left;
+	list-style:none;
+	display: inline;
+	text-align: center;
+	position: relative;
+	line-height:25px;
+	padding: 0 5px;
+}
+.buildTypes ul li a {
+	text-decoration: none;
+	color:#000;
+}
+
+.rankingContainer ul li span.current {
+	color:#52A2BE;
+	font-weight:bold;
+	cursor:pointer;
+}
+
+.energytypes {
+	height:30px;
+	width:100%;
+	border-bottom:2px solid #52A2BE;
+	clear:both;
+}
+
+.energytypes ul {
+	margin:0px;padding:0px;
+}
+
+.energytypes li {
+	float:left;
+	list-style:none;
+	display: inline;
+	text-align: center;
+	position: relative;
+	line-height:30px;
+	padding: 0 10px;
+}

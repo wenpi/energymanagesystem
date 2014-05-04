@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-12-31 10:32:26 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Readmeter" table="readmeter">
+        <id name="readingid" type="string">
+            <column name="reading_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="energydict" class="com.managementsystem.energy.domain.Energydict" fetch="select">
+            <column name="energydict_id" length="16" />
+        </many-to-one>
+        <property name="organizationid" type="java.lang.Long">
+            <column name="organizationid">
+                <comment>&#203;&#249;&#202;&#244;&#215;&#233;&#214;&#175;&#187;&#250;&#185;&#185;ID</comment>
+            </column>
+        </property>
+        <property name="groupid" type="java.lang.Long">
+            <column name="groupid" />
+        </property>
+        <property name="buildId" type="string">
+            <column name="build_id" length="12" />
+        </property>
+        <property name="meterId" type="string">
+            <column name="meter_id" length="255" />
+        </property>
+        <property name="readingData" type="java.lang.Double">
+            <column name="reading_data" precision="22" scale="0" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="200" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="status">
+                <comment>0&#189;&#251;&#211;&#195; 1&#198;&#244;&#211;&#195;</comment>
+            </column>
+        </property>
+        <property name="readingPerson" type="string">
+            <column name="reading_person" length="10" />
+        </property>
+        <property name="readingDate" type="timestamp">
+            <column name="reading_date" length="19" />
+        </property>
+        <property name="creatoruserid" type="java.lang.Long">
+            <column name="creatoruserid" />
+        </property>
+        <property name="createdate" type="timestamp">
+            <column name="createdate" length="19" />
+        </property>
+        <property name="modifier" type="java.lang.Long">
+            <column name="modifier" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Circuitinfo" table="circuitinfo">
+        <id name="circuitId" type="string">
+            <column name="circuit_id" length="16" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="Circuitinfo" class="com.managementsystem.energy.domain.Circuitinfo" fetch="select">
+            <column name="circuit_parentid" length="16">
+                <comment>&#189;&#168;&#214;&#254;&#180;&#250;&#194;&#235;(10&#206;&#187;)+4&#206;&#187;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" fetch="select">
+            <column name="build_id" length="12" />
+        </many-to-one>
+        <property name="circuitCode" type="string">
+            <column name="circuit_code" length="48" />
+        </property>
+        <property name="circuitName" type="string">
+            <column name="circuit_name" length="48" />
+        </property>
+        <property name="circuitText" type="string">
+            <column name="circuit_text" length="48" />
+        </property>
+        <property name="circuitIspd" type="string">
+            <column name="circuit_ispd" length="2" />
+        </property>
+        <property name="circuitState" type="java.lang.Integer">
+            <column name="circuit_state">
+                <comment>0&#178;&#187;&#202;&#185;&#211;&#195; 1&#202;&#185;&#211;&#195;</comment>
+            </column>
+        </property>
+        <property name="circuitImage" type="string">
+            <column name="circuit_image" length="200">
+                <comment>&#201;&#207;&#180;&#171;&#205;&#188;&#198;&#172;</comment>
+            </column>
+        </property>
+        <set name="Circuitinfos" table="Circuitinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="circuit_parentid" length="16">
+                    <comment>&#189;&#168;&#214;&#254;&#180;&#250;&#194;&#235;(10&#206;&#187;)+4&#206;&#187;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+                </column>
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Circuitinfo" />
+        </set>
+        <set name="meteruseinfos" table="meteruseinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="circuit_id" length="16">
+                    <comment>&#189;&#168;&#214;&#254;&#180;&#250;&#194;&#235;(10&#206;&#187;)+4&#206;&#187;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+                </column>
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Meteruseinfo" />
+        </set>
+    </class>
+</hibernate-mapping>

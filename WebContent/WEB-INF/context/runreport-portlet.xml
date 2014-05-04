@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<import resource="applicationContext.xml" />
+	<bean id="runreportViewController" class="com.managementsystem.energy.portlet.runreport.RunreportViewController" />
+	<bean id="runreportPrefsController" class="com.managementsystem.energy.portlet.runreport.RunreportPrefsController" />
+	<bean id="runreportHelpController" class="com.managementsystem.energy.portlet.runreport.RunreportHelpController" />
+	
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="runreportViewController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="runreportPrefsController" />
+				</entry>
+				<entry key="help">
+					<ref bean="runreportHelpController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+
+</beans>

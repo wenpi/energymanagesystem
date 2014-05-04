@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-8-27 18:19:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Articlecategory" table="articlecategory">
+        <id name="catId" type="string">
+            <column name="cat_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="articlecategory" class="com.managementsystem.energy.domain.Articlecategory" fetch="select" lazy="false">
+            <column name="parent_id" length="75" />
+        </many-to-one>
+        <property name="modelId" type="java.lang.Integer">
+            <column name="model_id">
+                <comment>&#212;&#164;&#201;&#232;&#214;&#181;&#163;&#172;0=&#196;&#218;&#200;&#221;&#196;&#163;&#191;&#233;</comment>
+            </column>
+        </property>
+        <property name="catName" type="string">
+            <column name="cat_name" length="50" />
+        </property>
+        <property name="catType" type="string">
+            <column name="cat_type" length="50">
+                <comment>
+                &#196;&#220;&#212;&#180;&#193;&#236;&#211;&#242;&#161;&#162;&#196;&#220;&#212;&#180;&#210;&#181;&#206;&#241;&#161;&#162;&#185;&#250;&#177;&#240;&#183;&#214;&#192;&#224;</comment>
+            </column>
+        </property>
+        <property name="catDesc" type="string">
+            <column name="cat_desc" length="200" />
+        </property>
+        <property name="artCount" type="java.lang.Integer">
+            <column name="art_count" />
+        </property>
+        <property name="companyid" type="java.lang.Long">
+            <column name="companyid" />
+        </property>
+        <property name="createdbyuserid" type="java.lang.Long">
+            <column name="createdbyuserid" />
+        </property>
+        <property name="createdondate" type="timestamp">
+            <column name="createdondate" length="19" />
+        </property>
+        <property name="lastmodifiedbyuserid" type="java.lang.Long">
+            <column name="lastmodifiedbyuserid" />
+        </property>
+        <property name="lastmodifiedondate" type="timestamp">
+            <column name="lastmodifiedondate" length="19" />
+        </property>
+        <set name="articlecategories" table="articlecategory" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="parent_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Articlecategory" />
+        </set>
+        <set name="articlesForCatBusiness" table="article" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="cat_business" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Article" />
+        </set>
+        <set name="articlesForCatField" table="article" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="cat_field" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Article" />
+        </set>
+        <set name="articlesForCatId" table="article" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="cat_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Article" />
+        </set>
+    </class>
+</hibernate-mapping>

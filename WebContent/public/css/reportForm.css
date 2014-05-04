@@ -1,0 +1,491 @@
+/*报表整理CSS*/
+.sub_nav {
+	background-color: #6699cc;
+}
+
+.sub_nav_bar li {
+	background-color: #4885c1;
+}
+
+.classify {
+	margin-left: 0px;
+}
+
+.classify>ul>li {
+	margin-left: 15px;
+}
+
+#swap_info {
+	min-width: 940px;
+}
+
+.condition {
+	background-color: #f2f2f2;
+	height: 40px;
+	color: #333;
+}
+
+.select_condition>li {
+	float: left;
+	margin-left: 10px;
+	height: 25px;
+	line-height: 25px;
+	font-size: 14px;
+	margin-top: 8px;
+}
+
+.select_condition>li>input {
+	padding: 3px;
+	margin: 0;
+}
+
+.input-append {
+	margin: 0;
+	padding: 0;
+	height: 30px;
+}
+
+.input-append>input {
+	padding: 3px;
+	margin: 0;
+}
+
+.abc {
+	background-color: #c9c9c9;
+	height: 15px;
+}
+
+.input_form {
+	width: 80px;
+	max-width: 80px;
+	vertical-align: middle;
+	height: 10px;
+}
+
+.date_select {
+	width: 123px;
+}
+
+.form_detail {
+	color: #000;
+	font-size: 14px;
+	width: 100%;
+	padding-top: 0;
+	margin: 0;
+	border-bottom: 1px solid #000;
+}
+
+.form_detail>tbody>tr {
+	height: 30px;
+}
+
+.form_detail>tbody>tr>th {
+	padding: 4px 14px;
+}
+
+.basic_imformation {
+	margin-top: 0;
+	margin-left: 0px;
+}
+
+.imitate_btn {
+	background-color: #c9c9c9;
+	padding: 2px 10px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.imitate_btn:hover {
+	background-color: #868686;
+}
+
+.color_white {
+	color: #fff
+}
+
+#dg {
+	height: 18px;
+}
+
+.cur {
+	color: #f00;
+}
+
+.highlight {
+	color: #00f;
+	cursor: pointer;
+}
+
+.form_list {
+	font-size: 18px;
+}
+
+.form_title {
+	color: #fff;
+	line-height: 54px;
+	height: 54px;
+	border-radius: 10px 10px 0 0;
+}
+
+.form_list .form_title {
+	background-color: #fcb150;
+}
+
+.form_title p {
+	padding-left: 15px;
+}
+
+.module {
+	margin: 10px 0;
+}
+
+.module .span4 {
+	width: 32% !important;
+	margin-left: 1% !important;
+}
+
+.form_content {
+	width: 99.4%;
+	height: 145px;
+	border: 1px solid #666;
+	border-top: 0px;
+}
+
+.form_content h5 {
+	color: #999;
+	height: 30px;
+	padding: 11px 0 0 15px;
+}
+
+.choice_date {
+	padding-left: 10px;
+	margin-top: 20px;
+	width: 100%;
+	height: 35px;
+}
+
+.format_select {
+	float: left;
+	width: 62px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+}
+
+.date_pick {
+	float: left;
+	width: 70px !important;
+}
+
+.datepic {
+	float: left;
+}
+
+.date_mark {
+	float: left;
+	font-size: 12px;
+}
+
+.date_mark input,.date_mark label {
+	float: left;
+	border-radius: 0px !important;
+}
+
+.date_mark label {
+	background-color: #d7d7d7;
+	padding: 5px 7px;
+	margin: 0px 3px;
+}
+
+.division1 {
+	width: 95%;
+	height: 1px;
+	background-color: #999;
+	margin: 0 auto;
+}
+
+.button_group div {
+	width: 82px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	float: right;
+	border-radius: 4px;
+	font-size: 13px;
+	margin-left: 12px;
+	margin-right: 12px;
+	margin-top: 5px;
+	color: #fff;
+}
+
+.print {
+	background-color: #50597b;
+	cursor: pointer;
+}
+
+.outputreport {
+	background-color: #50597b;
+	cursor: pointer;
+}
+
+.preview {
+	background-color: #11a8ab;
+	cursor: pointer;
+}
+
+.form_display {
+	font-size: 20px;
+	margin-top: 38px;
+	cursor: pointer;
+}
+
+.show_now {
+	display: inline;
+}
+
+.tra_icon {
+	display: none;
+}
+
+#float_r {
+	float: right;
+	margin-right: 15px;
+}
+
+.customForm {
+	background-color: #f0f0f0;
+	margin-top: 34px;
+	min-height: 554px;
+}
+
+.customForm input {
+	margin: 0 !important;
+	margin-top: -4px !important;
+}
+
+.build_number {
+	margin: 20px 40px;
+	font-size: 16px;
+}
+
+.customForm p {
+	font-size: 16px;
+	margin-top: 20px;
+}
+
+.customForm select {
+	margin-left: 40px;
+}
+
+.icon_blue {
+	font-size: 26px;
+	color: #00f;
+	margin-right: 10px;
+}
+
+.form_margin {
+	margin-left: 45px;
+}
+
+.form_margin div {
+	margin: 20px 0;
+}
+
+.date_s {
+	width: 100px !important;
+}
+
+.long_vertical_line {
+	float: left;
+	width: 1px;
+	min-height: 520px;
+	margin: 20px 0;
+	background-color: #999999;
+}
+
+.preview_query .span3 {
+	margin: 24px 0 0 0;
+}
+
+.preview_query h5 {
+	font-size: 16px;
+	margin-top: 20px;
+}
+
+.choice_tool {
+	width: 100%;
+	height: 135px;
+}
+
+.date_mark1 {
+	margin-top: 36px;
+}
+
+.date_mark1 input,.date_mark1 label {
+	float: left;
+	border-radius: 0px !important;
+}
+
+.date_mark1 label {
+	background-color: #d7d7d7;
+	padding: 5px 7px;
+	margin: -4px 3px;
+}
+
+.preview_query select {
+	margin-left: 15px;
+	float: left;
+	width: 62px;
+}
+
+.data_frequency {
+	width: 120px !important;
+}
+
+.date1 {
+	margin-top: 16px;
+}
+
+.custom_chart {
+	width: 564px;
+	height: 295px;
+	background-color: #999;
+	margin-left: 8px;
+}
+
+.bottom_btn_frame {
+	width: 100%;
+	height: 150px;
+}
+
+.bottom_btn_frame .button_group {
+	padding: 50px 0 0 255px;
+}
+
+.table_style {
+	margin-top: 0px;
+}
+
+.frame2 {
+	height: 50px;
+	padding: 0;
+}
+
+.frame2 .button_group {
+	float: right;
+	padding-top: 20px;
+}
+
+/*.preview_query input {
+	width: 75px;
+}
+
+.date_choice {
+	margin-left: 0px !important;
+}
+
+*/
+.report_href {
+	color: #fff;
+	text-decoration: none;
+}
+
+.report_href:hover,.report_href:active,.report_href:focus {
+	color: #fff;
+	text-decoration: none;
+}
+
+.reportcontent {
+	width: 310px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.report_m_left {
+	margin-left: 0px;
+}
+
+.form_style {
+	display: none;
+}
+
+.form_func_title {
+	width: 100%;
+	height: 42px;
+	background-color: #6599ff;
+	line-height: 42px;
+}
+
+.form_func_title > * {
+	float: left;
+	color: #fff;
+	margin-right: 10px;
+}
+
+.form_func_title input {
+	height: 11px;
+	padding: 0px;
+	width: 76px;
+	margin-bottom: 0px;
+}
+
+.list_title {
+	margin: 0px 18px 0 15px;
+}
+
+.block {
+	font-size: 12px;
+	margin-top: 10px;
+}
+
+.block * {
+	float: left;
+}
+
+.build_select > select{
+	width: 100px;
+	height: 22px;
+	padding: 0;
+	border-radius: 0px;
+}
+
+.date_select > select {
+	width: 65px;
+	height: 22px;
+	padding: 0;
+	border-radius: 0px;
+}
+
+.form_style {
+	margin-top: 19px;
+	font-size: 20px;
+}
+
+.select_name {
+	background-color: #0066ff;
+	height: 23px;
+	line-height: 23px;
+	padding: 0px 5px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+
+.select_name_2 {
+	border-radius: 0;
+}
+
+.btn_group {
+	margin-top: 7px;
+}
+
+.btn_group > * {
+	width: 53px;
+	height: 28px;
+	background-color: #0066ff;
+	border-radius: 4px;
+	line-height: 28px;
+	font-size: 12px;
+	float: left;
+	text-align: center;
+	margin-left: 7px;
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Citytempinfo" table="citytempinfo">
+        <composite-id name="id" class="com.managementsystem.energy.domain.CitytempinfoId">
+            <key-property name="datacenterId" type="string">
+                <column name="datacenter_id" length="6" />
+            </key-property>
+            <key-property name="citytempDistrictcode" type="string">
+                <column name="citytemp_districtcode" length="6" />
+            </key-property>
+            <key-property name="citytempStarttime" type="timestamp">
+                <column name="citytemp_starttime" length="19" />
+            </key-property>
+            <key-property name="citytempEndtime" type="timestamp">
+                <column name="citytemp_endtime" length="19" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="datacenterinfo" class="com.managementsystem.energy.domain.Datacenterinfo" update="false" insert="false" fetch="select">
+            <column name="datecenter_id" length="6" not-null="true" />
+        </many-to-one>
+        <property name="citytempTempvalue" type="big_decimal">
+            <column name="citytemp_tempvalue" precision="18" scale="4" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

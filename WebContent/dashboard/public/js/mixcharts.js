@@ -1,0 +1,92 @@
+﻿function getMixCharts(chartId,data1,data0,data1Name,PieColor,Yzong,Tzong,Ydata,Tdata){
+	$("#"+chartId).highcharts({
+			chart:{
+				borderRadius:0,
+				backgroundColor:'#E3D4D0',
+				borderWidth:0,
+				spacingTop:0,
+				spacingBottom:0,
+				height:130
+			},
+			title:{//设置一级标题
+				text:null//标题的名称
+			},
+			subtitle:{//设置二级标题
+				text:Math.floor((data1/data0)*100)+"%",//-----------------------data1/data0-----------------
+				verticalAlign:'middle',
+				y:-1,
+				x:-55,
+				style:{
+					fontSize:'15px'
+				}
+			},
+			plotOptions:{
+				column:{
+					stacking:'normal',//设置可以让柱形图相叠
+					borderWidth: 0,
+					pointPadding:0.02//设置column的粗细	
+				},
+				pie:{
+					allowPointSelect:false,
+					dataLabels:{
+							enabled:false//可以设置圆的标识是否隐藏
+					}
+				}
+			},
+			xAxis:{
+				categories:['','','昨日','今日'],
+				lineWidth:0,//去掉x轴
+				tickWidth:0,//去掉x轴上的点
+				labels:{//设置‘今日’的粗细
+					style:{
+						fontWeight:'bold'
+					}
+				}
+			},
+			yAxis:{
+				title:{
+					text:null
+				},
+				labels:{
+					enabled:false
+				},
+				gridLineWidth:0//去掉y轴的线
+			},
+			series:[{
+				type:'pie',
+				innerSize:'9',
+				name:" ",
+				size:40,//饼图环宽
+				data:[{
+					name:'其他',
+					y:data0-data1,//-----------------------------------------------data0-data1
+					color:'#FFF'		
+				},{
+					name:data1Name,//---------------------------------data1Name
+					y:data1,//------------------------------------------------data1
+					color:PieColor//----------------------------------------
+				}],
+				borderWidth:0,
+				center:[40,40]//可以设置圆的位置
+			},{
+				type:'column',
+				name:'额外',
+				data:[null,null,Yzong-Ydata,Tzong-Tdata],
+				showInLegend: false
+			},{
+				type:'column',
+				name:'普通',
+				data:[null,null,{y:Ydata,color:'#5DDBD8'},{y:Tdata,color:'#7E4E74'}],
+				showInLegend: false
+				
+			}],
+			colors:['#FFFFFF','#C40A12'],
+			credits:{//去掉右下角的官网链接
+				enabled:false
+			},
+			tooltip:{
+				pointFormat: '{series.name}用电量:<b>{point.y}kWh</b>'
+			}
+		});
+		
+}

@@ -1,0 +1,111 @@
+/*运行监测*/
+.air_condition {
+	padding-top: 40px;
+}
+
+/*chart 300 404*/
+
+.air_condition .device_list > div {
+	width: 300px;
+	height: 404px;
+	float: left;
+	margin-right: 20px;
+}
+
+.air_condition .device_list .chart_title {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-size: 22px;
+	color: #fff;
+	background-color: #1a4e95;
+	text-indent: 1em;
+}
+
+.device_list .chart {
+	width: 100%;
+	height: 175px;
+	background-color: grey;
+}
+
+.data {
+	width: 100%;
+	height: 86px;
+	background: #50597B;
+	border-bottom: 1px solid #394264;
+}
+
+.data > div {
+	width: 24.7%;
+	height: 100%;
+	float: left;
+	border-right: 1px solid #394264;
+	position: relative;
+	cursor: pointer;
+}
+
+.reiken {
+	border: 0px !important;
+}
+
+.noborder {
+	border : 0px !important;
+}
+
+.info {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 4px;
+
+}
+
+.info_1 {
+	border-top: 4px solid #E64C65;
+}
+
+.info_2 {
+	border-top: 4px solid #11A8AB;
+}
+
+.info_3 {
+	border-top: 4px solid #FCB150;
+}
+
+.info_4 {
+	border-top: 4px solid #4FC4F6 !important;
+}
+
+.change_chart_data_bg {
+	background-color: #11A8AB !important;
+}
+
+.change_chart_topbar_bg {
+	border-top: 4px solid #11A8AB !important;
+}
+
+.info > p {
+	font-size: 40px;
+	font-family: "SegoeWPLight";
+	color: #fff;
+	text-align: center;
+	line-height: 57px;
+}
+
+.info > p > span {
+	font-size: 16px;
+}
+
+.info sup {
+	position: absolute;
+	top: -10px;
+	left: 56px;
+}
+
+.info > h4 {
+	line-height: 0px;
+	text-align: center;
+	color: #999;
+	font-weight: normal;
+}

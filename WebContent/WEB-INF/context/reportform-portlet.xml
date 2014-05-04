@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<import resource="applicationContext.xml" />
+	
+	<bean id="reportformViewController" class="com.managementsystem.energy.portlet.report.ReportFormViewController" />
+	<bean id="reportformPreferenceController" class="com.managementsystem.energy.portlet.report.ReportFormPreferenceController" />
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="reportformViewController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="reportformPreferenceController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Datacenterinfo" table="datacenterinfo">
+        <id name="datacenterId" type="string">
+            <column name="datacenter_id" length="6" />
+            <generator class="assigned" />
+        </id>
+        <property name="datacenterName" type="string">
+            <column name="datacenter_name" length="48" />
+        </property>
+        <property name="datacenterType" type="java.lang.Integer">
+            <column name="datacenter_type">
+                <comment>&#202;&#253;&#190;&#221;&#214;&#208;&#208;&#196;&#192;&#224;&#208;&#205; 1-&#202;&#253;&#190;&#221;&#214;&#208;&#208;&#196; 2
+                &#202;&#253;&#190;&#221;&#214;&#208;&#215;&#170;&#213;&#190;</comment>
+            </column>
+        </property>
+        <property name="datacenterManager" type="string">
+            <column name="datacenter_manager" length="48" />
+        </property>
+        <property name="datacenterDesc" type="string">
+            <column name="datacenter_desc" length="800" />
+        </property>
+        <property name="datacenterDistrictid" type="string">
+            <column name="datacenter_districtid" length="6" />
+        </property>
+        <property name="datacenterContact" type="string">
+            <column name="datacenter_contact" length="48" />
+        </property>
+        <property name="datacenterTel" type="string">
+            <column name="datacenter_tel" length="48" />
+        </property>
+        <set name="buildinfos" table="buildinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="datacenter_id" length="6" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Buildinfo" />
+        </set>
+        <set name="citytempinfos" table="citytempinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="datacenter_id" length="6" not-null="true" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Citytempinfo" />
+        </set>
+    </class>
+</hibernate-mapping>

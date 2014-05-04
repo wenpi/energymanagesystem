@@ -1,0 +1,94 @@
+@CHARSET "UTF-8";
+
+#subscription {
+	
+}
+
+#subscription .banner {
+	margin:0 auto;
+	text-align:center;
+}
+
+#subscription .nav ul {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	width:100%;
+}
+
+#subscription .nav li {
+	float: left;
+	margin: 0px;
+	display: inline;
+	text-align: center;
+	height:36px;
+	position: relative;
+	width: 25%;
+	line-height:36px;
+}
+#subscription .nav li a {
+	text-decoration: none;
+	color:#000;
+}
+#subscription .nav li a:hover {
+	text-decoration: underline;
+}
+#subscription .nav ul li.next {
+	background:#e7e7e7 url(images/step_nextbg.png) no-repeat center right;
+}
+
+#subscription .nav ul li.last {
+	background:#e7e7e7 url(images/step_lastbg.png) no-repeat center right;
+}
+
+#subscription .desc {
+	margin: 10px;
+	padding:5px;
+	line-height:25px;
+	clear:both;
+}
+
+#subscription .functions {
+	clear: both;
+	overflow: auto;
+	zoom: 1;
+}
+
+#subscription .functions ul {
+	display: inline-block;
+	list-style: none;
+	margin: 0 0 13px;
+	padding: 0;
+	width: 100%;
+}
+
+#subscription .functions li {
+	display: inline;
+	float: left;
+	line-height: 1.4;
+	margin: 11px 0 .2em;
+	position: relative;
+	width: 25%;
+}
+
+#subscription .functions li img {
+	float: left;
+	padding: 0 1em 0 0;
+	margin: 5px 0 0;
+}
+#subscription .functions li.break {
+	clear: left;
+}
+
+#subscription .functions li a {
+	font-weight: bold;
+	line-height: 22px;
+	text-decoration: none;
+	color:#000;
+}
+
+#subscription .functions li p {
+	color: #444;
+	margin: 0 2em 0 3.6em;
+}

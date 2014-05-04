@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Districtinfo" table="districtinfo">
+        <id name="districtId" type="string">
+            <column name="district_id" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="districtinfo" class="com.managementsystem.energy.domain.Districtinfo" fetch="select">
+            <column name="district_parentid" length="10" />
+        </many-to-one>
+        <property name="districtName" type="string">
+            <column name="district_name" length="50" />
+        </property>
+        <property name="districtPinyin" type="string">
+            <column name="district_pinyin" length="50" />
+        </property>
+        <property name="districtPostcode" type="string">
+            <column name="district_postcode" length="6" />
+        </property>
+        <property name="districtAreacode" type="string">
+            <column name="district_areacode" length="10" />
+        </property>
+        <property name="woeid" type="string">
+            <column name="district_woeid" length="10" />
+        </property>
+        <property name="districtRemark" type="string">
+            <column name="district_remark" length="200" />
+        </property>
+        <set name="districtinfos" table="districtinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="district_parentid" length="10" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Districtinfo" />
+        </set>
+    </class>
+</hibernate-mapping>

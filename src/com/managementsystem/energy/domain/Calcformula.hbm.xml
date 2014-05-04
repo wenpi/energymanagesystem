@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Calcformula" table="calcformula">
+        <id name="formulaId" type="string">
+            <column name="formula_id" length="14" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="energyitemdict" class="com.managementsystem.energy.domain.Energyitemdict" fetch="select">
+            <column name="energy_itemcode" length="10" />
+        </many-to-one>
+        <many-to-one name="buildinfo" class="com.managementsystem.energy.domain.Buildinfo" fetch="select">
+            <column name="build_id" length="12" />
+        </many-to-one>
+        <property name="formulaName" type="string">
+            <column name="formula_name" length="48" />
+        </property>
+        <property name="formulaExp" type="string">
+            <column name="formula_exp" length="800" />
+        </property>
+        <property name="formulaState" type="java.lang.Integer">
+            <column name="formula_state">
+                <comment>0&#205;&#163;&#211;&#195;1&#198;&#244;&#211;&#195;</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

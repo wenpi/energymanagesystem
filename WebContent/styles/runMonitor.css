@@ -1,0 +1,178 @@
+/* 运行监测css */
+.sub_nav {
+	background-color: #0066cc;
+}
+
+.sub_nav_bar li {
+	background-color: #003399;
+}
+
+.classify > ul {
+	margin-top: 10px;
+	padding-top: 8px;
+	line-height: 30px;
+	height: 30px;
+	background-color: #f2f2f2;
+}
+
+.detail_title {
+	margin-top: 30px;
+	color: #E27153;
+	font-size: 30px;
+	font-weight: normal;
+}
+
+.division {
+	height: 1px;
+	background-color: #000;
+	width: 100%;
+
+}
+
+.basic_imformation {
+	color: #000;
+}
+
+.floor > li {
+	float: left;
+	color: rgb(102, 102, 102);
+	font-size: 22px;
+	padding: 25px;
+	cursor: pointer;
+}
+
+.divison {
+	height: 1px;
+	background-color: black;
+}
+
+.floor > li:hover {
+	color: rgb(0, 0, 255);
+}
+
+.holograph {
+	background: url('../images/u1191_normal.png') no-repeat top center;
+	width: 944px;
+	height: 563px;
+	color: black;
+	position: relative;
+	font-size: 28px;
+	text-align: center;
+	color: red;
+}
+
+.holograph > div{
+	opacity:0.8;
+	position: absolute;
+	cursor: pointer;
+}
+
+.p1 {
+	background: url('../images/u1196_normal.png') no-repeat top center;
+	width:65px; 
+	height:65px;
+	top: 156px;
+	left: 32px;
+	line-height: 65px;
+}
+
+.t12 {
+	background: url('../images/u1393_normal.png') no-repeat top center;
+	width: 145px;
+	height: 72px;
+	top: 216px;
+	left: 188px;
+	line-height: 72px;
+}
+
+.a1 {
+	background: url('../images/u428_normal.png') no-repeat top center;
+	width: 122px;
+	height: 80px;
+	top: 337px;
+	left: 277px;
+	line-height: 80px;
+}
+
+.t35 {
+	background: url('../images/u1174_normal.png') no-repeat top center;
+	width: 170px;
+	height: 70px;
+	top: 67px;
+	left: 433px;
+	line-height: 70px;
+}
+
+.p2 {
+	background: url('../images/u1826_normal.png') no-repeat top center;
+	width: 75px;
+	height: 60px;
+	top: 16px;
+	left: 614px;
+	line-height: 60px;
+}
+
+.P1x{
+	width: 270px;
+	height: 150px;
+	background-color: yellow;
+	left: 100px;
+	top: 16px;
+}
+
+.T1-T2x {
+	width: 270px;
+	height: 150px;
+	background-color: green;
+	left: 16px;
+	top: 305px;
+}
+
+.A1x {
+	width: 270px;
+	height: 150px;
+	background-color: gray;
+	left: 365px;
+	top: 420px;
+}
+
+.T3-T5x {
+	width: 270px;
+	height: 150px;
+	background-color: gray;
+	left: 380px;
+	top: 165px;
+}
+
+.P2x {
+	width: 270px;
+	height: 150px;
+	background-color: gray;
+	left: 658px;
+	top: 88px;
+}
+
+#all_device > div {
+	display: none;
+	font-size: 30px;
+	color: red;
+	cursor: pointer;
+}
+
+.sub_menu > li {
+	float: left;
+	color: rgb(102, 102, 102);
+	font-size: 22px;
+	padding: 25px;
+	cursor: pointer;
+	display: none;
+}
+
+.unit_stlye {
+	width: 200px;
+	height: 115px;
+	background-color: yellow;
+}
+/*.p1x {
+
+}*/

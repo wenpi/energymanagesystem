@@ -1,0 +1,254 @@
+html, body { height:100%; }
+body { 
+	margin:0; 
+	padding:0; 
+	height:100%; 
+}
+#tab-container {
+	width:1024px;
+}
+
+
+.tip-info {
+	background: #FFFEE6;
+	color: #8F5700;
+	padding: 12px;
+}
+
+.op-tip {
+	width: 24px;
+	height: 16px;
+	float: left;
+}
+
+.editform{
+	margin:0;
+	padding:10px 30px;
+}
+	.ftitle{
+		font-size:14px;
+		font-weight:bold;
+		color:#666;
+		padding:5px 0;
+		margin-bottom:10px;
+		border-bottom:1px solid #ccc;
+	}
+	
+	.ftitle .title-back a {
+		float: right;
+		font-weight: bold;
+		text-decoration: none;
+	}
+
+	.fitem{
+		margin-bottom:5px;
+		vertical-align: top;
+	}
+
+	.fitem label{
+		display:inline-block;
+		width:80px;
+		vertical-align: top;
+	}
+
+	.div-table{
+	  display:table;         
+	  width:100%;
+	 /* background-color:#fff;         
+	  border:1px solid  #fff;     */    
+	  border-spacing:1px;/*cellspacing:poor IE support for  this*/
+	}
+	.div-table-row{
+	  display:table-row;
+	  width:auto;
+	  clear:both;
+	}
+	.div-table-col{
+	  float:left;/*fix for  buggy browsers*/
+	  display:table-column;         
+	  width:100%;         
+	 /* background-color:#ffffff;  */
+	}
+	.div-table-2col{
+	  float:left;/*fix for  buggy browsers*/
+	  display:table-column;         
+	  width:50%;         
+	 /* background-color:#ffffff;  */
+	}
+	.div-table-3col{
+	  float:left;/*fix for  buggy browsers*/
+	  display:table-column;         
+	  width:33%;         
+	 /* background-color:#ffffff;  */
+	}	
+	.div-table-4col{
+	  float:left;/*fix for  buggy browsers*/
+	  display:table-column;         
+	  width:25%;         
+	 /* background-color:#ffffff;  */
+	}	
+	.div-table-5col{
+	  float:left;/*fix for  buggy browsers*/
+	  display:table-column;         
+	  width:20%;         
+	 /* background-color:#ffffff;  */
+	}	
+
+	
+.tooltip {
+  position: absolute;
+  z-index: 1020;
+  display: block;
+  padding: 5px;
+  font-size: 11px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  visibility: visible;
+}
+
+.tooltip.in {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+.tooltip.top {
+  margin-top: -2px;
+}
+
+.tooltip.right {
+  margin-left: 2px;
+}
+
+.tooltip.bottom {
+  margin-top: 2px;
+}
+
+.tooltip.left {
+  margin-left: -2px;
+}
+
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-top: 5px solid #000000;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #000000;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #000000;
+  border-left: 5px solid transparent;
+}
+
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-top: 5px solid transparent;
+  border-right: 5px solid #000000;
+  border-bottom: 5px solid transparent;
+}
+
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #000000;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+	
+	/** ×Ô¶¨Òå TABBOX ***/
+.menutabbox {
+	BACKGROUND: url(images/uppic.gif) repeat-x;
+	WIDTH: 100%;
+	LINE-HEIGHT: 28px;
+	HEIGHT: 28px
+}
+.menutabbox01 {
+	BACKGROUND: url(images/uppic.gif) repeat-x;
+	WIDTH: 100%;
+	LINE-HEIGHT: 28px;
+	HEIGHT: 28px
+}
+.menutabbox UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	LIST-STYLE-TYPE: none
+}
+.menutabbox01 UL {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-BOTTOM: 0px;
+	MARGIN: 0px;
+	PADDING-TOP: 0px;
+	LIST-STYLE-TYPE: none
+}
+.menutabbox LI {
+	DISPLAY: block;
+	FONT-WEIGHT: bold;
+	BORDER-LEFT: #cccccc 1px solid;
+	WIDTH: 116px;
+	CURSOR: pointer;
+	COLOR: #949694;
+	TEXT-ALIGN: center;
+	background: url(images/onpic.gif) repeat-x;
+}
+
+.menutabbox LI {
+	FLOAT: right
+}
+
+.menutabbox LI.hover {
+	BORDER-RIGHT: #98aed0 1px solid;
+	PADDING-RIGHT: 0px;
+	BORDER-TOP: #98aed0 1px solid;
+	PADDING-LEFT: 0px;
+	FONT-WEIGHT: bold;
+	BACKGROUND: background:#ccc;
+	PADDING-BOTTOM: 0px;
+	BORDER-LEFT: #98aed0 1px solid;
+	WIDTH: 116px;
+	COLOR: #1c89cb;
+	LINE-HEIGHT: 27px;
+	PADDING-TOP: 0px;
+	HEIGHT: 27px
+}
+
+.contentbox {
+	BORDER-TOP-WIDTH: 1px;
+	CLEAR: both;
+	BORDER-RIGHT: #98aed0 1px solid;
+	MARGIN-TOP: 0px;
+	BORDER-LEFT: #98aed0 1px solid;
+	BORDER-TOP-COLOR: #98aed0;
+	PADDING-TOP: 8px;
+	BORDER-BOTTOM: #98aed0 1px solid;
+	HEIGHT: auto
+}

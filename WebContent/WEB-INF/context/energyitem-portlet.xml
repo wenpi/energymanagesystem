@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="applicationContext.xml" />
+	<bean id="viewEnergyitemdictController" class="com.managementsystem.energy.web.ViewEnergyitemdictController" />
+	<bean id="editEnergyitemdictController" class="com.managementsystem.energy.web.EditEnergyitemdictController" />
+	<bean id="helpEnergyitemdictController" class="com.managementsystem.energy.web.HelpEnergyitemdictController" />
+
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="viewEnergyitemdictController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="editEnergyitemdictController" />
+				</entry>
+				<entry key="help">
+					<ref bean="helpEnergyitemdictController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

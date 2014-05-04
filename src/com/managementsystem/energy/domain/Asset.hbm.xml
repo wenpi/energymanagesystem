@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Asset" table="asset" catalog="zhysg_energymsdb">
+        <id name="assetuid" type="java.lang.Long">
+            <column name="ASSETUID" />
+            <generator class="identity" />
+        </id>
+        <property name="ancestor" type="string">
+            <column name="ANCESTOR" length="12" />
+        </property>
+        <property name="assetid" type="long">
+            <column name="ASSETID" not-null="true" />
+        </property>
+        <property name="assetnum" type="string">
+            <column name="ASSETNUM" length="12" not-null="true" />
+        </property>
+        <property name="assettag" type="string">
+            <column name="ASSETTAG" length="64" />
+        </property>
+        <property name="assettype" type="string">
+            <column name="ASSETTYPE" length="15" />
+        </property>
+        <property name="specclass" type="string">
+            <column name="SPECCLASS" length="15" />
+        </property>
+        <property name="calnum" type="string">
+            <column name="CALNUM" length="8" />
+        </property>
+        <property name="changeby" type="string">
+            <column name="CHANGEBY" length="30" />
+        </property>
+        <property name="changedate" type="date">
+            <column name="CHANGEDATE" length="10" />
+        </property>
+        <property name="classstructureid" type="string">
+            <column name="CLASSSTRUCTUREID" length="20" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="100" />
+        </property>
+        <property name="disabled" type="java.lang.Boolean">
+            <column name="DISABLED" />
+        </property>
+        <property name="externalrefid" type="string">
+            <column name="EXTERNALREFID" length="10" />
+        </property>
+        <property name="failurecode" type="string">
+            <column name="FAILURECODE" length="8" />
+        </property>
+        <property name="groupname" type="string">
+            <column name="GROUPNAME" length="10">
+                <comment>
+                &#203;&#249;&#211;&#208;&#202;&#244;&#211;&#218;&#215;&#202;&#178;&#250;&#188;&#198;&#193;&#191;&#198;&#247;&#215;&#233;&#181;&#196;&#188;&#198;&#193;&#191;&#198;&#247;&#182;&#188;&#215;&#212;&#182;&#175;&#211;&#235;
+                AssetMeter
+                &#182;&#212;&#207;&#243;&#214;&#208;&#181;&#196;&#184;&#195;&#215;&#202;&#178;&#250;&#207;&#224;&#185;&#216;&#193;&#170;&#161;&#163;&#182;&#212;&#188;&#198;&#193;&#191;&#198;&#247;&#215;&#233;&#181;&#196;&#204;&#237;&#188;&#211;&#210;&#178;&#191;&#201;&#204;&#237;&#188;&#211;&#181;&#189;&#184;&#195;&#215;&#202;&#178;&#250;&#181;&#196;
+                AssetMeters &#182;&#212;&#207;&#243;&#214;&#208;&#161;&#163;</comment>
+            </column>
+        </property>
+        <property name="haschildren" type="java.lang.Boolean">
+            <column name="HASCHILDREN" />
+        </property>
+        <property name="hasmoredesc" type="java.lang.Boolean">
+            <column name="HASMOREDESC" />
+        </property>
+        <property name="installdate" type="date">
+            <column name="INSTALLDATE" length="10" />
+        </property>
+        <property name="isrunning" type="java.lang.Boolean">
+            <column name="ISRUNNING">
+                <comment>
+                &#215;&#202;&#178;&#250;&#215;&#180;&#204;&#172;&#163;&#168;&#213;&#253;&#212;&#218;&#212;&#203;&#208;&#208;-&#178;&#187;&#212;&#218;&#212;&#203;&#208;&#208;&#163;&#169;</comment>
+            </column>
+        </property>
+        <property name="langcode" type="string">
+            <column name="LANGCODE" length="4" />
+        </property>
+        <property name="location" type="string">
+            <column name="LOCATION" length="16" />
+        </property>
+        <property name="mainthierchy" type="java.lang.Boolean">
+            <column name="MAINTHIERCHY" />
+        </property>
+        <property name="manufacturer" type="string">
+            <column name="MANUFACTURER" length="12" />
+        </property>
+        <property name="moved" type="java.lang.Boolean">
+            <column name="MOVED" />
+        </property>
+        <property name="orgid" type="string">
+            <column name="ORGID" length="8" />
+        </property>
+        <property name="ownersysid" type="string">
+            <column name="OWNERSYSID" length="10" />
+        </property>
+        <property name="parent" type="string">
+            <column name="PARENT" length="12" />
+        </property>
+        <property name="priority" type="java.lang.Integer">
+            <column name="PRIORITY" />
+        </property>
+        <property name="sendersysid" type="string">
+            <column name="SENDERSYSID" length="50" />
+        </property>
+        <property name="serialnum" type="string">
+            <column name="SERIALNUM" length="64" />
+        </property>
+        <property name="shiftnum" type="string">
+            <column name="SHIFTNUM" length="8" />
+        </property>
+        <property name="siteid" type="string">
+            <column name="SITEID" length="8" />
+        </property>
+        <property name="sourcesysid" type="string">
+            <column name="SOURCESYSID" length="10" />
+        </property>
+        <property name="status" type="string">
+            <column name="STATUS" length="20" />
+        </property>
+        <property name="statusdate" type="timestamp">
+            <column name="STATUSDATE" length="19" />
+        </property>
+        <property name="usage" type="string">
+            <column name="USAGE_" length="15" />
+        </property>
+        <property name="vendor" type="string">
+            <column name="VENDOR" length="12" />
+        </property>
+        <property name="warrantyexpdate" type="date">
+            <column name="WARRANTYEXPDATE" length="10" />
+        </property>
+        <property name="ec1" type="string">
+            <column name="EC1" length="10" />
+        </property>
+        <property name="ec2" type="string">
+            <column name="EC2" length="10" />
+        </property>
+        <property name="ec3" type="string">
+            <column name="EC3" length="10" />
+        </property>
+        <property name="ec4" type="string">
+            <column name="EC4" length="10" />
+        </property>
+        <property name="ec5" type="big_decimal">
+            <column name="EC5" precision="10" />
+        </property>
+        <property name="ec6" type="date">
+            <column name="EC6" length="10" />
+        </property>
+        <property name="ec7" type="big_decimal">
+            <column name="EC7" precision="10" />
+        </property>
+        <property name="ec8" type="string">
+            <column name="EC8" length="10" />
+        </property>
+        <property name="ec9" type="string">
+            <column name="EC9" length="10" />
+        </property>
+        <property name="ec10" type="string">
+            <column name="EC10" length="10" />
+        </property>
+        <property name="ec11" type="string">
+            <column name="EC11" length="10" />
+        </property>
+        <property name="ec12" type="big_decimal">
+            <column name="EC12" precision="10" />
+        </property>
+        <property name="ec13" type="date">
+            <column name="EC13" length="10" />
+        </property>
+        <property name="ec14" type="string">
+            <column name="EC14" length="10" />
+        </property>
+        <property name="ec15" type="big_decimal">
+            <column name="EC15" precision="10" />
+        </property>
+    </class>
+</hibernate-mapping>

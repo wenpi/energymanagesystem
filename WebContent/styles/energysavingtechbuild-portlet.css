@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+.buildlistContainer {
+	margin: 0 5px;	
+}
+.techtabs ul {
+	margin:0px;
+	padding:0px;
+	width:100%;
+}
+
+.techtabs li {
+	float:left;
+	list-style:none;
+	display: inline;
+	text-align: center;
+	position: relative;
+	line-height:30px;
+	padding: 0 2px;
+}
+
+.techtabs li span.current {
+	color:#52A2BE;
+	font-weight:bold;
+}
+
+.techtabs li a {
+	text-decoration: none;
+	color:#000;
+}

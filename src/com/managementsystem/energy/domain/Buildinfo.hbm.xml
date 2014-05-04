@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Buildinfo" table="buildinfo">
+        <id name="buildId" type="string">
+            <column name="build_id" length="12" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="datacenterinfo" class="com.managementsystem.energy.domain.Datacenterinfo" fetch="select">
+            <column name="datacenter_id" length="6" />
+        </many-to-one>
+         <property name="organizationid" type="java.lang.Long">
+            <column name="organizationid" />
+        </property>
+        <property name="buildName" type="string">
+            <column name="build_name" length="48" />
+        </property>
+        <property name="buildAliasname" type="string">
+            <column name="build_aliasname" length="10" />
+        </property>
+        <property name="buildOwner" type="string">
+            <column name="build_owner" length="80" />
+        </property>
+        <property name="buildState" type="java.lang.Integer">
+            <column name="build_state">
+                <comment>&#215;&#180;&#204;&#172; 1&#198;&#244;&#211;&#195;&#188;&#224;&#178;&#226; 0&#205;&#163;&#211;&#195;&#188;&#224;&#178;&#226;</comment>
+            </column>
+        </property>
+        <property name="buildDistrictid" type="string">
+            <column name="build_districtid" length="6" />
+        </property>
+        <property name="buildAddress" type="string">
+            <column name="build_address" length="80" />
+        </property> 
+        <property name="buildLong" type="string">
+            <column name="build_long" length="50" />
+        </property>
+        <property name="buildLat" type="string">
+            <column name="build_lat" length="50" />
+        </property>
+        <property name="buildClimaticregion" type="string">
+            <column name="build_climaticregion" length="80" />
+        </property>
+        <property name="buildYear" type="java.lang.Short">
+            <column name="build_year" precision="4" scale="0" />
+        </property>
+        <property name="buildUpfloor" type="java.lang.Integer">
+            <column name="build_upfloor" />
+        </property>
+        <property name="buildDownfloor" type="java.lang.Integer">
+            <column name="build_downfloor" />
+        </property>
+        <property name="buildFunction" type="java.lang.Integer">
+            <column name="build_function">
+                <comment>1&#176;&#236;&#185;&#171;&#189;&#168;&#214;&#254; 2&#201;&#204;&#179;&#161;&#189;&#168;&#214;&#254;
+                3&#177;&#246;&#185;&#221;&#183;&#185;&#181;&#234;&#189;&#168;&#214;&#254; 4 &#206;&#196;&#187;&#175;&#189;&#204;&#211;&#253;&#189;&#168;&#214;&#254; 5
+                &#210;&#189;&#193;&#198;&#206;&#192;&#201;&#250;&#189;&#168;&#214;&#254; 6 &#204;&#229;&#211;&#253;&#189;&#168;&#214;&#254;
+                7&#215;&#219;&#186;&#207;&#189;&#168;&#214;&#254; 99 &#198;&#228;&#203;&#252;&#189;&#168;&#214;&#254;</comment>
+            </column>
+        </property>
+        <property name="buildTotalarea" type="big_decimal">
+            <column name="build_totalarea" precision="18" scale="4" />
+        </property>
+        <property name="buildAirarea" type="big_decimal">
+            <column name="build_airarea" precision="18" scale="4" />
+        </property>
+        <property name="buildHeatarea" type="big_decimal">
+            <column name="build_heatarea" precision="18" scale="4" />
+        </property>
+        <property name="buildAirtype" type="java.lang.Integer">
+            <column name="build_airtype">
+                <comment>1&#188;&#175;&#214;&#208;&#202;&#189;&#200;&#171;&#191;&#213;&#198;&#248;&#207;&#181;&#205;&#179;
+                2&#183;&#231;&#187;&#250;&#197;&#204;&#185;&#220;+&#208;&#194;&#183;&#231;&#207;&#181;&#205;&#179;
+                3&#183;&#214;&#204;&#229;&#202;&#189;&#191;&#213;&#181;&#247;&#187;&#242;ARV&#190;&#214;&#178;&#191;&#202;&#189;&#187;&#250;&#215;&#233;&#187;&#250;&#207;&#181;&#205;&#179;
+                99&#198;&#228;&#203;&#252;</comment>
+            </column>
+        </property>
+        <property name="buildHeattype" type="java.lang.Integer">
+            <column name="build_heattype">
+                <comment>1&#201;&#162;&#200;&#200;&#198;&#247;&#178;&#201;&#197;&#175; 2&#181;&#216;&#176;&#229;&#183;&#248;&#201;&#228;&#178;&#201;&#197;&#175;
+                3&#181;&#231;&#183;&#248;&#201;&#228;&#178;&#201;&#197;&#175; 4&#191;&#213;&#181;&#247;&#207;&#181;&#205;&#179;&#188;&#175;&#214;&#208;&#185;&#169;&#197;&#175;
+                5&#202;&#208;&#213;&#254;&#185;&#169;&#197;&#175; 99 &#198;&#228;&#203;&#252;</comment>
+            </column>
+        </property>
+        <property name="buildBodycoef" type="big_decimal">
+            <column name="build_bodycoef" precision="18" scale="4" />
+        </property>
+        <property name="buildStrutype" type="java.lang.Integer">
+            <column name="build_strutype">
+                <comment>1&#191;&#242;&#188;&#220;&#189;&#225;&#185;&#185; 2&#191;&#242;-&#188;&#244;&#189;&#225;&#185;&#185;
+                3&#188;&#244;&#193;&#166;&#199;&#189;&#189;&#225;&#185;&#185; 4&#215;&#169;&#187;&#236;&#189;&#225;&#185;&#185; 5&#184;&#214;&#189;&#225;&#185;&#185;
+                6&#188;&#242;&#204;&#229;&#189;&#225;&#185;&#185; 7&#196;&#190;&#189;&#225;&#185;&#185; 99 &#198;&#228;&#203;&#251;</comment>
+            </column>
+        </property>
+        <property name="buildWallmattype" type="java.lang.Integer">
+            <column name="build_wallmattype">
+                <comment>1&#215;&#169; 2&#189;&#168;&#214;&#254;&#198;&#246;&#191;&#233; 3&#176;&#229;&#178;&#196;&#199;&#189;&#204;&#229;
+                4&#184;&#180;&#186;&#207;&#199;&#189;&#176;&#229;&#186;&#205;&#199;&#189;&#204;&#229; 5&#178;&#163;&#193;&#167;&#196;&#187;&#199;&#189;
+                99&#198;&#228;&#203;&#252;</comment>
+            </column>
+        </property>
+        <property name="buildWallwarmtype" type="java.lang.Integer">
+            <column name="build_wallwarmtype">
+                <comment>1&#196;&#218;&#177;&#163;&#206;&#194; 2&#205;&#226;&#177;&#163;&#206;&#194; 3&#188;&#208;&#208;&#190;&#177;&#163;&#206;&#194;
+                99&#198;&#228;&#203;&#251;</comment>
+            </column>
+        </property>
+        <property name="buildWallwintype" type="java.lang.Integer">
+            <column name="build_wallwintype">
+                <comment>1&#181;&#165;&#178;&#163;&#181;&#165;&#178;&#227;&#180;&#176; 2 &#181;&#165;&#178;&#163;&#211;&#214;&#178;&#227;&#180;&#176;
+                3&#181;&#165;&#178;&#163;&#181;&#165;&#178;&#227;&#180;&#176;+&#181;&#165;&#178;&#163;&#203;&#171;&#178;&#227;&#180;&#176;
+                4&#214;&#208;&#191;&#213;&#203;&#171;&#178;&#227;&#178;&#163;&#193;&#167;&#180;&#176;
+                5&#214;&#208;&#191;&#213;&#200;&#253;&#178;&#227;&#178;&#163;&#193;&#167;&#180;&#176;
+                6&#214;&#208;&#191;&#213;&#179;&#228;&#182;&#232;&#208;&#212;&#198;&#248;&#204;&#229; 99 &#198;&#228;&#203;&#252;</comment>
+            </column>
+        </property>
+        <property name="buildGlasstype" type="java.lang.Integer">
+            <column name="build_glasstype">
+                <comment>1&#198;&#213;&#205;&#168;&#178;&#163;&#193;&#167; 2&#182;&#198;&#196;&#164;&#178;&#163;&#193;&#167; 3Low-e&#178;&#163;&#193;&#167; 99
+                &#198;&#228;&#203;&#252;</comment>
+            </column>
+        </property>
+        <property name="buildWinframetype" type="java.lang.Integer">
+            <column name="build_winframetype">
+                <comment>1&#184;&#214;&#180;&#176; 2&#194;&#193;&#186;&#207;&#189;&#240; 3&#196;&#190;&#180;&#176; 4&#182;&#207;&#200;&#200;&#184;&#214;&#180;&#176;
+                5&#203;&#220;&#184;&#214; 99&#198;&#228;&#203;&#251;</comment>
+            </column>
+        </property>
+        <property name="buildStandard" type="java.lang.Boolean">
+            <column name="build_standard">
+                <comment>false&#183;&#241; default true&#202;&#199;</comment>
+            </column>
+        </property>
+        <property name="buildDesigndept" type="string">
+            <column name="build_designdept" length="64">
+                <comment>&#204;&#238;&#208;&#180;&#213;&#230;&#202;&#181;&#195;&#251;&#179;&#198;</comment>
+            </column>
+        </property>
+        <property name="buildWorkdept" type="string">
+            <column name="build_workdept" length="64" />
+        </property>
+        <property name="buildCreatedondate" type="timestamp">
+            <column name="build_createdondate" length="19" />
+        </property>
+        <property name="buildCreatedbyuserid" type="string">
+            <column name="build_createdbyuserid" length="75" />
+        </property>
+        <property name="buildMonitordate" type="timestamp">
+            <column name="build_monitordate" length="19" />
+        </property>
+        <property name="buildAcceptdate" type="timestamp">
+            <column name="build_acceptdate" length="19" />
+        </property>
+         <set name="strategies" table="strategy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="12"></column>
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Strategy" />
+        </set>
+        <one-to-one name="buildexinfo" class="com.managementsystem.energy.domain.Buildexinfo"></one-to-one>
+        <one-to-one name="buildsettinginfo" class="com.managementsystem.energy.domain.Buildsettinginfo"></one-to-one>
+        <set name="buildaddfiles" table="buildaddfile" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="build_id" length="12" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Buildaddfile" />
+        </set>
+        <set name="circuitinfos" table="circuitinfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="12" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Circuitinfo" />
+        </set>
+        <set name="calcformulas" table="calcformula" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="12" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Calcformula" />
+        </set>
+        <set name="buildregioninfos" table="buildregioninfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="12">
+                    <comment>
+                    &#199;&#176;6&#206;&#187;&#206;&#170;&#202;&#253;&#190;&#221;&#214;&#208;&#208;&#196;&#180;&#250;&#194;&#235;&#163;&#172;&#181;&#218;7-8&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#192;&#224;&#177;&#240;,&#181;&#218;9-12&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+                </column>
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Buildregioninfo" />
+        </set>
+        <!-- <set name="buildgroupinfos" table="buildgrouprelainfo" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="12" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.managementsystem.energy.domain.Buildgroupinfo">
+                <column name="buildgroup_id" length="10" not-null="true">
+                    <comment>
+                    10&#206;&#187;&#177;&#224;&#194;&#235;&#163;&#172;&#181;&#218;1-6&#206;&#187;&#206;&#170;&#189;&#168;&#214;&#254;&#203;&#249;&#212;&#218;&#181;&#196;&#208;&#208;&#213;&#254;&#199;&#248;&#187;&#174;&#180;&#250;&#194;&#235;&#163;&#172;&#186;&#243;4&#206;&#187;&#206;&#170;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+                </column>
+            </many-to-many>
+        </set> -->
+         <set name="buildgrouprelainfos" table="buildgrouprelainfo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="build_id" length="12" not-null="true" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Buildgrouprelainfo" />
+        </set>
+    </class>
+</hibernate-mapping>

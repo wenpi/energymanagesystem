@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Energyitemdict" table="energyitemdict">
+        <id name="energyItemcode" type="string">
+            <column name="energy_itemcode" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="energyitemdict" class="com.managementsystem.energy.domain.Energyitemdict" fetch="select">
+            <column name="energy_parentitemcode" length="10" />
+        </many-to-one>
+        <many-to-one name="energydict" class="com.managementsystem.energy.domain.Energydict" fetch="select">
+            <column name="energydict_id" length="16" />
+        </many-to-one>
+        <property name="energyItemname" type="string">
+            <column name="energy_itemname" length="32" />
+        </property>
+        <property name="energyItemtype" type="java.lang.Integer">
+            <column name="energy_itemtype">
+                <comment>0&#183;&#214;&#192;&#224;&#196;&#220;&#186;&#196; 1&#183;&#214;&#207;&#238;&#196;&#220;&#186;&#196;</comment>
+            </column>
+        </property>
+        <property name="energyItemstate" type="java.lang.Integer">
+            <column name="energy_itemstate">
+                <comment>0&#206;&#180;&#198;&#244;&#211;&#195;1&#198;&#244;&#211;&#195;</comment>
+            </column>
+        </property>
+        <set name="calcformulas" table="calcformula" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="energy_itemcode" length="10" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Calcformula" />
+        </set>
+        <set name="energyitemresults" table="energyitemresult" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="energy_itemcode" length="10" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Energyitemresult" />
+        </set>
+        <set name="energyitemdicts" table="energyitemdict" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="energy_parentitemcode" length="10" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.Energyitemdict" />
+        </set>
+    </class>
+</hibernate-mapping>

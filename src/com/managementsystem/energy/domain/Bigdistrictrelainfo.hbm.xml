@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-8-27 18:19:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.Bigdistrictrelainfo" table="bigdistrictrelainfo">
+        <id name="relationId" type="string">
+            <column name="relation_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="districtinfo" class="com.managementsystem.energy.domain.Districtinfo" fetch="select">
+            <column name="district_id" length="10" />
+        </many-to-one>
+        <many-to-one name="bigdistrictinfo" class="com.managementsystem.energy.domain.Bigdistrictinfo" fetch="select">
+            <column name="bigdistrict_id" length="75" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

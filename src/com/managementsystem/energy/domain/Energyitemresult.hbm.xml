@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2012-6-14 13:19:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Energyitemresult" table="energyitemresult">
+        <id name="resultId" type="string">
+            <column name="result_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <many-to-one name="energyitemdict" class="com.managementsystem.energy.domain.Energyitemdict" fetch="select">
+            <column name="energy_itemcode" length="10" />
+        </many-to-one>
+        <many-to-one name="meteruseinfo" class="com.managementsystem.energy.domain.Meteruseinfo" fetch="select">
+            <column name="meter_id" length="14">
+                <comment>&#189;&#168;&#214;&#254;&#180;&#250;&#194;&#235;(10&#206;&#187;)+4&#206;&#187;&#193;&#247;&#203;&#174;&#186;&#197;</comment>
+            </column>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

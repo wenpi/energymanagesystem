@@ -1,0 +1,268 @@
+/*首页*/
+.key_information {
+	padding-top: 40px;
+}
+
+.pressive {
+	background-color: #E64C65 !important;
+}
+
+.chart_group_1 > div {
+	width: 300px;
+	float: left;
+	margin-right: 22px;
+}
+
+.chart_group_1 > div > .chart {
+	width: 300px;
+	height: 320px;
+	background-color: #394264;
+	border-radius: 4px;
+	margin-top: 25px;
+}
+
+.chart_group_1 > div > .state_list {
+	width: 300px;
+	height: 320px;
+	border-radius: 4px;
+	margin-top: 33px;
+}
+
+.chart_group_1 .chart_top {
+	width: 100%;
+	height: 234px;
+	color : #A4AAC1;
+	position: relative;
+}
+
+.chart_group_1 .chart_bottom {
+	width: 100%;
+	height: 86px;
+	background-color: #50597B;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+
+.chart_group_1 .chart_bottom > div {
+	padding: 5px 12px;
+}
+
+.chart_group_1 .chart_bottom > div > div {
+	width: 92px;
+	height: 100%;
+	text-align: center;
+	float: left;
+}
+
+.chart_group_1 .chart_bottom .device_list {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	border-bottom: 1px solid #394264;
+	color: #A4AAC0;
+}
+
+.chart_group_1 .chart_bottom .open_count {
+	color: #fff;
+	font-size: 18px;
+	margin-top: 5px;
+}
+
+.chart_group_1 .chart_bottom .open_count sup{
+	color: #A4AAC0;
+	font-size: 12px;
+}
+
+.chart_group_1 .chart_bottom .device_count {
+	color: #999;
+}
+
+.chart_group_1 .chart_bottom .unit {
+	text-align: right;
+	padding-right: 15px;
+	color: #A4AAC0;
+}
+
+.chart_group_1 .chart_bottom .cosume_number {
+	color: #fff;
+	font-size: 18px;
+}
+
+.chart_group_1 .state_list .state_list_title {
+	width: 100%;
+	height: 60px;
+	font-size: 22px;
+	line-height: 60px;
+	text-indent: 15px;
+	color: #fff;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+
+.chart_group_1 .state_list .state_list_detail {
+	width: 100%;
+	height: 110px;
+	color: #fff;
+}
+
+.state_list_detail p {	
+	line-height: 0px;
+	padding:30px 0 0  15px;
+}
+
+.state_list_detail h1 {
+	font-size: 20px;
+	padding-left: 15px;
+	line-height: 40px;
+}
+
+.state_list_detail h1 span {
+	font-size: 60px;
+	position: relative;
+}
+
+.state_list_detail h1 span sup{
+	font-size: 12px;
+	position: absolute;
+	top: 0px;
+}
+
+.state_list .err_list {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 1px;
+	background-color: #394264;
+}
+
+.state_list .err_list .what_device {
+	color: #fff;
+	padding-left: 15px;
+}
+
+.state_list .err_list .what_err {
+	color: #A4AABF;
+	margin-left: 15px;
+}
+
+.state_list .err_list .when {
+	color: #A4AABF;
+	margin-left: 15px;
+}
+
+.state_list .nomal_lineheight {
+	line-height: normal;
+	color: #A4AAC0;
+}
+/*
+.state_list .nomal_lineheight p {
+	padding: 8px 15px 10px 10px;
+}*/
+
+.state_list .err_list p {
+	float: left;
+	margin-left: 21px;
+	color: #fff;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.finance_count {
+	font-size: 40px !important;
+}
+
+.err_diagnosis .state_list_title {
+	background-color: #CC324B;
+}
+
+.finance .state_list_title {
+	background-color: #1A4E95;
+}
+
+.accounting_reporting .state_list_title {
+	background-color: #394264;
+}
+
+.err_diagnosis .state_list_detail {
+	background-color: #E64C65;
+}
+
+.finance .state_list_detail {
+	background-color: #3468AF;
+}
+
+.right_chart > .accounting_reporting > .state_list_detail {
+	width: 100%;
+	height: 158px;
+	background: url('../images/hesuanbaogao.jpg');
+}
+
+.accounting_reporting .add_custom {
+	background-color: #11A8AB;
+	color: #fff;
+	font-size: 16px;
+}
+
+.accounting_reporting .add_custom > * {
+	float: left;
+	margin-left: 11px;
+}
+
+.accounting_reporting .add_custom .add_form {
+	width: 30px;
+	height: 30px;
+	margin-top: 9px;
+	display: inline-block;
+	background: url('../images/all_icon.png');
+	margin-left: 55px;
+	cursor: pointer;
+}
+
+.chart_top h1 {
+	padding: 15px;
+}
+
+.chart_top table {
+	text-align: center;
+	padding: 20px;
+	margin: 0px;
+}
+
+.chart_top table tr {
+	height: 31px;
+}
+
+.chart_top table td div {
+	width: 172px;
+	height: 25px !important;
+}
+
+.chart_top table td .lowest {
+	background: url("../images/level.png") -10px -20px;
+}
+
+.chart_top table td .low {
+	background: url("../images/level.png") -10px -52px;
+}
+
+.chart_top table td .midest {
+	background: url("../images/level.png") -10px -81px;
+}
+
+.chart_top table td .mid {
+	background: url("../images/level.png") -10px -111px;
+}
+
+.chart_top table td .high {
+	background: url("../images/level.png") -10px -141px;
+}
+
+.chart_top .level {
+	position: absolute;
+	top: 107px;
+	right: 317px;
+}
+
+.levelpadding {
+	padding: 48px 0 0 25px;
+}

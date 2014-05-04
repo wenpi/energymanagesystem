@@ -1,0 +1,35 @@
+/*能耗统计CSS*/
+.sub_nav {
+	background-color: #9966cc;
+}
+
+.sub_nav_bar li {
+	background-color: #8345c0;
+}
+
+.consumption {
+	background-color: #6600ff;
+}
+
+.itemize {
+	background-color: #cc00ff;
+}
+
+.ele {
+	background-color: #ff9933;
+}
+
+.water {
+	background-color: #009933;
+}
+
+.gas {
+	background-color: #ff6600;
+}
+
+.carbon {
+	background-color: #66ccff;
+}
+
+
+

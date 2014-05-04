@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+    <class name="com.managementsystem.energy.domain.Meteruseattribute" table="meteruseattribute">
+        <composite-id name="id" class="com.managementsystem.energy.domain.MeteruseattributeId">
+            <key-property name="meterattrName" type="string">
+                <column name="meterattr_name" length="48" />
+            </key-property>
+            <key-property name="meterId" type="string">
+                <column name="meter_id" length="16" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="meteruseinfo" class="com.managementsystem.energy.domain.Meteruseinfo" update="false" insert="false" fetch="select">
+            <column name="meter_id" length="16" not-null="true">
+            </column>
+        </many-to-one>
+        <property name="meterattrType" type="java.lang.Integer">
+            <column name="meterattr_type">
+                <comment>0&#201;&#232;&#177;&#184;ID</comment>
+            </column>
+        </property>
+        <property name="meterattrValue" type="string">
+            <column name="meterattr_value" length="30" />
+        </property>
+        <property name="meterattrDesc" type="string">
+            <column name="meterattr_desc" length="200" />
+        </property>
+         <property name="meterattrCurrentvalue" type="big_decimal">
+            <column name="meterattr_currentvalue" precision="18" scale="4" />
+        </property>
+         <property name="meterattrReadvalue" type="big_decimal">
+            <column name="meterattr_readvalue" precision="18" scale="4" />
+        </property>
+         <property name="meterattrDiffvalue" type="big_decimal">
+            <column name="meterattr_diffvalue" precision="18" scale="4" />
+        </property>
+         <property name="meterattrUpdateddate" type="timestamp">
+            <column name="meterattr_updateddate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

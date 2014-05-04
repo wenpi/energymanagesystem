@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<import resource="applicationContext.xml" />
+	
+	<bean id="datareviseViewController" class="com.managementsystem.energy.portlet.datarevise.DatareviseViewController" />
+	<bean id="datarevisePreferenceController" class="com.managementsystem.energy.portlet.datarevise.DatarevisePreferenceController" />
+	<bean id="portletModeHandlerMapping"
+		class="org.springframework.web.portlet.handler.PortletModeHandlerMapping">
+		<property name="portletModeMap">
+			<map>
+				<entry key="view">
+					<ref bean="datareviseViewController" />
+				</entry>
+				<entry key="edit">
+					<ref bean="datarevisePreferenceController" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

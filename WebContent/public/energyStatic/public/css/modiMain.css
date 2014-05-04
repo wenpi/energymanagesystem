@@ -1,0 +1,342 @@
+.key_information {
+	padding-top: 0px;
+}
+
+.tab>.tab_menu li>div {
+	width: 146px;
+}
+
+.charts .date_comparer {
+	right: 55px;
+	top: 0px;
+}
+.fault_title .time_line > * {
+background-color: #FF6600;
+}
+.detail_page .chart_content .chart {
+	width: 654px;
+	heigth: 300px;
+}
+
+.detail_page .btn_group{
+	margin-right: 10px;
+}
+
+#chart_yxsj>div {
+	width: 100%;
+	height: 40px;
+}
+
+#chart_yxsj>div>span {
+	margin: 20px 20px 0px 20px;
+}
+
+#yxsj_table td {
+	width: 10px;
+}
+
+#chart_yxsj>div>* {
+	float: left;
+}
+
+.tab_content>.charts>.look_other>.now_data {
+	text-align: center;
+}
+
+.time_roll {
+	margin-left:-27px;
+}
+
+.left_text {
+	color: white;
+	position: relative;
+	top: 40px;
+	left: 81px;
+}
+
+.time_roll div {
+	width: 95px;
+	text-align: center;
+	float: left;
+	color: #fff;
+}
+
+.detail_page .title_block {
+	border-left: 4px solid #66CC00;
+	margin-left: 0px;
+}
+
+.detail_page .tab {
+	width: 938px;
+}
+
+#yxsj_table tr{
+	background-color: white;
+}
+
+.detail_page .tab_content>.charts {
+	width: 556px;
+}
+
+.detail_page .tab .download {
+	position: absolute;
+	top: 8px;
+	right: 9px;
+	width: 40px;
+	height: 30px;
+	background: url("../images/download.png");
+	cursor: pointer;
+}
+
+.detail_page {
+	width: 940px;
+}
+
+.detail_page .tab_content .charts_2 {
+	width: 638px;
+}
+
+.fault_tab>.tab_menu>ul {
+	margin-left: 36px;
+}
+
+.fault_content .chart_content {
+	border-bottom-left-radius: 6px;
+}
+
+.single_tab .single_tab_title strong {
+	font-size: 28px;
+	font-weight: normal;
+	vertical-align: middle;
+	font-style: normal;
+	font-family: 微软雅黑;
+	text-decoration: none;
+}
+
+.single_tab .single_tab_title h5 {
+	float: left;
+	font-size: 15px;
+	text-decoration: none;
+	font-style: italic;
+	font-family: 微软雅黑;
+	width: 110px;
+}
+
+.datepicker {
+	width: 182px;
+	height: 26px;
+	background-image: url(../images/u593_normal.png);
+	background-repeat: no-repeat;
+	background-position-x: 4px;
+}
+
+.mask .datapicker_1 {
+	background-image: url(../images/u593_normal.png);
+	background-repeat: no-repeat;
+	background-position-x: 4px;
+}
+
+.h2mini {
+	font-size: 20px;
+	margin: 0;
+}
+
+.labels {
+	cursor: default;
+}
+
+input[type="text"] {
+	height: 18px;
+}
+
+.zoomIn {
+	height: 18px;
+	position: relative;
+	left: 263px;
+	top: -33px;
+	width: 18px;
+	cursor: pointer;
+	background-image: url(../images/u1358_normal.png);
+}
+
+#mask .dialog-energy-zoom .dialog-body .compare>* {
+	line-height: 28px;
+}
+
+.mask .dialog-energy-zoom .dialog-body .scroll {
+	margin: -1px auto;
+}
+
+.mask .dialog-energy-zoom .dialog-body .d_w_m_content {
+	height: 336px;
+}
+
+#main {
+	width: 970px;
+	height: auto;
+	margin: 0;
+}
+
+.mask .dialog-energy-zoom .dialog-body .scroll {
+	line-height: 34px;
+}
+
+.tab {
+	width: 968px;
+	margin-top: 10px;
+}
+
+.title_block {
+	border-left: 4px solid #66CCFF;
+	margin: 8px;
+}
+/* 为portlet右移 */
+/* .portlet-content {
+	margin-left: 215px;
+} */
+.div-table {
+	margin-left: -215px;
+	margin-top: 16px;
+}
+
+.detail_page .chart_content>* {
+	float: left;
+	height: 100%;
+}
+
+#commonmorechart .div-table {
+	margin-left: 0px;
+}
+
+.tab_content>.charts>.look_other {
+	background-color: #FFFFFF;
+}
+
+.tab_content>.charts>.chart {
+	height: 242px;
+}
+
+.chart4 .lowest {
+	height: 40px;
+	width: 120px;
+	background-image: url(../images/u229_normal.png);
+}
+
+.mask .dialog-energy-zoom .dialog-header .dialog-download-btn {
+	background: #50597B url("../images/light-icon.png") -72px -41px;
+}
+
+.chart4 .midest {
+	height: 40px;
+	width: 155px;
+	background-image: url(../images/u227_normal.png);
+}
+
+.chart4 .high {
+	height: 40px;
+	width: 210px;
+	background-image: url(../images/u225_normal.png);
+}
+
+.titleList li {
+	width: 152.666667px;
+}
+
+.date_comparer .download {
+	right: -46px;
+}
+
+.energy_chart {
+	margin: 0;
+}
+
+.tab_content>.charts {
+	width: 588px;
+}
+
+form {
+	background-color: white;
+}
+
+.energy_chart .chart_top {
+	height: 119px;
+}
+
+.energy_chart .chart_area {
+	background-color: #50597B;
+}
+
+.energy_chart .chart_top .chart_top_content .scroll_describe {
+	margin: 12px auto;
+}
+
+.top_title {
+	height: 58px;
+}
+
+.date_comparer>.comp_data {
+	margin-top: 5px;
+}
+
+.kindpicker li {
+	line-height: 25px;
+}
+
+select {
+	width: 206px;
+	margin-bottom: 10px;
+}
+
+.energy_chart .chart_bottom .chart_bottom_content .switch_picker {
+	width: 182px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	background-color: #FFF;
+}
+
+.tab>.di_1 .date_select {
+	background-color: #4FC5F6;
+}
+
+.tab>.di_1 .date_select .pressive {
+	background-color: #3394C2 !important;
+}
+
+.tab>.di_1>.detail {
+	background-color: #3394C2
+}
+
+.tab>.di_1>.date_select>div {
+	border-bottom: 1px solid #3394C2;
+}
+
+.tab>.di_2 .date_select {
+	background-color: #C5CF5C;
+}
+
+.tab>.di_2 .date_select .pressive {
+	background-color: #98B356 !important;
+}
+
+.tab>.di_2>.detail {
+	background-color: #98B356
+}
+
+.tab>.di_2>.date_select>div {
+	border-bottom: 1px solid #98B356;
+}
+
+.dialog-body .slidesjs-container {
+	width: 844px;
+	height: 36.4px;
+	margin: 11px auto;
+}
+
+.device_list .chart {
+	width: 100%;
+	height: 179px;
+	background-color: #3A4264;
+}
+.bootstrap-select{
+	width:90px;
+}

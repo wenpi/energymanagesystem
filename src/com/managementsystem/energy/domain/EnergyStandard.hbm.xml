@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.managementsystem.energy.domain.EnergyStandard" table="energy_standard">
+        <id name="standardId" type="string">
+            <column name="standard_id" length="75" />
+            <generator class="uuid" />
+        </id>
+        <property name="standardName" type="string">
+            <column name="standard_name" length="75" />
+        </property>
+        <property name="standardType" type="string">
+            <column name="standard_type" length="75">
+                <comment>1&#161;&#162;&#183;&#214;&#192;&#224;&#183;&#214;&#207;&#238; 2&#161;&#162;&#189;&#168;&#214;&#254;&#198;&#248;&#186;&#242;&#199;&#248;</comment>
+            </column>
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="companyId" type="java.lang.Long">
+            <column name="companyId" />
+        </property>
+        <property name="groupid" type="java.lang.Long">
+            <column name="groupid" />
+        </property>
+        <property name="isdefault" type="java.lang.Integer">
+            <column name="isdefault">
+                <comment>0=&#183;&#241; 1=&#202;&#199;</comment>
+            </column>
+        </property>
+        <property name="createdOnDate" type="timestamp">
+            <column name="created_on_date" length="19" />
+        </property>
+        <property name="createdByUserId" type="java.lang.Long">
+            <column name="created_by_user_id" />
+        </property>
+        <property name="createdByUserName" type="string">
+            <column name="created_by_user_name" length="75" />
+        </property>
+        <property name="lastModifiedByUserId" type="java.lang.Long">
+            <column name="last_modified_by_user_id" />
+        </property>
+        <property name="lastModifiedOnDate" type="timestamp">
+            <column name="last_modified_on_date" length="19" />
+        </property>
+        <set name="energyItemStandardDetails" table="energy_item_standard_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="standard_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.EnergyItemStandardDetail" />
+        </set>
+        <set name="energyRegionalStandardDetails" table="energy_regional_standard_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="standard_id" length="75" />
+            </key>
+            <one-to-many class="com.managementsystem.energy.domain.EnergyRegionalStandardDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

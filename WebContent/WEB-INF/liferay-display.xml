@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE display PUBLIC "-//Liferay//DTD Display 6.0.0//EN" "http://www.liferay.com/dtd/liferay-display_6_0_0.dtd">
+<display>
+	<category name="category.module">
+		<!-- zzx -->
+		<portlet id="measurereport"></portlet>
+		<portlet id="board"></portlet>
+		<portlet id="fault"></portlet>
+		<portlet id="commonchart" />
+		<!-- ztl -->
+		<portlet id="totalEnergyUse"/>
+		<portlet id="totalWaterUse"/>
+		<portlet id="eachEnergyUse"/>
+		<portlet id="energyStatic"/>
+		<portlet id="energyUseAnalysis"/>
+		<portlet id="equipmentMonitoring"/>
+		<!-- lc -->
+		<portlet id="keyinformation" />
+		<portlet id="runningmonitors" />
+		<portlet id="energystatistic" />
+		<portlet id="energyanalysis" />
+		<portlet id="faultdiagnosis" />
+		<portlet id="reportmanagement" />
+		<portlet id="energyconsumptionreport" />
+		<portlet id="energyefficiencytarget" />
+		<portlet id="runningparameter" />
+		<portlet id="equipmentledger" />
+		<portlet id="buildconsumptionledger" />
+		<portlet id="hologram" />
+	</category>
+</display>
