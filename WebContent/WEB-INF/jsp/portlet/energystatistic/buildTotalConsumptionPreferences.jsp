@@ -779,6 +779,31 @@
 
 		<div class="div-table-row">
 			<div class="div-table-2col">
+				<span class="spanwidth" align="right">Name：</span> <input
+					id="choose_name4" name="choose_name4" type="text"
+					value="<%=prefs.getValue("choose_name4", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">Id：</span> <input
+					id="choose_id4" name="choose_id4" type="text"
+					value="<%=prefs.getValue("choose_id4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">ispd：</span> <input id="ispd4"
+					name="ispd4" type="text" value="<%=prefs.getValue("ispd4", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">y轴标题：</span> <input
+					id="yLeftTitle_4" name="yLeftTitle_4" type="text"
+					value="<%=prefs.getValue("yLeftTitle_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
 				<span class="spanwidth" align="right">标题：</span> <input id="title4"
 					name="title4" type="text" value="<%=prefs.getValue("title4", "")%>">
 			</div>
@@ -795,6 +820,148 @@
 					id="backgroundColor_4" name="backgroundColor_4" type="text"
 					value="<%=prefs.getValue("backgroundColor_4", "")%>">
 			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">居中标题：</span> <input
+					id="centerTitle_4" name="centerTitle_4" type="text"
+					value="<%=prefs.getValue("centerTitle_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图表类型1：</span> <select
+					id="chartType_4_1" name="chartType_4_1" style="width: 44.5%">
+					<option value="line">曲线图</option>
+					<option value="column">柱状图</option>
+					<option value="area">面积图</option>
+				</select>
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图表类型2：</span> <select
+					id="chartType_4_2" name="chartType_4_2" style="width: 44.5%">
+					<option value="line">曲线图</option>
+					<option value="column">柱状图</option>
+					<option value="area">面积图</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">颜色列表：</span> <input
+					id="chartColorList_4" name="chartColorList_4" type="text"
+					value="<%=prefs.getValue("chartColorList_4", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">填充颜色列表：</span> <input
+					id="chartFillColorList_4" name="chartFillColorList_4" type="text"
+					value="<%=prefs.getValue("chartFillColorList_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图例列表：</span> <input
+					id="chartLegendList_4" name="chartLegendList_4" type="text"
+					value="<%=prefs.getValue("chartLegendList_4", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图表半径列表：</span> <input
+					id="chartRadiusList_4" name="chartRadiusList_4" type="text"
+					value="<%=prefs.getValue("chartRadiusList_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">参考图例名称：</span> <input
+					id="referenceLegend_4" name="referenceLegend_4" type="text"
+					value="<%=prefs.getValue("referenceLegend_4", "")%>">
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">参考颜色：</span> <input
+					id="referenceColor_4" name="referenceColor_4" type="text"
+					value="<%=prefs.getValue("referenceColor_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">参考值：</span> <input
+					id="referencevalue4" name="referencevalue4" type="text"
+					value="<%=prefs.getValue("referencevalue4", "")%>">
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">X轴显示间隔：</span> <input
+					id="xStep_4" name="xStep_4" type="text"
+					value="<%=prefs.getValue("xStep_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">连接线线宽：</span> <input
+					id="connectLineWidth_4" name="connectLineWidth_4"
+					title="为空则默认为2，为0则不显示连接线" type="text"
+					value="<%=prefs.getValue("connectLineWidth_4", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">线宽：</span> <input
+					id="lineWidth_4" name="lineWidth_4" type="text"
+					value="<%=prefs.getValue("lineWidth_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">曲线点类型：</span> <select
+					id="symbol4" name="symbol4" style="width: 44.5%">
+					<option value="circle">圆点</option>
+					<option value="square">正方形</option>
+					<option value="diamond">方形</option>
+					<option value="triangle">三角形</option>
+					<option value="triangle-down">倒三角</option>
+				</select>
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">是否需要乘数：</span> <input
+					id="multiplier_4" name="multiplier_4" type="text"
+					value="<%=prefs.getValue("multiplier_4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">Y轴单位：</span> <input
+					id="ySymbol4" name="ySymbol4" type="text"
+					value="<%=prefs.getValue("ySymbol4", "")%>">
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">默认时间：</span> <input
+					id="defaulttime4" name="defaulttime4" type="text"
+					value="<%=prefs.getValue("defaulttime4", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">保留小数位数：</span> <select
+					id="decimals4" name="decimals4" style="width: 44.5%">
+					<option value="0.00">保留两位小数</option>
+					<option value="0.0">保留一位小数</option>
+					<option value="0">取整数</option>
+				</select>
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">导出列头名称：</span> <input
+					id="expColumnName4" name="expColumnName4" type="text"
+					value="<%=prefs.getValue("expColumnName4", "")%>">
+			</div>
 		</div>
 
 		<br /> <br />
@@ -806,6 +973,31 @@
 		</div>
 
 		<br />
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">Name：</span> <input
+					id="choose_name5" name="choose_name5" type="text"
+					value="<%=prefs.getValue("choose_name5", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">Id：</span> <input
+					id="choose_id5" name="choose_id5" type="text"
+					value="<%=prefs.getValue("choose_id5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">ispd：</span> <input id="ispd5"
+					name="ispd5" type="text" value="<%=prefs.getValue("ispd5", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">y轴标题：</span> <input
+					id="yLeftTitle_5" name="yLeftTitle_5" type="text"
+					value="<%=prefs.getValue("yLeftTitle_5", "")%>">
+			</div>
+		</div>
 
 		<div class="div-table-row">
 			<div class="div-table-2col">
@@ -825,7 +1017,150 @@
 					id="backgroundColor_5" name="backgroundColor_5" type="text"
 					value="<%=prefs.getValue("backgroundColor_5", "")%>">
 			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">居中标题：</span> <input
+					id="centerTitle_5" name="centerTitle_5" type="text"
+					value="<%=prefs.getValue("centerTitle_5", "")%>">
+			</div>
 		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图表类型1：</span> <select
+					id="chartType_5_1" name="chartType_5_1" style="width: 44.5%">
+					<option value="line">曲线图</option>
+					<option value="column">柱状图</option>
+					<option value="area">面积图</option>
+				</select>
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图表类型2：</span> <select
+					id="chartType_5_2" name="chartType_5_2" style="width: 44.5%">
+					<option value="line">曲线图</option>
+					<option value="column">柱状图</option>
+					<option value="area">面积图</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">颜色列表：</span> <input
+					id="chartColorList_5" name="chartColorList_5" type="text"
+					value="<%=prefs.getValue("chartColorList_5", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">填充颜色列表：</span> <input
+					id="chartFillColorList_5" name="chartFillColorList_5" type="text"
+					value="<%=prefs.getValue("chartFillColorList_5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图例列表：</span> <input
+					id="chartLegendList_5" name="chartLegendList_5" type="text"
+					value="<%=prefs.getValue("chartLegendList_5", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">图表半径列表：</span> <input
+					id="chartRadiusList_5" name="chartRadiusList_5" type="text"
+					value="<%=prefs.getValue("chartRadiusList_5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">参考图例名称：</span> <input
+					id="referenceLegend_5" name="referenceLegend_5" type="text"
+					value="<%=prefs.getValue("referenceLegend_5", "")%>">
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">参考颜色：</span> <input
+					id="referenceColor_5" name="referenceColor_5" type="text"
+					value="<%=prefs.getValue("referenceColor_5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">参考值：</span> <input
+					id="referencevalue5" name="referencevalue5" type="text"
+					value="<%=prefs.getValue("referencevalue5", "")%>">
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">X轴显示间隔：</span> <input
+					id="xStep_5" name="xStep_5" type="text"
+					value="<%=prefs.getValue("xStep_5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">连接线线宽：</span> <input
+					id="connectLineWidth_5" name="connectLineWidth_5"
+					title="为空则默认为2，为0则不显示连接线" type="text"
+					value="<%=prefs.getValue("connectLineWidth_5", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">线宽：</span> <input
+					id="lineWidth_5" name="lineWidth_5" type="text"
+					value="<%=prefs.getValue("lineWidth_5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">曲线点类型：</span> <select
+					id="symbol5" name="symbol5" style="width: 44.5%">
+					<option value="circle">圆点</option>
+					<option value="square">正方形</option>
+					<option value="diamond">方形</option>
+					<option value="triangle">三角形</option>
+					<option value="triangle-down">倒三角</option>
+				</select>
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">是否需要乘数：</span> <input
+					id="multiplier_5" name="multiplier_5" type="text"
+					value="<%=prefs.getValue("multiplier_5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">Y轴单位：</span> <input
+					id="ySymbol5" name="ySymbol5" type="text"
+					value="<%=prefs.getValue("ySymbol5", "")%>">
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">默认时间：</span> <input
+					id="defaulttime5" name="defaulttime5" type="text"
+					value="<%=prefs.getValue("defaulttime5", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">保留小数位数：</span> <select
+					id="decimals5" name="decimals5" style="width: 44.5%">
+					<option value="0.00">保留两位小数</option>
+					<option value="0.0">保留一位小数</option>
+					<option value="0">取整数</option>
+				</select>
+			</div>
+
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">导出列头名称：</span> <input
+					id="expColumnName5" name="expColumnName5" type="text"
+					value="<%=prefs.getValue("expColumnName5", "")%>">
+			</div>
+		</div>
+
 
 		<br /> <br />
 
@@ -1149,6 +1484,16 @@ $("#chartType_3_1").val('<%=prefs.getValue("chartType_3_1","")%>');
 $("#chartType_3_2").val('<%=prefs.getValue("chartType_3_2","")%>');
 $("#decimals3").val('<%=prefs.getValue("decimals3","")%>');
 $('#defaulttime3').datebox();
+
+// 渲染 建筑总用水趋势  的效果
+$("#chartType_4_1").val('<%=prefs.getValue("chartType_4_1","")%>');
+$("#chartType_4_2").val('<%=prefs.getValue("chartType_4_2","")%>');
+$("#decimals4").val('<%=prefs.getValue("decimals4","")%>');
+
+// 渲染 建筑总用气趋势  的效果
+$("#chartType_5_1").val('<%=prefs.getValue("chartType_5_1","")%>');
+$("#chartType_5_2").val('<%=prefs.getValue("chartType_5_2","")%>');
+$("#decimals5").val('<%=prefs.getValue("decimals5","")%>');
 
 // 渲染 建碳足迹  的效果
 renderDataGrid("dgrid6");
