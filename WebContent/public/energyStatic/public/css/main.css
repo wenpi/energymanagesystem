@@ -1464,7 +1464,7 @@ table > caption {
 	line-height: 36px;
 /*	border-left: 1px solid #11a8ab;
 	border-right: 1px solid #11a8ab;*/
-	border-top: 5px solid #11a8ab;
+	border-top: 3px solid #11a8ab;
 }
 
 .fault_tab > .tab_menu .cur_tab img {
@@ -1878,20 +1878,20 @@ border-bottom-left-radius: 7px;}
 	width: 15px;
 	height: 15px;
 	background: url("../images/light-icon.png") -118px -445px;
-	right: 10px; 
 	top: 15px;
-	display: inline-block;
+	/**right: 10px; 
+	display: inline-block;**/
 	cursor: pointer;
 }
 
 .detail_page .device_select_popover {
-	width: 200px;
+	width: 164px;
 	height: 130px;
 	background-color: #3a4264;
 	border: 1px solid #fff;
 	border-radius: 4px;
 	position: absolute;
-	top: 86px;
+	top: 103px;
 	left: 193px;
 	display: none;
 }
@@ -2243,6 +2243,24 @@ border-bottom-left-radius: 7px;}
 	margin-top: -95px;
 }
 
+.ahu_top {
+	margin-top: -91px;
+}
+
 #chooseDevice {
 	width: 130px;
+}
+
+.value_floor {
+	font-size: 30px;
+	line-height: 40px;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.total_floor {
+	font-size: 18px;
+	line-height: 40px;
+	color: #D7D7D7;
+	text-align: center;
 }

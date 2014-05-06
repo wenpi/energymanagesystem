@@ -10,9 +10,9 @@ public interface ImportService {
 	/**
 	 * 读取Excel的内容，第一维数组存储的是一行中格列的值，二维数组存储的是多少个行
 	 * 
-	 * @param file
-	 * @param ignoreRows
+	 * @param mf
+	 * @param type
 	 * @return
 	 */
-	public String importExcelToCircuitinfo(MultipartFile mf);
+	public String importExcelToCircuitinfo(MultipartFile mf, String type);
 }

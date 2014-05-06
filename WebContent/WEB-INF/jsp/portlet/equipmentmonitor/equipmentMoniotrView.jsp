@@ -19,14 +19,14 @@
 						<%@include file="wind.jsp"%>
 					</div>
 				</div>
-				<!-- <div class="light_system">
+				<div class="light_system">
 					<div class="title_block">
 						<p>照明系统</p>
 					</div>
 					<div class="device_list">
-						<@include file="light_sys.jsp"%>
+						<%@include file="light_sys.jsp"%>
 					</div>
-				</div> -->
+				</div>
 			</div>
 			<jsp:include page="detail_page.jsp"></jsp:include>
 		</div>

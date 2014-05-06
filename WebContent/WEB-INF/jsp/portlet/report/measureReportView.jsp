@@ -17,11 +17,11 @@
 				<div class="title_block report_form" id="_measurereport">
 					<p class="block_title">计量报表</p>
 					<div class="table_chart_switch" id="measure_table">
-						<div class="chart_switch_btn btn_press" id="<portlet:namespace />picView">
+						<div class="chart_switch_btn" id="<portlet:namespace />picView">
 							<i class="icon_chart"></i>
 							<p>图形视图</p>
 						</div>
-						<div class="chart_switch_btn" id="<portlet:namespace />tableView">
+						<div class="chart_switch_btn btn_press" id="<portlet:namespace />tableView">
 							<i class="icon_table"></i>
 							<p>表格视图</p>
 						</div>
@@ -84,8 +84,8 @@
 										<div class="has_border_radius_right downLoad_btn" onclick=""></div>
 									</div>
 								</div>
-								<div class="sub_content chart_height" id="<portlet:namespace />ele_chart_div" style="display: block;"></div>
-								<div class="sub_content table_content" style="height: 677px;">
+								<div class="sub_content chart_height" id="<portlet:namespace />ele_chart_div" style=""></div>
+								<div class="sub_content table_content" style="height: 677px; display: block;">
 									<div id="<portlet:namespace />reportdiv" ></div>
 									<div class="measure_zoom_mask" style="height: 676px;">
 										<div class="magnify"></div>
@@ -94,7 +94,6 @@
 							</div>
 						</div>
 					</div>
-
 
 					<div class="tab_content">
 						<div class="detail">
@@ -877,7 +876,8 @@
 							url : '<portlet:resourceURL id="getCircuitTreeByBuildId"></portlet:resourceURL>',
 							method : 'get',
 							onCheck : function(node, checked) {
-								renderCharts();
+								//renderCharts();
+								buildTableData();
 							}
 						});
 	});

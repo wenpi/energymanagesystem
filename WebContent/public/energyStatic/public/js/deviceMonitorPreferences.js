@@ -1,6 +1,4 @@
 // 全息图中全局变量，用于具体建筑中的处理
-var dev_cur_build = 'A1'; // 默认为A1楼
-var dev_cur_floor = '1F'; // 默认为1F楼
 var dev_floor_text = '一层'; // 默认为一层
 
 //设备监测首页图name、id、ispd——编号代表小图位置
@@ -15,7 +13,7 @@ var s_name_1=[['electricity','electricity','electricity'],['electricity','electr
 var s_id_1=[['total','total','total'],['total','total','total'],['total','total','total']];
 var s_ispd_1=[[0,0,0],[0,0,0],[0,0,0]];
 
-// 空调箱
+// 新风机组
 var s_name_2=[['number_on','electricity','electricity'],
               ['number_on','electricity','electricity'],
               ['number_on','electricity_unit','cooling_capacity'],
@@ -53,14 +51,17 @@ var s_ispd_2=[[3,0,0],
               [3,0,0],
               [3,3,0]];
 var all_build_list = ['A1', 'P1', 'P2', 'T1', 'T2', 'T3', 'T4', 'T5']; // 建筑列表
-var coldSite_t_name = 'number_on,number_on,number_on,number_on', coldSite_t_id = 'chiller,chwp,cwp,ct', coldSite_t_ispd = '2,2,2,2'; // 冷机
-var ahu_t_name = 'number_on', ahu_t_id = 'fau', ahu_t_ispd = '2'; // 下方的空调箱开启台数
-var sendWind_t_name = 'number_on', sendWind_t_id = 'sf', sendWind_t_ispd = '2'; // 下方的空调箱开启台数
-var exhaustWind_t_name = 'number_on', exhaustWind_t_id = 'pf', exhaustWind_t_ispd = '2'; // 下方的空调箱开启台数
+var coldSite_t_name = 'number_on,number_on,number_on,number_on', coldSite_t_id = 'chiller,chwp,cwp,ct', coldSite_t_ispd = '2,2,2,2'; // 冷机相关的开启台数
+var boiler_t_name = 'number_on,number_on,number_on', boiler_t_id = 'boiler,hwp,hwp', boiler_t_ispd = '2,2,2'; // 锅炉房相关的开启台数
+var ahu_t_name = 'number_on', ahu_t_id = 'fau', ahu_t_ispd = '2'; // 下方的新风机组开启台数
+var fcu_t_name = 'number_on', fcu_t_id = 'fau', fcu_t_ispd = '2'; // 下方的新风机组开启台数
+var sendWind_t_name = 'number_on', sendWind_t_id = 'sf', sendWind_t_ispd = '2'; // 下方的新风机组开启台数
+var exhaustWind_t_name = 'number_on', exhaustWind_t_id = 'pf', exhaustWind_t_ispd = '2'; // 下方的新风机组开启台数
 
-var ahu_build_id = 'A1'; // 记录空调箱点击的建筑，默认是A1
-var ahu_detail_build = 'A1'; // 记录空调箱详情中点击的建筑，默认是A1
-var ahu_detail_floor = 'JF'; // 记录空调箱详情中点击的楼层，默认是JF
+var ahu_build_id = 'A1'; // 记录新风机组点击的建筑，默认是A1
+var ahu_detail_build = 'A1'; // 记录新风机组详情中点击的建筑，默认是A1
+var ahu_detail_floor = 'JF'; // 记录新风机组详情中点击的楼层，默认是JF
+var detail_floor = '1F'; // 记录照明回路详情中点击的楼层，默认是1F
 
 // 冷站1_小图
 var s_name_coldSite_one = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
@@ -74,14 +75,26 @@ var s_ispd_coldSite_two = [[2,0,0],[0,0,0],[2,0,0],[2,0,0]];
 var s_name_coldSite_three = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
 var s_id_coldSite_three = [['chiller_total_A1','total','total'],['chwp','total','total'],['cwp','total','total'],['ct','total','total']];
 var s_ispd_coldSite_three = [[2,0,0],[0,0,0],[2,0,0],[2,0,0]];
-// 锅炉房_小图
-var s_name_boiler_room = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_boiler_room = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
-var s_ispd_boiler_room = [[2,0,0],[2,0,0],[2,0,0]];
-// 空调箱_小图
+// p1锅炉房_小图
+var s_name_boiler_room_P1 = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
+var s_id_boiler_room_P1 = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
+var s_ispd_boiler_room_P1 = [[2,0,0],[2,0,0],[2,0,0]];
+// p2锅炉房_小图
+var s_name_boiler_room_P2 = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
+var s_id_boiler_room_P2 = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
+var s_ispd_boiler_room_P2 = [[2,0,0],[2,0,0],[2,0,0]];
+// a1锅炉房_小图
+var s_name_boiler_room_A1 = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
+var s_id_boiler_room_A1 = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
+var s_ispd_boiler_room_A1 = [[2,0,0],[2,0,0],[2,0,0]];
+// 新风机组_小图
 var s_name_ahu = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
 var s_id_ahu = [['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total']];
 var s_ispd_ahu = [[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0]];
+// 风机盘管_小图
+var s_name_fcu = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
+var s_id_fcu = [['fcu','total','total'],['fcu','total','total'],['fcu','total','total'],['fcu','total','total'],['fcu','total','total'],['fcu','total','total'],['fcu','total','total'],['fcu','total','total']];
+var s_ispd_fcu = [[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0]];
 // 送风机_小图
 var s_name_sendWind = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity_unit','cooling_capacity'],['number_on','EERr','cooling_capacity'],['number_on','S7_temp_display_OUTDOOR_HUMIDITY','electricity'],['number_on','electricity','electricity'],['number_on','electricity_unit','cooling_capacity'],['number_on','EERr','cooling_capacity']];
 var s_id_sendWind = [['sf','total','total'],['sf','total','total'],['sf','hvac','chiller'],['sf','hvac','chiller'],['sf','chiller','total'],['sf','chiller_ice','hvac_pump'],['sf','hvac','chiller'],['sf','hvac','chiller']];
@@ -90,6 +103,10 @@ var s_ispd_sendWind = [[2,0,0],[2,0,0],[2,0,0],[2,3,0],[2,3,0],[2,0,0],[2,0,0],[
 var s_name_exhaustWind = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity_unit','cooling_capacity'],['number_on','EERr','cooling_capacity'],['number_on','S7_temp_display_OUTDOOR_HUMIDITY','electricity'],['number_on','electricity','electricity'],['number_on','electricity_unit','cooling_capacity'],['number_on','EERr','cooling_capacity']];
 var s_id_exhaustWind = [['pf','total','total'],['pf','total','total'],['pf','hvac','chiller'],['pf','hvac','chiller'],['pf','chiller','total'],['pf','chiller_ice','hvac_pump'],['pf','hvac','chiller'],['pf','hvac','chiller']];
 var s_ispd_exhaustWind = [[2,0,0],[2,0,0],[2,0,0],[2,3,0],[2,3,0],[2,0,0],[2,0,0],[2,3,0]];
+// 照明回路_小图
+var s_name_light = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
+var s_id_light = [['lighting','total','total'],['lighting','total','total'],['lighting','total','total'],['lighting','total','total'],['lighting','total','total'],['lighting','total','total'],['lighting','total','total'],['lighting','total','total']];
+var s_ispd_light = [[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0],[2,0,0]];
 
 // 冷机总台数
 var coldSite_oneTemp = [{name : '冷机',total : 6,current : 3}, 
@@ -106,7 +123,18 @@ var coldSite_threeTemp = [{name : '冷机',total : 3,current : 3},
 			                {name : '冷冻水泵',total : 4,current : 3}, 
 			                {name : '冷却水泵',total : 4,current : 3}, 
 			                {name : '冷却塔',total : 5,current : 3}];
-// 空调箱总台数
+
+// 锅炉房			                
+var boiler_room_P1Temp = [{name : '锅炉',total : 2,current : 1}, 
+			                 {name : '热水泵',total : 3,current : 3}, 
+			                 {name : '换热器',total : 0,current : 0}];
+var boiler_room_P2Temp = [{name : '锅炉',total : 2,current : 1}, 
+			                 {name : '热水泵',total : 3,current : 3}, 
+			                 {name : '换热器',total : 0,current : 0}];
+var boiler_room_A1Temp = [{name : '锅炉',total : 2,current : 1}, 
+			                 {name : '热水泵',total : 3,current : 3}, 
+			                 {name : '换热器',total : 0,current : 0}];
+// 新风机组总台数
 var ahuTemp =  [{name : 'A1号楼',total : 7}, 
 			    {name : 'P1号楼',total : 0}, 
 			    {name : 'P2号楼',total : 0}, 
@@ -133,6 +161,17 @@ var exhaustWindTemp = [{name : 'A1号楼', total : 12},
 						 {name : 'T3号楼', total : 5},
 						 {name : 'T4号楼', total : 6}, 
 						 {name : 'T5号楼', total : 0}];
+
+var lightTemp = [{name : 'A1号楼',total : 7, current : 4}, 
+				 {name : 'P1号楼',total : 0, current : 0}, 
+				 {name : 'P2号楼',total : 0, current : 0}, 
+				 {name : 'T1号楼',total : 6, current : 3}, 
+				 {name : 'T2号楼',total : 6, current : 2}, 
+				 {name : 'T3号楼',total : 10, current : 6}, 
+				 {name : 'T4号楼',total : 6, current : 1}, 
+				 {name : 'T5号楼',total : 6, current : 5}];
+
+
 // 图一详细
 // 运行状态--设备顺序 冷机,水系统,冷冻水泵,冷却水泵,冷却塔
 var detail_0_up_name=[['electricity','electricity,electricity,electricity','cop,EERs_unit,EERr_unit,WTFcw_unit','S_output_base_cooling_pump_1_run,S_output_base_cooling_pump_2_run,S_output_base_cooling_pump_3_run,S_output_base_cooling_pump_4_run',''],
@@ -202,6 +241,60 @@ var detail_towerCoolParam_name = 't_ra,t_ra'; // 分别是冷却水供水温度�
 var detail_towerCoolParam_id = 'K_1_01_YL,K_1_02_YL'; // 分别是冷却水供水温度、冷却水回水温度
 var detail_towerCoolParam_ispd = '1,1'; // 分别是冷却水供水温度、冷却水回水温度
 
+// 锅炉房-冷冻水参数
+var detail_hotWaterParam_name = 't_hw_s,t_hw_r'; // 分别是热水供水温度、热水回水温度
+var detail_hotWaterParam_id = 'boiler_P1_1,boiler_P1_2'; // 分别是热水供水温度、热水回水温度
+var detail_hotWaterParam_ispd = '1,1'; // 分别是热水供水温度、热水回水温度
+
+// 照明系统-照明回路
+var detail_lightOpenNum_name = 'number_on'; // 分别是开启台数
+var lightOpenNum_id = 'fau'; // 分别是开启台数
+var detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build; // 分别是开启台数
+var detail_lightOpenNum_ispd = '2'; // 分别是开启台数
+// 照明灯具个数
+var light_A1 =  [{name : '1F', total : 0}, 
+				 {name : '2F', total : 465}, 
+				 {name : '3F', total : 528}, 
+				 {name : '4F', total : 656}, 
+				 {name : '5F', total : 720}, 
+				 {name : '6F', total : 720}, 
+				 {name : '7F', total : 80}];
+				 
+var light_T1 =  [{name : '1F', total : 0}, 
+				 {name : '2F', total : 0}, 
+				 {name : '3F', total : 592}, 
+				 {name : '4F', total : 656}, 
+				 {name : '5F', total : 720}, 
+				 {name : '6F', total : 656}];
+				 
+var light_T2 =  [{name : '1F', total : 0}, 
+				 {name : '2F', total : 0}, 
+				 {name : '3F', total : 784}, 
+				 {name : '4F', total : 784}, 
+				 {name : '5F', total : 720}, 
+				 {name : '6F', total : 720}];
+				 
+var light_T3 =  [{name : '1F', total : 0}, 
+				 {name : '2F', total : 209}, 
+				 {name : '3F', total : 528}, 
+				 {name : '4F', total : 784}, 
+				 {name : '5F', total : 848}, 
+				 {name : '6F', total : 848}];
+				 
+var light_T4 =  [{name : '1F', total : 0}, 
+				 {name : '2F', total : 592}, 
+				 {name : '3F', total : 592}, 
+				 {name : '4F', total : 656}, 
+				 {name : '5F', total : 656}, 
+				 {name : '6F', total : 656}];
+				 
+var light_T5 =  [{name : '1F', total : 0}, 
+				 {name : '2F', total : 592}, 
+				 {name : '3F', total : 528}, 
+				 {name : '4F', total : 656}, 
+				 {name : '5F', total : 656}, 
+				 {name : '6F', total : 656}];
+				 
 //图二详细
 //运行状态--设备顺序 锅炉、热水泵、换热器
 var detail_1_up_name=[[],[],[]];

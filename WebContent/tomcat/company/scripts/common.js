@@ -1,5 +1,5 @@
 var publicTime = '2014-04-20'; //全局的时间属性，如果设置了这个属性，则系统默认使用该时间，格式为（年-月-日）
-var isShowRightTool = false; // false则不显示右侧工具集，true则显示
+var isShowRightTool = true; // false则不显示右侧工具集，true则显示
 var _todayTime = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate();
 
 $(function() {
@@ -41,13 +41,15 @@ function common_import_submit(){
 		alert("请选择要导入的文件！");
 		return false;
 	}
-	$("#importForm").attr("action", importUrl);
+	
+	$("#importForm").attr("action", importUrl + "&common_type=" + $("#common_type").val());
 	$("#importForm").submit();
 	$('#common_import').dialog('close');
 }
 
 // 共用的导入excel
-function import_common_excel() {
+function import_common_excel(type) {
+	document.getElementById("common_type").value = type;
 	document.getElementById("common_fileName").value = '';
 	document.getElementById("common_myFile").value = '';
 	$('#common_import').dialog({ height: 197, width: 513 });

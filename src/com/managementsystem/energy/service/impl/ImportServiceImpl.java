@@ -42,7 +42,7 @@ public class ImportServiceImpl implements ImportService {
 	private CircuitinfoService circuitinfoService;
 	
 	@Override
-	public String importExcelToCircuitinfo(MultipartFile mf) {
+	public String importExcelToCircuitinfo(MultipartFile mf, String type) {
 		String returnStr = "true";
 
 		try {
@@ -51,8 +51,9 @@ public class ImportServiceImpl implements ImportService {
 			int rowLength = result.length;
 
 			System.out.println("导入的excel行数--" + rowLength);
-			String col_a = "", col_b = "", col_c = "", col_d = ""; // 存储excel中的内容
 
+			String col_a = "", col_b = "", col_c = "", col_d = ""; // 存储excel中的内容
+			
 			Circuitinfo circuitinfo1 = new Circuitinfo();
 			Circuitinfo circuitinfo2 = new Circuitinfo();
 			Circuitinfo circuitinfo3 = new Circuitinfo();
@@ -62,38 +63,41 @@ public class ImportServiceImpl implements ImportService {
 				
 				for (int j = 0; j < result[i].length; j++) {
 
-					if(j == 0 && !"".equals(result[i][j])) {
+					if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
 						col_a = result[i][j];
 						circuitinfo1 = new Circuitinfo();
-						circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1);
-					}
-						
-					if(j == 1 && !"".equals(result[i][j])) {
-						col_b = result[i][j];
-						circuitinfo2 = new Circuitinfo();
-						circuitinfo2 = getCircuitForEnergy(circuitinfo2, col_b, circuitinfo1);
+						circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 					}
 					
-					if(j == 2 && !"".equals(result[i][j])) {
+					if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
+						col_b = result[i][j];
+					}
+					
+					if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
 						col_c = result[i][j];
-						circuitinfo3 = new Circuitinfo();
-						circuitinfo3 = getCircuitForEnergy(circuitinfo3, col_c, circuitinfo2);
 					}
 					
 					if(j == 3) {
 						if("".equals(result[i][j])){
 							continue;
 						} else {
-							col_d = result[i][j];
+							
+							if(!"".equals(col_b)) { // 第二列的数据
+								circuitinfo2 = new Circuitinfo();
+								circuitinfo2 = getCircuitForEnergy(circuitinfo2, col_b, circuitinfo1, type);
+							}
+							
+							if(!"".equals(result[i][2])) { // 第三列数据
+								circuitinfo3 = new Circuitinfo();
+								circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][2], circuitinfo2, type);
+							}
+							
 							circuitinfo4 = new Circuitinfo();
-							circuitinfo4 = getCircuitForEnergy(circuitinfo4, col_d, circuitinfo3);
+							circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
 						}
 					}
-
 				}
-				
 			}
-//			ScriptEngine
 			returnStr = "true";
 		} catch (Exception e) {
 			returnStr = "false";
@@ -103,14 +107,15 @@ public class ImportServiceImpl implements ImportService {
 	}
 	
 	/**
-	 * 插入数据到circuitinfo表
+	 * 重新组织circuitinfo
 	 * 
 	 * @param circuitinfo
 	 * @param code
 	 * @param parentinfo
+	 * @param type
 	 * @return
 	 */
-	public Circuitinfo getCircuitForEnergy(Circuitinfo circuitinfo, String code, Circuitinfo parentinfo) {
+	public Circuitinfo getCircuitForEnergy(Circuitinfo circuitinfo, String code, Circuitinfo parentinfo, String type) {
 		try {
 			Buildinfo buildinfo = new Buildinfo();
 			buildinfo.setBuildId("000001070001");
@@ -119,6 +124,7 @@ public class ImportServiceImpl implements ImportService {
 			circuitinfo.setCircuitName(code);
 			circuitinfo.setCircuitState(1);
 			circuitinfo.setCircuitinfo(parentinfo);
+			circuitinfo.setCircuitText(type); // 所属系统
 			circuitinfoService.addCircuitinfoForEnergy(circuitinfo);
 		} catch (Exception e) {
 			e.printStackTrace();

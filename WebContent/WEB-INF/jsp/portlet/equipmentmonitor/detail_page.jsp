@@ -54,17 +54,17 @@
 		<div class="fault_tab_content" style="display: block;">
 			<div class="title_block sub_title_block">
 				<p>实时状态</p>
-				<span><i>每台设备的实时状况</i></span>
+				<span><i id="device_text">每台设备的实时状况</i></span>
 			</div>
 			<div class="single_tab sszt">
 				<div class="single_tab_title">
 					<h5>2013-09-02</h5>
 					<h5>14:50</h5>
 					<p>
-						总台数&nbsp;&nbsp;&nbsp;<strong></strong>&nbsp;&nbsp;&nbsp;台
+						总数&nbsp;&nbsp;&nbsp;<strong></strong>&nbsp;&nbsp;&nbsp;台
 					</p>
 					<p>
-						开启台数&nbsp;&nbsp;&nbsp;<strong></strong>&nbsp;&nbsp;&nbsp;台
+						开启数&nbsp;&nbsp;&nbsp;<strong></strong>&nbsp;&nbsp;&nbsp;台
 					</p>
 				</div>
 				<div class="each_device_list"></div>
@@ -400,7 +400,7 @@
 			<jsp:include page="detail_page_sbxq.jsp"></jsp:include>
 		</div>
 	</div>
-	<div class="device_select_popover" style="left: 265px;">
+	<div class="device_select_popover" style="left: 419px;">
 		<input type="hidden" value="0">
 		<div>
 			<ul class="select_list">
@@ -439,6 +439,10 @@
 	
 	// 详细页面初始化
 	function showDetails(firstN, lastN, num, curId) {
+		$(".fault_tab_content > .sub_title_block").css("display", "block"); 
+		$(".fault_tab_content > .tab").css("display", "block"); 
+		$(".filter_widget").css("display", "block"); 
+		
 		if(firstN != null) {
 			// 设置详情页中的左上角文字
 			$(".detail_page").attr("tip", curId);
@@ -446,7 +450,7 @@
 			$(".detail_page > input:eq(1)").val(num - 1);
 			if (num == 1) { // 冷站 | 常规制冷系统
 				$(".tab ul>li:eq(1)").css('display', '${equipmentMonitor.isShowLoadRate}');
-				$(".tab ul>li").siblings().css('width', ("${equipmentMonitor.isShowLoadRate}" == "none" ? "279.9px" : "206px"));
+				$(".tab ul>li").siblings().css('width', ("${equipmentMonitor.isShowLoadRate}" == "none" ? "425px" : "206px"));
 				getEquipDetail(curId, 0);
 			} else if (num == 4) { // 冷站 | 冰蓄冷系统
 				// getEquipDetail(1, 0);
@@ -456,9 +460,9 @@
 		}
 		
 		var place = 0;     // $(".detail_page>input:eq(1)").val();//位置
-		if(curId == 'ahu') { // 空调箱
+		if(curId == 'ahu') { // 新风机组
 			place = num - 1;
-			$(".ahu_detail").css("display", "block"); // 空调箱，显示空调箱的设备详情
+			$(".ahu_detail").css("display", "block"); // 新风机组，显示新风机组的设备详情
 		}
 		
 		if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
@@ -485,6 +489,8 @@
 		
 		detail_yxts_starttime = <portlet:namespace/>start_date;
 		detail_wind_starttime = <portlet:namespace/>start_date;
+		$(".today").html(detail_wind_starttime);
+		$("#device_text").text("每台设备的实时状况");
 		
 		var legend = <portlet:namespace/>legendList[0][0];
 		var choose_id = <portlet:namespace/>choose_id[0][0];
@@ -502,16 +508,26 @@
 			getDeviceForColdSite(); // 获取设备列表 
 			opeaColdSite(); // 显示冷水机组
 		}
+
+		if (curId == 'boiler_room_P1' || curId == 'boiler_room_P2' || curId == 'boiler_room_A1') { // 锅炉房P1、P2、A1
+			getDeviceForBoiler(); // 获取设备列表 
+			opeaBoiler(); // 显示锅炉房
+		}
 		
-		if(curId == 'ahu') { // 空调箱
+		if(curId == 'ahu') { // 新风机组
 			getDeviceDetailList(); // 获取设备列表
-			opeaAhu(); // 处理空调箱的信息
+			opeaAhu(); // 处理新风机组的信息
 		}
 		
 		if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
 			opeaWindSite();
 		}
 
+		if(curId == 'light') { // 照明回路
+			$("#device_text").text("每层照明灯具的总数和开启数");
+			opeaLight();
+		}
+		
 		//getchart_yxqs("detail_chart_yxts",
 		//			<portlet:namespace/>start_date, legend,choose_id,choose_name,
 		//			ispd, 'day', <portlet:namespace/>decimals,yTitle,chartColor.split(','),charttype,step); 
@@ -776,7 +792,8 @@
 		} else if(curId == 'coldSite_three') {
 			buildid = 'A1';			
 		}
-
+		
+		var devicesList = [];
 		ahu_detail_build = buildid;
 		ahu_detail_floor = '';
 		$.ajax({
@@ -798,6 +815,7 @@
 							detail_coldSiteColdParam_id = detail_coldSiteCoolParam_id = data[i].id + "," + data[i].id + "," + data[i].id;
 						}
 						if(!hashMap.containsValue(data[i].id)) {
+							devicesList.push(data[i].id);
 							$("#chooseDevice").append("<option tip='" + data[i].buildId + "' value='" + data[i].id + "'>" + data[i].id + "</option>");
 						}
 						hashMap.put(data[i].id, data[i].id);
@@ -808,9 +826,60 @@
 				console.log('getDeviceForColdSite + error');
 			}
 		});
+		
+		var equip = $(".more_" + curId + "").data('data');
+		$(".single_tab_title>p:eq(0) strong").html(equip[0].total);
+		$(".single_tab_title>p:eq(1) strong").html(equip[0].current);
+		getSsztTable(equip[0].total, '', devicesList);
+	}
+
+	// 获取设备列表的数据,针对锅炉房
+	function getDeviceForBoiler() {
+		var curId = $(".detail_page").attr("tip"); // 当前选择的模块
+		var buildid = '';
+		if(curId == 'boiler_room_P1') {
+			buildid = 'P1';
+		} else if(curId == 'boiler_room_P2') {
+			buildid = 'P2';			
+		} else if(curId == 'boiler_room_A1') {
+			buildid = 'A1';			
+		}
+
+		ahu_detail_build = buildid;
+		ahu_detail_floor = '';
+		$.ajax({
+			type : "POST",
+			url : "<portlet:resourceURL id='getQuerySchemeListByCondition'></portlet:resourceURL>",
+			data : {
+				name: 't_hw_r',
+				id: 'boiler',
+				comments: '热水回水温度',
+				buildId: buildid
+			},
+			async: false,
+			success : function(result) {
+				var data = result.result;
+				$("#chooseDevice").empty(); // 清空下拉列表
+				if(data.length != 0) {
+					var hashMap = new HashMap();
+					for(var i = 0; i < data.length; i++) {
+						if(i == 0) {
+							detail_hotWaterParam_id = data[i].id + "," + data[i].id + "," + data[i].id;
+						}
+						if(!hashMap.containsValue(data[i].id)) {
+							$("#chooseDevice").append("<option tip='" + data[i].buildId + "' value='" + data[i].id + "'>" + data[i].id + "</option>");
+						}
+						hashMap.put(data[i].id, data[i].id);
+					}
+				}
+			},
+			error : function(result) {
+				console.log('getDeviceForBoiler + error');
+			}
+		});
 	}
 	
-	// 获取设备列表的数据，针对空调箱
+	// 获取设备列表的数据，针对新风机组
 	function getDeviceDetailList() {
 		$.ajax({
 			type : "POST",
@@ -830,7 +899,14 @@
 					var hashMap = new HashMap();
 					for(var i = 0; i < data.length; i++) {
 						if(i == 0) {
-							detail_windTempParam_id = detail_windHumpParam_id = data[i].id + "," + data[i].id;
+							var curId = $(".detail_page").attr("tip"); // 当前模块的id
+							if (curId == 'coldSite_one' || curId == 'coldSite_two' || curId == 'coldSite_three') { // 冷站1,2,3 | 常规制冷系统
+								detail_coldSiteColdParam_id = data[i].id + "," + data[i].id + "," + data[i].id;
+							}
+							
+							if(curId == 'ahu') { // 新风机组
+								detail_windTempParam_id = detail_windHumpParam_id = data[i].id + "," + data[i].id;
+							}
 						}
 						if(!hashMap.containsValue(data[i].id)) {
 							$("#chooseDevice").append("<option value='" + data[i].id + "'>" + data[i].id + "</option>");
@@ -845,13 +921,17 @@
 		});
 	}
 
-	// 获取设备详情-送回风温度参数 信息
-	function <portlet:namespace/>getWindParams(p_name) {
+	// 获取设备详情图表信息
+	function getDevicesDetailChart(p_name) {
 			// zzxtest
 			var bid = ahu_detail_build, fid = ahu_detail_floor; // bid = 'P1'
 			//if(p_name == "fanFrequency" || p_name == "runFrequency") { // 测试风机频率 和 运行频率
 			//	bid = 'P2', fid = '3F';
 			//}
+			
+			if(p_name == 'lightOpenNum') { // 照明系统-照明回路
+				fid = detail_floor; // 照明回路，特殊处理 
+		    }
 			
 			var atts = 'max,min,average'; // 默认求的attribute属性
 
@@ -860,7 +940,7 @@
 			var ispd = eval("detail_" + p_name + "_ispd");
 			var classname = p_name + "_table"; // 表格样式名称
 			
-			//console.log("---" + choose_name + "----" + choose_id + "----" + ispd);
+			console.log(p_name + "---" + choose_name + "----" + choose_id + "----" + ispd + "---" + fid + "---" + bid);
 			// 获取图表信息
 			$.ajax({
 				type : "POST",
@@ -877,6 +957,7 @@
 					build_id : bid // ahu_detail_build
 				},
 				success : function(data) {
+					console.log(data);
 					var cataList = data.catalist;
 					var dataList = data.datalist;
 
@@ -969,6 +1050,18 @@
 						chartColorList = [ '#00B0F0', '#00B050' ]; 
 						chartRadiusList = [ 1, 1 ];
 						chartYAxisList = [ 0, 0 ];
+					} else if(p_name == 'hotWaterParam') { // 锅炉房-热水参数 
+						chartid = 'hotWaterParam_chart', lefttitle = '温度（℃）', righttitle = '', unit = '℃';
+						chartLegendList = [ '供水温度', '回水温度' ];
+						chartColorList = [ '#32C0F4', '#00B050' ]; 
+						chartRadiusList = [ 1, 1 ];
+						chartYAxisList = [ 0, 0 ];
+					} else if(p_name == 'lightOpenNum') { // 照明系统-照明回路
+						chartid = 'lightOpenNum_chart', lefttitle = '开启台数', righttitle = '', unit = '';
+						chartLegendList = [ '开启台数' ];
+						chartColorList = [ '#0070C5' ]; 
+						chartRadiusList = [ 1 ];
+						chartYAxisList = [ 0 ];
 					}
 					
 					renderToTwoChart(chartid, "spline", 4,
@@ -983,6 +1076,10 @@
 				}
 			});
 			
+		    if(p_name == 'lightOpenNum') { // 照明系统-照明回路
+			    return false; // 照明回路，不需要计算左侧的值 
+		    }
+			 
 			// 获取左侧max、min、average
 			$.ajax({
 				type : "POST",
@@ -1016,7 +1113,7 @@
 							mintime1 = data[0][1][1].substring(11, 16);
 							maxtime2 = data[1][0][1].substring(11, 16);
 							mintime2 = data[1][1][1].substring(11, 16);
-						} else if(p_name == 'waterOpen' || p_name == 'runFrequency' || p_name == 'towerWindFrequency') { // 水阀开度 和 送排风-运行频率
+						} else if(p_name == 'waterOpen' || p_name == 'runFrequency' || p_name == 'towerWindFrequency' || p_name == 'hotWaterParam') { // 水阀开度 和 送排风-运行频率 、 热水参数
 							maxtime1 = data[0][0][1].substring(11, 16);
 							mintime1 = data[0][1][1].substring(11, 16);
 						}
@@ -1035,7 +1132,7 @@
 							mintime1 = data[0][1][1].substring(5);
 							maxtime2 = data[1][0][1].substring(5);
 							mintime2 = data[1][1][1].substring(5);
-						} else if(p_name == 'waterOpen' || p_name == 'runFrequency' || p_name == 'towerWindFrequency') { // 水阀开度 和 送排风-运行频率
+						} else if(p_name == 'waterOpen' || p_name == 'runFrequency' || p_name == 'towerWindFrequency' || p_name == 'hotWaterParam') { // 水阀开度 和 送排风-运行频率 、 热水参数
 							maxtime1 = data[0][0][1].substring(5);
 							mintime1 = data[0][1][1].substring(5);
 						}
@@ -1070,7 +1167,7 @@
 						//$("." + classname + " > tr:eq(4) > td:eq(3)").text(mintime2); // minTime
 						//$("." + classname + " > tr:eq(5) > td:eq(1)").text(parseFloat(data[1][2][0]));// average
 						
-					} else if(p_name == 'waterOpen' || p_name == 'runFrequency' || p_name == 'towerWindFrequency') { // 水阀开度 和 送排风-运行频率
+					} else if(p_name == 'waterOpen' || p_name == 'runFrequency' || p_name == 'towerWindFrequency' || p_name == 'hotWaterParam') { // 水阀开度 和 送排风-运行频率 、 热水参数
 						
 						$("." + classname + " > tr:eq(0) > td:eq(1)").text(parseFloat(data[0][0][0])); // max
 						$("." + classname + " > tr:eq(0) > td:eq(3)").text(maxtime1); // maxTime
@@ -1111,49 +1208,67 @@
 	function opeaColdSite() {
 		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
 		$(".coldSiteDiv").css("display", "block"); // 默认显示冷水机组
-		<portlet:namespace/>getWindParams('coldSiteColdParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷冻水参数
-		<portlet:namespace/>getWindParams('coldSiteCoolParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
+		getDevicesDetailChart('coldSiteColdParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷冻水参数
+		getDevicesDetailChart('coldSiteCoolParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
+	}
+	
+	// 操作锅炉房
+	function opeaBoiler() {
+		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
+		$(".hotWaterParamDiv").css("display", "block"); // 显示锅炉房div
+		getDevicesDetailChart('hotWaterParam'); // 热水参数
 	}
 	
 	// 操作冷站-水系统
 	function opeaWaterSystem() {
 		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
 		$(".coolSystemDiv").css("display", "block"); // 显示冷水机组
-		<portlet:namespace/>getWindParams('waterFlow'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷冻水参数
-		<portlet:namespace/>getWindParams('waterPressure'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
-		<portlet:namespace/>getWindParams('waterColdParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
-		<portlet:namespace/>getWindParams('waterCoolParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
+		getDevicesDetailChart('waterFlow'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷冻水参数
+		getDevicesDetailChart('waterPressure'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
+		getDevicesDetailChart('waterColdParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
+		getDevicesDetailChart('waterCoolParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
 	}
 	
 	// 操作冷站-泵（冷冻水泵、冷却水泵）
 	function opeateRunningParam() {
 		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
 		$(".runningDiv").css("display", "block"); // 显示频率和流程、扬程
-		<portlet:namespace/>getWindParams('runFrequency'); // 运行频率
-		<portlet:namespace/>getWindParams('runningWind'); // 运行流量、扬程
+		getDevicesDetailChart('runFrequency'); // 运行频率
+		getDevicesDetailChart('runningWind'); // 运行流量、扬程
 	}
 	
 	// 操作冷站-冷却塔
 	function opeaCoolTower() {
 		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
 		$(".coolTowerDiv").css("display", "block"); // 显示冷却塔
-		<portlet:namespace/>getWindParams('towerWindFrequency'); // 风机频率
-		<portlet:namespace/>getWindParams('towerCoolParam'); // 冷却水参数
+		getDevicesDetailChart('towerWindFrequency'); // 风机频率
+		getDevicesDetailChart('towerCoolParam'); // 冷却水参数
 	}
 	
 	// 操作冷站-冷却塔
 	function opeaAhu() {
-		<portlet:namespace/>getWindParams('windTempParam'); // 空调箱设备详情， 送回风温度参数
-		<portlet:namespace/>getWindParams('windHumpParam'); // 空调箱设备详情，送回风湿度参数
-		//<portlet:namespace/>getWindParams('waterOpen'); // 空调箱设备详情， 水阀开度
-		//<portlet:namespace/>getWindParams('fanFrequency'); // 空调箱设备详情， 风机频率
+		getDevicesDetailChart('windTempParam'); // 冷却塔设备详情， 送回风温度参数
+		getDevicesDetailChart('windHumpParam'); // 冷却塔设备详情，送回风湿度参数
+		//getDevicesDetailChart('waterOpen'); // 冷却塔设备详情， 水阀开度
+		//getDevicesDetailChart('fanFrequency'); // 冷却塔设备详情， 风机频率
 	}
 	
 	// 操作送排风机
 	function opeaWindSite() {
 		//$(".runningDiv").css("display", "block"); // 显示冷却塔
-		//<portlet:namespace/>getWindParams('runFrequency'); // 送排风机运行频率
+		//getDevicesDetailChart('runFrequency'); // 送排风机运行频率
 		//if("${equipmentMonitor.isShowWindPressure}" != "none")
-			//<portlet:namespace/>getWindParams('runningWind'); // 送排风机运行风量、风压
+			//getDevicesDetailChart('runningWind'); // 送排风机运行风量、风压
+	}
+	
+	// 操作照明系统-照明回路
+	function opeaLight() {
+		$(".filter_widget").css("display", "none"); // 隐藏其它的图表div
+		$(".fault_tab_content > .sub_title_block:eq(1)").css("display", "none"); // 隐藏其它的图表div
+		$(".fault_tab_content > .tab:eq(0)").css("display", "none"); // 隐藏其它的图表div
+		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
+		$(".lightOpenNumDiv").css("display", "block"); // 显示照明回路开启台数
+		buildLightInfo(); // 显示各楼层照明回路的实时状态 
+		getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
 	}
 </script>

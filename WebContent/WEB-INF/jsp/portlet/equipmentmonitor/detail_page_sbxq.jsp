@@ -154,7 +154,7 @@
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>蒸发温度最大值</td>
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
@@ -165,7 +165,7 @@
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -206,7 +206,7 @@
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>冷凝温度最大值</td>
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
@@ -217,7 +217,7 @@
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -330,7 +330,7 @@
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>蒸发温度最大值</td>
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
@@ -341,7 +341,7 @@
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -382,7 +382,7 @@
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<td>冷凝温度最大值</td>
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
@@ -393,7 +393,7 @@
 							<td>17</td>
 							<td class="tdClass"><sup>℃</sup></td>
 							<td></td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -556,19 +556,19 @@
 						<tr>
 							<td>送风湿度最大值</td>
 							<td>15</td>
-							<td class="tdClass"><sup>℃</sup></td>
+							<td class="tdClass"><sup>%</sup></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>送风湿度最小值</td>
 							<td>7</td>
-							<td class="tdClass"><sup>℃</sup></td>
+							<td class="tdClass"><sup>%</sup></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td>送风湿度平均值</td>
 							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
+							<td class="tdClass"><sup>%</sup></td>
 							<td></td>
 						</tr>
 						<!-- <tr>
@@ -773,6 +773,55 @@
 	</div>
 </div>
 
+<!-- 热水参数 -->
+<div class="detail_chart hotWaterParamDiv none_div">
+	<div class="fault_content">
+		<div class="fault_title">
+			<h3>热水参数</h3>
+			<span><i>额定供水温度：60℃  额定回水温度：50℃</i></span>
+		</div>
+		<div class="chart_content">
+			<div class="left_para">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody class="hotWaterParam_table">
+						<tr>
+							<td>供水温度最大值</td>
+							<td>61</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>供水温度最小值</td>
+							<td>55</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>供水温度平均值</td>
+							<td>58</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="chart" style="height: 300px !important;" id="hotWaterParam_chart"></div>
+		</div>
+	</div>
+</div>
+
+<!-- 照明回路-开启台数 -->
+<div class="detail_chart lightOpenNumDiv none_div">
+	<div class="fault_content">
+		<div class="fault_title">
+			<h3>开启台数</h3>
+			<span><i></i></span>
+		</div>
+		<div class="chart_content">
+			<div class="chart" style="width: 940px; height: 300px !important;" id="lightOpenNum_chart"></div>
+		</div>
+	</div>
+</div>
 
 <script type="text/javascript">
 	//获取数据--绘图--运行时间
@@ -843,6 +892,8 @@
 				var _time = dp.cal;
 				detail_wind_type = type;
 				detail_wind_starttime = _time.getDateStr("yyyy-MM-dd");
+				
+				$(".today").html(detail_wind_starttime);
 				//运行时间绘图			
 				if (type == 'day') {
 					//x轴间隔控制
@@ -894,10 +945,14 @@
 				if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
 					opeaWindSite();
 				}
+				
+				if(curId == 'light') { // 照明回路
+					opeaLight();
+				}
 			
-				//<portlet:namespace/>getWindParams('runFrequency'); // 送排风机运行频率 
+				//getDevicesDetailChart('runFrequency'); // 送排风机运行频率 
 				//if ("${equipmentMonitor.isShowWindPressure}" != "none")
-				//	<portlet:namespace/>getWindParams('runningWind'); // 送排风机运行风量、风压
+				//	getDevicesDetailChart('runningWind'); // 送排风机运行风量、风压
 				return false;
 				getchart_sbxq(_time.getDateStr("yyyy-MM-dd"),
 						detail_0_down_yTtile[0].split(','),

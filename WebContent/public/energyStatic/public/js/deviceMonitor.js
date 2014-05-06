@@ -13,17 +13,12 @@ $(function() {
 				$(".detail_page").show();
 				if (curId == 'coldSite_one' || curId == 'coldSite_two' || curId == 'coldSite_three') { // 冷站1,2,3 | 常规制冷系统
 					var name = '常规制冷系统';
-					var li_1 = $(
-							"<li class='cur_tab' tip='lengzhan' style='width:433px;'>")
-							.append(
-									$("<div>")
-											.append($("<img>"))
-											.append(
-													$("<p>")
-															.html(
-																	name
-																			+ ' | <span>冷水机组</span>')))
-							.append($('<i>').addClass("downarrow_icon"));
+					var li_1 = $("<li class='cur_tab' tip='lengzhan' style='width: 100%;'>")
+							.append($("<div>")
+							.append($("<img>"))
+							.append($("<p>").html(name + ' | <span>冷水机组</span>'))
+									.append($('<i>').addClass("downarrow_icon"))
+							);
 					li_1.appendTo(ul);	
 					
 					var totalNum = eval(curId + "Temp")[0].total; // 默认显示冷水机组的总台数
@@ -125,17 +120,26 @@ $(function() {
 				$(".fault_tab").each(function() {
 					$(this).find(".tab_menu li").each(function() {
 								$(this).on("click",function() {
-									if($(".detail_page").attr("tip") != "lengzhan") { // 控制冷站模块中以下代码不生效
+										console.log('click1');
 										/* 保存被点击的tab的信息到隐藏的input中 */
 										$(".detail_page > input:eq(0)").val($(this).index());
 										$(this).siblings().removeClass("cur_tab");
 										$(this).addClass("cur_tab");
 										
-										$(".device_floor .tab_menu .cur_tab").siblings().find(".floor_list").remove();
-										$(".device_floor .tab_menu .cur_tab").siblings().find(".ahu_flist").remove();
-										var addText = $(".hidden_tool .ahu_fselect_block").clone(true);
-										$(".device_floor .tab_menu li").find(".ahu_fselect_block").remove();
-										$(".device_floor .tab_menu .cur_tab").find("p").append(addText);
+										if($(".detail_page").attr("tip") == 'ahu') { // 控制只有在新风机组的时候执行
+											$(".device_floor .tab_menu").find(".ahu_fselect_block").remove();
+											$(".device_floor .tab_menu .cur_tab").siblings().find(".ahu_flist").remove();
+											var addText = $(".hidden_tool .ahu_fselect_block").clone(true);
+											$(".device_floor .tab_menu .cur_tab").find("p").append(addText);
+											$(".device_floor .tab_menu li").find(".ahu_fselect_block").remove();
+										} else {
+											$(".device_floor .tab_menu").find(".floor_select_block").remove();
+											$(".device_floor .tab_menu .cur_tab").siblings().find(".floor_list").remove();
+											var addText = $(".hidden_tool .floor_select_block").clone(true);
+											$(".device_floor .tab_menu .cur_tab").find(".floor_select_block").remove();
+											$(".device_floor .tab_menu .cur_tab").find("p").append(addText);
+										}
+										
 										ahu_detail_build = $(".device_floor .tab_menu .cur_tab").attr("title"); // 当前选择的建筑
 										
 										var place = $(".detail_page>input:eq(1)").val();
@@ -152,12 +156,17 @@ $(function() {
 												var totalNum = ahuTemp[bIndex].total;
 												getRunningChart(totalNum); // 运行趋势
 												opeaAhu(); // 处理空调箱的信息
+											} else if($(".detail_page").attr("tip") == 'light') { // 在照明回路中，选择楼层后，刷新对应的开启台数的图表
+												detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
+												buildLightInfo(); // 显示各楼层照明回路的实时状态 
+												getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
+											} else {
+												getBoilerBay($(".detail_page").attr("tip"), 0);
 											}
-											getBoilerBay($(".detail_page").attr("tip"), 0);
 										}
 
 //										showDetails();
-									}
+//									}
 								});
 						});
 				});
@@ -165,6 +174,7 @@ $(function() {
 
 	// 点击楼层的时候显示对应的div
 	$(".floor_select").on("click", function(event) {
+										console.log('click2');
 		$(".cur_tab .floor_list").remove();
 		var addList = $(".hidden_tool .floor_list").clone(true);
 		$(this).parent().parent().parent().parent().append(addList);
@@ -173,12 +183,22 @@ $(function() {
 	// 具体系统-选择楼层 
 	$(".floor_list li").each(function(index){
 		$(this).click(function(){
+			
+										console.log('click3');
 			dev_floor_text = $(this).text(); // 当前楼层对应的中文名字
-			ahu_detail_floor = dev_cur_floor = $(this).attr("title"); // 设置为选择的楼层
+			detail_floor = ahu_detail_floor = dev_cur_floor = $(this).attr("title"); // 设置为选择的楼层
 			$(".hidden_tool > .floor_select_block > .floor_select").text(dev_floor_text); // 选择的楼层
 			$(".cur_tab").find(".floor_select").text(dev_floor_text); // 设置当前选择的楼层
 			$(".cur_tab .floor_list").remove();
-			getDetailData(); // 获取详细信息详情
+			
+			if($(".detail_page").attr("tip") == 'light') { // 在照明回路中，选择楼层后，刷新对应的开启台数的图表
+				detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
+				buildLightInfo(); // 显示各楼层照明回路的实时状态 
+				getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
+			} else {
+				getDetailData(); // 获取详细信息详情
+			}
+			
 			event.stopPropagation();
 		});
 	});
@@ -221,6 +241,7 @@ $(function() {
 
 	// 运行监测-设备监测-冷站-常规制冷系统下的五个项
 	$(".select_list > li").on("click", function() {
+										console.log('click5');
 		var modelName = $(this).parent().parent().parent().parent().attr("tip"); // 当前模块id
 		var thisText = $(this).find("p").text();
 		var curId = $(this).attr("tip"); // 当前选择的id
@@ -266,8 +287,26 @@ $(function() {
 	// 选择设备切换图形
 	$("#chooseDevice").on("change", function() {
 		var id = $(this).val();
-		detail_windTempParam_id = detail_windHumpParam_id = id + "," + id;
-		opeaAhu(); // 操作空调箱图表
+		
+		var curId = $(".detail_page").attr("tip"); // 当前模块的id
+		if (curId == 'coldSite_one' || curId == 'coldSite_two' || curId == 'coldSite_three') { // 冷站1,2,3 | 常规制冷系统
+			detail_coldSiteColdParam_id = id + "," + id + "," + id;
+			opeaColdSite(); // 显示冷水机组
+		}
+		
+		if (curId == 'boiler_room_P1' || curId == 'boiler_room_P2' || curId == 'boiler_room_A1') { // 锅炉房P1、P2、A1
+			detail_hotWaterParam_id = id + "," + id;
+			opeaBoiler(); // 显示锅炉房
+		}
+		
+		if(curId == 'ahu') { // 空调箱
+			detail_windTempParam_id = detail_windHumpParam_id = id + "," + id;
+			opeaAhu(); // 处理空调箱的信息
+		}
+		
+		if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
+			opeaWindSite();
+		}
 	});
 });
 // 实时状态时间显示（5分钟刷新）
@@ -448,9 +487,9 @@ function getEquipDetail(curId, num) {
 	if (num > 1) {
 		num = num - 1;
 	}
-	$(".single_tab_title>p:eq(0) strong").html(equip[num].total);
-	$(".single_tab_title>p:eq(1) strong").html(equip[num].current);
-	getSsztTable(equip[num].total, equip);
+//	$(".single_tab_title>p:eq(0) strong").html(equip[num].total);
+//	$(".single_tab_title>p:eq(1) strong").html(equip[num].current);
+//	getSsztTable(equip[num].total, equip);
 }
 // 锅炉房及之后
 function getBoilerBay(curId, num) {
@@ -478,7 +517,7 @@ function getBoilerBay(curId, num) {
 	}
 	getSsztTable(equip[num].total, equip);
 }
-function getSsztTable(total, equip) {
+function getSsztTable(total, equip, devicesList) {
 	var obj = $(".each_device_list");
 	obj.empty();
 	if (total > 4) {
@@ -493,63 +532,53 @@ function getSsztTable(total, equip) {
 		} else {
 			state = 'on';
 		}
-		$("<div>")
-				.addClass("each_device " + state)
-				.append(
-						$("<div>").addClass("device_number").append(
-								$("<h3>").html('设备名1#')).append(
+		var str = '';
+		try{
+			str = devicesList[i];
+		} catch(e) {}
+		$("<div>").addClass("each_device " + state)
+						.append($("<div>").addClass("device_number").append(
+								$("<h3>").html(str)).append(
 								$("<p>").addClass(state).html(state)))
-				.append(
-						$("<div>")
+							.append($("<div>")
 								.addClass("device_para")
-								.append(
-										$("<div>")
-												.append(
-														$("<table>")
-																.append(
-																		$(
-																				"<tbody>")
-																				.append(
-																						$(
-																								"<tr>")
-																								.append(
-																										$(
-																												"<td>")
-																												.html(
-																														'属性项'))
-																								.append(
-																										$(
-																												"<td>")
-																												.html(
-																														'属性内容')))
-																				.append(
-																						$(
-																								"<tr>")
-																								.append(
-																										$(
-																												"<td>")
-																												.html(
-																														'属性项'))
-																								.append(
-																										$(
-																												"<td>")
-																												.html(
-																														'属性内容')))
-																				.append(
-																						$(
-																								"<tr>")
-																								.append(
-																										$(
-																												"<td>")
-																												.html(
-																														'属性项'))
-																								.append(
-																										$(
-																												"<td>")
-																												.html(
-																														'属性内容')))))))
+									.append($("<div>")
+										.append($("<table>")
+											.append($("<tbody>")
+												.append($("<tr>")
+																.append($("<td>").html(''))
+																.append($("<td>").html('')))
+												.append($("<tr>").append($("<td>").html(''))
+																.append($("<td>").html('')))
+												.append($("<tr>").append($("<td>").html(''))
+																.append($("<td>").html('')))))))
 				.appendTo(obj);
 	}
+	
+	// 根据total的值确定是否需要增加空白页签
+	var _number = total % 4;
+	if(_number != 0) {
+		for (var i = 0; i < (4 - _number); i++) {
+			$("<div>").addClass("each_device ")
+							.append($("<div>").addClass("device_number").append(
+									$("<h3>").html('')).append(
+									$("<p>").html('')))
+								.append($("<div>")
+									.addClass("device_para")
+										.append($("<div>")
+											.append($("<table>")
+												.append($("<tbody>")
+													.append($("<tr>")
+																	.append($("<td>").html(''))
+																	.append($("<td>").html('')))
+													.append($("<tr>").append($("<td>").html(''))
+																	.append($("<td>").html('')))
+													.append($("<tr>").append($("<td>").html(''))
+																	.append($("<td>").html('')))))))
+					.appendTo(obj);
+		}
+	}
+	
 	$(".each_device").each(function() {
 		if (($(this).index() + 1) % 4 == 0) {
 			$(this).addClass("noborderright");
@@ -559,9 +588,87 @@ function getSsztTable(total, equip) {
 		$(this).prev().css({
 			"height" : "auto"
 		});
+		$(this).text("收起");
 	}, function() {
 		$(this).prev().css({
 			"height" : "230px"
 		});
+		$(this).text("显示更多");
 	});
+}
+
+// 动态生成照明回路
+function buildLightInfo() {
+	var floor_list = ['一层', '二层', '三层', '四层', '五层', '六层'];
+	if(ahu_build_id == "A1"){
+		floor_list.push("七层");
+	}
+	var numList = eval("light_" + ahu_build_id); // 照明回路的灯具
+	var total = floor_list.length;
+	var obj = $(".each_device_list");
+	obj.empty();
+	if (total > 4) {
+		$("div").remove(".display_more");
+		$("<div>").addClass("display_more").html('显示更多').appendTo($(".sszt"));
+	} else {
+		$("div").remove(".display_more");
+	}
+	for (var i = 0; i < total; i++) {
+		$("<div>").addClass("each_device " + state)
+						.append($("<div>").addClass("device_number").append(
+								$("<h3>").html(floor_list[i])).append(
+								$("<p>").html('')))
+							.append($("<div>")
+								.addClass("device_para")
+									.append($("<div>")
+										.append($("<table>")
+											.append($("<tbody>")
+												.append($("<tr>").append($("<td>").addClass("value_floor").html(numList[i].total)))
+												.append($("<tr>").append($("<td>").addClass("total_floor").html('总数')))
+												.append($("<tr>").append($("<td>").addClass("value_floor").html('0')))
+												.append($("<tr>").append($("<td>").addClass("total_floor").html('开启数')))))))
+				.appendTo(obj);
+	}
+	
+	// 根据total的值确定是否需要增加空白页签
+	var _number = total % 4;
+	if(_number != 0) {
+		for (var i = 0; i < (4 - _number); i++) {
+			$("<div>").addClass("each_device ")
+							.append($("<div>").addClass("device_number").append(
+									$("<h3>").html('')).append(
+									$("<p>").html('')))
+								.append($("<div>")
+									.addClass("device_para")
+										.append($("<div>")
+											.append($("<table>")
+												.append($("<tbody>")
+													.append($("<tr>")
+																	.append($("<td>").html(''))
+																	.append($("<td>").html('')))
+													.append($("<tr>").append($("<td>").html(''))
+																	.append($("<td>").html('')))
+													.append($("<tr>").append($("<td>").html(''))
+																	.append($("<td>").html('')))))))
+					.appendTo(obj);
+		}
+	}
+	
+	$(".each_device").each(function() {
+		if (($(this).index() + 1) % 4 == 0) {
+			$(this).addClass("noborderright");
+		}
+	});
+	$(".display_more").toggle(function() {
+		$(this).prev().css({
+			"height" : "auto"
+		});
+		$(this).text("收起");
+	}, function() {
+		$(this).prev().css({
+			"height" : "230px"
+		});
+		$(this).text("显示更多");
+	});
+
 }

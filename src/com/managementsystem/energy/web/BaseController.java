@@ -764,6 +764,8 @@ public abstract class BaseController {
 		String str = "true";
 		
 		try {
+			String type = request.getParameter("common_type");
+			System.out.println("----@" + type);
 			// 转换request
 			HttpServletRequest servletRequest = PortalUtil.getHttpServletRequest(request);
 			MultipartResolver resolver = new CommonsMultipartResolver(servletRequest.getSession().getServletContext());
@@ -773,7 +775,7 @@ public abstract class BaseController {
 			for (Map.Entry<String, MultipartFile> entity :  fileMap.entrySet()) {   
 				// 上传文件信息  
 				MultipartFile mf = entity.getValue();    
-				importService.importExcelToCircuitinfo(mf);
+				importService.importExcelToCircuitinfo(mf, type);
 			}
 
 			str = "true";
