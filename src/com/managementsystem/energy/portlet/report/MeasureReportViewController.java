@@ -108,10 +108,11 @@ public class MeasureReportViewController extends BaseController {
 	 * 返回装表支路树形数据
 	 * */
 	@ResourceMapping(value = "getCircuitTreeByBuildId")
-	public JsonResult getCircuitTreeByBuildId() {
+	public JsonResult getCircuitTreeByBuildId(ResourceRequest request) {
 		JsonResult result = new JsonResult();
-		List<CircuitinfoTree> trees = circuitinfoService
-				.getCircuitTreeByBuildId("");
+		String text = request.getParameter("text"); // 区分是查询电表还是水表
+		System.out.println("text----@" + text);
+		List<CircuitinfoTree> trees = circuitinfoService.getCircuitTreeByBuildId("", text);
 		result.setData(trees);
 		return result;
 	}

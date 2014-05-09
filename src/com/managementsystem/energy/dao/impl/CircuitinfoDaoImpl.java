@@ -24,25 +24,44 @@ import com.managementsystem.util.dao.Page;
 public class CircuitinfoDaoImpl extends AbstractDaoSupport implements
 		CircuitinfoDao {
 
-	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(Arrays.asList(new Class<?>[] { Circuitinfo.class }));
-	
-	private final String GET_CIRCUITINFOS="from Circuitinfo order by buildinfo.buildId asc,circuitId asc";
-	private final String GET_CIRCUITINFOS_BY_BUILDID="from Circuitinfo where buildinfo.buildId=? order by circuitId";
-	private final String GET_PARENT_CIRCUITINFOS="from Circuitinfo where (circuitinfo.circuitId is null or circuitinfo.circuitId='')";
-	private final String GET_MAX_CIRCUITINFO_BY_BUILDID="from Circuitinfo where buildinfo.buildId=? order by circuitId desc";
-	
+	private final static Set<Class<?>> dataTypes = new HashSet<Class<?>>(
+			Arrays.asList(new Class<?>[] { Circuitinfo.class }));
+
+	private final String GET_CIRCUITINFOS = "from Circuitinfo order by buildinfo.buildId asc,circuitId asc";
+	private final String GET_CIRCUITINFOS_BYTEXT = "from Circuitinfo where circuitText=? order by buildinfo.buildId asc,circuitId asc";
+	private final String GET_CIRCUITINFOS_BY_BUILDID = "from Circuitinfo where buildinfo.buildId=? order by circuitId";
+	private final String GET_PARENT_CIRCUITINFOS = "from Circuitinfo where (circuitinfo.circuitId is null or circuitinfo.circuitId='')";
+	private final String GET_MAX_CIRCUITINFO_BY_BUILDID = "from Circuitinfo where buildinfo.buildId=? order by circuitId desc";
+	private final String DELETE_CIRCUITINFO_BY_TEXT = "delete Circuitinfo where circuitText=? and year=? and month=?";
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Set<Circuitinfo> getCircuitinfos(String buildId, int startResult,
 			int maxRows) throws DataAccessException {
 		Query query = null;
-		if(StringUtils.hasLength(buildId)) {
-			query = createQuery(GET_CIRCUITINFOS_BY_BUILDID,startResult,maxRows,buildId);
+		if (StringUtils.hasLength(buildId)) {
+			query = createQuery(GET_CIRCUITINFOS_BY_BUILDID, startResult,
+					maxRows, buildId);
 		} else {
-			query = createQuery(GET_CIRCUITINFOS,startResult,maxRows);
+			query = createQuery(GET_CIRCUITINFOS, startResult, maxRows);
+		}
+		return new LinkedHashSet<Circuitinfo>(query.list());
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Set<Circuitinfo> getCircuitinfosByText(String buildId, String text,
+			int startResult, int maxRows) throws DataAccessException {
+		Query query = null;
+		if (StringUtils.hasLength(buildId)) {
+			query = createQuery(GET_CIRCUITINFOS_BY_BUILDID, startResult,
+					maxRows, buildId);
+		} else {
+			query = createQuery(GET_CIRCUITINFOS_BYTEXT, startResult, maxRows,
+					text);
 		}
 		return new LinkedHashSet<Circuitinfo>(query.list());
 	}
@@ -51,36 +70,43 @@ public class CircuitinfoDaoImpl extends AbstractDaoSupport implements
 	@Override
 	public Set<Circuitinfo> getParentCircuitinfos(String buildId,
 			int startResult, int maxRows) throws DataAccessException {
-		Query query = createQuery(GET_PARENT_CIRCUITINFOS,startResult,maxRows,buildId);
+		Query query = createQuery(GET_PARENT_CIRCUITINFOS, startResult,
+				maxRows, buildId);
 		return new LinkedHashSet<Circuitinfo>(query.list());
 	}
-	
-	
+
+	@Override
+	public void delCircuitinfoForWaterAndGas(String text,
+			int year, int month) throws DataAccessException {
+		Query query = createQuery(DELETE_CIRCUITINFO_BY_TEXT, text, year, month);
+		query.executeUpdate();
+	}
 
 	@Override
 	public Page getCircuitinfos(int pageIndex, int pageSize,
 			Map<String, Object> mapParams) throws DataAccessException {
-		return pagedQuery(GET_CIRCUITINFOS ,pageIndex,pageSize,mapParams);
+		return pagedQuery(GET_CIRCUITINFOS, pageIndex, pageSize, mapParams);
 	}
 
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Circuitinfo getMaxCircuitinfoByBuildId(String buildId)
 			throws DataAccessException {
-		List list = createQuerySingleResult(GET_MAX_CIRCUITINFO_BY_BUILDID,buildId).list();
-		if(list.size()>0)
-			return (Circuitinfo)list.get(0);
+		List list = createQuerySingleResult(GET_MAX_CIRCUITINFO_BY_BUILDID,
+				buildId).list();
+		if (list.size() > 0)
+			return (Circuitinfo) list.get(0);
 		else
 			return null;
 	}
 
 	@Override
-	public boolean canBeMerged(Object arg0) {	
+	public boolean canBeMerged(Object arg0) {
 		return true;
 	}
 
 	@Override
-	public Session getSession() {	
+	public Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 

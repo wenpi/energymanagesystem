@@ -17,10 +17,10 @@
 				<div class="title_block report_form" id="_measurereport">
 					<p class="block_title">计量报表</p>
 					<div class="table_chart_switch" id="measure_table">
-						<div class="chart_switch_btn" id="<portlet:namespace />picView">
+						<!-- <div class="chart_switch_btn" id="<portlet:namespace />picView">
 							<i class="icon_chart"></i>
 							<p>图形视图</p>
-						</div>
+						</div> -->
 						<div class="chart_switch_btn btn_press" id="<portlet:namespace />tableView">
 							<i class="icon_table"></i>
 							<p>表格视图</p>
@@ -49,7 +49,7 @@
 								<div>
 									<img
 										src="${pageContext.request.contextPath}/secondstyle/images/dot.png" />
-									<p>能量表</p>
+									<p>气表</p>
 								</div>
 							</li>
 						</ul>
@@ -68,7 +68,7 @@
 								<div class="look_other">
 									<div class="filter_widget">
 										<div class="filter_label has_border_radius_left">选择频率</div>
-										<select class="selectpicker">
+										<select class="">
 											<option>5分钟</option>
 											<option selected="selected">1小时</option>
 											<option>1天</option>
@@ -98,65 +98,22 @@
 					<div class="tab_content">
 						<div class="detail">
 							<div>
-								<table>
-									<caption>建筑总123123能耗分项</caption>
-									<tbody>
-										<tr>
-											<td class="subtitle" colspan="1">与昨日相比</td>
-
-										</tr>
-										<tr>
-											<td>总用电</td>
-											<td><span>↓ </span>5<sup>kgce</sup></td>
-										</tr>
-										<tr>
-											<td>总用水</td>
-											<td><span>↓ </span>12<sup>kgce</sup></td>
-										</tr>
-										<tr>
-											<td>总用气</td>
-											<td><span>↓ </span>2<sup>kgce</sup></td>
-										</tr>
-										<tr>
-											<td>其他能耗</td>
-											<td><span>↓ </span>10<sup>kgce</sup></td>
-										</tr>
-									</tbody>
-								</table>
+								<h1>水表数据</h1>
+							</div>
+							<div style="overflow: auto; height: 638px;">
+								<ul id="<portlet:namespace />water_tree_data" animate="true" class="easyui-tree"></ul>
 							</div>
 						</div>
 						<div class="charts">
 							<div class="chart">
 								<div class="look_other">
-									<!-- <label class="now_data">2013-09-02</label>
-								<div class="date_comparer">
-									<input type="text" class="comp_data" value="2013-06-01"/>
-									<span class="comp_btn">加入对比</span>
-								</div>
-								<div class="download"></div> -->
 									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">选择建筑</div>
-										<select class="selectpicker">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
+										<div class="filter_label has_border_radius_left">选择查询时间</div>
+										<select class="">
+											<option>2014-04</option>
+											<option>2014-05</option>
+											<option>2014-06</option>
 										</select>
-
-									</div>
-									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">选择类型</div>
-										<select class="selectpicker">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-									</div>
-									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">选择日期</div>
-										<input type="text" /> <span class="to">至</span> <input
-											type="text" />
 									</div>
 									<div class="tool_groupt">
 										<div class="has_border_radius_left search_btn"></div>
@@ -296,65 +253,26 @@
 					<div class="tab_content">
 						<div class="detail">
 							<div>
-								<table>
-									<caption>建筑总123123能耗分项</caption>
-									<tbody>
-										<tr>
-											<td class="subtitle" colspan="1">与昨日相比</td>
-
-										</tr>
-										<tr>
-											<td>总用电</td>
-											<td><span>↓ </span>5<sup>kgce</sup></td>
-										</tr>
-										<tr>
-											<td>总用水</td>
-											<td><span>↓ </span>12<sup>kgce</sup></td>
-										</tr>
-										<tr>
-											<td>总用气</td>
-											<td><span>↓ </span>2<sup>kgce</sup></td>
-										</tr>
-										<tr>
-											<td>其他能耗</td>
-											<td><span>↓ </span>10<sup>kgce</sup></td>
-										</tr>
-									</tbody>
-								</table>
+								<h1>气表数据</h1>
+							</div>
+							<div style="overflow: auto; height: 638px;">
+								<ul id="<portlet:namespace />gas_tree_data" animate="true" class="easyui-tree"></ul>
 							</div>
 						</div>
 						<div class="charts">
 							<div class="chart">
 								<div class="look_other">
-									<!-- <label class="now_data">2013-09-02</label>
-								<div class="date_comparer">
-									<input type="text" class="comp_data" value="2013-06-01"/>
-									<span class="comp_btn">加入对比</span>
+								<div class="filter_widget">
+									<div class="filter_label has_border_radius_left">选择建筑</div>
+									<select class="">
+										<option>2014-04</option>
+										<option>2014-05</option>
+										<option>2014-06</option>
+									</select>
 								</div>
-								<div class="download"></div> -->
-									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">选择建筑</div>
-										<select class="selectpicker">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-
-									</div>
-									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">选择类型</div>
-										<select class="selectpicker">
-											<option>1</option>
-											<option>2</option>
-											<option>3</option>
-											<option>4</option>
-										</select>
-									</div>
-									<div class="tool_groupt">
-										<div class="has_border_radius_left search_btn"></div>
-										<div class="has_border_radius_right downLoad_btn"></div>
-									</div>
+								<div class="tool_groupt">
+									<div class="has_border_radius_left search_btn"></div>
+									<div class="has_border_radius_right downLoad_btn"></div>
 								</div>
 								<div class="sub_content chart_content"></div>
 								<div class="sub_content table_content">
@@ -499,17 +417,21 @@
 					<div class="dialog-popover-btn-group">
 						<div class="filter_widget tool_1">
 							<div class="filter_label has_border_radius_left">选择建筑</div>
-							<select class="selectpicker_2">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
+							<select class="">
+								<option>A1</option>
+								<option>P1</option>
+								<option>P2</option>
+								<option>T1</option>
+								<option>T2</option>
+								<option>T3</option>
+								<option>T4</option>
+								<option>T5</option>
 							</select>
 						</div>
 
 						<div class="filter_widget tool_2">
 							<div class="filter_label has_border_radius_left">选择冷机</div>
-							<select class="selectpicker_2">
+							<select class="">
 								<option>1</option>
 								<option>2</option>
 								<option>3</option>
@@ -518,7 +440,7 @@
 						</div>
 						<div class="filter_widget tool_3">
 							<div class="filter_label has_border_radius_left">选择类型</div>
-							<select class="selectpicker_2">
+							<select class="">
 								<option>1</option>
 								<option>2</option>
 								<option>3</option>
@@ -532,7 +454,7 @@
 						</div>
 						<div class="filter_widget tool_5">
 							<div class="filter_label has_border_radius_left">选择设备</div>
-							<select class="selectpicker_2">
+							<select class="">
 								<option>1</option>
 								<option>2</option>
 								<option>3</option>
@@ -873,11 +795,37 @@
 				.tree(
 						{
 							checkbox : true,
-							url : '<portlet:resourceURL id="getCircuitTreeByBuildId"></portlet:resourceURL>',
+							url : '<portlet:resourceURL id="getCircuitTreeByBuildId"></portlet:resourceURL>&text=electricity',
 							method : 'get',
 							onCheck : function(node, checked) {
 								//renderCharts();
 								buildTableData();
+							}
+						});
+		
+		/**
+		 * 水表数据 树形结构 
+		 */
+		$('#<portlet:namespace />water_tree_data')
+				.tree(
+						{
+							checkbox : true,
+							url : '<portlet:resourceURL id="getCircuitTreeByBuildId"></portlet:resourceURL>&text=water',
+							method : 'get',
+							onCheck : function(node, checked) {
+							}
+						});
+
+		/**
+		 * 气表数据 树形结构 
+		 */
+		$('#<portlet:namespace />gas_tree_data')
+				.tree(
+						{
+							checkbox : true,
+							url : '<portlet:resourceURL id="getCircuitTreeByBuildId"></portlet:resourceURL>&text=gas',
+							method : 'get',
+							onCheck : function(node, checked) {
 							}
 						});
 	});

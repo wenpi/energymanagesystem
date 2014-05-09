@@ -528,6 +528,58 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 		}
 		return resultMap;
 	}
+	
+	// 获取map格式的数据(针对第二版能源产品中取某一栋建筑的不同层数的开启数)
+	@Override
+	public Map<String, Object> getDatasForRegions(String type, String tfrom,
+			String tto, String id, String name, String ispd, String att,
+			String decimals, String mult, String build_id, String region_id) {
+		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		try {
+			List<Object> finalList = new ArrayList<Object>();
+			List list = new ArrayList();
+			String[] regionids = region_id.split(",");// build_id属性，求对应的值
+			String[] names = name.split(","); 
+			String[] ids = id.split(",");
+			String[] ispds = ispd.split(",");
+			for (int i = 0; i < regionids.length; i++) {
+				List<Object> tempList = new ArrayList<Object>();
+				
+				for (int k = 0; k < names.length; k++) {
+					
+					// 获取httpConnection
+					HttpURLConnection httpConnection = getHttpConnection(names[k], (ids[k] + "_" + regionids[i] + "_" + build_id),
+							type, tfrom, att, "", ispds[k], build_id, regionids[i]);
+					int responseCode = httpConnection.getResponseCode();
+					if (responseCode == HttpURLConnection.HTTP_OK) { // 200表示，url正常返回了值
+						// 获取查询结果
+						list = returnList(httpConnection, CommonModel.class);
+						
+						// 保留小数位数
+						String def = (decimals != null && decimals.length() > 0) ? decimals : "0.00";
+						DecimalFormat df = new DecimalFormat(def);
+						
+						if (list.size() > 0) {
+							CommonModel cm = (CommonModel) list.get(0);
+							try {
+								double val = Double.parseDouble(cm.getValue());
+								tempList.add(df.format(val));
+							} catch (Exception e) {
+								logger.error("getDatasForBuilds----" + e.getMessage());
+								tempList.add(0);
+							}
+						}
+					}
+					
+				}
+				finalList.add(tempList);
+			}
+			resultMap.put("data", finalList);
+		} catch (IOException e) {
+			logger.error(e);
+		}
+		return resultMap;
+	}
 
 	// 获取map格式的数据(针对第二版能源产品中多name和多attribute等情况做出处理)
 	@Override

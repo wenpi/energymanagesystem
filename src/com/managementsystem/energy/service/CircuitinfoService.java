@@ -22,6 +22,15 @@ public interface CircuitinfoService {
 	 * @param circuitinfo 支路信息
 	 * */
 	public void addCircuitinfoForEnergy(Circuitinfo circuitinfo);
+
+	/**
+	 * 针对水表和气表的手动导入作的删除操作
+	 * 
+	 * @param text
+	 * @param year
+	 * @param month
+	 */
+	public void delCircuitinfoForWaterAndGas(String text, int year, int month);
 	
 	/**
 	 * 新增支路信息
@@ -105,11 +114,11 @@ public interface CircuitinfoService {
 	/**
 	 * 获取指定建筑的所有支路树状结构信息
 	 * @author zouzhixiang create 2013-12-05
-	 * @param buildId 建筑ID
-	 *  
-	 * @return 指定建筑的所有支路树状结构信息
-	 * */
-	public List<CircuitinfoTree> getCircuitTreeByBuildId(String buildId);
+	 * @param buildId
+	 * @param text
+	 * @return
+	 */
+	public List<CircuitinfoTree> getCircuitTreeByBuildId(String buildId, String text);
 	
 	/**
 	 * 获取指定建筑的所有支路仪表使用树状结构信息

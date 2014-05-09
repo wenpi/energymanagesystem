@@ -343,6 +343,39 @@ public abstract class BaseController {
 	}
 	
 	/**
+	 * 获取map格式的数据(针对第二版能源产品中取某一栋建筑的不同层数的开启数)
+	 * @author zouzhixiang 2014-05-07
+	 */
+	@ResourceMapping(value = "getDatasForRegions")
+	public Map<String, Object> getDatasForRegions(PortletPreferences prefs,
+			ResourceRequest request, ResourceResponse response) {
+		
+		// 设置查询条件
+		String from = request.getParameter("from");
+		String to = request.getParameter("to");
+		String type = request.getParameter("type"); // 计算用的类型
+		String name = request.getParameter("name"); // 选择的name
+		String id = request.getParameter("id"); // 选择的id
+		String ispd = request.getParameter("ispd"); // ispd
+		String att = request.getParameter("att"); // attribute属性
+		String decimals = request.getParameter("decimals"); // 保留小数位数
+		String mult = request.getParameter("mult"); // 是否需要乘数
+		String build_id = request.getParameter("build_id"); // build_id表示对应的建筑(如：A1、P1)
+		String region_id = request.getParameter("region_id"); // region_id表示对应楼层(如：F1、B1)
+		
+		// 结果map
+		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		try {
+			// 求对应的json数据
+			resultMap = energyStatisticService.getDatasForRegions(type, from, to, id, name, ispd, att, decimals, mult, build_id, region_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resultMap;
+	}
+	
+	/**
 	 * 获取map格式的数据(针对第二版能源产品中多name和多attribute等情况做出处理)
 	 * @author zouzhixiang 2014-03-07
 	 */

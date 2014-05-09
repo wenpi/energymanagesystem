@@ -1,4 +1,4 @@
-var publicTime = '2014-04-20'; //全局的时间属性，如果设置了这个属性，则系统默认使用该时间，格式为（年-月-日）
+var publicTime = '2014-05-08'; //全局的时间属性，如果设置了这个属性，则系统默认使用该时间，格式为（年-月-日）
 var isShowRightTool = true; // false则不显示右侧工具集，true则显示
 var _todayTime = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate();
 
@@ -52,8 +52,16 @@ function import_common_excel(type) {
 	document.getElementById("common_type").value = type;
 	document.getElementById("common_fileName").value = '';
 	document.getElementById("common_myFile").value = '';
-	$('#common_import').dialog({ height: 197, width: 513 });
-	$('#common_import').dialog({ title: '导入电表' }).dialog('open'); //修改标题 
+	
+	var title = '导入电表';
+	if (type == "electricity") {
+		title = '导入电表';
+	} else if (type == "water") {
+		title = '导入水表';
+	} else if (type == "gas") {
+		title = '导入气表';
+	}
+	$('#common_import').dialog({ height: 197, width: 513, title: title }).dialog('open'); //修改标题 
 }
 
 // 修改按钮的颜色，针对右侧工具集

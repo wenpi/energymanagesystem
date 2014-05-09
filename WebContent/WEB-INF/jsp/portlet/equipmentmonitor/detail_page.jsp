@@ -520,12 +520,19 @@
 		}
 		
 		if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
+			$(".filter_widget").css("display", "none"); // 隐藏其它的图表div
+			$(".fault_tab_content > .sub_title_block:eq(2)").css("display", "none"); // 隐藏其它的图表div
 			opeaWindSite();
 		}
 
 		if(curId == 'light') { // 照明回路
 			$("#device_text").text("每层照明灯具的总数和开启数");
 			opeaLight();
+		}
+
+		if(curId == 'fcu') { // 风机盘管
+			$("#device_text").text("每层风机盘管的总数和开启数");
+			opeaFcu();
 		}
 		
 		//getchart_yxqs("detail_chart_yxts",
@@ -929,8 +936,8 @@
 			//	bid = 'P2', fid = '3F';
 			//}
 			
-			if(p_name == 'lightOpenNum') { // 照明系统-照明回路
-				fid = detail_floor; // 照明回路，特殊处理 
+			if(p_name == 'lightOpenNum' || p_name == 'fcuOpenNum') { // 照明系统-照明回路或者风机盘管
+				fid = detail_floor; // 照明回路或者风机盘管，特殊处理 
 		    }
 			
 			var atts = 'max,min,average'; // 默认求的attribute属性
@@ -1062,6 +1069,12 @@
 						chartColorList = [ '#0070C5' ]; 
 						chartRadiusList = [ 1 ];
 						chartYAxisList = [ 0 ];
+					} else if(p_name == 'fcuOpenNum') { // 空调系统-风机盘管
+						chartid = 'fcuOpenNum_chart', lefttitle = '开启台数', righttitle = '', unit = '';
+						chartLegendList = [ '开启台数' ];
+						chartColorList = [ '#0070C5' ]; 
+						chartRadiusList = [ 1 ];
+						chartYAxisList = [ 0 ];
 					}
 					
 					renderToTwoChart(chartid, "spline", 4,
@@ -1076,8 +1089,8 @@
 				}
 			});
 			
-		    if(p_name == 'lightOpenNum') { // 照明系统-照明回路
-			    return false; // 照明回路，不需要计算左侧的值 
+		    if(p_name == 'lightOpenNum' || p_name == 'fcuOpenNum') { // 照明系统-照明回路或者风机盘管
+			    return false; // 照明回路或者风机盘管，不需要计算左侧的值 
 		    }
 			 
 			// 获取左侧max、min、average
@@ -1268,7 +1281,18 @@
 		$(".fault_tab_content > .tab:eq(0)").css("display", "none"); // 隐藏其它的图表div
 		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
 		$(".lightOpenNumDiv").css("display", "block"); // 显示照明回路开启台数
-		buildLightInfo(); // 显示各楼层照明回路的实时状态 
+		dynamicBuildInfo('light'); // 显示各楼层照明回路的实时状态 
 		getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
+	}
+	
+	// 操作风机盘管
+	function opeaFcu() {
+		$(".filter_widget").css("display", "none"); // 隐藏其它的图表div
+		$(".fault_tab_content > .sub_title_block:eq(1)").css("display", "none"); // 隐藏其它的图表div
+		$(".fault_tab_content > .tab:eq(0)").css("display", "none"); // 隐藏其它的图表div
+		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
+		$(".fcuOpenNumDiv").css("display", "block"); // 显示风机盘管开启台数
+		dynamicBuildInfo('fcu'); // 显示各楼层风机盘管的实时状态 
+		getDevicesDetailChart('fcuOpenNum'); // 显示风机盘管状态的曲线图
 	}
 </script>

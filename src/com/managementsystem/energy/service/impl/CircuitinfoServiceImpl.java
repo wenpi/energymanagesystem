@@ -56,6 +56,12 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 	}
 
 	@Transactional
+	public void delCircuitinfoForWaterAndGas(String text, int year, int month) {
+		circuitinfoDao.delCircuitinfoForWaterAndGas(text, year, month);
+		circuitinfoDao.flush();
+	}
+
+	@Transactional
 	public void addCircuitinfo(Circuitinfo circuitinfo) {
 		if(circuitinfo.getCircuitinfo()==null || !StringUtils.hasLength(circuitinfo.getCircuitinfo().getCircuitId())) {
 			circuitinfo.setCircuitinfo(null);
@@ -109,6 +115,17 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 	@Transactional(readOnly = true)
 	public Set<Circuitinfo> getCircuitinfos(String buildId) {
 		return getCircuitinfos(buildId,0,-1);
+	}
+	
+	@Transactional(readOnly = true)
+	public Set<Circuitinfo> getCircuitinfosByText(String buildId, String text) {
+		return getCircuitinfosByText(buildId, text, 0, -1);
+	}
+	
+	@Transactional(readOnly = true)
+	public Set<Circuitinfo> getCircuitinfosByText(String buildId, String text, int startResult,
+			int maxRows) {
+		return circuitinfoDao.getCircuitinfosByText(buildId, text, startResult, maxRows);
 	}
 
 	@Transactional(readOnly = true)
@@ -167,9 +184,9 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 	 * @author zouzhixiang
 	 */
 	@Transactional(readOnly = true)
-	public List<CircuitinfoTree> getCircuitTreeByBuildId(String buildId) {
+	public List<CircuitinfoTree> getCircuitTreeByBuildId(String buildId, String text) {
 		List<CircuitinfoTree> treelist = new ArrayList<CircuitinfoTree>();
-		Set<Circuitinfo> circuitinfos = getCircuitinfos(buildId);
+		Set<Circuitinfo> circuitinfos = getCircuitinfosByText(buildId, text);
 		for(Iterator<Circuitinfo> iterator=circuitinfos.iterator();iterator.hasNext();) {
 			Circuitinfo circuitinfo = (Circuitinfo)iterator.next();
 			CircuitinfoTree tree = fillform(circuitinfo);

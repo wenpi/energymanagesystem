@@ -52,11 +52,12 @@ var s_ispd_2=[[3,0,0],
               [3,3,0]];
 var all_build_list = ['A1', 'P1', 'P2', 'T1', 'T2', 'T3', 'T4', 'T5']; // 建筑列表
 var coldSite_t_name = 'number_on,number_on,number_on,number_on', coldSite_t_id = 'chiller,chwp,cwp,ct', coldSite_t_ispd = '2,2,2,2'; // 冷机相关的开启台数
-var boiler_t_name = 'number_on,number_on,number_on', boiler_t_id = 'boiler,hwp,hwp', boiler_t_ispd = '2,2,2'; // 锅炉房相关的开启台数
+var boiler_t_name = 'number_on,number_on', boiler_t_id = 'boiler,hwp', boiler_t_ispd = '2,2'; // 锅炉房相关的开启台数
 var ahu_t_name = 'number_on', ahu_t_id = 'fau', ahu_t_ispd = '2'; // 下方的新风机组开启台数
-var fcu_t_name = 'number_on', fcu_t_id = 'fau', fcu_t_ispd = '2'; // 下方的新风机组开启台数
+var fcu_t_name = 'number_on', fcu_t_id = 'fcu', fcu_t_ispd = '2'; // 下方的风机盘管开启台数
 var sendWind_t_name = 'number_on', sendWind_t_id = 'sf', sendWind_t_ispd = '2'; // 下方的新风机组开启台数
 var exhaustWind_t_name = 'number_on', exhaustWind_t_id = 'pf', exhaustWind_t_ispd = '2'; // 下方的新风机组开启台数
+var light_t_name = 'number_on', light_t_id = 'lighting', light_t_ispd = '2'; // 下方的风机盘管开启台数
 
 var ahu_build_id = 'A1'; // 记录新风机组点击的建筑，默认是A1
 var ahu_detail_build = 'A1'; // 记录新风机组详情中点击的建筑，默认是A1
@@ -126,14 +127,11 @@ var coldSite_threeTemp = [{name : '冷机',total : 3,current : 3},
 
 // 锅炉房			                
 var boiler_room_P1Temp = [{name : '锅炉',total : 2,current : 1}, 
-			                 {name : '热水泵',total : 3,current : 3}, 
-			                 {name : '换热器',total : 0,current : 0}];
+			                 {name : '热水泵',total : 3,current : 3}];
 var boiler_room_P2Temp = [{name : '锅炉',total : 2,current : 1}, 
-			                 {name : '热水泵',total : 3,current : 3}, 
-			                 {name : '换热器',total : 0,current : 0}];
+			                 {name : '热水泵',total : 3,current : 3}];
 var boiler_room_A1Temp = [{name : '锅炉',total : 2,current : 1}, 
-			                 {name : '热水泵',total : 3,current : 3}, 
-			                 {name : '换热器',total : 0,current : 0}];
+			                 {name : '热水泵',total : 3,current : 3}];
 // 新风机组总台数
 var ahuTemp =  [{name : 'A1号楼',total : 7}, 
 			    {name : 'P1号楼',total : 0}, 
@@ -163,6 +161,15 @@ var exhaustWindTemp = [{name : 'A1号楼', total : 12},
 						 {name : 'T5号楼', total : 0}];
 
 var lightTemp = [{name : 'A1号楼',total : 7, current : 4}, 
+				 {name : 'P1号楼',total : 0, current : 0}, 
+				 {name : 'P2号楼',total : 0, current : 0}, 
+				 {name : 'T1号楼',total : 6, current : 3}, 
+				 {name : 'T2号楼',total : 6, current : 2}, 
+				 {name : 'T3号楼',total : 10, current : 6}, 
+				 {name : 'T4号楼',total : 6, current : 1}, 
+				 {name : 'T5号楼',total : 6, current : 5}];
+
+var fcuTemp = [{name : 'A1号楼',total : 7, current : 4}, 
 				 {name : 'P1号楼',total : 0, current : 0}, 
 				 {name : 'P2号楼',total : 0, current : 0}, 
 				 {name : 'T1号楼',total : 6, current : 3}, 
@@ -248,10 +255,20 @@ var detail_hotWaterParam_ispd = '1,1'; // 分别是热水供水温度、热水�
 
 // 照明系统-照明回路
 var detail_lightOpenNum_name = 'number_on'; // 分别是开启台数
-var lightOpenNum_id = 'fau'; // 分别是开启台数
+var lightOpenNum_id = 'lighting'; // 分别是开启台数
 var detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build; // 分别是开启台数
 var detail_lightOpenNum_ispd = '2'; // 分别是开启台数
-// 照明灯具个数
+// 照明灯具个数 
+var lightHash = new HashMap();
+lightHash.put("A1", 3169);
+lightHash.put("P1", 0);
+lightHash.put("P2", 0);
+lightHash.put("T1", 2624);
+lightHash.put("T2", 3008);
+lightHash.put("T3", 3217);
+lightHash.put("T4", 3152);
+lightHash.put("T5", 3088);
+
 var light_A1 =  [{name : '1F', total : 0}, 
 				 {name : '2F', total : 465}, 
 				 {name : '3F', total : 528}, 
@@ -294,6 +311,66 @@ var light_T5 =  [{name : '1F', total : 0},
 				 {name : '4F', total : 656}, 
 				 {name : '5F', total : 656}, 
 				 {name : '6F', total : 656}];
+				 
+
+// 空调系统-风机盘管
+var detail_fcuOpenNum_name = 'number_on'; // 分别是开启台数
+var fcuOpenNum_id = 'fcu'; // 分别是开启台数
+var detail_fcuOpenNum_id = fcuOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build; // 分别是开启台数
+var detail_fcuOpenNum_ispd = '2'; // 分别是开启台数
+// 风机盘管灯具个数
+var fcuHash = new HashMap();
+fcuHash.put("A1", 695);
+fcuHash.put("P1", 0);
+fcuHash.put("P2", 0);
+fcuHash.put("T1", 609);
+fcuHash.put("T2", 545);
+fcuHash.put("T3", 726);
+fcuHash.put("T4", 701);
+fcuHash.put("T5", 704);
+
+var fcu_A1 =  [{name : '1F', total : 34}, 
+				 {name : '2F', total : 60}, 
+				 {name : '3F', total : 113}, 
+				 {name : '4F', total : 126}, 
+				 {name : '5F', total : 122}, 
+				 {name : '6F', total : 125}, 
+				 {name : '7F', total : 115}];
+				 
+var fcu_T1 =  [{name : '1F', total : 10}, 
+				 {name : '2F', total : 116}, 
+				 {name : '3F', total : 108}, 
+				 {name : '4F', total : 124}, 
+				 {name : '5F', total : 132}, 
+				 {name : '6F', total : 119}];
+				 
+var fcu_T2 =  [{name : '1F', total : 73}, 
+				 {name : '2F', total : 28}, 
+				 {name : '3F', total : 152}, 
+				 {name : '4F', total : 12}, 
+				 {name : '5F', total : 147}, 
+				 {name : '6F', total : 133}];
+				 
+var fcu_T3 =  [{name : '1F', total : 61}, 
+				 {name : '2F', total : 86}, 
+				 {name : '3F', total : 112}, 
+				 {name : '4F', total : 157}, 
+				 {name : '5F', total : 154}, 
+				 {name : '6F', total : 156}];
+				 
+var fcu_T4 =  [{name : '1F', total : 44}, 
+				 {name : '2F', total : 123}, 
+				 {name : '3F', total : 126}, 
+				 {name : '4F', total : 134}, 
+				 {name : '5F', total : 134}, 
+				 {name : '6F', total : 140}];
+				 
+var fcu_T5 =  [{name : '1F', total : 47}, 
+				 {name : '2F', total : 123}, 
+				 {name : '3F', total : 126}, 
+				 {name : '4F', total : 134}, 
+				 {name : '5F', total : 134}, 
+				 {name : '6F', total : 140}];
 				 
 //图二详细
 //运行状态--设备顺序 锅炉、热水泵、换热器

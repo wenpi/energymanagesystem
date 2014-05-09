@@ -158,8 +158,12 @@ $(function() {
 												opeaAhu(); // 处理空调箱的信息
 											} else if($(".detail_page").attr("tip") == 'light') { // 在照明回路中，选择楼层后，刷新对应的开启台数的图表
 												detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
-												buildLightInfo(); // 显示各楼层照明回路的实时状态 
+												dynamicBuildInfo('light'); // 显示各楼层照明回路的实时状态 
 												getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
+											} else if($(".detail_page").attr("tip") == 'fcu') { // 在风机盘管中，选择楼层后，刷新对应的开启台数的图表
+												detail_fcuOpenNum_id = fcuOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
+												dynamicBuildInfo('fcu'); // 显示各楼层风机盘管的实时状态 
+												getDevicesDetailChart('fcuOpenNum'); // 显示风机盘管状态的曲线图
 											} else {
 												getBoilerBay($(".detail_page").attr("tip"), 0);
 											}
@@ -193,8 +197,12 @@ $(function() {
 			
 			if($(".detail_page").attr("tip") == 'light') { // 在照明回路中，选择楼层后，刷新对应的开启台数的图表
 				detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
-				buildLightInfo(); // 显示各楼层照明回路的实时状态 
+				dynamicBuildInfo('light'); // 显示各楼层照明回路的实时状态 
 				getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
+			} else if($(".detail_page").attr("tip") == 'fcu') { // 在风机盘管中，选择楼层后，刷新对应的开启台数的图表
+				detail_fcuOpenNum_id = fcuOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
+				dynamicBuildInfo('fcu'); // 显示各楼层风机盘管的实时状态 
+				getDevicesDetailChart('fcuOpenNum'); // 显示风机盘管状态的曲线图
 			} else {
 				getDetailData(); // 获取详细信息详情
 			}
@@ -328,6 +336,7 @@ function setTimes() {
 
 // 产生table
 function detail_tables(array, obj, d_num) {
+	console.log("----"+obj.attr("id"));
 	var num = Math.ceil(array.length / 4); // 得到行数
 	var d_class = ".data";
 	if ($(obj).parent().attr("id") == 'mask') { // 放大后
@@ -454,6 +463,10 @@ function detail_tables(array, obj, d_num) {
 			}
 		}
 	}
+	// 由于照明的数据较大，特殊处理
+	$(".light_sys > div > .data").find("p").css("font-size", 18);
+	$(".light_sys > div > .data").find("p").find("span").css("font-size", 14);
+	$(".light_sys > div > .data").find("sup").remove();
 }
 // 创建实时状态表格--参数当前显示第place张小图的详细信息，小图Table上的第num个设备
 function getEquipDetail(curId, num) {
@@ -595,80 +608,4 @@ function getSsztTable(total, equip, devicesList) {
 		});
 		$(this).text("显示更多");
 	});
-}
-
-// 动态生成照明回路
-function buildLightInfo() {
-	var floor_list = ['一层', '二层', '三层', '四层', '五层', '六层'];
-	if(ahu_build_id == "A1"){
-		floor_list.push("七层");
-	}
-	var numList = eval("light_" + ahu_build_id); // 照明回路的灯具
-	var total = floor_list.length;
-	var obj = $(".each_device_list");
-	obj.empty();
-	if (total > 4) {
-		$("div").remove(".display_more");
-		$("<div>").addClass("display_more").html('显示更多').appendTo($(".sszt"));
-	} else {
-		$("div").remove(".display_more");
-	}
-	for (var i = 0; i < total; i++) {
-		$("<div>").addClass("each_device " + state)
-						.append($("<div>").addClass("device_number").append(
-								$("<h3>").html(floor_list[i])).append(
-								$("<p>").html('')))
-							.append($("<div>")
-								.addClass("device_para")
-									.append($("<div>")
-										.append($("<table>")
-											.append($("<tbody>")
-												.append($("<tr>").append($("<td>").addClass("value_floor").html(numList[i].total)))
-												.append($("<tr>").append($("<td>").addClass("total_floor").html('总数')))
-												.append($("<tr>").append($("<td>").addClass("value_floor").html('0')))
-												.append($("<tr>").append($("<td>").addClass("total_floor").html('开启数')))))))
-				.appendTo(obj);
-	}
-	
-	// 根据total的值确定是否需要增加空白页签
-	var _number = total % 4;
-	if(_number != 0) {
-		for (var i = 0; i < (4 - _number); i++) {
-			$("<div>").addClass("each_device ")
-							.append($("<div>").addClass("device_number").append(
-									$("<h3>").html('')).append(
-									$("<p>").html('')))
-								.append($("<div>")
-									.addClass("device_para")
-										.append($("<div>")
-											.append($("<table>")
-												.append($("<tbody>")
-													.append($("<tr>")
-																	.append($("<td>").html(''))
-																	.append($("<td>").html('')))
-													.append($("<tr>").append($("<td>").html(''))
-																	.append($("<td>").html('')))
-													.append($("<tr>").append($("<td>").html(''))
-																	.append($("<td>").html('')))))))
-					.appendTo(obj);
-		}
-	}
-	
-	$(".each_device").each(function() {
-		if (($(this).index() + 1) % 4 == 0) {
-			$(this).addClass("noborderright");
-		}
-	});
-	$(".display_more").toggle(function() {
-		$(this).prev().css({
-			"height" : "auto"
-		});
-		$(this).text("收起");
-	}, function() {
-		$(this).prev().css({
-			"height" : "230px"
-		});
-		$(this).text("显示更多");
-	});
-
 }

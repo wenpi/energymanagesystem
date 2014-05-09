@@ -823,6 +823,19 @@
 	</div>
 </div>
 
+<!-- 照明回路-开启台数 -->
+<div class="detail_chart fcuOpenNumDiv none_div">
+	<div class="fault_content">
+		<div class="fault_title">
+			<h3>开启台数</h3>
+			<span><i></i></span>
+		</div>
+		<div class="chart_content">
+			<div class="chart" style="width: 940px; height: 300px !important;" id="fcuOpenNum_chart"></div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript">
 	//获取数据--绘图--运行时间
 	function getchart_yxsj() {
@@ -948,6 +961,10 @@
 				
 				if(curId == 'light') { // 照明回路
 					opeaLight();
+				}
+				
+				if(curId == 'fcu') { // 风机盘管
+					opeaFcu();
 				}
 			
 				//getDevicesDetailChart('runFrequency'); // 送排风机运行频率 

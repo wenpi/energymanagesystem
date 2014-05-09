@@ -2044,7 +2044,7 @@ border-bottom-left-radius: 7px;}
 .hologram .tab_content .chart_1 .down_load_icon {background: #003973 url("../images/light-icon.png") -72px -41px;}
 .hologram .tab_content .chart_2 .down_load_icon {background: #12a8a7 url("../images/light-icon.png") -72px -41px;}
 .hologram .tab_content .chart_3 .down_load_icon {background: #990000 url("../images/light-icon.png") -72px -41px;}
-.hologram .build_plan {width: 935px; height: 535px; background:url("../images/u292_normal.png");margin: 35px auto; position: relative;}
+.hologram .build_plan {width: 934px; height: 535px; background:url("../images/u292_normal.png");margin: 35px auto; position: relative;}
 .hologram .build {width: 168px; height: auto; background-color: #394264;position: absolute; overflow: hidden; border-radius: 4px;z-index: 50}
 .hologram .build .build_header {height: 45px; background-color: #51597b; line-height: 45px; color: #9299b8; font-size: 20px; text-indent: 15px; cursor: pointer; }
 .build_A1 {left: 300px; top: 346px;}

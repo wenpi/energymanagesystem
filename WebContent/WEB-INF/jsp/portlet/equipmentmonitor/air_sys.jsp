@@ -267,18 +267,15 @@
 				
 				// P1锅炉房
 				equip_boiler_room_P1 = [{name : '锅炉',total : 2,current : parseFloat(dataList[0][0])}, 
-						                 {name : '热水泵',total : 3,current : parseFloat(dataList[0][1])}, 
-						                 {name : '换热器',total : 0,current : parseFloat(dataList[0][2])}];
+						                 {name : '热水泵',total : 3,current : parseFloat(dataList[0][1])}];
 				
 				// P2锅炉房
 				equip_boiler_room_P2 = [{name : '锅炉',total : 2,current : parseFloat(dataList[1][0])}, 
-						                 {name : '热水泵',total : 3,current : parseFloat(dataList[1][1])}, 
-						                 {name : '换热器',total : 0,current : parseFloat(dataList[1][2])}];
+						                 {name : '热水泵',total : 3,current : parseFloat(dataList[1][1])}];
 				
 				// A1锅炉房
 				equip_boiler_room_A1 = [{name : '锅炉',total : 2,current : parseFloat(dataList[2][0])}, 
-						                 {name : '热水泵',total : 3,current : parseFloat(dataList[2][1])}, 
-						                 {name : '换热器',total : 0,current : parseFloat(dataList[2][2])}];
+						                 {name : '热水泵',total : 3,current : parseFloat(dataList[2][1])}];
 			},
 			error : function(result) {
 				console.log('getDatasForBuilds + error');
@@ -329,14 +326,14 @@
 
 		
 		// 风机盘管
-		var equip_fcu =  [{name : 'A1号楼',total : 7, current : 4}, 
+		var equip_fcu =  [{name : 'A1号楼',total : 695, current : 4}, 
 						 {name : 'P1号楼',total : 0, current : 0}, 
 						 {name : 'P2号楼',total : 0, current : 0}, 
-						 {name : 'T1号楼',total : 6, current : 3}, 
-						 {name : 'T2号楼',total : 6, current : 2}, 
-						 {name : 'T3号楼',total : 10, current : 6}, 
-						 {name : 'T4号楼',total : 6, current : 1}, 
-						 {name : 'T5号楼',total : 6, current : 5}];
+						 {name : 'T1号楼',total : 609, current : 3}, 
+						 {name : 'T2号楼',total : 545, current : 2}, 
+						 {name : 'T3号楼',total : 726, current : 6}, 
+						 {name : 'T4号楼',total : 701, current : 1}, 
+						 {name : 'T5号楼',total : 704, current : 5}];
 		var obj_fcu = $("#fcu");
 		
 		// 获取各建筑的风机盘管台数
@@ -356,14 +353,14 @@
 			},
 			success : function(result) {
 				var dataList = result.data;
-				equip_fcu =  [{name : 'A1号楼',total : 7,current : parseFloat(dataList[0][0])}, 
-							  {name : 'P1号楼',total : 0,current : parseFloat(dataList[1][0])}, 
-							  {name : 'P2号楼',total : 0,current : parseFloat(dataList[2][0])}, 
-							  {name : 'T1号楼',total : 6,current : parseFloat(dataList[3][0])}, 
-							  {name : 'T2号楼',total : 6,current : parseFloat(dataList[4][0])}, 
-							  {name : 'T3号楼',total : 10,current : parseFloat(dataList[5][0])}, 
-							  {name : 'T4号楼',total : 6,current : parseFloat(dataList[6][0])}, 
-							  {name : 'T5号楼',total : 6,current : parseFloat(dataList[7][0])}];
+				equip_fcu =  [{name : 'A1号楼', total : 695, current : parseFloat(dataList[0][0])}, 
+							  {name : 'P1号楼', total : 0, current : parseFloat(dataList[1][0])}, 
+							  {name : 'P2号楼', total : 0, current : parseFloat(dataList[2][0])}, 
+							  {name : 'T1号楼', total : 609, current : parseFloat(dataList[3][0])}, 
+							  {name : 'T2号楼', total : 545, current : parseFloat(dataList[4][0])}, 
+							  {name : 'T3号楼', total : 726, current : parseFloat(dataList[5][0])}, 
+							  {name : 'T4号楼', total : 701, current : parseFloat(dataList[6][0])}, 
+							  {name : 'T5号楼', total : 704, current : parseFloat(dataList[7][0])}];
 			},
 			error : function(result) {
 				console.log('getDatasForBuilds + error');

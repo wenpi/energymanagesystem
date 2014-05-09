@@ -24,6 +24,18 @@ public interface CircuitinfoDao extends DaoSupport {
 	 * @return 指定建筑的所有支路信息
 	 * */
 	public Set<Circuitinfo> getCircuitinfos(String buildId,int startResult, int maxRows) throws DataAccessException;
+
+	/**
+	 * 返回指定建筑指定text的所有支路信息
+	 * 
+	 * @param buildId
+	 * @param text
+	 * @param startResult
+	 * @param maxRows
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public Set<Circuitinfo> getCircuitinfosByText(String buildId, String text, int startResult, int maxRows) throws DataAccessException;
 	
 	/**
 	 * 获取指定建筑的所有根支路信息
@@ -50,4 +62,13 @@ public interface CircuitinfoDao extends DaoSupport {
 	  * @return 指定建筑的最大支路ID信息
 	 * */
 	public Circuitinfo getMaxCircuitinfoByBuildId(String buildId) throws DataAccessException; 
+	
+	/**
+	 * 针对水表和气表的手动导入作的删除操作
+	 * 
+	 * @param text
+	 * @param year
+	 * @param month
+	 */
+	public void delCircuitinfoForWaterAndGas(String text, int year, int month) throws DataAccessException; 
 }

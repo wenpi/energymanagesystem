@@ -99,6 +99,24 @@ public interface EnergyStatisticService {
 	public Map<String, Object> getDatasForBuilds(String type, String tfrom, String to, String id, String name, String ispd, String att, String decimals, String mult, String build_id, String region_id);
 
 	/**
+	 * 获取map格式的数据(针对第二版能源产品中取某一栋建筑的不同层数的开启数)
+	 * 
+	 * @param type
+	 * @param tfrom
+	 * @param to
+	 * @param id
+	 * @param name
+	 * @param ispd
+	 * @param att
+	 * @param decimals
+	 * @param mult
+	 * @param build_id
+	 * @param region_id
+	 * @return
+	 */
+	public Map<String, Object> getDatasForRegions(String type, String tfrom, String to, String id, String name, String ispd, String att, String decimals, String mult, String build_id, String region_id);
+
+	/**
 	 * 获取map格式的数据(针对第二版能源产品中运行监测模块的处理，多name情况做出处理)
 	 * @author zouzhixiang 2014-03-12
 	 * @param type

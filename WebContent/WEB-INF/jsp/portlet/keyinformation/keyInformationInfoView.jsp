@@ -18,6 +18,12 @@
 							<li class="cur_tab">
 								<div>
 									<img src="${pageContext.request.contextPath}/styles/second/images/dot.png" />
+									<p>建筑基本信息</p>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="${pageContext.request.contextPath}/styles/second/images/dot.png" />
 									<p>建筑总能耗</p>
 								</div>
 
@@ -46,15 +52,13 @@
 									<p>建筑用电分项</p>
 								</div>
 							</li>
-							<li>
-								<div>
-									<img src="${pageContext.request.contextPath}/styles/second/images/dot.png" />
-									<p>建筑基本信息</p>
-								</div>
-							</li>
 						</ul>
 					</div>
 					<div class="tab_content current">
+						<div class="build_pic"></div>
+						<%@include file="../keyinformation/buildView.jsp"%>
+					</div>
+					<div class="tab_content">
 						<%@include file="../keyinformation/buildConsumptionView.jsp"%>
 					</div>
 					<!-- <div class="tab_content">
@@ -68,10 +72,6 @@
 					</div>
 					<div class="tab_content">
 						<%@include file="../keyinformation/buildElectricitySubentryView.jsp"%>
-					</div>
-					<div class="tab_content">
-						<div class="build_pic"></div>
-						<%@include file="../keyinformation/buildView.jsp"%>
 					</div>
 				</div>
 			</div>
