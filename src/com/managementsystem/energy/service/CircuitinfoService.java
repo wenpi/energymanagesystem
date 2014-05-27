@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.managementsystem.energy.domain.Circuitinfo;
 import com.managementsystem.energy.domain.CircuitinfoTree;
+import com.managementsystem.energy.domain.Reportinfo;
 import com.managementsystem.ui.easyui.Tree;
 import com.managementsystem.util.dao.Page;
 
@@ -22,6 +23,13 @@ public interface CircuitinfoService {
 	 * @param circuitinfo 支路信息
 	 * */
 	public void addCircuitinfoForEnergy(Circuitinfo circuitinfo);
+
+	/**
+	 * 添加报表数据
+	 * 
+	 * @param reportinfo
+	 */
+	public void addReportinfo(Reportinfo reportinfo);
 
 	/**
 	 * 针对水表和气表的手动导入作的删除操作
@@ -135,4 +143,24 @@ public interface CircuitinfoService {
 	 * @return 所有支路信息
 	 * */
 	public Page getCircuitinfos(int pageIndex,int pageSize,Map<String,Object> mapParams);
+	
+	/**
+	 * 获取有数据的支路信息时间列表
+	 * 
+	 * @param year
+	 * @param text
+	 * @return
+	 */
+	public List<Circuitinfo> getCircuitTimeList(String year, String text) throws Exception;
+
+	/**
+	 * 根据年份和月份来获取对应的水表/气表数据
+	 * 
+	 * @param time
+	 * @param text
+	 * @param treeIds
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getCircuitDataList(String time, String text, String treeIds) throws Exception;
 }

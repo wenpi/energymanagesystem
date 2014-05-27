@@ -28,14 +28,8 @@
         <property name="circuitIspd" type="string">
             <column name="circuit_ispd" length="2" />
         </property>
-        <property name="year" type="java.lang.Integer">
-            <column name="year" length="4" />
-        </property>
-        <property name="month" type="java.lang.Integer">
-            <column name="month" length="2" />
-        </property>
-        <property name="z_value" type="big_decimal">
-            <column name="z_value" precision="16" scale="2"  />
+        <property name="source" type="string">
+            <column name="source" length="16" />
         </property>
         <property name="circuitState" type="java.lang.Integer">
             <column name="circuit_state">

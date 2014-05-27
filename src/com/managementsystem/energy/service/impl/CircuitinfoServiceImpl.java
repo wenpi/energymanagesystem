@@ -17,6 +17,7 @@ import com.managementsystem.energy.dao.MeteruseinfoDao;
 import com.managementsystem.energy.domain.Circuitinfo;
 import com.managementsystem.energy.domain.CircuitinfoTree;
 import com.managementsystem.energy.domain.Meteruseinfo;
+import com.managementsystem.energy.domain.Reportinfo;
 import com.managementsystem.energy.service.CircuitinfoService;
 import com.managementsystem.energy.service.MeteruseinfoService;
 import com.managementsystem.ui.State;
@@ -52,6 +53,12 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 		}
 		circuitinfo.setCircuitId(mainKeyValue);
 		circuitinfoDao.save(circuitinfo);
+		circuitinfoDao.flush();
+	}
+	
+	@Transactional
+	public void addReportinfo(Reportinfo reportinfo) {
+		circuitinfoDao.save(reportinfo);
 		circuitinfoDao.flush();
 	}
 
@@ -273,13 +280,22 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 		 return ret;
 	}
 	
-	
 	@Transactional(readOnly = true)
 	public Page getCircuitinfos(int pageIndex, int pageSize,
 			Map<String, Object> mapParams) {
 		return circuitinfoDao.getCircuitinfos(pageIndex, pageSize, mapParams);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Circuitinfo> getCircuitTimeList(String year, String text)
+			throws Exception {
+		return circuitinfoDao.getCircuitTimeList(year, text);
+	}
 	
+	@Transactional(readOnly = true)
+	public Map<String, Object> getCircuitDataList(String time, String text, String treeIds)
+			throws Exception {
+		return circuitinfoDao.getCircuitDataList(time, text, treeIds);
+	}
 	
 }

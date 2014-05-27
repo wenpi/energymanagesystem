@@ -60,7 +60,6 @@
 <link href="<%= HtmlUtil.escape(PortalUtil.getStaticResourceURL(request, themeDisplay.getCDNHost() + themeDisplay.getPathContext() + "/html/company/styles/themes/smoothness/jquery-ui-1.8.21.custom.css")) %>" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript">
-var report_pageSize = 12; // 报表管理中放大页面的分页条数 
 // 二级菜单定位
 function locateMenu(name){
 	var finalUrl = '', num = 0; // li标签的索引

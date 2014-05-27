@@ -1,6 +1,5 @@
 package com.managementsystem.energy.domain;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,9 +21,7 @@ public class Circuitinfo implements java.io.Serializable {
 	private String circuitImage;
 	private String circuitText;
 	private String circuitIspd;
-	private Integer year;
-	private Integer month;
-	private BigDecimal z_value;
+	private String source;
 
 	@JsonBackReference
 	private Set circuitinfos = new HashSet(0);
@@ -43,8 +40,8 @@ public class Circuitinfo implements java.io.Serializable {
 	public Circuitinfo(String circuitId, Circuitinfo circuitinfo,
 			Buildinfo buildinfo, String circuitCode, String circuitName,
 			Integer circuitState, String circuitImage, String circuitText,
-			String circuitIspd, Integer year, Integer month,
-			BigDecimal z_value, Set circuitinfos, Set meteruseinfos) {
+			String circuitIspd, String source, Set circuitinfos,
+			Set meteruseinfos) {
 		this.circuitId = circuitId;
 		this.circuitinfo = circuitinfo;
 		this.buildinfo = buildinfo;
@@ -53,9 +50,7 @@ public class Circuitinfo implements java.io.Serializable {
 		this.circuitState = circuitState;
 		this.circuitImage = circuitImage;
 		this.circuitText = circuitText;
-		this.year = year;
-		this.month = month;
-		this.z_value = z_value;
+		this.source = source;
 		this.circuitinfos = circuitinfos;
 		this.meteruseinfos = meteruseinfos;
 	}
@@ -164,27 +159,12 @@ public class Circuitinfo implements java.io.Serializable {
 		this._parentId = _parentId;
 	}
 
-	public Integer getYear() {
-		return year;
+	public String getSource() {
+		return source;
 	}
 
-	public void setYear(Integer year) {
-		this.year = year;
+	public void setSource(String source) {
+		this.source = source;
 	}
 
-	public Integer getMonth() {
-		return month;
-	}
-
-	public void setMonth(Integer month) {
-		this.month = month;
-	}
-
-	public BigDecimal getZ_value() {
-		return z_value;
-	}
-
-	public void setZ_value(BigDecimal z_value) {
-		this.z_value = z_value;
-	}
 }

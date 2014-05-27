@@ -1,5 +1,6 @@
 package com.managementsystem.energy.dao;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -71,4 +72,24 @@ public interface CircuitinfoDao extends DaoSupport {
 	 * @param month
 	 */
 	public void delCircuitinfoForWaterAndGas(String text, int year, int month) throws DataAccessException; 
+
+	/**
+	 * 获取有数据的支路信息时间列表
+	 * 
+	 * @param year
+	 * @param text
+	 * @throws Exception
+	 */
+	public List<Circuitinfo> getCircuitTimeList(String year, String text) throws Exception; 
+
+	/**
+	 * 根据年份和月份来获取对应的水表/气表数据
+	 * 
+	 * @param time
+	 * @param text
+	 * @param treeIds
+	 * @return
+	 * @throws Exception
+	 */
+	public Map<String, Object> getCircuitDataList(String time, String text, String treeIds) throws Exception; 
 }

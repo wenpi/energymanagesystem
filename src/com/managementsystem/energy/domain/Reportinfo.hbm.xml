@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-05-23 17:19:36 by zouzhixiang -->
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.managementsystem.energy.domain.Reportinfo" table="reportinfo">
+		<id name="id" type="string">
+			<column name="id" length="16" />
+			<generator class="identity" />
+		</id>
+		<property name="reportid" type="string">
+			<column name="reportid" length="16" />
+		</property>
+		<property name="time" type="string">
+			<column name="time" length="48" />
+		</property>
+		<property name="zhi" type="big_decimal">
+			<column name="zhi" precision="16" scale="2" />
+		</property>
+		<property name="source" type="string">
+			<column name="source" length="16" />
+		</property>
+	</class>
+</hibernate-mapping>

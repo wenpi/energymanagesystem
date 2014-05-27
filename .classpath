@@ -2,15 +2,16 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
-	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="E:/Work/Liferay/jar/portlet.jar"/>
-	<classpathentry kind="lib" path="E:/Work/Liferay/jar/servlet-api.jar"/>
-	<classpathentry kind="lib" path="E:/Work/Liferay/jar/javassist.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_13"/>
+	<classpathentry kind="lib" path="E:/Work/Liferay/jar/javassist.jar"/>
+	<classpathentry kind="lib" path="E:/Work/Liferay/jar/poi.jar"/>
 	<classpathentry kind="lib" path="E:/Work/Liferay/jar/portal-client.jar"/>
 	<classpathentry kind="lib" path="E:/Work/Liferay/jar/portal-service.jar"/>
+	<classpathentry kind="lib" path="E:/Work/Liferay/jar/portlet.jar"/>
+	<classpathentry kind="lib" path="E:/Work/Liferay/jar/servlet-api.jar"/>
 	<classpathentry kind="lib" path="E:/Work/Liferay/jar/util-taglib.jar"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="lib" path="E:/Work/Liferay/jar/sqljdbc4-3.0.jar"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

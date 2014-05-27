@@ -1233,7 +1233,7 @@ table > caption {
 
 .report_page_tab .look_other {
 	width: 100%;
-	height: 48px;
+	/*height: 48px;*/
 	line-height: 48px;
 	background-color: #FFFFFF;
 	position: relative;
@@ -1244,7 +1244,6 @@ table > caption {
 	font-size: 13px;
 }*/
 .filter_widget {float: left; margin: 11px 0px 0px 12px; position: relative;}
-.filter_widget > * {float: left !important; height: 26px; line-height: 26px;}
 
 .filter_label {
 	width: 70px;
@@ -1265,12 +1264,12 @@ table > caption {
 .report_page_tab .charts .chart .table_content table tr th,.report_page_tab .charts .chart .table_content table tr td {border:1px solid #fff;}
 
 .zoom_mask {width: 100%; height: 100%; background-color: transparent; position: absolute;top: 0px;left: 0px; cursor: pointer;}
-.zoom_mask .magnify {width: 105px; height: 105px; margin: 75px auto; background: url("../images/light-icon.png") -1035px -687px;}
+.zoom_mask .magnify {width: 105px; height: 105px; /*margin: 75px auto;*/ background: url("../images/light-icon.png") -1035px -687px;}
 
 .measure_zoom_mask {width: 100%; height: 100%; background-color: transparent; position: absolute;top: 0px;left: 0px; cursor: pointer;}
 .measure_zoom_mask .magnify {width: 105px; height: 105px; margin: 75px auto; background: url("../images/light-icon.png") -1035px -687px;}
 
-.dialog-zoomin-table {width: 940px; margin: 150px auto}
+.dialog-zoomin-table {width: 940px; margin:64px auto}
 .dialog-zoomin-table .dialog-body {background-color: #fff}
 .dialog-zoomin-table .dialog-body .dialog-popover-btn-group {height: 50px;width: 100%;line-height: 50px;border-bottom: 1px solid #ccc}
 .dialog-zoomin-table .filter_widget {margin: 11px 0px 0px 17px; position: relative;}
@@ -1284,6 +1283,8 @@ table > caption {
 .dialog-zoomin-table table tr th,.dialog-zoomin-table table tr td {border:1px solid #fff;}
 /* .dialog-zoomin-table .page {width:auto; height: 50px; text-align: right; float: right; padding-right: 100px;} */
 .dialog-zoomin-table .page .control-btn {width: 90px; height: 30px; line-height: 30px; text-align: center; font-size: 16px; background-color: #8990ad;border-radius: 4px; color: #fff;float: left; margin-left: 15px; cursor: pointer;}
+.page_buttom .control-btn {width: 90px; height: 30px; line-height: 30px; text-align: center; font-size: 16px; background-color: #8990ad;border-radius: 4px; color: #fff;float: left; margin-left: 15px; cursor: pointer;}
+.page_buttom {padding-right: 30px !important;}
 
 .nhbb .tab_content > .detail {background-color: #fcb150}
 .nxzb .tab_content > .detail {background-color: #356ab3}
@@ -1739,8 +1740,8 @@ border-bottom-left-radius: 7px;}
 
 .filter_widget > * {
 	float: left !important;
-	height: 26px;
-	line-height: 26px;
+	height: 29px;
+	line-height: 29px;
 }
 
 .filter_widget button {
@@ -2111,7 +2112,7 @@ border-bottom-left-radius: 7px;}
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	padding-bottom: 76px;
+	padding-bottom: 10px;
 }	
 
 .measure_main {
@@ -2141,3 +2142,16 @@ border-bottom-left-radius: 7px;}
 	margin-top: 10px;
 }
 
+.report_table_div {
+	height: 86% !important;
+}
+
+.gas_div_height {
+	height: 100%;
+}
+
+.report_magnify {
+	width: 105px;
+	height: 105px;
+	margin: 140px 0 0 280px;
+}

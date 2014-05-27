@@ -1,4 +1,5 @@
 var publicTime = '2014-05-08'; //全局的时间属性，如果设置了这个属性，则系统默认使用该时间，格式为（年-月-日）
+var report_pageSize = 12; // 报表管理中放大页面的分页条数 
 var isShowRightTool = true; // false则不显示右侧工具集，true则显示
 var _todayTime = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate();
 
@@ -61,7 +62,7 @@ function import_common_excel(type) {
 	} else if (type == "gas") {
 		title = '导入气表';
 	}
-	$('#common_import').dialog({ height: 197, width: 513, title: title }).dialog('open'); //修改标题 
+	$('#common_import').dialog({ height: 210, width: 513, title: title }).dialog('open'); //修改标题 
 }
 
 // 修改按钮的颜色，针对右侧工具集

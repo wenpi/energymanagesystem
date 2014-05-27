@@ -1,7 +1,9 @@
 package com.managementsystem.energy.portlet.energystatistic.service;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +21,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import javax.portlet.PortletContext;
 import javax.portlet.ResourceRequest;
@@ -53,8 +56,23 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 	private final Log logger = LogFactory
 			.getLog(EnergyStatisticServiceImpl.class);
 
-	private String isPrintUrl = readConfigXml("isPrintUrl"); // 是否打印url的配置信息
+	private String isPrintUrl = readProperties("isPrintUrl"); // 是否打印url的配置信息
 
+	// 读取properties文件
+	private String readProperties(String nodeName) {
+		String val = "";
+		try {
+			Properties p = new Properties(); 
+			p.load(new BufferedInputStream(new FileInputStream(this.getClass().getResource("/").getPath() + "config.properties")));
+			val = p.getProperty(nodeName);
+		} catch (Exception e) {
+			logger.error("readProperties出错了");
+		}
+		logger.info("isPrintUrl----" + val);
+		return val;
+	}
+	
+	// 读取xml中指定的node
 	private String readConfigXml(String xmlName) {
 		String val = "";
 		try {

@@ -25,13 +25,14 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.managementsystem.energy.dao.CircuitinfoDao;
+import com.managementsystem.energy.dao.OtherDao;
 import com.managementsystem.energy.domain.Buildinfo;
 import com.managementsystem.energy.domain.Circuitinfo;
+import com.managementsystem.energy.domain.Reportinfo;
 import com.managementsystem.energy.service.CircuitinfoService;
 import com.managementsystem.energy.service.ImportService;
   
@@ -40,6 +41,9 @@ public class ImportServiceImpl implements ImportService {
 
 	@Autowired
 	private CircuitinfoDao circuitinfoDao;
+	
+	@Autowired
+	private OtherDao otherDao;
 
 	@Autowired
 	private CircuitinfoService circuitinfoService;
@@ -62,15 +66,14 @@ public class ImportServiceImpl implements ImportService {
 			Circuitinfo circuitinfo3 = new Circuitinfo();
 			Circuitinfo circuitinfo4 = new Circuitinfo();
 			
-			int year = 0, month = 0; double total = 0;
+			int year = 0, month = 0; double total = 0; String time = "";
 			if(StringUtils.hasLength(type) && ("water".equals(type) || "gas".equals(type))) { // 导入水表和导入气表
 				Date date = new Date();
 				SimpleDateFormat sf = new SimpleDateFormat("yyyy");
 				SimpleDateFormat month_sf = new SimpleDateFormat("yyyy");
 				year = (date.getMonth() == 0) ? (Integer.parseInt(sf.format(date)) - 1) : (Integer.parseInt(sf.format(date)));
 				month = (date.getMonth() == 0) ? 12 : (date.getMonth());
-				// 首先删除对应月份的对应的记录，避免重复
-				circuitinfoService.delCircuitinfoForWaterAndGas(type, year, month);
+				time = time;
 			}
 
 			int gas_num = 0;
@@ -121,96 +124,61 @@ public class ImportServiceImpl implements ImportService {
 						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
 							col_a = result[i][j];
 							circuitinfo1 = new Circuitinfo();
-							circuitinfo1.setYear(year);
-							circuitinfo1.setMonth(month);
-							circuitinfo1.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
+							circuitinfo1.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
 							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 						}
 						
 						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
 							circuitinfo2 = new Circuitinfo();
-							circuitinfo2.setYear(year);
-							circuitinfo2.setMonth(month);
-							double zhi = Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]));
-							total += zhi;
-							circuitinfo2.setZ_value(BigDecimal.valueOf(zhi));
+							circuitinfo2.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
 							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
 						}
 						
 						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
 							circuitinfo3 = new Circuitinfo();
-							circuitinfo3.setYear(year);
-							circuitinfo3.setMonth(month);
-							circuitinfo3.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
+							circuitinfo3.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
 							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
 						}
 						
 						if(j == 3 && !"".equals(result[i][j])) { // 第四列的数据
 							circuitinfo4 = new Circuitinfo();
-							circuitinfo4.setYear(year);
-							circuitinfo4.setMonth(month);
-							circuitinfo4.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
+							circuitinfo4.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
 							circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
 						}
 						
 					} else if(StringUtils.hasLength(type) && "gas".equals(type)) { // 导入气表
 						
-						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
-							gas_num++;
-							col_a = result[i][j];
+						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据不为空，直接插入数据
 							circuitinfo1 = new Circuitinfo();
-							circuitinfo1.setYear(year);
-							circuitinfo1.setMonth(month);
-							double num = 0;
-							if(gas_num == 1){
-								num = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3])) + 
-									  Double.valueOf(("".equals(result[i+1][3]) ? "0" : result[i+1][3])) + 
-									  Double.valueOf(("".equals(result[i+2][3]) ? "0" : result[i+2][3])) + 
-									  Double.valueOf(("".equals(result[i+3][3]) ? "0" : result[i+3][3]));
-							} else if (gas_num == 2) {
-								num = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3])) + 
-									  Double.valueOf(("".equals(result[i+1][3]) ? "0" : result[i+1][3])) + 
-									  Double.valueOf(("".equals(result[i+2][3]) ? "0" : result[i+2][3])) + 
-									  Double.valueOf(("".equals(result[i+3][3]) ? "0" : result[i+3][3])) + 
-									  Double.valueOf(("".equals(result[i+4][3]) ? "0" : result[i+4][3]));
-							} else if (gas_num == 3) {
-								num = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3])) + 
-									  Double.valueOf(("".equals(result[i+1][3]) ? "0" : result[i+1][3])) + 
-									  Double.valueOf(("".equals(result[i+2][3]) ? "0" : result[i+2][3])) + 
-									  Double.valueOf(("".equals(result[i+3][3]) ? "0" : result[i+3][3])) + 
-									  Double.valueOf(("".equals(result[i+4][3]) ? "0" : result[i+4][3])) + 
-									  Double.valueOf(("".equals(result[i+5][3]) ? "0" : result[i+5][3]));
-							}
-							
-							circuitinfo1.setZ_value(BigDecimal.valueOf(num));
-							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
-						}
-						
-						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
-							circuitinfo2 = new Circuitinfo();
-							circuitinfo2.setYear(year);
-							circuitinfo2.setMonth(month);
-							double zhi = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3]));
-							total += zhi;
-							circuitinfo2.setZ_value(BigDecimal.valueOf(zhi));
-							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+							circuitinfo1.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
+							circuitinfo1 = getCircuitForEnergy(circuitinfo1, result[i][j], circuitinfo1, type);
 						}
 						
 						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
+							circuitinfo2 = new Circuitinfo();
+							circuitinfo2.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
+							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+						}
+						
+						if(j == 3 && !"".equals(result[i][j])) { // 第四列的数据
 							circuitinfo3 = new Circuitinfo();
-							circuitinfo3.setYear(year);
-							circuitinfo3.setMonth(month);
-							circuitinfo3.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3]))));
+							circuitinfo3.setCircuitCode(result[i][0]); // 对应的编号
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
 							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
 						}
 					}
 				}
 			}
 			
-			System.out.println(type + "--最后的总数---" + total);
 			if(StringUtils.hasLength(type) && ("water".equals(type) || "gas".equals(type))) { // 导入水表和导入气表
 				try {
-					saveOrUpdateWaterAndGas(type, year, month, total);
+					saveOrUpdateWaterAndGas(type, year, month, total); // 更新sqlserver数据库中的数据
 				} catch (Exception e) {
 					System.out.println("更新" + type + "的数据到sqlserver中出错了--" + total);
 				}
@@ -219,6 +187,7 @@ public class ImportServiceImpl implements ImportService {
 			returnStr = "true";
 		} catch (Exception e) {
 			returnStr = "false";
+			e.printStackTrace();
 		}
 		
 		return returnStr;
@@ -238,11 +207,11 @@ public class ImportServiceImpl implements ImportService {
 			Buildinfo buildinfo = new Buildinfo();
 			buildinfo.setBuildId("000001070001");
 			circuitinfo.setBuildinfo(buildinfo);
-			circuitinfo.setCircuitCode(code);
+//			circuitinfo.setCircuitCode(code);
 			circuitinfo.setCircuitName(code);
 			circuitinfo.setCircuitState(1);
 			circuitinfo.setCircuitinfo(parentinfo);
-			circuitinfo.setCircuitText(type); // 所属系统
+			circuitinfo.setSource(type); // 所属系统
 			circuitinfoService.addCircuitinfoForEnergy(circuitinfo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -352,15 +321,15 @@ public class ImportServiceImpl implements ImportService {
 
 						// 导入时如果为公式生成的数据则无值
 
-						if (!cell.getStringCellValue().equals("")) {
-
-							value = cell.getStringCellValue();
-
-						} else {
+//						if (!cell.getStringCellValue().equals("")) {
+//
+//							value = cell.getStringCellValue();
+//
+//						} else {
 
 							value = cell.getNumericCellValue() + "";
 
-						}
+//						}
 
 						break;
 
@@ -485,4 +454,183 @@ public class ImportServiceImpl implements ImportService {
 
 	}
 	
+	// 备份代码，导入水表和气表，修改模板前，2014-05-23
+//	private String importExcelToCircuitinfoBak(MultipartFile mf, String type) {
+//		String returnStr = "true";
+//
+//		try {
+//			String[][] result = getData(mf, 1);
+//
+//			int rowLength = result.length;
+//
+//			System.out.println("导入的excel行数--" + rowLength);
+//
+//			String col_a = "", col_b = "", col_c = "", temp_b = "", temp_c = ""; // 存储excel中的内容
+//			
+//			Circuitinfo circuitinfo1 = new Circuitinfo();
+//			Circuitinfo circuitinfo2 = new Circuitinfo();
+//			Circuitinfo circuitinfo3 = new Circuitinfo();
+//			Circuitinfo circuitinfo4 = new Circuitinfo();
+//			
+//			int year = 0, month = 0; double total = 0;
+//			if(StringUtils.hasLength(type) && ("water".equals(type) || "gas".equals(type))) { // 导入水表和导入气表
+//				Date date = new Date();
+//				SimpleDateFormat sf = new SimpleDateFormat("yyyy");
+//				SimpleDateFormat month_sf = new SimpleDateFormat("yyyy");
+//				year = (date.getMonth() == 0) ? (Integer.parseInt(sf.format(date)) - 1) : (Integer.parseInt(sf.format(date)));
+//				month = (date.getMonth() == 0) ? 12 : (date.getMonth());
+//				// 首先删除对应月份的对应的记录，避免重复
+//				circuitinfoService.delCircuitinfoForWaterAndGas(type, year, month);
+//			}
+//
+//			int gas_num = 0;
+//			for (int i = 0; i < rowLength; i++) {
+//				
+//				for (int j = 0; j < result[i].length; j++) {
+//					
+//					if(StringUtils.hasLength(type) && "electricity".equals(type)) { // 导入电表
+//						
+//						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
+//							col_a = result[i][j];
+//							circuitinfo1 = new Circuitinfo();
+//							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+//						}
+//						
+//						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
+//							col_b = result[i][j];
+//						}
+//						
+//						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
+//							col_c = result[i][j];
+//						}
+//						
+//						if(j == 3) {
+//							if("".equals(result[i][j])){
+//								continue;
+//							} else {
+//								
+//								if(temp_b != col_b) { // 第二列的数据
+//									circuitinfo2 = new Circuitinfo();
+//									circuitinfo2 = getCircuitForEnergy(circuitinfo2, col_b, circuitinfo1, type);
+//									temp_b = col_b;
+//								}
+//								
+//								if(temp_c != col_c) { // 第三列数据
+//									circuitinfo3 = new Circuitinfo();
+//									circuitinfo3 = getCircuitForEnergy(circuitinfo3, col_c, circuitinfo2, type);
+//									temp_c = col_c;
+//								}
+//								
+//								circuitinfo4 = new Circuitinfo();
+//								circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
+//							}
+//						}
+//					
+//					} else if(StringUtils.hasLength(type) && "water".equals(type)) { // 导入水表
+//						
+//						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
+//							col_a = result[i][j];
+//							circuitinfo1 = new Circuitinfo();
+//							circuitinfo1.setYear(year);
+//							circuitinfo1.setMonth(month);
+//							circuitinfo1.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
+//							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+//						}
+//						
+//						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
+//							circuitinfo2 = new Circuitinfo();
+//							circuitinfo2.setYear(year);
+//							circuitinfo2.setMonth(month);
+//							double zhi = Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]));
+//							total += zhi;
+//							circuitinfo2.setZ_value(BigDecimal.valueOf(zhi));
+//							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+//						}
+//						
+//						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
+//							circuitinfo3 = new Circuitinfo();
+//							circuitinfo3.setYear(year);
+//							circuitinfo3.setMonth(month);
+//							circuitinfo3.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
+//							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
+//						}
+//						
+//						if(j == 3 && !"".equals(result[i][j])) { // 第四列的数据
+//							circuitinfo4 = new Circuitinfo();
+//							circuitinfo4.setYear(year);
+//							circuitinfo4.setMonth(month);
+//							circuitinfo4.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
+//							circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
+//						}
+//						
+//					} else if(StringUtils.hasLength(type) && "gas".equals(type)) { // 导入气表
+//						
+//						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
+//							gas_num++;
+//							col_a = result[i][j];
+//							circuitinfo1 = new Circuitinfo();
+//							circuitinfo1.setYear(year);
+//							circuitinfo1.setMonth(month);
+//							double num = 0;
+//							if(gas_num == 1){
+//								num = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3])) + 
+//									  Double.valueOf(("".equals(result[i+1][3]) ? "0" : result[i+1][3])) + 
+//									  Double.valueOf(("".equals(result[i+2][3]) ? "0" : result[i+2][3])) + 
+//									  Double.valueOf(("".equals(result[i+3][3]) ? "0" : result[i+3][3]));
+//							} else if (gas_num == 2) {
+//								num = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3])) + 
+//									  Double.valueOf(("".equals(result[i+1][3]) ? "0" : result[i+1][3])) + 
+//									  Double.valueOf(("".equals(result[i+2][3]) ? "0" : result[i+2][3])) + 
+//									  Double.valueOf(("".equals(result[i+3][3]) ? "0" : result[i+3][3])) + 
+//									  Double.valueOf(("".equals(result[i+4][3]) ? "0" : result[i+4][3]));
+//							} else if (gas_num == 3) {
+//								num = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3])) + 
+//									  Double.valueOf(("".equals(result[i+1][3]) ? "0" : result[i+1][3])) + 
+//									  Double.valueOf(("".equals(result[i+2][3]) ? "0" : result[i+2][3])) + 
+//									  Double.valueOf(("".equals(result[i+3][3]) ? "0" : result[i+3][3])) + 
+//									  Double.valueOf(("".equals(result[i+4][3]) ? "0" : result[i+4][3])) + 
+//									  Double.valueOf(("".equals(result[i+5][3]) ? "0" : result[i+5][3]));
+//							}
+//							
+//							circuitinfo1.setZ_value(BigDecimal.valueOf(num));
+//							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+//						}
+//						
+//						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
+//							circuitinfo2 = new Circuitinfo();
+//							circuitinfo2.setYear(year);
+//							circuitinfo2.setMonth(month);
+//							double zhi = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3]));
+//							total += zhi;
+//							circuitinfo2.setZ_value(BigDecimal.valueOf(zhi));
+//							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+//						}
+//						
+//						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
+//							circuitinfo3 = new Circuitinfo();
+//							circuitinfo3.setYear(year);
+//							circuitinfo3.setMonth(month);
+//							circuitinfo3.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3]))));
+//							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
+//						}
+//					}
+//				}
+//			}
+//			
+//			System.out.println(type + "--最后的总数---" + total);
+//			if(StringUtils.hasLength(type) && ("water".equals(type) || "gas".equals(type))) { // 导入水表和导入气表
+//				try {
+//					saveOrUpdateWaterAndGas(type, year, month, total);
+//				} catch (Exception e) {
+//					System.out.println("更新" + type + "的数据到sqlserver中出错了--" + total);
+//				}
+//			}
+//			
+//			returnStr = "true";
+//		} catch (Exception e) {
+//			returnStr = "false";
+//		}
+//		
+//		return returnStr;
+//	}
 }

@@ -798,7 +798,6 @@ public abstract class BaseController {
 		
 		try {
 			String type = request.getParameter("common_type");
-			System.out.println("----@" + type);
 			// 转换request
 			HttpServletRequest servletRequest = PortalUtil.getHttpServletRequest(request);
 			MultipartResolver resolver = new CommonsMultipartResolver(servletRequest.getSession().getServletContext());

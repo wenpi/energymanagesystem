@@ -6,16 +6,13 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletContext;
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
-import javax.portlet.ReadOnlyException;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -32,10 +29,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
+import com.managementsystem.energy.domain.Circuitinfo;
 import com.managementsystem.energy.domain.CircuitinfoTree;
 import com.managementsystem.energy.portlet.energystatistic.model.PreferenceInfo;
 import com.managementsystem.energy.portlet.energystatistic.service.EnergyStatisticService;
@@ -111,10 +108,52 @@ public class MeasureReportViewController extends BaseController {
 	public JsonResult getCircuitTreeByBuildId(ResourceRequest request) {
 		JsonResult result = new JsonResult();
 		String text = request.getParameter("text"); // 区分是查询电表还是水表
-		System.out.println("text----@" + text);
 		List<CircuitinfoTree> trees = circuitinfoService.getCircuitTreeByBuildId("", text);
 		result.setData(trees);
 		return result;
+	}
+	
+	/**
+	 * 获取有数据的支路信息时间列表
+	 * 
+	 * */
+	@ResourceMapping(value = "getCircuitTimeList")
+	public Map<String, Object> getCircuitTimeList(ResourceRequest request) {
+		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		
+		List<Circuitinfo> list = new ArrayList<Circuitinfo>();
+		try {
+			String year = request.getParameter("year"); 
+			String text = request.getParameter("text"); // 区分水、电、气
+			
+			// 求对应的json数据
+			list = circuitinfoService.getCircuitTimeList(year, text);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		resultMap.put("result", list);
+		return resultMap;
+	}
+	
+	/**
+	 * 获取有数据的支路信息时间列表
+	 * 
+	 * */
+	@ResourceMapping(value = "getCircuitDataList")
+	public Map<String, Object> getCircuitDataList(ResourceRequest request) {
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		try {
+			String time = request.getParameter("time"); // 获取传递过来的时间
+			String text = request.getParameter("text"); // 区分水、电、气
+			String treeIds = request.getParameter("treeIds"); // 选择的左侧数结构的id
+			
+			// 求对应的json数据
+			resultMap = circuitinfoService.getCircuitDataList(time, text, treeIds);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultMap;
 	}
 
 	/**
