@@ -10,6 +10,9 @@
 	Description: 第二版能源产品-报表管理-计量报表
  -->
 
+<iframe name="<portlet:namespace />tmpFrame"
+	id="<portlet:namespace />tmpFrame" width="1" height="1"
+	style="visibility: hidden; position: absolute; display: none"></iframe>
 <div class="div-table ">
 	<div class="measure_content">
 		<div id="main" class="measure_main">
@@ -30,13 +33,12 @@
 				<div class="tab report_page_tab jlbb">
 					<div class="tab_menu">
 						<ul id="measure_ul">
-							<li model="electricity" class="cur_tab">
+							<li model="gas" isNotLoad="true" class="cur_tab">
 								<div>
 									<img
 										src="${pageContext.request.contextPath}/secondstyle/images/dot.png" />
-									<p>电表</p>
+									<p>气表</p>
 								</div>
-
 							</li>
 							<li model="water" isNotLoad="false">
 								<div>
@@ -45,16 +47,99 @@
 									<p>水表</p>
 								</div>
 							</li>
-							<li model="gas" isNotLoad="false">
+							<li model="electricity">
 								<div>
 									<img
 										src="${pageContext.request.contextPath}/secondstyle/images/dot.png" />
-									<p>气表</p>
+									<p>电表</p>
 								</div>
+
 							</li>
 						</ul>
 					</div>
+
+					<!-- 气表 -->
 					<div class="tab_content current">
+						<div class="detail">
+							<div>
+								<h1>气表数据</h1>
+							</div>
+							<div style="overflow: auto; height: 638px;">
+								<ul id="<portlet:namespace />gas_tree_data" animate="true" class="easyui-tree"></ul>
+							</div>
+						</div>
+						<div class="charts">
+							<div class="chart">
+								<div class="gas_div_height look_other">
+									<div class="filter_widget" id="gas_query_time">
+										<div class="filter_label has_border_radius_left">查询时间</div>
+										<select id="gas_select" style="width: 300px;" multiple="true">
+										</select>
+									</div>
+									<div class="tool_groupt">
+										<div class="has_border_radius_left search_btn" title="查询"  onclick="queryData('gas')"></div>
+										<div class="has_border_radius_right downLoad_btn" title="导出到excel" onclick="outputDataForWaterAndGas('gas')"></div>
+									</div>
+									<!-- <div class="sub_content chart_content"></div> -->
+									<div class="sub_content table_content report_table_div" style="display: block">
+										<div id="gas_table">
+											<!-- 此处应填充气表的数据数据 -->
+										</div>
+										<div class="report_magnify zoom_mask">
+											<div class="magnify showMagnifyData" tip="gas" title="放大查看"></div>
+										</div>
+									</div>
+									<!-- 分页 -->
+									<div class="page report_page page_buttom">
+										<div class="control-btn page-prev" onclick="commonPaging('gas', 'last', 'gas_table')">&lt;上一页</div>
+										<div class="control-btn page-prev" onclick="commonPaging('gas', 'next', 'gas_table')">下一页&gt;</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab_content ">
+						<div class="detail">
+							<div>
+								<h1>水表数据</h1>
+							</div>
+							<div style="overflow: auto; height: 638px;">
+								<ul id="<portlet:namespace />water_tree_data" animate="true" class="easyui-tree"></ul>
+							</div>
+						</div>
+						<div class="charts">
+							<div class="chart">
+								<div class="look_other">
+									<div class="filter_widget" id="water_query_time">
+										<div class="filter_label has_border_radius_left">查询时间</div>
+										<select id="water_select" style="width: 300px;" multiple="true">
+										</select>
+									</div>
+									<div class="tool_groupt">
+										<div class="has_border_radius_left search_btn" title="查询" onclick="queryData('water')"></div>
+										<div class="has_border_radius_right downLoad_btn" title="导出到excel" onclick="outputDataForWaterAndGas('water')"></div>
+									</div>
+								</div>
+								<!-- <div class="sub_content chart_content"></div> -->
+								<div class="sub_content table_content report_table_div" style="display: block">
+									<div id="water_table">
+										<!-- 此处应填充水表的数据数据 -->
+									</div>
+									<div class="report_magnify zoom_mask">
+										<div class="magnify showMagnifyData" tip="water" title="放大查看"></div>
+									</div>
+								</div>
+								<!-- 分页 -->
+								<div class="page report_page page_buttom">
+									<div class="control-btn page-prev" onclick="commonPaging('water', 'last', 'water_table')">&lt;上一页</div>
+									<div class="control-btn page-prev" onclick="commonPaging('water', 'next', 'water_table')">下一页&gt;</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="tab_content">
 						<div class="detail">
 							<div>
 								<h1>电表数据</h1>
@@ -94,152 +179,28 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="tab_content">
-						<div class="detail">
-							<div>
-								<h1>水表数据</h1>
-							</div>
-							<div style="overflow: auto; height: 638px;">
-								<ul id="<portlet:namespace />water_tree_data" animate="true" class="easyui-tree"></ul>
-							</div>
-						</div>
-						<div class="charts">
-							<div class="chart">
-								<div class="look_other">
-									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">查询时间</div>
-										<select id="water_select" style="width: 300px;" multiple="true">
-										</select>
-									</div>
-									<div class="tool_groupt">
-										<div class="has_border_radius_left search_btn" title="查询" onclick="queryData('water')"></div>
-										<div class="has_border_radius_right downLoad_btn" title="导出到excel"></div>
-									</div>
-								</div>
-								<!-- <div class="sub_content chart_content"></div> -->
-								<div class="sub_content table_content report_table_div" style="display: block">
-									<div id="water_table">
-										<!-- 此处应填充水表的数据数据 -->
-									</div>
-									<div class="report_magnify zoom_mask">
-										<div class="magnify showMagnifyData" tip="water" title="放大查看"></div>
-									</div>
-								</div>
-								<!-- 分页 -->
-								<div class="page report_page page_buttom">
-									<div class="control-btn page-prev" onclick="commonPaging('water', 'last', 'water_table')">&lt;上一页</div>
-									<div class="control-btn page-prev" onclick="commonPaging('water', 'next', 'water_table')">下一页&gt;</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- 气表 -->
-					<div class="tab_content">
-						<div class="detail">
-							<div>
-								<h1>气表数据</h1>
-							</div>
-							<div style="overflow: auto; height: 638px;">
-								<ul id="<portlet:namespace />gas_tree_data" animate="true" class="easyui-tree"></ul>
-							</div>
-						</div>
-						<div class="charts">
-							<div class="chart">
-								<div class="gas_div_height look_other">
-									<div class="filter_widget">
-										<div class="filter_label has_border_radius_left">查询时间</div>
-										<select id="gas_select" style="width: 300px;" multiple="true">
-										</select>
-									</div>
-									<div class="tool_groupt">
-										<div class="has_border_radius_left search_btn" title="查询"  onclick="queryData('gas')"></div>
-										<div class="has_border_radius_right downLoad_btn" title="导出到excel"></div>
-									</div>
-									<!-- <div class="sub_content chart_content"></div> -->
-									<div class="sub_content table_content report_table_div" style="display: block">
-										<div id="gas_table">
-											<!-- 此处应填充气表的数据数据 -->
-										</div>
-										<div class="report_magnify zoom_mask">
-											<div class="magnify showMagnifyData" tip="gas" title="放大查看"></div>
-										</div>
-									</div>
-									<!-- 分页 -->
-									<div class="page report_page page_buttom">
-										<div class="control-btn page-prev" onclick="commonPaging('gas', 'last', 'gas_table')">&lt;上一页</div>
-										<div class="control-btn page-prev" onclick="commonPaging('gas', 'next', 'gas_table')">下一页&gt;</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
 			</div>
 		</div>
 
 		<div id="measure_mask" class="report_mask">
 			<div class="dialog-popover dialog-zoomin-table">
 				<div class="dialog-header">
-					<h3></h3>
-					<div class="dialog-cancel_btn"></div>
+					<h3 id="magnifyH3"></h3>
+					<div class="dialog-cancel_btn closeMagnify"></div>
 				</div>
 				<div class="dialog-body">
 					<div class="dialog-popover-btn-group">
-						<div class="filter_widget tool_1">
-							<div class="filter_label has_border_radius_left">选择建筑</div>
-							<select class="">
-								<option>A1</option>
-								<option>P1</option>
-								<option>P2</option>
-								<option>T1</option>
-								<option>T2</option>
-								<option>T3</option>
-								<option>T4</option>
-								<option>T5</option>
-							</select>
+						
+						<div id="magnifyQuery">
+							<div class="report_select filter_label has_border_radius_left">查询时间</div>
+							<select id="magnify_select" style="width: 300px;" multiple="true"></select>
+							<div class="tool_groupt">
+								<div class="has_border_radius_left search_btn" title="查询" onclick="queryData('magnify')"></div>
+								<div class="has_border_radius_right downLoad_btn" title="导出到excel" onclick="outputDataForWaterAndGas('magnify')"></div>
+							</div>
 						</div>
-
-						<div class="filter_widget tool_2">
-							<div class="filter_label has_border_radius_left">选择冷机</div>
-							<select class="">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-						<div class="filter_widget tool_3">
-							<div class="filter_label has_border_radius_left">选择类型</div>
-							<select class="">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-						<div class="filter_widget tool_4">
-							<div class="filter_label has_border_radius_left">选择日期</div>
-							<input type="text" /> <span class="to">至</span> <input
-								type="text" />
-						</div>
-						<div class="filter_widget tool_5">
-							<div class="filter_label has_border_radius_left">选择设备</div>
-							<select class="">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-						<div class="filter_widget tool_6">
-							<div class="filter_label has_border_radius_left">选择年份</div>
-							<input type="text" />
-						</div>
-						<div class="tool_groupt">
-							<div class="has_border_radius_left search_btn" title="查询"></div>
-							<div class="has_border_radius_right downLoad_btn" title="导出到excel"></div>
-						</div>
+					
 					</div>
 					
 					<div id="<portlet:namespace />magnify_report" class="repor_table"></div>
@@ -401,20 +362,26 @@ function <portlet:namespace />getChart(tfrom,tto,name,id,ispd,showLegend,isNotCo
 }
 
 // 获取下拉列表的值
-function getSelectList(text) {
+function getSelectList(text, magnify) {
+	var source = text;
 	$.post('<portlet:resourceURL id="getCircuitTimeList"></portlet:resourceURL>',
 	{
 		text : text
 	}, function(data) {
-		console.log(data);
 		var result = data.result;
+		text = (magnify != undefined) ? magnify : text;
 		$("#" + text + "_select").empty(); // 清空下拉列表
 		for(var r = 0; r < result.length; r++) {
-			$("#" + text + "_select").append("<option " + ((r == 0) ? " selected='selected' " : "") + " year='" + result[r][0] + "' month='" + result[r][1] + "' value='" + result[r][0] + "-" + result[r][1] + "'>" + result[r][0] + "-" + result[r][1] + "</option>");
+			$("#" + text + "_select").append("<option " + ((r == 0) ? " selected='selected' " : "") + "' value='" + result[r] + "'>" + result[r] + "</option>");
 		}
 		$("#" + text + "_select").select2({
-			width : '300px'
+			width : '300px',
+			height : '29px'
 		});
+		
+		if(magnify != undefined) { // 如果点击了放大，则设置放大页面中select的值
+			$("#magnify_select").select2("val", $("#" + source + "_select").select2("val"));
+		}
 	}, 'json');
 }
 
@@ -431,52 +398,6 @@ if("${measurereport.defaulttime}" == ""){
 <portlet:namespace />exp_start_date = <portlet:namespace />start_date;
 <portlet:namespace />centerTitle = <portlet:namespace />start_date; //居中标题
 //<portlet:namespace />getChart(<portlet:namespace />start_date,"",<portlet:namespace />choose_name,<portlet:namespace />choose_id,<portlet:namespace />ispd,<portlet:namespace />legendList,<portlet:namespace />showLegend,"no");
-
-// 导出数据到excel
-function <portlet:namespace />outputToExcel(){
-	var isNotCompare = "no"; // 默认不是对比图表
-	var sdate = <portlet:namespace />exp_start_date;
-	var sdateList = sdate.split(",");
-	if(sdateList.length>1){
-		isNotCompare = "yes"; // yes表示是对比图表
-	}
-	var expColumnName = "${measurereport.expColumnName}";
-	// 导出excel的Url
-	var expUrl = "<portlet:resourceURL id='expmeasurereportDataToExcel'></portlet:resourceURL>"
-			+ "&excelName="
-			+ "${measurereport.title}"
-			+ "&from="
-			+ sdate
-			+ "&name="
-			+ <portlet:namespace />choose_name
-			+ "&id="
-			+ <portlet:namespace />choose_id
-			+ "&ispd="
-			+ <portlet:namespace />ispd
-			+ "&type="
-			+ <portlet:namespace />choose_type
-			+ "&isNotCompare="
-			+ isNotCompare
-			+ "&decimals="
-			+ '${measurereport.decimals}'
-			+ "&expColumnName="
-			+ (expColumnName==""?"${measurereport.title}":expColumnName);
-	var hSrc = "http://" + document.location.host
-			+ "/energymanagesystem/uploadfiles/" + "${measurereport.title}"
-			+ ".xls";
-	$.ajax({
-		type : "POST",
-		url : expUrl,
-		async : false,
-		contentType : 'application/x-msdownload;charset=UTF-8',
-		success : function(result) {
-			$("#<portlet:namespace />tmpFrame").attr('src', hSrc);
-		},
-		error : function(result) {
-			alert('error');
-		}
-	});
-}
 
 // 生成图表 
 function renderCharts() {
@@ -640,27 +561,37 @@ function returnReportHtml(page) {
 }
 
 // 返回水表、气表对应的内容，带假分页
-function getTableData(result, text, page) {
+function getTableData(result, text, page, source) {
 	var html = '<table>'; // 最后赋值的html变量
-	var firstRow = '<thead><tr><th style="text-align: center;winth: auto;">序号</th><th style="text-align: center;">对应水表</th>'; // 第一行的数据  style="width: 70px;"
+	var firstRow = '<thead><tr><th style="text-align: center;winth: auto;">序号</th><th style="text-align: center;">对应表名</th>'; // 第一行的数据  style="width: 70px;"
 	var content = ''; // 中间的内容数据
 	
 	var currentSize = parseInt(page) * waterPageSize;
 	var start_i = (page != "") ? ((page != 1) ? (currentSize - waterPageSize) : 0) : 0;
 	var end_i = (page != "") ? (currentSize > result[0].length ? result[0].length : currentSize) : result[0].length;
 	
+	var cnode = $('#<portlet:namespace />' + text + '_tree_data').tree('getChecked');
+	var treeIds = [], treeCodes = [];
+	
+	if(cnode.length == 0)
+		return false;
+		
+	for (var i = 0; i < cnode.length; i++) {
+		treeIds.push(cnode[i].id);
+		treeCodes.push(cnode[i].text);
+	}
+	
 	for(var i = start_i; i < end_i; i++){
 		content += "<tr align='center'>" + '<td>' + (i + 1) + '</td>' 
-										 + '<td>' + result[0][i].circuitCode + '</td>';
+										 + '<td>' + treeCodes[i] + '</td>';
 										 
 		for(var col = 0; col < result.length; col++) {
-			console.log(result);
-			content += '<td>' + result[col][i].z_value + '</td>';
+			content += '<td>' + result[col][i].zhi + '</td>';
 		}
 	 	content += '</tr>';
 	}
 	
-	var column = $("#" + text + "_select").select2("val");
+	var column = $("#" + (source == 'magnify' ? 'magnify' : text) + "_select").select2("val");
 	for(var f = 0; f < column.length; f++) { // 处理报表列头信息
 		firstRow += '<th style="text-align: center;">' + column[f] + '</th>';
 	}
@@ -698,6 +629,10 @@ function searchData() {
 
 // 查询水表/气表数据 
 function queryData(text) {
+	var source = text;
+	if(source == 'magnify') { // 说明是在放大页面中点击的查询
+		text = $("#magnifyH3").attr("title");
+	}
 	var cnode = $('#<portlet:namespace />' + text + '_tree_data').tree('getChecked');
 	var treeIds = [], treeCodes = [];
 	
@@ -713,9 +648,8 @@ function queryData(text) {
 	{
 		treeIds : treeIds.join(),
 		text : text,
-		time : $("#" + text + "_select").select2("val").join()
+		time : $("#" + (source == 'magnify' ? 'magnify' : text) + "_select").select2("val").join()
 	}, function(data) {
-		console.log(data);
 		var result = data.result;
 		
 		if(text == 'water') {
@@ -725,7 +659,44 @@ function queryData(text) {
 			gasList = result;
 			gasPage = 1;
 		}
-		$("#" + text + "_table").html('').append(getTableData(result, text, eval(text + "Page")));
+		if(source == 'magnify') { // 说明是在放大页面中点击的查询，更新放大页面的table
+			$("#<portlet:namespace />magnify_report").html('').append(getTableData(eval(text + "List"), text, eval(text + "Page"), source));
+		} else {
+			$("#" + text + "_table").html('').append(getTableData(result, text, eval(text + "Page")));
+		}
+		
+	}, 'json');
+}
+
+// 导出水表、气表数据到excel
+function outputDataForWaterAndGas(text) {
+	var source = text;
+	if(source == 'magnify') { // 说明是在放大页面中点击的查询
+		text = $("#magnifyH3").attr("title");
+	}
+	
+	var cnode = $('#<portlet:namespace />' + text + '_tree_data').tree('getChecked');
+	var treeIds = [], treeCodes = [];
+	
+	if(cnode.length == 0)
+		return false;
+		
+	for (var i = 0; i < cnode.length; i++) {
+		treeIds.push(cnode[i].id);
+		treeCodes.push(cnode[i].text);
+	}
+	
+	// 导出excel的Url
+	var hSrc = "http://" + document.location.host + "/energymanagesystem/uploadfiles/" + text + ".xls";
+	$.post('<portlet:resourceURL id="outputDataForWaterAndGas"></portlet:resourceURL>',
+	{
+		excelName : text,
+		treeIds : treeIds.join(),
+		treeCodes : treeCodes.join(),
+		text : text,
+		time : $("#" + (source == 'magnify' ? 'magnify' : text) + "_select").select2("val").join()
+	}, function(data) {
+		$("#<portlet:namespace />tmpFrame").attr('src', hSrc);
 	}, 'json');
 }
 
@@ -758,15 +729,33 @@ $(function() {
 		}
 	});
 	
-	window.setTimeout('getSelectList("water")', 2000);// 延时2s获取水表的下拉列表数据
-	window.setTimeout('getSelectList("gas")', 4000);// 延时4s获取气表的下拉列表数据
+	//window.setTimeout('getSelectList("water")', 2000);// 延时2s获取水表的下拉列表数据
+	window.setTimeout('getSelectList("gas")', 2000);// 延时4s获取气表的下拉列表数据
 
 	// 放大事件
 	$(".showMagnifyData").click(function() {
-		var text = $(this).attr("tip"); // 区分是水表还是气表zzx
+		var text = $(this).attr("tip"); // 区分是水表还是气表
+		$("#magnifyH3").attr("title", text);
 		$("#<portlet:namespace />magnify_report").html('').append(getTableData(eval(text + "List"), text, eval(text + "Page")));
+		getSelectList(text, 'magnify');
 	});
 	
+	// 关闭放大窗口
+	$(".closeMagnify").click(function() {
+		var text = $("#magnifyH3").attr("title"); // 区分是水表还是气表 
+		$("#" + text + "_select").select2("val", $("#magnify_select").select2("val"));
+		queryData(text);
+	});
+	
+	// 先显示气表
+	$('#<portlet:namespace />gas_tree_data').tree(
+			{
+				checkbox : true,
+				url : '<portlet:resourceURL id="getCircuitTreeByBuildId"></portlet:resourceURL>&text=gas',
+				onCheck : function(node, checked) {
+				}
+			});
+	getSelectList("gas");
 });
 
 </script>

@@ -1,9 +1,7 @@
 package com.managementsystem.energy.portlet.energystatistic.service;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,11 +19,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
-
 import javax.portlet.PortletContext;
 import javax.portlet.ResourceRequest;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -37,10 +32,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.type.TypeFactory;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,38 +46,6 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 
 	private final Log logger = LogFactory
 			.getLog(EnergyStatisticServiceImpl.class);
-
-	private String isPrintUrl = readProperties("isPrintUrl"); // 是否打印url的配置信息
-
-	// 读取properties文件
-	private String readProperties(String nodeName) {
-		String val = "";
-		try {
-			Properties p = new Properties(); 
-			p.load(new BufferedInputStream(new FileInputStream(this.getClass().getResource("/").getPath() + "config.properties")));
-			val = p.getProperty(nodeName);
-		} catch (Exception e) {
-			logger.error("readProperties出错了");
-		}
-		logger.info("isPrintUrl----" + val);
-		return val;
-	}
-	
-	// 读取xml中指定的node
-	private String readConfigXml(String xmlName) {
-		String val = "";
-		try {
-			SAXReader reader = new SAXReader();
-			String dir = this.getClass().getResource("/").getPath(); // 获取当前项目所在tomcat中的位置
-			dir = dir.substring(1, dir.lastIndexOf("WEB-INF"))
-					+ "config/config.xml";
-			Document document = reader.read(new File(dir));
-			val = document.getRootElement().elementText(xmlName);// 得到根节点下的xmlName节点的值
-		} catch (DocumentException e) {
-			logger.error("readConfigXml出错了");
-		}
-		return val;
-	}
 
 	@Autowired
 	private RemoteServiceInvoker remoteServiceInvoker;
@@ -132,8 +91,7 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 		
 		String appendUrl = remoteServiceInvoker.getServiceAddress() + param + "";
 
-		if (isPrintUrl != null && "yes".equalsIgnoreCase(isPrintUrl))
-			logger.info("url--" + appendUrl);
+		logger.info("url--" + appendUrl);
 
 		URLConnection URLconnection = null;
 		URL url = null;

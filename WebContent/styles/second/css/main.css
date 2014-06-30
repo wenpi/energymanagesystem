@@ -2155,3 +2155,27 @@ border-bottom-left-radius: 7px;}
 	height: 105px;
 	margin: 140px 0 0 280px;
 }
+
+.report_select {
+	float: left !important;
+	height: 29px;
+	line-height: 29px;
+	width: 70px;
+	text-indent: 5px;
+	color: #fff;
+	background-color: #adb2ce;
+	margin: 11px 0px 0px 12px;
+}
+
+#magnifyQuery > div {
+	height: 29px;
+	line-height: 29px;
+}
+
+#magnifyQuery > .select2-container  {
+	margin-top: -1px;
+}
+
+#magnifyQuery > .select2-container > ul {
+	height: 27px !important;
+}

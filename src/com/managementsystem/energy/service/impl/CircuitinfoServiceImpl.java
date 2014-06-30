@@ -1,6 +1,5 @@
 package com.managementsystem.energy.service.impl;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.managementsystem.energy.dao.CircuitinfoDao;
-import com.managementsystem.energy.dao.MeteruseinfoDao;
 import com.managementsystem.energy.domain.Circuitinfo;
 import com.managementsystem.energy.domain.CircuitinfoTree;
 import com.managementsystem.energy.domain.Meteruseinfo;
@@ -35,31 +33,51 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 	private MeteruseinfoService meteruseinfoService;
 	
 	@Transactional
-	public void addCircuitinfoForEnergy(Circuitinfo circuitinfo) {
+	public Circuitinfo addCircuitinfoForEnergy(Circuitinfo circuitinfo) {
 		if(circuitinfo.getCircuitinfo()==null || !StringUtils.hasLength(circuitinfo.getCircuitinfo().getCircuitId())) {
 			circuitinfo.setCircuitinfo(null);
 		}
-		String mainKeyValue = "";
-		if(StringUtils.hasLength(circuitinfo.getBuildinfo().getBuildId())) {
-			String buildId = circuitinfo.getBuildinfo().getBuildId();
-			mainKeyValue = buildId;
-			Circuitinfo maxCircuitinfo = circuitinfoDao.getMaxCircuitinfoByBuildId(buildId);
-			if(maxCircuitinfo==null) {
-				mainKeyValue+=com.managementsystem.util.StringUtils.fillString(4,1);
-			} else {
-				long maxNo = com.managementsystem.util.StringUtils.parseSubstring(maxCircuitinfo.getCircuitId(),4);
-				mainKeyValue+=com.managementsystem.util.StringUtils.fillString(4,maxNo+1);	
+		
+		Circuitinfo newCircuitinfo = circuitinfoDao.getMaxCircuitinfoByCode(circuitinfo.getCircuitCode(), circuitinfo.getSource());
+		if(newCircuitinfo==null) {
+			
+			String mainKeyValue = "";
+			if(StringUtils.hasLength(circuitinfo.getBuildinfo().getBuildId())) {
+				String buildId = circuitinfo.getBuildinfo().getBuildId();
+				mainKeyValue = buildId;
+				Circuitinfo maxCircuitinfo = circuitinfoDao.getMaxCircuitinfoByBuildId(buildId);
+				if(maxCircuitinfo==null) {
+					mainKeyValue+=com.managementsystem.util.StringUtils.fillString(4,1);
+				} else {
+					long maxNo = com.managementsystem.util.StringUtils.parseSubstring(maxCircuitinfo.getCircuitId(),4);
+					mainKeyValue+=com.managementsystem.util.StringUtils.fillString(4,maxNo+1);	
+				}
 			}
+			circuitinfo.setCircuitId(mainKeyValue);
+			circuitinfoDao.save(circuitinfo);
+			circuitinfoDao.flush();
+			
+			return circuitinfo;
+			
+		} else {
+		
+			circuitinfoDao.updateCircuitinfo(circuitinfo);
+		
+			return newCircuitinfo;
 		}
-		circuitinfo.setCircuitId(mainKeyValue);
-		circuitinfoDao.save(circuitinfo);
-		circuitinfoDao.flush();
+		
 	}
 	
 	@Transactional
 	public void addReportinfo(Reportinfo reportinfo) {
-		circuitinfoDao.save(reportinfo);
-		circuitinfoDao.flush();
+		// 先判断是否存在气表数据
+		Reportinfo maxCircuitinfo = circuitinfoDao.getMaxReportinfo(reportinfo);
+		if(maxCircuitinfo==null) {
+			circuitinfoDao.save(reportinfo);
+			circuitinfoDao.flush();
+		} else {
+			circuitinfoDao.updateReportinfo(reportinfo);
+		}
 	}
 
 	@Transactional
@@ -89,7 +107,7 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 		circuitinfoDao.save(circuitinfo);
 		circuitinfoDao.flush();
 	}
-
+	
 	@Transactional
 	public void updateCircuitinfo(Circuitinfo circuitinfo) {
 		if(!StringUtils.hasLength(circuitinfo.getCircuitinfo().getCircuitId())) {
@@ -296,6 +314,30 @@ public class CircuitinfoServiceImpl implements CircuitinfoService {
 	public Map<String, Object> getCircuitDataList(String time, String text, String treeIds)
 			throws Exception {
 		return circuitinfoDao.getCircuitDataList(time, text, treeIds);
+	}
+
+	@Override
+	public Circuitinfo addCircuitinfoForElectricity(Circuitinfo circuitinfo) {
+		if(circuitinfo.getCircuitinfo()==null || !StringUtils.hasLength(circuitinfo.getCircuitinfo().getCircuitId())) {
+			circuitinfo.setCircuitinfo(null);
+		}
+		String mainKeyValue = "";
+		if(StringUtils.hasLength(circuitinfo.getBuildinfo().getBuildId())) {
+			String buildId = circuitinfo.getBuildinfo().getBuildId();
+			mainKeyValue = buildId;
+			Circuitinfo maxCircuitinfo = circuitinfoDao.getMaxCircuitinfoByBuildId(buildId);
+			if(maxCircuitinfo==null) {
+				mainKeyValue+=com.managementsystem.util.StringUtils.fillString(4,1);
+			} else {
+				long maxNo = com.managementsystem.util.StringUtils.parseSubstring(maxCircuitinfo.getCircuitId(),4);
+				mainKeyValue+=com.managementsystem.util.StringUtils.fillString(4,maxNo+1);	
+			}
+		}
+		circuitinfo.setCircuitId(mainKeyValue);
+		circuitinfoDao.save(circuitinfo);
+		circuitinfoDao.flush();
+		
+		return circuitinfo;
 	}
 	
 }

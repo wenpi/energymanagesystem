@@ -23,6 +23,7 @@ import org.springframework.util.StringUtils;
 
 import com.managementsystem.energy.dao.CircuitinfoDao;
 import com.managementsystem.energy.domain.Circuitinfo;
+import com.managementsystem.energy.domain.Reportinfo;
 import com.managementsystem.util.dao.AbstractDaoSupport;
 import com.managementsystem.util.dao.Page;
 
@@ -37,7 +38,11 @@ public class CircuitinfoDaoImpl extends AbstractDaoSupport implements
 	private final String GET_CIRCUITINFOS_BY_BUILDID = "from Circuitinfo where buildinfo.buildId=? order by circuitId";
 	private final String GET_PARENT_CIRCUITINFOS = "from Circuitinfo where (circuitinfo.circuitId is null or circuitinfo.circuitId='')";
 	private final String GET_MAX_CIRCUITINFO_BY_BUILDID = "from Circuitinfo where buildinfo.buildId=? order by circuitId desc";
-	private final String DELETE_CIRCUITINFO_BY_TEXT = "delete Circuitinfo where source=?";
+	private final String GET_MAX_CIRCUITINFO_BY_CODE = "from Circuitinfo where circuitCode=? and source=? order by circuitId desc";
+	private final String GET_MAX_REPORTINFO_BY_CODE = "from Reportinfo where reportid=? and source=? and time=? order by time desc";
+	private final String DELETE_CIRCUITINFO_BY_SOURCE = "delete Circuitinfo where source=?";
+	private final String UPDATE_REPORTINFO_BY_CONDITION = "update Reportinfo set zhi=? where source=? and reportid=? and time=?";
+	private final String UPDATE_CIRCUITINFO_BY_CONDITION = "update Circuitinfo set circuitName=? where source=? and circuitCode=?";
 	private final String GET_CIRCUITINFO_TIME_LIST = "select distinct time from Reportinfo where source=? order by time desc";
 
 	@Autowired
@@ -96,25 +101,21 @@ public class CircuitinfoDaoImpl extends AbstractDaoSupport implements
 			
 			for(int i = 0; i < tArray.length; i++ ) {
 				
-				String year = tArray[i].substring(0, 4);
+				String GET_CIRCUITINFO_DATA_LIST = "from Reportinfo where source=? and time=? and reportid in (select circuitCode from Circuitinfo where circuitId in (:ids)) order by reportid asc";
 				
-				String month = tArray[i].substring(5); 
-				
-				String GET_CIRCUITINFO_DATA_LIST = "from Circuitinfo where source=? and year=? and month=? and circuitCode in (select circuitCode from Circuitinfo where circuitId in (:ids)) order by year desc, month desc";
-				
-				Query query = createQuery(GET_CIRCUITINFO_DATA_LIST, text, Integer.parseInt(year), Integer.parseInt(month)); // , Integer.parseInt(year)
+				Query query = createQuery(GET_CIRCUITINFO_DATA_LIST, text, tArray[i]);
 				
 				if (treeIds != null && StringUtils.hasLength(treeIds)) {
 					String[] ids = treeIds.split(","); // 分割选择的树节点
 					query.setParameterList("ids", ids);
 				}
 				
-				List<Circuitinfo> list = new ArrayList<Circuitinfo>();
+				List<Reportinfo> list = new ArrayList<Reportinfo>();
 				
-				Set<Circuitinfo> circuitinfos = new LinkedHashSet<Circuitinfo>(query.list());
-				for (Iterator<Circuitinfo> it = circuitinfos.iterator();it.hasNext();) {
-					Circuitinfo cinfo = it.next();
-					list.add(cinfo);
+				Set<Reportinfo> reportinfos = new LinkedHashSet<Reportinfo>(query.list());
+				for (Iterator<Reportinfo> it = reportinfos.iterator();it.hasNext();) {
+					Reportinfo rinfo = it.next();
+					list.add(rinfo);
 				}
 				
 				totalList.add(list);
@@ -139,7 +140,20 @@ public class CircuitinfoDaoImpl extends AbstractDaoSupport implements
 	@Override
 	public void delCircuitinfoForWaterAndGas(String text,
 			int year, int month) throws DataAccessException {
-		Query query = createQuery(DELETE_CIRCUITINFO_BY_TEXT, text, year, month);
+		Query query = createQuery(DELETE_CIRCUITINFO_BY_SOURCE, text, year, month);
+		query.executeUpdate();
+	}
+	
+	@Override
+	public void updateReportinfo(Reportinfo reportinfo) throws DataAccessException {
+		Query query = createQuery(UPDATE_REPORTINFO_BY_CONDITION, reportinfo.getZhi(), reportinfo.getSource(), 
+				reportinfo.getReportid(), reportinfo.getTime());
+		query.executeUpdate();
+	}
+	
+	@Override
+	public void updateCircuitinfo(Circuitinfo circuitinfo) throws DataAccessException {
+		Query query = createQuery(UPDATE_CIRCUITINFO_BY_CONDITION, circuitinfo.getCircuitName(), circuitinfo.getSource(), circuitinfo.getCircuitCode());
 		query.executeUpdate();
 	}
 
@@ -157,6 +171,28 @@ public class CircuitinfoDaoImpl extends AbstractDaoSupport implements
 				buildId).list();
 		if (list.size() > 0)
 			return (Circuitinfo) list.get(0);
+		else
+			return null;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Circuitinfo getMaxCircuitinfoByCode(String code, String source)
+			throws DataAccessException {
+		List list = createQuerySingleResult(GET_MAX_CIRCUITINFO_BY_CODE, code, source).list();
+		if (list.size() > 0)
+			return (Circuitinfo) list.get(0);
+		else
+			return null;
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Reportinfo getMaxReportinfo(Reportinfo reportinfo)
+			throws DataAccessException {
+		List list = createQuerySingleResult(GET_MAX_REPORTINFO_BY_CODE, reportinfo.getReportid(), reportinfo.getSource(), reportinfo.getTime()).list();
+		if (list.size() > 0)
+			return (Reportinfo) list.get(0);
 		else
 			return null;
 	}

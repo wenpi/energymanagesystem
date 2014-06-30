@@ -34,6 +34,7 @@ import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 import com.managementsystem.energy.domain.Circuitinfo;
 import com.managementsystem.energy.domain.CircuitinfoTree;
+import com.managementsystem.energy.domain.Reportinfo;
 import com.managementsystem.energy.portlet.energystatistic.model.PreferenceInfo;
 import com.managementsystem.energy.portlet.energystatistic.service.EnergyStatisticService;
 import com.managementsystem.energy.service.BuildregioninfoService;
@@ -193,40 +194,27 @@ public class MeasureReportViewController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@ResourceMapping(value = "expDataToExcel")
-	public Resultmsg expDataToExcel(PortletPreferences prefs,
+	@ResourceMapping(value = "outputDataForWaterAndGas")
+	public Resultmsg outputDataForWaterAndGas(PortletPreferences prefs,
 			ResourceRequest request, ResourceResponse response) {
 		Resultmsg msg = new Resultmsg();
 
-		// 获取前台传递过来的参数，分别是类型（day/week/month/year）、开始时间、结束时间
-		String type = request.getParameter("type");
-		String from_date = request.getParameter("from");
-		String to_date = request.getParameter("to");
-		String decimals = request.getParameter("decimals"); // 保留小数位数
-
-		PreferenceInfo preferenceinfo = null;
-
-		if (prefs.getMap().size() == 0) {
-			preferenceinfo = new PreferenceInfo();
-		} else {
-			preferenceinfo = preferenceInfoService.getPreferenceInfo(prefs);
-		}
-
-		// 结果map
-		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		String time = request.getParameter("time"); // 获取传递过来的时间
+		String text = request.getParameter("text"); // 区分水、电、气
+		String treeIds = request.getParameter("treeIds"); // 选择的左侧数结构的id
+		String treeCodes = request.getParameter("treeCodes"); // 选择的左侧数结构的code
+		String excelName = request.getParameter("excelName"); // excel的名字
+		
 		try {
-			// 求对应的json数据
-			resultMap = energyStatisticService.printReportInfo(
-					preferenceinfo.getChoose_name(),
-					preferenceinfo.getChoose_id(), preferenceinfo.getIspd(),
-					type, from_date, to_date, decimals,
-					preferenceinfo.getMultiplier());
+			resultMap = circuitinfoService.getCircuitDataList(time, text, treeIds);
 		} catch (Exception e) {
-			logger.error(e);
+			e.printStackTrace();
 		}
 
 		try {
-			expDataToExcel(from_date, type, preferenceinfo, resultMap, request);
+			expWaterAndGasDataToExcel(treeCodes, time, excelName, resultMap, request);
 			msg.setSuccess("true");
 		} catch (Exception e) {
 			logger.error(e);
@@ -236,8 +224,7 @@ public class MeasureReportViewController extends BaseController {
 	}
 
 	// 输出报表数据到excel文件
-	public String expDataToExcel(String from_date, String type,
-			PreferenceInfo preferenceinfo, Map<String, Object> map,
+	public String expWaterAndGasDataToExcel(String treeCodes, String time, String excelName, Map<String, Object> map,
 			ResourceRequest request) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String newdate = sdf.format(new Date());
@@ -246,24 +233,6 @@ public class MeasureReportViewController extends BaseController {
 		// 创建一个SHEET
 		Sheet sheet1 = wb.createSheet(newdate);
 
-		// 获取配置项中的共有的列头数据
-		String str = "日期" + ",";
-
-		// 如果类型为day的话，将day特有的列加入到列头数据中
-		if ("day".equals(type)) {
-			str += preferenceinfo.getDayColumn() + ",";
-
-		}
-
-		str += preferenceinfo.getCommonColumn();
-
-		// 将配置项中的列头信息分割成java中的数组，以便循环处理相关数据
-		String str1 = str.replace("[", "").replace("]", "").replace(" ", "")
-				.replace("'", "");
-
-		// logger.info("分割后的数据为---" + str1);
-		String[] title = str1.split(",");
-
 		// 内容样式
 		CellStyle contentstyle = wb.createCellStyle();
 		contentstyle.setAlignment(CellStyle.ALIGN_RIGHT);
@@ -271,28 +240,24 @@ public class MeasureReportViewController extends BaseController {
 		// 创建标题一行
 		Row row = sheet1.createRow((short) 0);
 		// 创建列
-		for (int column = 0; column < title.length; column++) {
-			Cell cell = row.createCell(column);
-			cell.setCellValue(title[column]);
+		Cell cell0 = row.createCell(0);
+		cell0.setCellValue("序号");
+		sheet1.setColumnWidth(0, 6000);
+		Cell cell1 = row.createCell(1);
+		cell1.setCellValue("表名");
+		sheet1.setColumnWidth(1, 6000);
+		
+		String[] times = time.split(","); // 根据选择的时间来创建对应列
+		for (int column = 0; column < times.length; column++) {
+			Cell cell = row.createCell(column + 2);
+			cell.setCellValue(times[column]);
 			sheet1.setColumnWidth(column, 6000);
 		}
 
 		List<Object> resultList = new ArrayList<Object>();
-		List<Object> dataList = (List<Object>) map.get("showDataList");
+		List<Object> dataList = (List<Object>) map.get("result");
 
 		// 创建列
-		if ("day".equals(type)) {
-			List<Object> tempList = new ArrayList<Object>();
-			int hang = ((List<Object>) dataList.get(0)).size();
-			for (int t = 0; t < hang; t++) {
-				tempList.add(from_date);
-			}
-			resultList.add(tempList);
-
-		}
-
-		resultList.add((List<Object>) ((List<Object>) map.get("showCataList"))
-				.get(0));
 		resultList.addAll(dataList);
 
 		List<Object> a = (List<Object>) resultList.get(0);
@@ -311,26 +276,37 @@ public class MeasureReportViewController extends BaseController {
 		for (int j = 0; j < resultList.size(); j++) {
 			List<Object> list = (List<Object>) resultList.get(j);
 			for (int k = 0; k < list.size(); k++) {
-				//
-				String valString = list.get(k) + "";
+				String valString = ((Reportinfo)list.get(k)).getZhi() + "";
 				result[r][c] = valString;
 				r++;
 				r = r % rows;
-
 			}
 			c++;
 		}
 
+		String[] codes = treeCodes.split(",");
 		// 循环从二维数组中取值存放到对应的excel中
 		for (int q = 0; q < result.length; q++) {
 			Row row1 = sheet1.createRow((short) q + 1);
+			
+			// 第一列序号、第二列对应表名
+			Cell c0 = row1.createCell(0);
+			c0.setCellStyle(contentstyle);// 设置单元格样式
+			c0.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
+			Cell c1 = row1.createCell(1);
+			try {
+				c0.setCellValue(q + 1);
+				c1.setCellValue(codes[q]);
+			} catch (Exception e) {
+				c0.setCellValue("");
+				c1.setCellValue("");
+			}
 
 			for (int d = 0; d < result[q].length; d++) {
-				Cell cell = row1.createCell(d);
+				Cell cell = row1.createCell(d + 2);
 				cell.setCellStyle(contentstyle);// 设置单元格样式
 				cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
 				try {
-					cell.setCellType(HSSFCell.CELL_TYPE_NUMERIC);
 					cell.setCellValue(Double.parseDouble(result[q][d]));
 				} catch (Exception e) {
 					cell.setCellValue(result[q][d]);
@@ -343,8 +319,7 @@ public class MeasureReportViewController extends BaseController {
 				.getPortletContext();
 		String realPath = portletContext.getRealPath("");
 		String addfilePath = "\\uploadfiles\\";
-		realPath += addfilePath;
-		realPath += preferenceinfo.getTitle() + ".xls";
+		realPath += addfilePath + excelName + ".xls";
 
 		File file = new File(realPath);
 		if (file.exists())

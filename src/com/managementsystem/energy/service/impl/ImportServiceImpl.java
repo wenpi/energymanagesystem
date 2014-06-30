@@ -15,8 +15,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import javax.script.ScriptEngine;
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -73,10 +71,9 @@ public class ImportServiceImpl implements ImportService {
 				SimpleDateFormat month_sf = new SimpleDateFormat("yyyy");
 				year = (date.getMonth() == 0) ? (Integer.parseInt(sf.format(date)) - 1) : (Integer.parseInt(sf.format(date)));
 				month = (date.getMonth() == 0) ? 12 : (date.getMonth());
-				time = time;
+				time = year + "-" + month;
 			}
 
-			int gas_num = 0;
 			for (int i = 0; i < rowLength; i++) {
 				
 				for (int j = 0; j < result[i].length; j++) {
@@ -86,7 +83,7 @@ public class ImportServiceImpl implements ImportService {
 						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
 							col_a = result[i][j];
 							circuitinfo1 = new Circuitinfo();
-							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+							circuitinfo1 = saveCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 						}
 						
 						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
@@ -104,18 +101,18 @@ public class ImportServiceImpl implements ImportService {
 								
 								if(temp_b != col_b) { // 第二列的数据
 									circuitinfo2 = new Circuitinfo();
-									circuitinfo2 = getCircuitForEnergy(circuitinfo2, col_b, circuitinfo1, type);
+									circuitinfo2 = saveCircuitForEnergy(circuitinfo2, col_b, circuitinfo1, type);
 									temp_b = col_b;
 								}
 								
 								if(temp_c != col_c) { // 第三列数据
 									circuitinfo3 = new Circuitinfo();
-									circuitinfo3 = getCircuitForEnergy(circuitinfo3, col_c, circuitinfo2, type);
+									circuitinfo3 = saveCircuitForEnergy(circuitinfo3, col_c, circuitinfo2, type);
 									temp_c = col_c;
 								}
 								
 								circuitinfo4 = new Circuitinfo();
-								circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
+								circuitinfo4 = saveCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
 							}
 						}
 					
@@ -126,28 +123,28 @@ public class ImportServiceImpl implements ImportService {
 							circuitinfo1 = new Circuitinfo();
 							circuitinfo1.setCircuitCode(result[i][0]); // 对应的编号
 							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+							circuitinfo1 = saveCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 						}
 						
 						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
 							circuitinfo2 = new Circuitinfo();
 							circuitinfo2.setCircuitCode(result[i][0]); // 对应的编号
 							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+							circuitinfo2 = saveCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
 						}
 						
 						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
 							circuitinfo3 = new Circuitinfo();
 							circuitinfo3.setCircuitCode(result[i][0]); // 对应的编号
 							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
+							circuitinfo3 = saveCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
 						}
 						
 						if(j == 3 && !"".equals(result[i][j])) { // 第四列的数据
 							circuitinfo4 = new Circuitinfo();
 							circuitinfo4.setCircuitCode(result[i][0]); // 对应的编号
 							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
+							circuitinfo4 = saveCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
 						}
 						
 					} else if(StringUtils.hasLength(type) && "gas".equals(type)) { // 导入气表
@@ -155,22 +152,24 @@ public class ImportServiceImpl implements ImportService {
 						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据不为空，直接插入数据
 							circuitinfo1 = new Circuitinfo();
 							circuitinfo1.setCircuitCode(result[i][0]); // 对应的编号
-							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo1 = getCircuitForEnergy(circuitinfo1, result[i][j], circuitinfo1, type);
+							double value = Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]));
+							total += value;
+							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(value)));
+							circuitinfo1 = saveCircuitForEnergy(circuitinfo1, result[i][j], circuitinfo1, type);
 						}
 						
 						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
 							circuitinfo2 = new Circuitinfo();
 							circuitinfo2.setCircuitCode(result[i][0]); // 对应的编号
 							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+							circuitinfo2 = saveCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
 						}
 						
 						if(j == 3 && !"".equals(result[i][j])) { // 第四列的数据
 							circuitinfo3 = new Circuitinfo();
 							circuitinfo3.setCircuitCode(result[i][0]); // 对应的编号
 							circuitinfoService.addReportinfo(new Reportinfo(type, result[i][0], time, BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4])))));
-							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
+							circuitinfo3 = saveCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
 						}
 					}
 				}
@@ -202,7 +201,7 @@ public class ImportServiceImpl implements ImportService {
 	 * @param type
 	 * @return
 	 */
-	public Circuitinfo getCircuitForEnergy(Circuitinfo circuitinfo, String code, Circuitinfo parentinfo, String type) {
+	public Circuitinfo saveCircuitForEnergy(Circuitinfo circuitinfo, String code, Circuitinfo parentinfo, String type) {
 		try {
 			Buildinfo buildinfo = new Buildinfo();
 			buildinfo.setBuildId("000001070001");
@@ -212,7 +211,17 @@ public class ImportServiceImpl implements ImportService {
 			circuitinfo.setCircuitState(1);
 			circuitinfo.setCircuitinfo(parentinfo);
 			circuitinfo.setSource(type); // 所属系统
-			circuitinfoService.addCircuitinfoForEnergy(circuitinfo);
+			
+			if(StringUtils.hasLength(type) && "electricity".equals(type)) { // 导入电表
+				
+				circuitinfo = circuitinfoService.addCircuitinfoForElectricity(circuitinfo);
+				
+			} else {
+				
+				circuitinfo = circuitinfoService.addCircuitinfoForEnergy(circuitinfo);
+				
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -493,7 +502,7 @@ public class ImportServiceImpl implements ImportService {
 //						if(j == 0 && !"".equals(result[i][j])) { // 第一列的数据不为空，直接插入数据
 //							col_a = result[i][j];
 //							circuitinfo1 = new Circuitinfo();
-//							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+//							circuitinfo1 = saveCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 //						}
 //						
 //						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
@@ -511,18 +520,18 @@ public class ImportServiceImpl implements ImportService {
 //								
 //								if(temp_b != col_b) { // 第二列的数据
 //									circuitinfo2 = new Circuitinfo();
-//									circuitinfo2 = getCircuitForEnergy(circuitinfo2, col_b, circuitinfo1, type);
+//									circuitinfo2 = saveCircuitForEnergy(circuitinfo2, col_b, circuitinfo1, type);
 //									temp_b = col_b;
 //								}
 //								
 //								if(temp_c != col_c) { // 第三列数据
 //									circuitinfo3 = new Circuitinfo();
-//									circuitinfo3 = getCircuitForEnergy(circuitinfo3, col_c, circuitinfo2, type);
+//									circuitinfo3 = saveCircuitForEnergy(circuitinfo3, col_c, circuitinfo2, type);
 //									temp_c = col_c;
 //								}
 //								
 //								circuitinfo4 = new Circuitinfo();
-//								circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
+//								circuitinfo4 = saveCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
 //							}
 //						}
 //					
@@ -534,7 +543,7 @@ public class ImportServiceImpl implements ImportService {
 //							circuitinfo1.setYear(year);
 //							circuitinfo1.setMonth(month);
 //							circuitinfo1.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
-//							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+//							circuitinfo1 = saveCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 //						}
 //						
 //						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
@@ -544,7 +553,7 @@ public class ImportServiceImpl implements ImportService {
 //							double zhi = Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]));
 //							total += zhi;
 //							circuitinfo2.setZ_value(BigDecimal.valueOf(zhi));
-//							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+//							circuitinfo2 = saveCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
 //						}
 //						
 //						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
@@ -552,7 +561,7 @@ public class ImportServiceImpl implements ImportService {
 //							circuitinfo3.setYear(year);
 //							circuitinfo3.setMonth(month);
 //							circuitinfo3.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
-//							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
+//							circuitinfo3 = saveCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
 //						}
 //						
 //						if(j == 3 && !"".equals(result[i][j])) { // 第四列的数据
@@ -560,7 +569,7 @@ public class ImportServiceImpl implements ImportService {
 //							circuitinfo4.setYear(year);
 //							circuitinfo4.setMonth(month);
 //							circuitinfo4.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][4]) ? "0" : result[i][4]))));
-//							circuitinfo4 = getCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
+//							circuitinfo4 = saveCircuitForEnergy(circuitinfo4, result[i][j], circuitinfo3, type);
 //						}
 //						
 //					} else if(StringUtils.hasLength(type) && "gas".equals(type)) { // 导入气表
@@ -593,7 +602,7 @@ public class ImportServiceImpl implements ImportService {
 //							}
 //							
 //							circuitinfo1.setZ_value(BigDecimal.valueOf(num));
-//							circuitinfo1 = getCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
+//							circuitinfo1 = saveCircuitForEnergy(circuitinfo1, col_a, circuitinfo1, type);
 //						}
 //						
 //						if(j == 1 && !"".equals(result[i][j])) { // 第二列的数据
@@ -603,7 +612,7 @@ public class ImportServiceImpl implements ImportService {
 //							double zhi = Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3]));
 //							total += zhi;
 //							circuitinfo2.setZ_value(BigDecimal.valueOf(zhi));
-//							circuitinfo2 = getCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
+//							circuitinfo2 = saveCircuitForEnergy(circuitinfo2, result[i][j], circuitinfo1, type);
 //						}
 //						
 //						if(j == 2 && !"".equals(result[i][j])) { // 第三列的数据
@@ -611,7 +620,7 @@ public class ImportServiceImpl implements ImportService {
 //							circuitinfo3.setYear(year);
 //							circuitinfo3.setMonth(month);
 //							circuitinfo3.setZ_value(BigDecimal.valueOf(Double.valueOf(("".equals(result[i][3]) ? "0" : result[i][3]))));
-//							circuitinfo3 = getCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
+//							circuitinfo3 = saveCircuitForEnergy(circuitinfo3, result[i][j], circuitinfo2, type);
 //						}
 //					}
 //				}

@@ -3,18 +3,18 @@
 <display>
 	<category name="category.module">
 		<!-- zzx -->
-		<!-- ztl -->
-		<!-- lc -->
 		<portlet id="measurereport"></portlet>
-		<!-- <portlet id="board"></portlet>
+		<portlet id="board"></portlet>
 		<portlet id="fault"></portlet>
 		<portlet id="commonchart" />
+		<!-- ztl -->
 		<portlet id="totalEnergyUse"/>
 		<portlet id="totalWaterUse"/>
 		<portlet id="eachEnergyUse"/>
 		<portlet id="energyStatic"/>
 		<portlet id="energyUseAnalysis"/>
 		<portlet id="equipmentMonitoring"/>
+		<!-- lc -->
 		<portlet id="keyinformation" />
 		<portlet id="runningmonitors" />
 		<portlet id="energystatistic" />
@@ -26,6 +26,6 @@
 		<portlet id="runningparameter" />
 		<portlet id="equipmentledger" />
 		<portlet id="buildconsumptionledger" />
-		<portlet id="hologram" /> -->
+		<portlet id="hologram" />
 	</category>
 </display>

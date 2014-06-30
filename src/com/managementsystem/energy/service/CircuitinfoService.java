@@ -22,7 +22,7 @@ public interface CircuitinfoService {
 	 * 
 	 * @param circuitinfo 支路信息
 	 * */
-	public void addCircuitinfoForEnergy(Circuitinfo circuitinfo);
+	public Circuitinfo addCircuitinfoForEnergy(Circuitinfo circuitinfo);
 
 	/**
 	 * 添加报表数据
@@ -46,6 +46,13 @@ public interface CircuitinfoService {
 	 * @param circuitinfo 支路信息
 	 * */
 	public void addCircuitinfo(Circuitinfo circuitinfo);
+	
+	/**
+	 * 新增支路信息
+	 * 
+	 * @param circuitinfo 支路信息
+	 * */
+	public Circuitinfo addCircuitinfoForElectricity(Circuitinfo circuitinfo);
 	
 	/**
 	 * 更新支路信息

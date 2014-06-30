@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.dao.DataAccessException;
 
 import com.managementsystem.energy.domain.Circuitinfo;
+import com.managementsystem.energy.domain.Reportinfo;
 import com.managementsystem.util.dao.DaoSupport;
 import com.managementsystem.util.dao.Page;
 
@@ -91,5 +92,40 @@ public interface CircuitinfoDao extends DaoSupport {
 	 * @return
 	 * @throws Exception
 	 */
-	public Map<String, Object> getCircuitDataList(String time, String text, String treeIds) throws Exception; 
+	public Map<String, Object> getCircuitDataList(String time, String text, String treeIds) throws Exception;
+
+	/**
+	 * 根据code和source判断是否存在记录
+	 * 
+	 * @param code
+	 * @param source
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public Circuitinfo getMaxCircuitinfoByCode(String code, String source) throws DataAccessException;
+
+	/**
+	 * 根据code和source判断是否存在记录
+	 * 
+	 * @param reportinfo
+	 * @return
+	 * @throws DataAccessException
+	 */
+	public Reportinfo getMaxReportinfo(Reportinfo reportinfo) throws DataAccessException;
+
+	/**
+	 * 更新水表、气表数据
+	 * 
+	 * @param reportinfo
+	 * @throws DataAccessException
+	 */
+	public void updateReportinfo(Reportinfo reportinfo) throws DataAccessException;
+
+	/**
+	 * 更新circuitinfo表中的记录
+	 * 
+	 * @param circuitinfo
+	 * @throws DataAccessException
+	 */
+	public void updateCircuitinfo(Circuitinfo circuitinfo) throws DataAccessException; 
 }

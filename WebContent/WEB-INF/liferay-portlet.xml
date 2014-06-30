@@ -2,6 +2,22 @@
 <!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 5.2.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_5_2_0.dtd">
 
 <liferay-portlet-app>
+	<!-- zzx -->
+	<portlet>
+		<portlet-name>board</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/dashboard/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/dashboard/public/css/dashboard.css</header-portlet-css>
+		<header-portlet-javascript>/dashboard/lib/jquery.slides.js</header-portlet-javascript>
+		<header-portlet-javascript>/dashboard/public/js/dashboard.js</header-portlet-javascript>
+		<header-portlet-javascript>/dashboard/public/js/SunAndWr.js</header-portlet-javascript>
+		<header-portlet-javascript>/dashboard/public/js/getCharts.js</header-portlet-javascript>
+		<header-portlet-javascript>/dashboard/public/js/mixcharts.js</header-portlet-javascript>
+		<header-portlet-javascript>/dashboard/public/js/circle.js</header-portlet-javascript>
+	</portlet>
 	<portlet>
 		<portlet-name>measurereport</portlet-name>
 		<preferences-owned-by-group>true</preferences-owned-by-group>
@@ -17,5 +33,297 @@
 		<header-portlet-javascript>/secondstyle/js/jquery.slides.js</header-portlet-javascript>
 		<header-portlet-javascript>/secondstyle/js/bootstrap-select.min.js</header-portlet-javascript>
 		<header-portlet-javascript>/secondstyle/js/main.js</header-portlet-javascript>
+	</portlet>
+	<portlet>
+		<portlet-name>fault</portlet-name>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<maximize-help>true</maximize-help>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-javascript>/secondstyle/js/main.js</header-portlet-javascript>
+	</portlet>
+	<portlet>
+		<portlet-name>commonchart</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/main.css</header-portlet-css>
+		<header-portlet-javascript>/plugins/My97DatePicker/WdatePicker.js</header-portlet-javascript>
+	</portlet>
+
+	<!-- ztl -->
+	<!-- 建筑总能耗 -->
+	<portlet>
+		<portlet-name>totalEnergyUse</portlet-name>
+		<icon>/images/icons/report.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/modiMain.css</header-portlet-css>
+		<header-portlet-javascript>/public/energyStatic/public/js/energyStatic.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/lib/jquery.slides.js</header-portlet-javascript>
+	</portlet>
+<!-- 建筑总用水量-->
+		<portlet>
+		<portlet-name>totalWaterUse</portlet-name>
+		<icon>/images/icons/report.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/modiMain.css</header-portlet-css>
+		<header-portlet-javascript>/public/energyStatic/public/js/energyStatic.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/lib/jquery.slides.js</header-portlet-javascript>
+	</portlet>
+<!-- 建筑总能耗分项-->
+		<portlet>
+		<portlet-name>eachEnergyUse</portlet-name>
+		<icon>/images/icons/report.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/modiMain.css</header-portlet-css>
+		<header-portlet-javascript>/public/energyStatic/public/js/energyStatic.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/lib/jquery.slides.js</header-portlet-javascript>
+	</portlet>
+<!-- 能耗统计页面头部 -->
+	<portlet>
+		<portlet-name>energyStatic</portlet-name>
+		<icon>/images/icons/report.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/index.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/modiMain.css</header-portlet-css>
+		<header-portlet-javascript>/public/energyStatic/public/js/energyStatic.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/public/js/main.js</header-portlet-javascript>
+	</portlet>
+<!-- 能效分析页面头部 -->
+	<portlet>
+		<portlet-name>energyUseAnalysis</portlet-name>
+		<icon>/images/icons/report.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/index.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/modiMain.css</header-portlet-css>
+		<header-portlet-javascript>/public/energyStatic/public/js/energyStatic.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/public/js/main.js</header-portlet-javascript>
+	</portlet>
+<!-- 运行监测——设备检测 -->
+	<portlet>
+		<portlet-name>equipmentMonitoring</portlet-name>
+		<icon>/images/icons/report.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/public/energyStatic/lib/bootstrap/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css> 
+		<header-portlet-css>/public/energyStatic/lib/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/main.css</header-portlet-css>
+		<header-portlet-css>/public/energyStatic/public/css/modiMain.css</header-portlet-css>
+		<header-portlet-javascript>/public/energyStatic/public/js/deviceMonitorPreferences.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/lib/bootstrap/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/lib/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/lib/jquery-migrate-1.2.1.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/public/js/deviceMonitor.js</header-portlet-javascript>
+		<header-portlet-javascript>/public/energyStatic/public/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<!-- lc -->
+	<portlet>
+		<portlet-name>keyinformation</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>runningmonitors</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>energystatistic</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>energyanalysis</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>faultdiagnosis</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+
+	<portlet>
+		<portlet-name>reportmanagement</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/bootstrap/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>energyconsumptionreport</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/jquery.slides.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/report.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>energyefficiencytarget</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/jquery.slides.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/report.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>runningparameter</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/jquery.slides.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/report.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>equipmentledger</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/jquery.slides.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/report.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>buildconsumptionledger</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/index.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/jquery.slides.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+	</portlet>
+	
+	<portlet>
+		<portlet-name>hologram</portlet-name>
+		<icon>/images/icons/build.png</icon>
+		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<maximize-edit>true</maximize-edit>
+		<instanceable>true</instanceable>
+		<header-portlet-css>/styles/second/css/bootstrap.min.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/bootstrap-select.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/main.css</header-portlet-css>
+		<header-portlet-css>/styles/second/css/tbdefine.css</header-portlet-css>
+		<header-portlet-javascript>/styles/second/js/hologramVariable.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/jquery.mCustomScrollbar.concat.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/bootstrap-select.min.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/main.js</header-portlet-javascript>
+		<header-portlet-javascript>/styles/second/js/hologram.js</header-portlet-javascript>
 	</portlet>
 </liferay-portlet-app>
