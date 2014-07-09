@@ -84,8 +84,8 @@ public class HologramChartViewController extends BaseController {
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 		try {
 			// 求对应的json数据
-			resultMap = energyStatisticService.printReportInfo(
-					name,id,ispd,type, from_date, "","","");
+			resultMap = energyStatisticService.printReportInfo(name, id, ispd,
+					type, from_date, "", "", "", "", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

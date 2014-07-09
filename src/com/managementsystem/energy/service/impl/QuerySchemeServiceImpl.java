@@ -1,6 +1,7 @@
 package com.managementsystem.energy.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,11 @@ public class QuerySchemeServiceImpl implements QuerySchemeService {
 	@Transactional(readOnly = true)
 	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId) {
 		return querySchemeDao.getQuerySchemeListByCondition(id, name, comments, buildId, regionId); 
+	}
+	
+	@Transactional(readOnly = true)
+	public Map<String, Object> getDataListByCondition(String id, String name, String comments, String category_id, String region_id) {
+		return querySchemeDao.getDataListByCondition(id, name, comments, category_id, region_id);
 	}
 
 }

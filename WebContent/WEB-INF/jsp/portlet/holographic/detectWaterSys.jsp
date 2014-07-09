@@ -216,7 +216,7 @@
 			},
 			series : [ {
 				color : '#FF33CC',
-				name : '水系统冷冻水供水温度',
+				name : '地区馆水系统冷冻水供水温度',
 				data : data.S7_temp_display_Ti7
 			}, {
 				color : '#40c4f4',

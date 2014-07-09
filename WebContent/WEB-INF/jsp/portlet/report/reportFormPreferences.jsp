@@ -35,12 +35,12 @@
 
 	<br />
 
-	<div class="ftitle">
-		<span class="spanwidth" align="right">增加小时数：</span> <input id="hours"
-			name="hours" type="text"
-			title="因java代码中获取的时间和系统时间可能存在误差，为避免设置java中的各种文件，用此方式来增加时间以保证时间一致"
-			value="<%=prefs.getValue("hours", "")%>">
-	</div>
+<!-- 	<div class="ftitle"> -->
+<!-- 		<span class="spanwidth" align="right">增加小时数：</span> <input id="hours" -->
+<!-- 			name="hours" type="text" -->
+<!-- 			title="因java代码中获取的时间和系统时间可能存在误差，为避免设置java中的各种文件，用此方式来增加时间以保证时间一致" -->
+<%-- 			value="<%=prefs.getValue("hours", "")%>"> --%>
+<!-- 	</div> -->
 
 	<br />
 
@@ -147,12 +147,39 @@
 			</div>
 		</div>
 
+		<div class="ftitle">
+			<span class="title-back">运行监测报表配置区域</span>
+		</div>
+		
 		<div class="div-table-row">
 			<div class="div-table-2col">
-				<span class="spanwidth" align="right">是否显示建筑：</span> <select
-					id="showLegend" name="showLegend" style="width: 43.5%">
-					<option value="hide">不显示</option>
-					<option value="show">显示</option>
+				<span class="spanwidth" align="right">第一行数据：</span> <input
+					id="linkName_1" name="linkName_1" type="text"
+					value="<%=prefs.getValue("linkName_1", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">第二行数据：</span> <input
+					id="linkName_2" name="linkName_2" type="text"
+					value="<%=prefs.getValue("linkName_2", "")%>">
+			</div>
+		</div>
+		
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">第三行数据：</span> <input
+					id="linkName_3" name="linkName_3" type="text"
+					value="<%=prefs.getValue("linkName_3", "")%>">
+			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">输出模块：</span> <select
+					id="distance" name="distance" style="width: 43.5%">
+					<option value=""></option>
+					<option value="cwp">冷却泵</option>
+					<option value="chwp">冷冻泵</option>
+					<option value="ct">冷却塔</option>
+					<option value="ahu">空调箱</option>
+					<option value="fau">新风箱</option>
+					<option value="acu">恒温恒湿空调箱</option>
 				</select>
 			</div>
 		</div>
@@ -161,6 +188,7 @@
 			<a href="#" class="easyui-linkbutton" iconCls="icon-ok"
 				onclick="<portlet:namespace/>savePreference()">保存</a>
 		</div>
+		
 	</div>
 
 </form:form>
@@ -251,7 +279,7 @@ function renderDataGrid(id){
 renderDataGrid("dgrid");
 //默认时间
 $('#defaulttime').datebox();
-// 是否显示建筑下拉列表 
-$("#showLegend").val('<%=prefs.getValue("showLegend","")%>');
+$("#symbol").val('<%=prefs.getValue("symbol","")%>');
+$("#distance").val('<%=prefs.getValue("distance","")%>');
 $("#decimals").val('<%=prefs.getValue("decimals","")%>');
 </script>

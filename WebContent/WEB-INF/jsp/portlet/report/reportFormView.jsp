@@ -68,6 +68,17 @@
 	try{
 		$('#nav_bg_div').css("background-color", "#6699CC");
 		$('.nav_gat_bar>li').css("background-color", "#4885C1");
+		
+		// 判断什么报表，设备运行报表，需要隐藏年份查询
+		var distance = "${reportform.distance}";
+		if(distance != "") { // 针对运行监测特殊处理
+			$("#<portlet:namespace />format_select option:last").remove(); // 移除年份查询
+		} else {
+			var title = "${reportform.title}";
+			if(title == "冷机报表" || title == "水系统报表") {
+				$("#<portlet:namespace />format_select option:last").remove(); // 移除年份查询
+			}
+		}
 	}catch(e){}
 
 	var $<portlet:namespace />choose_type = ""; // 存储对应的选择类型

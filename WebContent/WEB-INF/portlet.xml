@@ -4,14 +4,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd">
 
-	<!-- zzx -->
-	<portlet>
-		<description>dashboard</description>
-		<portlet-name>board</portlet-name>
+<portlet>
+		<description>首页-tab切换</description>
+		<portlet-name>coreinfo</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/board-portlet.xml</value>
+			<value>/WEB-INF/context/coreinfo-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -23,19 +22,20 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>dashboard</title>
+			<title>首页-tab切换</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+	
 	<portlet>
-		<description>计量报表</description>
-		<portlet-name>measurereport</portlet-name>
+		<description>首页-运行监测</description>
+		<portlet-name>runningmonitor</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/measurereport-portlet.xml</value>
+			<value>/WEB-INF/context/runningmonitor-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -47,19 +47,20 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>计量报表</title>
+			<title>首页-运行检测</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+
 	<portlet>
-		<description>故障诊断</description>
-		<portlet-name>fault</portlet-name>
+		<description>首页-能耗统计</description>
+		<portlet-name>consumptionstatistics</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/fault-portlet.xml</value>
+			<value>/WEB-INF/context/consumptionstatistics-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -71,12 +72,63 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>故障诊断</title>
+			<title>首页-能耗统计</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
+
+	<portlet>
+		<description>首页-能效分析</description>
+		<portlet-name>efficiencyanalysis</portlet-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/context/efficiencyanalysis-portlet.xml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+			<window-state>NORMAL</window-state>
+			<window-state>MAXIMIZED</window-state>
+		</supports>
+		<resource-bundle>messages</resource-bundle>
+		<portlet-info>
+			<title>首页-能效分析</title>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+
+	<portlet>
+		<description>首页-报表整理</description>
+		<portlet-name>reportneaten</portlet-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/context/reportneaten-portlet.xml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+			<window-state>NORMAL</window-state>
+			<window-state>MAXIMIZED</window-state>
+		</supports>
+		<resource-bundle>messages</resource-bundle>
+		<portlet-info>
+			<title>首页-报表整理</title>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	
 	<portlet>
 		<description>图表展示MORE</description>
 		<portlet-name>commonchart</portlet-name>
@@ -102,64 +154,13 @@
 		</security-role-ref>
 	</portlet>
 	
-	<!-- ztl -->
-	 <portlet>
-   		 <description>淘宝商城-能耗统计-建筑总能耗</description>
-    	<portlet-name>totalEnergyUse</portlet-name>
-    	<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-        <init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/totalenergyuse-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>建筑总能耗</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-    </portlet>
-    
-	    <portlet>
-   		 <description>淘宝商城-能耗统计-建筑总用水量</description>
-    	<portlet-name>totalWaterUse</portlet-name>
-    	<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-        <init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/totalwateruse-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>建筑总用水量</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-    </portlet>
-    
-    <portlet>
-		<description>淘宝商城-能耗统计-建筑总能耗分项</description>
-		<portlet-name>eachEnergyUse</portlet-name>
+	<portlet>
+		<description>能耗统计-建筑总体能耗(tab)</description>
+		<portlet-name>buildtotalconsumption</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/eachenergyuse-portlet.xml</value>
+			<value>/WEB-INF/context/buildtotalconsumption-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -171,7 +172,7 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>建筑总能耗分项</title>
+			<title>能耗统计-建筑总体能耗(tab)</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
@@ -179,12 +180,12 @@
 	</portlet>
 	
 	<portlet>
-		<description>淘宝商城-能耗统计-建筑总体能耗</description>
-		<portlet-name>energyStatic</portlet-name>
+		<description>能效分析-重要能效指标</description>
+		<portlet-name>importantenergytarget</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/energystatic-portlet.xml</value>
+			<value>/WEB-INF/context/importantenergytarget-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -196,7 +197,57 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>建筑总体能耗</title>
+			<title>能效分析-重要能效指标</title>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	
+	<portlet>
+		<description>报表整理</description>
+		<portlet-name>reportform</portlet-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/context/reportform-portlet.xml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+			<window-state>NORMAL</window-state>
+			<window-state>MAXIMIZED</window-state>
+		</supports>
+		<resource-bundle>messages</resource-bundle>
+		<portlet-info>
+			<title>报表整理</title>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+	
+	<portlet>
+		<description>饼图portlet</description>
+		<portlet-name>commonpiechart</portlet-name>
+		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+		<init-param>
+			<name>contextConfigLocation</name>
+			<value>/WEB-INF/context/commonpiechart-portlet.xml</value>
+		</init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>view</portlet-mode>
+			<portlet-mode>edit</portlet-mode>
+			<window-state>NORMAL</window-state>
+			<window-state>MAXIMIZED</window-state>
+		</supports>
+		<resource-bundle>messages</resource-bundle>
+		<portlet-info>
+			<title>饼图portlet</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
@@ -204,12 +255,12 @@
 	</portlet>
 
 	<portlet>
-		<description>淘宝商城-能效分析-重要能效指标</description>
-		<portlet-name>energyUseAnalysis</portlet-name>
+		<description>淘宝商城-运行检测-全息图</description>
+		<portlet-name>holographicFigure</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/energyuseanalysis-portlet.xml</value>
+			<value>/WEB-INF/context/holographic-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -221,335 +272,11 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>重要能效指标</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-		<portlet>
-		<description>淘宝商城-运行监测-设备检测</description>
-		<portlet-name>equipmentMonitoring</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/equipmentmonitoring-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>设备检测</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<!-- lc -->
-	<portlet>
-		<description>淘宝城首页_关键信息</description>
-		<portlet-name>keyinformation</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/keyinformation-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_关键信息</title>
+			<title>运行检测全息图</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
 
-	<portlet>
-		<description>淘宝城首页_其它信息_运行监测</description>
-		<portlet-name>runningmonitors</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/runningmonitors-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_其它信息_运行监测</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-
-	<portlet>
-		<description>淘宝城首页_其它信息_能耗统计</description>
-		<portlet-name>energystatistic</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/energystatistic-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_其它信息_能耗统计</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-
-	<portlet>
-		<description>淘宝城首页_其它信息_能效分析</description>
-		<portlet-name>energyanalysis</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/energyanalysis-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_其它信息_能效分析</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<portlet>
-		<description>淘宝城首页_其它信息_故障诊断</description>
-		<portlet-name>faultdiagnosis</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/faultdiagnosis-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_其它信息_故障诊断</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-		<portlet>
-		<description>淘宝城首页_其它信息_报表管理</description>
-		<portlet-name>reportmanagement</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/reportmanagement-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_其它信息_报表管理</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<portlet>
-		<description>淘宝城首页_报表管理_能耗报表</description>
-		<portlet-name>energyconsumptionreport</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/energyconsumptionreport-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_能耗报表</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<portlet>
-		<description>淘宝城首页_报表管理_能效指标</description>
-		<portlet-name>energyefficiencytarget</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/energyefficiencytarget-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_能效指标</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<portlet>
-		<description>淘宝城首页_报表管理_运行参数</description>
-		<portlet-name>runningparameter</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/runningparameter-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_运行参数</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<portlet>
-		<description>淘宝城首页_报表管理_设备台账</description>
-		<portlet-name>equipmentledger</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/equipmentledger-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_设备台账</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-	<portlet>
-		<description>淘宝城首页_报表管理_建筑用能账单</description>
-		<portlet-name>buildconsumptionledger</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/buildconsumptionledger-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_建筑用能账单</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	
-		<portlet>
-		<description>淘宝城首页_运行监测_全息图</description>
-		<portlet-name>hologram</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/hologram-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_运行监测_全息图</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
 </portlet-app>

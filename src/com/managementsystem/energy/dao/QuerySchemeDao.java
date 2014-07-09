@@ -1,6 +1,7 @@
 package com.managementsystem.energy.dao;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.dao.DataAccessException;
@@ -54,5 +55,7 @@ public interface QuerySchemeDao extends DaoSupport {
 	 * @param regionId
 	 * @return
 	 */
-	List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId); 
+	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId); 
+
+	public Map<String, Object> getDataListByCondition(String id, String name, String comments, String category_id, String region_id); 
 }

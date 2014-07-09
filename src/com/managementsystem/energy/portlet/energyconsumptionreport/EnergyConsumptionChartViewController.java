@@ -113,8 +113,9 @@ public class EnergyConsumptionChartViewController extends BaseController {
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 		try {
 			// 求对应的json数据
-			resultMap = energyStatisticService.printReportInfo(
-					name,id,ispd,type, from_date, to_date,decimals,doubleChartsPreferenceInfo.getForm_mul());
+			resultMap = energyStatisticService.printReportInfo(name, id, ispd,
+					type, from_date, to_date, decimals,
+					doubleChartsPreferenceInfo.getForm_mul(), "", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -165,9 +166,8 @@ public class EnergyConsumptionChartViewController extends BaseController {
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 		try {
 			// 求对应的json数据
-			resultMap = energyStatisticService.printReportInfo(
-					name,id,ispd, type, from_date, to_date,
-					decimals,multiplier);
+			resultMap = energyStatisticService.printReportInfo(name, id, ispd,
+					type, from_date, to_date, decimals, multiplier, "", "");
 		} catch (Exception e) {
 			logger.error(e);
 		}

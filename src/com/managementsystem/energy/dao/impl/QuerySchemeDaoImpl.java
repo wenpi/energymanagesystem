@@ -1,9 +1,11 @@
 package com.managementsystem.energy.dao.impl;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -110,6 +112,56 @@ public class QuerySchemeDaoImpl extends AbstractDaoSupport implements
 			e.printStackTrace();
 		}
 		return query.list();
+	}
+	
+	@Override
+	public Map<String, Object> getDataListByCondition(String id, String name, String comments, String category_id, String region_id) {
+		String sqlString = "from QueryScheme where 1=1 and name not like '%_VSD_%' ";
+		
+		if (id != null && !id.equals("")) {
+			sqlString += " and id like '%" + id + "%' ";
+		}
+		if (name != null && !name.equals("")) {
+			sqlString += " and name like '%" + name + "%'";
+			if (region_id != null && !region_id.equals("")) { 
+				sqlString += " and regionId = '" + region_id + "' and name <> 'number_on' ";
+			}
+		}
+		if (category_id != null && !category_id.equals("")) {
+			sqlString += " and category_id = '" + category_id + "' ";
+		}
+		if (comments != null && !comments.equals("")) { 
+			sqlString += " and comments like '%" + comments + "%' ";
+		}
+		System.out.println("query: " + sqlString);
+		
+		Query query = null;
+		try {
+			query = createQuery(sqlString);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		
+		List<QueryScheme> list = query.list();
+		String _name = "", _id = "", _ispd = "", _comments = "";
+		for (int i = 0; i < list.size(); i++) {
+			QueryScheme qs = list.get(i);
+			_name += qs.getName() + (list.size() == (i + 1) ? "" : ",");
+			_id += qs.getId() + (list.size() == (i + 1) ? "" : ",");
+			_ispd += qs.getIspd() + (list.size() == (i + 1) ? "" : ",");
+			if(category_id.equals("ahu") || category_id.equals("fau") || category_id.equals("acu") ) {
+				_comments += qs.getId() + (list.size() == (i + 1) ? "" : ",");
+			} else {
+				_comments += qs.getComments() + (list.size() == (i + 1) ? "" : ",");
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", _name);
+		map.put("id", _id);
+		map.put("ispd", _ispd);
+		map.put("comments", _comments);
+		
+		return map;
 	}
 	
 }

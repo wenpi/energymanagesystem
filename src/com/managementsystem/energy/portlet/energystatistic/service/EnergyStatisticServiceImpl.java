@@ -924,7 +924,7 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 	@Override
 	public Map<String, Object> printReportInfo(String name, String id,
 			String ispd, String type, String tfrom, String tto,
-			String decimals, String multiplier) {
+			String decimals, String multiplier, String distance, String title) {
 
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 
@@ -956,25 +956,37 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 					// 循环处理数据，组织成对应需要的数据
 					int loop = list.size();
 
-					if ("day".equals(type)) {
-						beforeFormat = "yyyy-MM-dd HH:mm:ss";
-						afterFormat = "HH:mm";
-						preFormat = "HH:mm";
-						loop = getLoopsOfDay(tfrom, list); // 获取当前需要循环的次数
-					} else if ("week".equals(type)) {
-						beforeFormat = "yyyy-MM-dd";
-						afterFormat = "MM/dd";
-						preFormat = "yyyy/MM/dd";
-						loop = getLoopsOfWeek(list); // 获取周需要循环的次数
-					} else if ("month".equals(type)) {
-						beforeFormat = "yyyy-MM-dd";
-						afterFormat = "MM/dd";
-						preFormat = "yyyy/MM/dd";
-					} else if ("year".equals(type)) {
-						beforeFormat = "yyyy-MM";
-						afterFormat = "yyyy/MM";
-						preFormat = "yyyy/MM";
-						loop = list.size();
+					// 判断是否是输出运行监测的报表，运行监测报表需要特殊处理
+					if(!"".equalsIgnoreCase(distance) || "冷机报表".equals(title) || "水系统报表".equals(title)) { // 针对中国馆的运行监测报表输出
+						
+						beforeFormat = "yyyy-MM-dd HH:mm";
+						afterFormat = "yyyy-MM-dd HH:mm";
+						preFormat = "yyyy-MM-dd HH:mm";
+						loop = list.size(); // 获取当前需要循环的次数
+						
+					} else {
+						
+						if ("day".equals(type)) {
+							beforeFormat = "yyyy-MM-dd HH:mm:ss";
+							afterFormat = "HH:mm";
+							preFormat = "HH:mm";
+							loop = getLoopsOfDay(tfrom, list); // 获取当前需要循环的次数
+						} else if ("week".equals(type)) {
+							beforeFormat = "yyyy-MM-dd";
+							afterFormat = "MM/dd";
+							preFormat = "yyyy/MM/dd";
+							loop = getLoopsOfWeek(list); // 获取周需要循环的次数
+						} else if ("month".equals(type)) {
+							beforeFormat = "yyyy-MM-dd";
+							afterFormat = "MM/dd";
+							preFormat = "yyyy/MM/dd";
+						} else if ("year".equals(type)) {
+							beforeFormat = "yyyy-MM";
+							afterFormat = "yyyy/MM";
+							preFormat = "yyyy/MM";
+							loop = list.size();
+						}
+						
 					}
 
 					SimpleDateFormat sf = new SimpleDateFormat(beforeFormat);

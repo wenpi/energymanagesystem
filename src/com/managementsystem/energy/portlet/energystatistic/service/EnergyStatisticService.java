@@ -192,9 +192,11 @@ public interface EnergyStatisticService {
 	 * @param tto
 	 * @param decimals
 	 * @param multiplier
+	 * @param distance
+	 * @param title
 	 * @return
 	 */
-	public Map<String, Object> printReportInfo(String names, String ids, String ispds, String type, String tfrom, String tto, String decimals, String multiplier);
+	public Map<String, Object> printReportInfo(String names, String ids, String ispds, String type, String tfrom, String tto, String decimals, String multiplier, String distance, String title);
 
 	/**
 	 * 返回多个页面需要的数据，此方法name支持传递多个参数，返回格式为[value1,value2,value3,......]

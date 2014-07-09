@@ -179,7 +179,7 @@ public class MeasureReportViewController extends BaseController {
 		try {
 			// 求对应的json数据
 			resultMap = energyStatisticService.printReportInfo(name, id, ispd,
-					type, from_date, to_date, decimals, multiplier);
+					type, from_date, to_date, decimals, multiplier, "", "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
