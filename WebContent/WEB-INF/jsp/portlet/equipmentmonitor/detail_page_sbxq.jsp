@@ -123,7 +123,7 @@
 	<div class="fault_content">
 		<div class="fault_title">
 			<h3>冷冻水参数</h3>
-			<span>冷冻水额定供回水温度为<i> 7/12 </i>℃
+			<span><!-- 冷冻水额定供回水温度为<i> 7/12 </i>℃ -->
 			</span>
 		</div>
 		<div class="chart_content">
@@ -231,7 +231,7 @@
 	<div class="fault_content">
 		<div class="fault_title">
 			<h3>水流量</h3>
-			<span>冷冻水额定供回水温度为<i> 7/12 </i>℃
+			<span><!-- 冷冻水额定供回水温度为<i> 7/12 </i>℃ -->
 			</span>
 		</div>
 		<div class="chart_content">
@@ -262,62 +262,62 @@
 			<div class="chart" id="waterFlow_chart"></div>
 		</div>
 	</div>
-	<div class="fault_content">
-		<div class="fault_title">
-			<h3>压力</h3>
-			<span>冷冻水额定供回水温度为<i> 7/12 </i>℃
-			</span>
-		</div>
-		<div class="chart_content">
-			<div class="left_para">
-				<table border="0" cellpadding="0" cellspacing="0">
-					<tbody class="waterPressure_table">
-						<tr>
-							<td><span>日</span>最大值</td>
-							<td>400</td>
-							<td class="tdClass"><sup>Pa</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><span>日</span>最小值</td>
-							<td>0</td>
-							<td class="tdClass"><sup>Pa</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><span>日</span>平均值</td>
-							<td>200</td>
-							<td class="tdClass"><sup>Pa</sup></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="chart" id="waterPressure_chart"></div>
-		</div>
-	</div>
+<!-- 	<div class="fault_content" style="display: none;"> -->
+<!-- 		<div class="fault_title"> -->
+<!-- 			<h3>压力</h3> -->
+<!-- 			<span>冷冻水额定供回水温度为<i> 7/12 </i>℃ -->
+<!-- 			</span> -->
+<!-- 		</div> -->
+<!-- 		<div class="chart_content"> -->
+<!-- 			<div class="left_para"> -->
+<!-- 				<table border="0" cellpadding="0" cellspacing="0"> -->
+<!-- 					<tbody class="waterPressure_table"> -->
+<!-- 						<tr> -->
+<!-- 							<td><span>日</span>最大值</td> -->
+<!-- 							<td>400</td> -->
+<!-- 							<td class="tdClass"><sup>Pa</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td><span>日</span>最小值</td> -->
+<!-- 							<td>0</td> -->
+<!-- 							<td class="tdClass"><sup>Pa</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td><span>日</span>平均值</td> -->
+<!-- 							<td>200</td> -->
+<!-- 							<td class="tdClass"><sup>Pa</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
+<!-- 			<div class="chart" id="waterPressure_chart"></div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 	<div class="fault_content">
 		<div class="fault_title">
 			<h3>冷冻水参数</h3>
-			<span>冷冻水额定供回水温度为<i> 7/12 </i>℃
+			<span><!-- 冷冻水额定供回水温度为<i> 7/12 </i>℃ -->
 			</span>
 		</div>
 		<div class="chart_content">
 			<div class="left_para">
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tbody class="waterColdParam_table">
-						<tr>
-							<td>供水温度最大值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>供水温度最小值</td>
-							<td>15</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
+<!-- 						<tr> -->
+<!-- 							<td>供水温度最大值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>供水温度最小值</td> -->
+<!-- 							<td>15</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
 						<tr>
 							<td>回水温度最大值</td>
 							<td>17</td>
@@ -348,58 +348,58 @@
 			<div class="chart" id="waterColdParam_chart"></div>
 		</div>
 	</div>
-	<div class="fault_content">
-		<div class="fault_title">
-			<h3>冷却水参数</h3>
-			<span>冷却水额定供回水温度为<i> 37/32 </i>℃
-			</span>
-		</div>
-		<div class="chart_content">
-			<div class="left_para">
-				<table border="0" cellpadding="0" cellspacing="0">
-					<tbody class="waterCoolParam_table">
-						<tr>
-							<td>供水温度最大值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>供水温度最小值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>回水温度最大值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>回水温度最小值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<!-- <tr>
-							<td>冷凝温度最大值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>冷凝温度最小值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr> -->
-					</tbody>
-				</table>
-			</div>
-			<div class="chart" id="waterCoolParam_chart"></div>
-		</div>
-	</div>
+<!-- 	<div class="fault_content"> -->
+<!-- 		<div class="fault_title"> -->
+<!-- 			<h3>冷却水参数</h3> -->
+<!-- 			<span>冷却水额定供回水温度为<i> 37/32 </i>℃ -->
+<!-- 			</span> -->
+<!-- 		</div> -->
+<!-- 		<div class="chart_content"> -->
+<!-- 			<div class="left_para"> -->
+<!-- 				<table border="0" cellpadding="0" cellspacing="0"> -->
+<!-- 					<tbody class="waterCoolParam_table"> -->
+<!-- 						<tr> -->
+<!-- 							<td>供水温度最大值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>供水温度最小值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>回水温度最大值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>回水温度最小值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr>
+<!-- 							<td>冷凝温度最大值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> -->
+<!-- 						<tr> -->
+<!-- 							<td>冷凝温度最小值</td> -->
+<!-- 							<td>17</td> -->
+<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
+<!-- 							<td></td> -->
+<!-- 						</tr> --> -->
+<!-- 					</tbody> -->
+<!-- 				</table> -->
+<!-- 			</div> -->
+<!-- 			<div class="chart" id="waterCoolParam_chart"></div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 </div>
 
 <!-- 冷站 - 常规制冷系统 | 冷却塔-->
@@ -407,7 +407,7 @@
 	<div class="fault_content">
 		<div class="fault_title">
 			<h3>风机频率</h3>
-			<span>额定频率：<i> 35 </i>HZ
+			<span><!-- 额定频率：<i> 35 </i>HZ -->
 			</span>
 		</div>
 		<div class="chart_content">
@@ -984,5 +984,61 @@
 				//导出到Excel中的时间
 			}
 		});
+	}
+	
+	// 根据设备信息，获取对应的设备的运行状态
+	function getDeviceStatus(total, deviceList) {
+		var curId = $(".detail_page").attr("tip"); // 判断当前位置模块
+		var result = [];
+		if (deviceList == undefined || deviceList.length == 0) {
+			for (var i = 0; i < total; i++) {
+				result.push("   "); // 设置为空
+			}
+		} else {
+			
+			if(curId.indexOf("coldSite_") != -1) {
+				
+				var names = [], ids = [], ispds = [];
+				for (var i = 0; i < deviceList.length; i++) {
+					names.push("status");
+					ids.push(deviceList[i]);
+					ispds.push("2"); 
+				}
+				// 获取运行状态数据
+				$.ajax({
+					type : "post",
+					url : "<portlet:resourceURL id='getDatasByNamesForMonitor'></portlet:resourceURL>",
+					async : false, // 同步
+					data : {
+						from : '',
+						name : names.join(),
+						id : deviceList.join(),
+						ispd : ispds.join(),
+						decimals : '0',
+						type : 'span',
+						region_id : '',
+						build_id : ''
+					},
+					success : function(data) {
+						var dataList = data.datalist;
+						
+						for (var i = 0; i < dataList.length; i++) {
+							try {
+								result.push((dataList[i][0] == 0) ? "OFF" : "ON"); // 设置为空
+							} catch (e) {
+								console.log(dataList);
+								console.log("对比的时候出错了，导致result设置为OFF");
+								result.push("OFF"); // 设置为空
+							}
+						}
+					},
+					error : function(result) {
+						console.log('获取运行状态数据发生错误了  + error');
+					}
+				});
+			}
+		}
+
+		return result;
 	}
 </script>

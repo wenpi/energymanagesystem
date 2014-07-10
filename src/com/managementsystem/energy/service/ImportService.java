@@ -1,8 +1,5 @@
 package com.managementsystem.energy.service;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ImportService {
@@ -15,4 +12,10 @@ public interface ImportService {
 	 * @return
 	 */
 	public String importExcelToCircuitinfo(MultipartFile mf, String type);
+
+	/**
+	 * 添加临时数据（为了防止mysql数据库连接中断）
+	 * 
+	 */
+	public void addTemp();
 }

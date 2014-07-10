@@ -8,14 +8,14 @@
 			<div class="zoomin"></div>
 		</div>
 		<div class="chart">
-			<div class="btn_group">
+			<div class="btn_group" style="display: none;">
 				<input type="hidden" id="S_1" value="1"> <input
 					type="hidden" id="S_2" value="1">
-				<div class="btn_press">开启台数</div>
-				<!-- <div>开启风量</div>
+				<!-- <div class="btn_press">开启台数</div>
+				<div>开启风量</div>
 				<div>开启功率</div> -->
 			</div>
-			<div class="chartArea" id="<portlet:namespace/>sendWind"  style="height:135px"></div>
+			<div class="chartArea" id="<portlet:namespace/>sendWind"  style="height:178px"></div>
 		</div>
 	</div>
 	<div class="device_modle" id="exhaustWind">
@@ -25,14 +25,14 @@
 			<div class="zoomin"></div>
 		</div>
 		<div class="chart">
-			<div class="btn_group">
+			<div class="btn_group" style="display: none;">
 				<input type="hidden" id="P_1" value="1"> <input
 					type="hidden" id="P_2" value="1">
-				<div class="btn_press">开启台数</div>
-				<!-- <div>开启风量</div>
+				<!-- <div class="btn_press">开启台数</div>
+				<div>开启风量</div>
 				<div>开启功率</div> -->
 			</div>
-			<div class="chartArea" id="<portlet:namespace/>exhaustWind"  style="height:135px"></div>
+			<div class="chartArea" id="<portlet:namespace/>exhaustWind"  style="height:178px"></div>
 		</div>
 	</div>
 </div>

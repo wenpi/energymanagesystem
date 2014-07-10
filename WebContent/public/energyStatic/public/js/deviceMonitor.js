@@ -87,6 +87,7 @@ $(function() {
 						
 					} else {
 						
+						console.log('zzx-----' + curId);
 						// 增加层数，空调箱zzx
 						$(".device_floor .tab_menu .cur_tab").siblings().find(".floor_list").remove();
 						var addText = $(".hidden_tool .floor_select_block").clone(true);
@@ -126,18 +127,24 @@ $(function() {
 										$(this).siblings().removeClass("cur_tab");
 										$(this).addClass("cur_tab");
 										
-										if($(".detail_page").attr("tip") == 'ahu') { // 控制只有在新风机组的时候执行
+										var curId = $(".detail_page").attr("tip"); // 当前模块
+										if(curId == 'ahu') { // 控制只有在新风机组的时候执行
 											$(".device_floor .tab_menu").find(".ahu_fselect_block").remove();
 											$(".device_floor .tab_menu .cur_tab").siblings().find(".ahu_flist").remove();
 											var addText = $(".hidden_tool .ahu_fselect_block").clone(true);
 											$(".device_floor .tab_menu .cur_tab").find("p").append(addText);
 											$(".device_floor .tab_menu li").find(".ahu_fselect_block").remove();
 										} else {
-											$(".device_floor .tab_menu").find(".floor_select_block").remove();
-											$(".device_floor .tab_menu .cur_tab").siblings().find(".floor_list").remove();
-											var addText = $(".hidden_tool .floor_select_block").clone(true);
-											$(".device_floor .tab_menu .cur_tab").find(".floor_select_block").remove();
-											$(".device_floor .tab_menu .cur_tab").find("p").append(addText);
+											
+											if(curId != 'coldSite_one' && curId != 'coldSite_two' && curId != 'coldSite_three') {
+											
+												$(".device_floor .tab_menu").find(".floor_select_block").remove();
+												$(".device_floor .tab_menu .cur_tab").siblings().find(".floor_list").remove();
+												var addText = $(".hidden_tool .floor_select_block").clone(true);
+												$(".device_floor .tab_menu .cur_tab").find(".floor_select_block").remove();
+												$(".device_floor .tab_menu .cur_tab").find("p").append(addText);
+											
+											}
 										}
 										
 										ahu_detail_build = $(".device_floor .tab_menu .cur_tab").attr("title"); // 当前选择的建筑
@@ -151,22 +158,24 @@ $(function() {
 												getEquipDetail(place_1,$(".device_select_popover:eq(1)>input").val());
 											}
 										} else {
-											if($(".detail_page").attr("tip") == "ahu") { // 空调箱特殊处理
+											
+											if(curId == "ahu") { // 空调箱特殊处理
 												var bIndex = $(".detail_page > .device_floor > .tab_menu > ul > .cur_tab").index(); // 当前建筑对应的index
 												var totalNum = ahuTemp[bIndex].total;
 												getRunningChart(totalNum); // 运行趋势
 												opeaAhu(); // 处理空调箱的信息
-											} else if($(".detail_page").attr("tip") == 'light') { // 在照明回路中，选择楼层后，刷新对应的开启台数的图表
+											} else if(curId == 'light') { // 在照明回路中，选择楼层后，刷新对应的开启台数的图表
 												detail_lightOpenNum_id = lightOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
 												dynamicBuildInfo('light'); // 显示各楼层照明回路的实时状态 
 												getDevicesDetailChart('lightOpenNum'); // 显示照明开启状态的曲线图
-											} else if($(".detail_page").attr("tip") == 'fcu') { // 在风机盘管中，选择楼层后，刷新对应的开启台数的图表
+											} else if(curId == 'fcu') { // 在风机盘管中，选择楼层后，刷新对应的开启台数的图表
 												detail_fcuOpenNum_id = fcuOpenNum_id + "_" + detail_floor + "_" + ahu_detail_build;
 												dynamicBuildInfo('fcu'); // 显示各楼层风机盘管的实时状态 
 												getDevicesDetailChart('fcuOpenNum'); // 显示风机盘管状态的曲线图
 											} else {
-												getBoilerBay($(".detail_page").attr("tip"), 0);
+												getBoilerBay(curId, 0);
 											}
+											
 										}
 
 //										showDetails();
@@ -336,7 +345,6 @@ function setTimes() {
 
 // 产生table
 function detail_tables(array, obj, d_num) {
-	console.log("----"+obj.attr("id"));
 	var num = Math.ceil(array.length / 4); // 得到行数
 	var d_class = ".data";
 	if ($(obj).parent().attr("id") == 'mask') { // 放大后
@@ -463,7 +471,12 @@ function detail_tables(array, obj, d_num) {
 			}
 		}
 	}
-	// 由于照明的数据较大，特殊处理
+	// 由于风机盘管的数据较大，字体大小特殊处理
+	$("#fcu > .data").find("p").css("font-size", 18);
+	$("#fcu > .data").find("p").find("span").css("font-size", 14);
+	$("#fcu > .data").find("sup").remove();
+	
+	// 由于照明的数据较大，字体大小特殊处理
 	$(".light_sys > div > .data").find("p").css("font-size", 18);
 	$(".light_sys > div > .data").find("p").find("span").css("font-size", 14);
 	$(".light_sys > div > .data").find("sup").remove();
@@ -539,15 +552,22 @@ function getSsztTable(total, equip, devicesList) {
 	} else {
 		$("div").remove(".display_more");
 	}
+	
+	var stateList = getDeviceStatus(total, devicesList);
+	console.log("start--stateList");
+	console.log(stateList);
+	console.log("end");
+	
 	for (var i = 0; i < total; i++) {
 		if (i % 3 == 0) {
-			state = 'off';
+			state = 'OFF';
 		} else {
-			state = 'on';
+			state = 'ON';
 		}
 		var str = '';
 		try{
 			str = devicesList[i];
+			state = stateList[i];
 		} catch(e) {}
 		$("<div>").addClass("each_device " + state)
 						.append($("<div>").addClass("device_number").append(
@@ -609,3 +629,19 @@ function getSsztTable(total, equip, devicesList) {
 		$(this).text("显示更多");
 	});
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

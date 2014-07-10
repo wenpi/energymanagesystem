@@ -141,5 +141,6 @@
 		<property name="serviceBuildingKey"><value>testServer</value></property>
 		<property name="buildId"><value>000001070001</value></property>
 	</bean> 	       
-	 
+	
+	<bean class="com.managementsystem.energy.thread.ThreadServlet" init-method="init"></bean>
 </beans>

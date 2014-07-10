@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
@@ -21,6 +22,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.hibernate.id.UUIDGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -31,6 +33,7 @@ import com.managementsystem.energy.dao.OtherDao;
 import com.managementsystem.energy.domain.Buildinfo;
 import com.managementsystem.energy.domain.Circuitinfo;
 import com.managementsystem.energy.domain.Reportinfo;
+import com.managementsystem.energy.domain.Temp;
 import com.managementsystem.energy.service.CircuitinfoService;
 import com.managementsystem.energy.service.ImportService;
   
@@ -461,6 +464,20 @@ public class ImportServiceImpl implements ImportService {
 			}
 		}
 
+	}
+
+	@Override
+	public void addTemp() {
+		try {
+			SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Temp temp = new Temp();
+			temp.setId(UUID.randomUUID() + "");
+			temp.setTime(sf.format(new Date()));
+			otherDao.addTemp(temp);
+		} catch (Exception e) {
+			System.out.println("-------------------------------------添加数据到临时表中出错了");
+			e.printStackTrace();
+		}
 	}
 	
 	// 备份代码，导入水表和气表，修改模板前，2014-05-23

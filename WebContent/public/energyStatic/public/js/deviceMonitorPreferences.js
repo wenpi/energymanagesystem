@@ -224,17 +224,17 @@ var detail_coldSiteCoolParam_name = 't_cw_s,t_cw_r,t_cond'; // 分别是冷冻�
 var detail_coldSiteCoolParam_id = 'K_1_01_YL,K_1_01_YL,K_1_02_YL'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
 var detail_coldSiteCoolParam_ispd = '1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
 // 冷站详情-水流量-水流量
-var detail_waterFlow_name = 't_ra'; // 分别是冷冻水流量
-var detail_waterFlow_id = 'K_1_01_YL'; // 分别是冷冻水流量
-var detail_waterFlow_ispd = '1'; // 分别是冷冻水流量
+var detail_waterFlow_name = 'flow_chw,flow_chw,flow_chw,flow_chw'; // 分别是冷冻水流量
+var detail_waterFlow_id = 'total_T1,total_T2,total_T3,total_T4'; // 分别是冷冻水流量
+var detail_waterFlow_ispd = '1,1,1,1'; // 分别是冷冻水流量
 // 冷站详情-水流量-压力
 var detail_waterPressure_name = 't_ra'; // 分别是水系统压力
 var detail_waterPressure_id = 'K_1_01_YL'; // 分别是水系统压力
 var detail_waterPressure_ispd = '1'; // 分别是水系统压力
-// 冷站详情-水流量-冷冻水参数
-var detail_waterColdParam_name = 't_sa,t_ra,t_ra'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_waterColdParam_id = 'K_1_01_YL,K_1_01_YL,K_1_02_YL'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_waterColdParam_ispd = '1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
+// 冷站详情-水流量-冷冻水参数(目前只有冷冻水回水温度)
+var detail_waterColdParam_name = 't_chw_r,t_chw_r,t_chw_r,t_chw_r'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
+var detail_waterColdParam_id = 'total_T1,total_T2,total_T3,total_T4'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
+var detail_waterColdParam_ispd = '1,1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
 // 冷站详情-水流量-冷却水参数
 var detail_waterCoolParam_name = 't_ra,t_ra,t_sa_sp'; // 分别是冷却水供水温度、冷却水回水温度、冷凝温度
 var detail_waterCoolParam_id = 'K_1_01_YL,K_1_02_YL,K_1_01_YL'; // 分别是冷却水供水温度、冷却水回水温度、冷凝温度

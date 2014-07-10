@@ -8,13 +8,13 @@
 			<div class="zoomin"></div>
 		</div>
 		<div class="chart">
-			<div class="btn_group">
+			<div class="btn_group" style="display: none;">
 				<input type="hidden" id="D_1" value="1"> <input
 					type="hidden" id="D_2" value="1">
 				<!-- <div class="btn_press">开启回路</div>
 				<div>开启功率</div> -->
 			</div>
-			<div class="chartArea" id="<portlet:namespace/>chart_light" style="height: 135px"></div>
+			<div class="chartArea" id="<portlet:namespace/>chart_light" style="height: 178px"></div>
 		</div>
 	</div>
 </div>

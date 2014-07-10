@@ -91,14 +91,14 @@
 								<p>运行负载率</p>
 							</div>
 						</li>
-						<li onclick="tab_click(this)">
+						<!-- <li onclick="tab_click(this)">
 							<div>
 								<img
 									src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" />
 								<p>运行时间</p>
 							</div>
 						</li>
-						<!-- <li onclick="tab_click(this)">
+						<li onclick="tab_click(this)">
 							<div>
 								<img
 									src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" />
@@ -204,7 +204,7 @@
 					</div>
 				</div>
 				
-				<div class="tab_content">
+				<div class="tab_content" style="display: none;">
 					<div class="date_select" style="width: 82px;">
 						<input type="hidden" id="seldate_sszt_yxsj">
 						<div class="pressive"
@@ -450,7 +450,7 @@
 			$(".detail_page > input:eq(1)").val(num - 1);
 			if (num == 1) { // 冷站 | 常规制冷系统
 				$(".tab ul>li:eq(1)").css('display', '${equipmentMonitor.isShowLoadRate}');
-				$(".tab ul>li").siblings().css('width', ("${equipmentMonitor.isShowLoadRate}" == "none" ? "425px" : "206px"));
+				$(".tab ul>li").siblings().css('width', ("${equipmentMonitor.isShowLoadRate}" == "none" ? "882px" : "425px")); // "425px" : "206px"
 				getEquipDetail(curId, 0);
 			} else if (num == 4) { // 冷站 | 冰蓄冷系统
 				// getEquipDetail(1, 0);
@@ -964,7 +964,7 @@
 					build_id : bid // ahu_detail_build
 				},
 				success : function(data) {
-					console.log(data);
+					//console.log(data);
 					var cataList = data.catalist;
 					var dataList = data.datalist;
 
@@ -1023,10 +1023,10 @@
 						chartYAxisList = [ 0, 1 ];
 					} else if(p_name == 'waterColdParam') { // 水流量-冷冻水参数
 						chartid = 'waterColdParam_chart', lefttitle = '温度（℃）', righttitle = '', unit = '℃';
-						chartLegendList = [ '冷冻水供水温度', '冷冻水回水温度', '蒸发温度' ];
-						chartColorList = ['#E46C0A','#0070C0', '#453656']; // [ '#E778BC', '#FF9900' ];
-						chartRadiusList = [ 1, 1, 1 ];
-						chartYAxisList = [ 0, 1, 0 ];
+						chartLegendList = [ 'T1楼冷冻水回水温度', 'T2楼冷冻水回水温度', 'T3楼冷冻水回水温度', 'T4楼冷冻水回水温度' ];
+						chartColorList = ['#E46C0A','#0070C0', '#E778BC', '#453656']; // [ '#E778BC', '#FF9900' ];
+						chartRadiusList = [ 1, 1, 1, 1 ];
+						chartYAxisList = [ 0, 0, 0, 0 ];
 					} else if(p_name == 'waterCoolParam') { // 水流量-冷却水参数 
 						chartid = 'waterCoolParam_chart', lefttitle = '温度（℃）', righttitle = '', unit = '℃';
 						chartLegendList = [ '冷却水供水温度', '冷却水回水温度', '冷凝温度' ];
@@ -1035,10 +1035,10 @@
 						chartYAxisList = [ 0, 1, 0 ];
 					} else if(p_name == 'waterFlow') { // 水流量
 						chartid = 'waterFlow_chart', lefttitle = '冷冻水流量（m³/h）', righttitle = '', unit = 'm³/h';
-						chartLegendList = [ '冷冻水流量' ];
-						chartColorList = ['#00B0F0' ];
-						chartRadiusList = [ 1 ];
-						chartYAxisList = [ 0 ];
+						chartLegendList = [ 'T1楼冷冻水流量','T2楼冷冻水流量','T3楼冷冻水流量','T4楼冷冻水流量' ];
+						chartColorList = [ '#00B050','#FFC000','#0070C0' ,'#FF99FF' ];
+						chartRadiusList = [ 1,1,1,1 ];
+						chartYAxisList = [ 0,0,0,0 ];
 					} else if(p_name == 'waterPressure') { // 压力 
 						chartid = 'waterPressure_chart', lefttitle = '水系统压力（Pa）', righttitle = '', unit = 'Pa';
 						chartLegendList = [ '水系统压力' ];
@@ -1236,9 +1236,9 @@
 	function opeaWaterSystem() {
 		$(".detail_chart").css("display", "none"); // 隐藏其它的图表div
 		$(".coolSystemDiv").css("display", "block"); // 显示冷水机组
-		getDevicesDetailChart('waterFlow'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷冻水参数
-		getDevicesDetailChart('waterPressure'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
-		getDevicesDetailChart('waterColdParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
+		getDevicesDetailChart('waterFlow'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 水流量
+		//getDevicesDetailChart('waterPressure'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 压力
+		getDevicesDetailChart('waterColdParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷冻水参数
 		getDevicesDetailChart('waterCoolParam'); // 冷站设备详情，常规制冷系统 | 冷水机组 - 冷却水参数
 	}
 	

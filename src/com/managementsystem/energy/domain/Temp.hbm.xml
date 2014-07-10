@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="true" default-lazy="false">
+	<class name="com.managementsystem.energy.domain.Temp" table="temp">
+		<id name="id" type="string">
+			<column name="id" length="36" />
+			<generator class="assigned" />
+		</id>
+		<property name="time" type="string">
+			<column name="time" length="20" />
+		</property>
+	</class>
+</hibernate-mapping>

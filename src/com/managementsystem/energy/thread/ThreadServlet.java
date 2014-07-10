@@ -2,10 +2,11 @@ package com.managementsystem.energy.thread;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Timer;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +14,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.managementsystem.energy.domain.QueryScheme;
-import com.managementsystem.energy.service.QuerySchemeService;
+import com.managementsystem.energy.service.ImportService;
 
 public class ThreadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-//	private QuerySchemeService querySchemeService;
+    private final static Log logger = LogFactory.getLog(ThreadServlet.class);
+
+	@Autowired
+	private ImportService importService;
 
 	public ThreadServlet() {
 		super();
@@ -43,7 +44,7 @@ public class ThreadServlet extends HttpServlet {
 					// 获取当前项目所在tomcat中的位置
 					String dir = this.getClass().getResource("/").getPath();
 					dir = dir.substring(1, dir.lastIndexOf("WEB-INF")) + "uploadfiles";
-					// System.out.println("dir---" + dir);
+					// logger.info("dir---" + dir);
 
 					// 如果dir不以文件分隔符结尾，自动添加文件分隔符
 					if (!dir.endsWith(File.separator)) {
@@ -52,7 +53,7 @@ public class ThreadServlet extends HttpServlet {
 					File dirFile = new File(dir);
 					// 如果dir对应的文件不存在，或者不是一个目录，则退出
 					if (!dirFile.exists() || !dirFile.isDirectory()) {
-						System.out.println("删除目录失败" + dir + "目录不存在！");
+						logger.info("删除目录失败" + dir + "目录不存在！");
 					}
 					// 删除文件夹下的所有文件(不包括子目录)
 					File[] files = dirFile.listFiles();
@@ -63,33 +64,66 @@ public class ThreadServlet extends HttpServlet {
 							File file = new File(fileName);
 							if (file.isFile() && file.exists()) {
 								file.delete();
-								System.out.println("删除单个文件" + fileName + "成功！");
+								logger.info("删除单个文件" + fileName + "成功！");
 							} else {
-								System.out.println("删除单个文件" + fileName + "失败！");
+								logger.info("删除单个文件" + fileName + "失败！");
 							}
 						}
 					}
 				}
 				
 				// 每隔10分钟连接一下数据库
-//				if((date.getMinutes() % 10 == 0 || date.getMinutes() % 5 == 0) && date.getSeconds() == 0) {
-//					System.out.println("进来了thread");
+				if(date.getHours() % 2 == 0 && (date.getMinutes() == 0) && date.getSeconds() == 0) {
+					
+					logger.info("-------------------------添加临时记录开始！-------------------------");
+					importService.addTemp();
+					logger.info("-------------------------添加临时记录结束！-------------------------");
+					
+//					logger.info("-------------------------日志文件瘦身开始！-------------------------");
 //
-//					// 获取当前项目所在tomcat中的位置
-//					String dir = this.getClass().getResource("/").getPath();
-//					dir = dir.substring(1, dir.lastIndexOf("WEB-INF")) + "WEB-INF/context/";
-//					System.out.println("---" + dir);
-//					ApplicationContext ctx = new ClassPathXmlApplicationContext(dir + "applicationContext.xml");
-//					querySchemeService = (QuerySchemeService)ctx.getBean("QuerySchemeService");
+//					Connection conn = com.managementsystem.dbmanager.ConnectionManager
+//							.getConnection();
+////					CallableStatement cs = null;
+//					Statement stmt = conn.createStatement();
 //					
-//					List<QueryScheme> querySchemes = new ArrayList<QueryScheme>();
+//					String sql = "' USE [master] ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY SIMPLE WITH NO_WAIT ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY SIMPLE ' + Char(13)  + ' GO ' + Char(13)  + ' USE taobao ' + Char(13)  + ' GO ' + Char(13)  + ' DBCC SHRINKFILE (N''taobao_Log'' , 11, TRUNCATEONLY) ' + Char(13)  + ' GO ' + Char(13)  + ' USE [master] ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY FULL WITH NO_WAIT ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY FULL ' + Char(13)  + ' GO '";
 //					try {
-//						querySchemes = querySchemeService.getQuerySchemeListByCondition("chiller", "", "冷冻水回水温度", "P1", "");
+//						
+//				        stmt.addBatch("USE [master]");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY SIMPLE WITH NO_WAIT");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY SIMPLE");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("USE taobao");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("DBCC SHRINKFILE (N'taobao_Log' , 11, TRUNCATEONLY) ");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("USE [master]");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY FULL WITH NO_WAIT");
+//				        // stmt.addBatch("GO");
+//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY FULL ");
+//				        // stmt.addBatch("GO");
+//					       
+//						stmt.executeBatch();
+//						logger.info("瘦身的sql----" + sql);
+////						cs = conn.prepareCall(sql);
+////						cs.execute();
 //					} catch (Exception e) {
-//						System.out.println("thread-error");
+//						logger.info("日志文件瘦身出错了" + sql);
+//						throw new java.lang.RuntimeException(e);
+//					} finally {
+//						// 数据库资源释放
+//						if (stmt != null) {
+//							stmt.close();
+//						}
+//						if (conn != null) {
+//							conn.close();
+//						}
 //					}
-//					System.out.println("thread--" + querySchemes.size());
-//				}
+//					logger.info("-------------------------日志文件瘦身完成！-------------------------");
+				}
 			} catch (Exception e) {
 				// e.printStackTrace();
 			}

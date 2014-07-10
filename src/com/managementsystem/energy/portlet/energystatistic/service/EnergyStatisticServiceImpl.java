@@ -19,8 +19,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.portlet.PortletContext;
 import javax.portlet.ResourceRequest;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.poi.hssf.usermodel.HSSFCell;
@@ -200,26 +202,27 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 				SimpleDateFormat sf = new SimpleDateFormat(beforeFormat);
 				SimpleDateFormat sformat = new SimpleDateFormat(afterFormat);
 
-				String def = (decimals != null && decimals.length() > 0) ? decimals
-						: "0.00";
+				String def = (decimals != null && decimals.length() > 0) ? decimals : "0.00";
 				DecimalFormat df = new DecimalFormat(def);
+				
 				for (int i = 0; i < loop; i++) {
 					CommonModel cm = (CommonModel) list.get(i);
+
 					try {
+						String datavalue = df.format(Double.parseDouble(cm.getValue()));
 
-						try {
-							String datavalue = df.format(Double.parseDouble(cm
-									.getValue()));
-
-							dataList.add(Double.parseDouble(datavalue));
-						} catch (Exception e) {
-							dataList.add(Double.parseDouble("0"));
-							// logger.error(e);
-						}
+						dataList.add(Double.parseDouble(datavalue));
+					} catch (Exception e) {
+						dataList.add(Double.parseDouble("0"));
+						logger.error(e);
+					}
+					
+					try {
 						Date nowtime = sf.parse(cm.getTime());
 						cataList.add(sformat.format(nowtime));
 					} catch (ParseException e) {
-						// logger.error(e);
+						cataList.add("");
+						logger.error(e);
 					}
 				}
 
@@ -291,48 +294,51 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 				DecimalFormat df = new DecimalFormat(def);
 				for (int i = 0; i < loop; i++) {
 					CommonModel cm = (CommonModel) list.get(i);
+					
 					try {
-						try {
-							// 展示在图表上的数据
-							double dvalue = Double.parseDouble(cm.getValue());
+						// 展示在图表上的数据
+						double dvalue = Double.parseDouble(cm.getValue());
 
-							// referenceList如果有值，说明是能效分析中的单位面积总能耗/单位面积空调能耗/单位面积照明能耗三项
-							// 此时对referencevalue参考值进行特殊处理
-							if (referenceList != null
-									&& !"".equals(referenceList)
-									&& referenceList.trim().length() > 0) {
-								String[] reList = referenceList.split(",");
+						// referenceList如果有值，说明是能效分析中的单位面积总能耗/单位面积空调能耗/单位面积照明能耗三项
+						// 此时对referencevalue参考值进行特殊处理
+						if (referenceList != null
+								&& !"".equals(referenceList)
+								&& referenceList.trim().length() > 0) {
+							String[] reList = referenceList.split(",");
 
-								try {
-									// 如果满足以上条件的话，则需特殊处理，在数据基础上*1000
-									dvalue = Double.parseDouble(cm.getValue()) * 1000;
+							try {
+								// 如果满足以上条件的话，则需特殊处理，在数据基础上*1000
+								dvalue = Double.parseDouble(cm.getValue()) * 1000;
 
-									if ("day".equals(type)) {
-										referencevalue = reList[0];
-									} else if ("week".equals(type)) {
-										referencevalue = reList[1];
-									} else if ("month".equals(type)) {
-										referencevalue = reList[2];
-									} else if ("year".equals(type)) {
-										referencevalue = reList[3];
-									}
-								} catch (Exception e) {
-									logger.info("referencevalue转换的时候报错了！");
-									referencevalue = "0";
+								if ("day".equals(type)) {
+									referencevalue = reList[0];
+								} else if ("week".equals(type)) {
+									referencevalue = reList[1];
+								} else if ("month".equals(type)) {
+									referencevalue = reList[2];
+								} else if ("year".equals(type)) {
+									referencevalue = reList[3];
 								}
+							} catch (Exception e) {
+								logger.info("referencevalue转换的时候报错了！");
+								referencevalue = "0";
 							}
-
-							String datavalue = df.format(dvalue);
-							dataList.add(Double.parseDouble(datavalue));
-
-						} catch (Exception e) {
-							dataList.add(Double.parseDouble("0"));
-							// logger.error(e);
 						}
+
+						String datavalue = df.format(dvalue);
+						dataList.add(Double.parseDouble(datavalue));
+
+					} catch (Exception e) {
+						dataList.add(Double.parseDouble("0"));
+						logger.error(e);
+					}
+					
+					try {
 						Date nowtime = sf.parse(cm.getTime());
 						cataList.add(sformat.format(nowtime));
 					} catch (ParseException e) {
-						// logger.error(e);
+						cataList.add("");
+						logger.error(e);
 					}
 
 					// 添加参考值数据到list中
@@ -753,7 +759,7 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 
 						} catch (Exception e) {
 							returnStr = "0";
-							// e.printStackTrace();
+							logger.error(e);
 						}
 					}
 				}
@@ -874,34 +880,33 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 					List<Double> tempDataList = new ArrayList<Double>();// 存储数据
 					for (int i = 0; i < loop; i++) {
 						CommonModel cm = (CommonModel) list.get(i);
+
 						try {
-							try {
-								String datavalue = df.format(Double
-										.parseDouble(cm.getValue()));
+							String datavalue = df.format(Double.parseDouble(cm.getValue()));
 
-								if (mult != null && !"".equals(mult)
-										&& mult.trim().length() > 0) {
-									try {
-										// 如果满足以上条件的话，则需特殊处理，在数据基础上*1000
-										datavalue = df.format(Double
-												.parseDouble(cm.getValue())
-												* Double.parseDouble(mult));
-									} catch (Exception e) {
-										logger.info("getMoreChartsByNames-----mult转换的时候报错了！");
-									}
+							if (mult != null && !"".equals(mult) && mult.trim().length() > 0) {
+								try {
+									// 如果满足以上条件的话，则需特殊处理，在数据基础上*1000
+									datavalue = df.format(Double.parseDouble(cm.getValue()) * Double.parseDouble(mult));
+								} catch (Exception e) {
+									logger.info("getMoreChartsByNames-----mult转换的时候报错了！");
 								}
-
-								tempDataList.add(Double.parseDouble(datavalue));
-
-							} catch (Exception e) {
-								tempDataList.add(Double.parseDouble("0"));
-								logger.error(e);
 							}
 
+							tempDataList.add(Double.parseDouble(datavalue));
+
+						} catch (Exception e) {
+							tempDataList.add(Double.parseDouble("0"));
+							logger.error(e);
+						}
+
+						try {
 							Date nowtime = sf.parse(cm.getTime());
 							cataList.add(sformat.format(nowtime));
-						} catch (ParseException e) {
-							// logger.error(e);
+						} catch (Exception e) {
+							cataList.add("");
+							logger.error("转换出错了！" + cm.getTime());
+							logger.error(e);
 						}
 					}
 
@@ -1007,58 +1012,54 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 					double total = 0;
 					for (int i = 0; i < loop; i++) {
 						CommonModel cm = (CommonModel) list.get(i);
+
 						try {
+							double datavalue = Double.parseDouble(df
+									.format(Double.parseDouble(cm
+											.getValue())));
+							// 如果满足以上条件的话，则需特殊处理，在数据基础上*multiplier
+							if (multiplier != null
+									&& !"".equals(multiplier)
+									&& multiplier.trim().length() > 0) {
+								try {
+									datavalue = Double
+											.parseDouble(df.format(Double
+													.parseDouble(cm
+															.getValue())
+													* Double.parseDouble(multiplier)));
 
-							try {
-								double datavalue = Double.parseDouble(df
-										.format(Double.parseDouble(cm
-												.getValue())));
-								// 如果满足以上条件的话，则需特殊处理，在数据基础上*multiplier
-								if (multiplier != null
-										&& !"".equals(multiplier)
-										&& multiplier.trim().length() > 0) {
-									try {
-										datavalue = Double
-												.parseDouble(df.format(Double
-														.parseDouble(cm
-																.getValue())
-														* Double.parseDouble(multiplier)));
-
-									} catch (Exception e) {
-										logger.error("printReportInfo--multiplier转换的时候报错了！");
-									}
+								} catch (Exception e) {
+									logger.error("printReportInfo--multiplier转换的时候报错了！");
 								}
-
-								tempDataList.add(datavalue);
-								tempShowDataList.add(datavalue);
-								total += datavalue;
-							} catch (Exception e) {
-								total += 0;
-								tempDataList.add(Double.parseDouble("0"));
-								tempShowDataList.add(Double.parseDouble("0"));
-								logger.error(e);
 							}
 
-							try {
-								tempCataList.add(sformat.format(sf.parse(cm
-										.getTime())));
-							} catch (Exception e) {
-								// logger.error(e);
-								tempCataList.add(cm.getTime());
-							}
-
-							// 处理预览情况
-							try {
-								tempShowCataList.add(pre_format.format(sf
-										.parse(cm.getTime())));
-							} catch (Exception e) {
-								// logger.error(e);
-								tempShowCataList.add(cm.getTime());
-							}
-
+							tempDataList.add(datavalue);
+							tempShowDataList.add(datavalue);
+							total += datavalue;
 						} catch (Exception e) {
+							total += 0;
+							tempDataList.add(Double.parseDouble("0"));
+							tempShowDataList.add(Double.parseDouble("0"));
 							logger.error(e);
 						}
+
+						try {
+							tempCataList.add(sformat.format(sf.parse(cm
+									.getTime())));
+						} catch (Exception e) {
+							tempCataList.add(cm.getTime());
+							logger.error(e);
+						}
+
+						// 处理预览情况
+						try {
+							tempShowCataList.add(pre_format.format(sf
+									.parse(cm.getTime())));
+						} catch (Exception e) {
+							tempShowCataList.add(cm.getTime());
+							logger.error(e);
+						}
+
 					}
 
 					showDataList.add(tempShowDataList); // 显示在预览页面的数据列表
@@ -1148,24 +1149,26 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 					List<Double> tempDataList = new ArrayList<Double>();// 存储数据
 					for (int i = 0; i < loop; i++) {
 						CommonModel cm = (CommonModel) list.get(i);
+
 						try {
+							String datavalue = df.format(Double
+									.parseDouble(cm.getValue()));
 
-							try {
-								String datavalue = df.format(Double
-										.parseDouble(cm.getValue()));
+							tempDataList.add(Double.parseDouble(datavalue));
+						} catch (Exception e) {
+							tempDataList.add(Double.parseDouble("0"));
+							logger.error(e);
+						}
 
-								tempDataList.add(Double.parseDouble(datavalue));
-							} catch (Exception e) {
-								tempDataList.add(Double.parseDouble("0"));
-								logger.error(e);
-							}
-
+						try {
 							Date nowtime = sf.parse(cm.getTime());
 							cataList.add(sformat.format(nowtime));
-
-						} catch (ParseException e) {
-							// logger.error(e);
+						} catch (Exception e) {
+							cataList.add("");
+							logger.error("转换出错了！" + cm.getTime());
+							logger.error(e);
 						}
+
 					}
 
 					dataList.add(tempDataList);
@@ -1275,78 +1278,72 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 						CommonModel cm = (CommonModel) list.get(i);
 
 						try {
-							try {
-								// 展示在图表上的数据
-								double dvalue = Double.parseDouble(cm
-										.getValue());
+							// 展示在图表上的数据
+							double dvalue = Double.parseDouble(cm
+									.getValue());
 
-								if (mult != null && !"".equals(mult)
-										&& mult.trim().length() > 0) {
-									try {
-										// 如果满足以上条件的话，则需特殊处理，在数据基础上*mult的值
-										dvalue = Double
-												.valueOf(df.format(dvalue
-														* Double.parseDouble(mult)));
-									} catch (Exception e) {
-										logger.error("getCommonChartData--multiplier转换的时候报错了！");
-									}
+							if (mult != null && !"".equals(mult)
+									&& mult.trim().length() > 0) {
+								try {
+									// 如果满足以上条件的话，则需特殊处理，在数据基础上*mult的值
+									dvalue = Double
+											.valueOf(df.format(dvalue
+													* Double.parseDouble(mult)));
+								} catch (Exception e) {
+									logger.error("getCommonChartData--multiplier转换的时候报错了！");
 								}
-
-								String datavalue = df.format(dvalue);
-
-								dataList.add(Double.parseDouble(datavalue));
-
-							} catch (Exception e) {
-								logger.error(e);
-								dataList.add(Double.parseDouble("0"));
 							}
 
-							// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
-							// 具体模块，不一一列出，请知悉
-							try {
-								Date nowtime = sf.parse(cm.getTime());
-								String val = sformat.format(nowtime);
-								cataList.add(val); // 添加X轴数据
-								tempExpExcelCataList.add(val); // 添加X轴数据
-							} catch (Exception e) {
-								cataList.add("");
-								tempExpExcelCataList.add("");
-								// logger.error("---getCommonChartData此处有可能在格式化时报错，此处的错误可以忽略---");
-							}
+							String datavalue = df.format(dvalue);
 
-							// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
-							// 具体模块，不一一列出，请知悉
-							try {
-								Date nowtime = sf.parse(cm.getTime());
-								tempExpExcelTimeList.add(excelFormat
-										.format(nowtime)); // 添加导出到excel中的X数据
-							} catch (Exception e) {
-								tempExpExcelTimeList.add("");
-								// logger.error("---tempExpExcelTimeList此处有可能在格式化时报错，此处的错误可以忽略---");
-							}
-
-							try {
-								Date nowtime = sf.parse(cm.getTime());
-
-								// 如果循环到第一个和最后一个的时候，将其存放在对应的list中，此处存是为了返回给前台设置对应的图表居中标题
-								if (i == 0 || (i == (loop - 1))) {
-									tempLegendList
-											.add(legendSf.format(nowtime));
-								}
-
-								// 将对应的年份添加到list中，用于前台展示图例用
-								tempYearList.add(yearSf.format(nowtime));
-							} catch (Exception e) {
-								tempLegendList.add("");
-								tempYearList.add("");
-								logger.error("tempLegendList转换的时候报错了！");
-							}
+							dataList.add(Double.parseDouble(datavalue));
 
 						} catch (Exception e) {
-							logger.info(preferenceinfo.getTitle()
-									+ "----getCommonChartData----------i" + i);
 							logger.error(e);
+							dataList.add(Double.parseDouble("0"));
 						}
+
+						// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
+						// 具体模块，不一一列出，请知悉
+						try {
+							Date nowtime = sf.parse(cm.getTime());
+							String val = sformat.format(nowtime);
+							cataList.add(val); // 添加X轴数据
+							tempExpExcelCataList.add(val); // 添加X轴数据
+						} catch (Exception e) {
+							cataList.add("");
+							tempExpExcelCataList.add("");
+							logger.error("---getCommonChartData此处有可能在格式化时报错，此处的错误可以忽略---");
+						}
+
+						// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
+						// 具体模块，不一一列出，请知悉
+						try {
+							Date nowtime = sf.parse(cm.getTime());
+							tempExpExcelTimeList.add(excelFormat
+									.format(nowtime)); // 添加导出到excel中的X数据
+						} catch (Exception e) {
+							tempExpExcelTimeList.add("");
+							logger.error("---tempExpExcelTimeList此处有可能在格式化时报错，此处的错误可以忽略---");
+						}
+
+						try {
+							Date nowtime = sf.parse(cm.getTime());
+
+							// 如果循环到第一个和最后一个的时候，将其存放在对应的list中，此处存是为了返回给前台设置对应的图表居中标题
+							if (i == 0 || (i == (loop - 1))) {
+								tempLegendList
+										.add(legendSf.format(nowtime));
+							}
+
+							// 将对应的年份添加到list中，用于前台展示图例用
+							tempYearList.add(yearSf.format(nowtime));
+						} catch (Exception e) {
+							tempLegendList.add("");
+							tempYearList.add("");
+							logger.error("tempLegendList转换的时候报错了！");
+						}
+
 					}
 
 					// 保存对应的图例列表
@@ -1866,8 +1863,8 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 								tempDataList.add(Double.parseDouble(datavalue));
 
 							} catch (Exception e) {
-								// logger.error(e);
 								tempDataList.add(Double.parseDouble("0"));
+								logger.error(e);
 							}
 						}
 
@@ -1985,74 +1982,70 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 						CommonModel cm = (CommonModel) list.get(i);
 
 						try {
-							try {
-								// 展示在图表上的数据
-								double dvalue = Double.parseDouble(cm
-										.getValue());
+							// 展示在图表上的数据
+							double dvalue = Double.parseDouble(cm
+									.getValue());
 
-								if (mult != null && !"".equals(mult)
-										&& mult.trim().length() > 0) {
-									try {
-										// 如果满足以上条件的话，则需特殊处理，在数据基础上*mult的值
-										dvalue = Double
-												.valueOf(df.format(dvalue
-														* Double.parseDouble(mult)));
-									} catch (Exception e) {
-										logger.error("getOutSideChartData--multiplier转换的时候报错了！");
-									}
+							if (mult != null && !"".equals(mult)
+									&& mult.trim().length() > 0) {
+								try {
+									// 如果满足以上条件的话，则需特殊处理，在数据基础上*mult的值
+									dvalue = Double
+											.valueOf(df.format(dvalue
+													* Double.parseDouble(mult)));
+								} catch (Exception e) {
+									logger.error("getOutSideChartData--multiplier转换的时候报错了！");
 								}
-
-								String datavalue = df.format(dvalue);
-
-								dataList.add(Double.parseDouble(datavalue));
-
-							} catch (Exception e) {
-								dataList.add(Double.parseDouble("0"));
-								logger.error(e);
 							}
 
-							// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
-							// 具体模块，不一一列出，请知悉
-							try {
-								Date nowtime = sf.parse(cm.getTime());
-								String val = sformat.format(nowtime);
-								cataList.add(val); // 添加X轴数据
-								tempExpExcelCataList.add(val); // 添加X轴数据
-							} catch (Exception e) {
-								cataList.add("");
-								tempExpExcelCataList.add("");
-								// logger.error("---getOutSideChartData此处有可能在格式化时报错，此处的错误可以忽略---");
-							}
+							String datavalue = df.format(dvalue);
 
-							// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
-							// 具体模块，不一一列出，请知悉
-							try {
-								Date nowtime = sf.parse(cm.getTime());
-								tempExpExcelTimeList.add(excelFormat
-										.format(nowtime)); // 添加导出到excel中的X数据
-							} catch (Exception e) {
-								tempExpExcelTimeList.add("");
-								// logger.error("---tempExpExcelTimeList此处有可能在格式化时报错，此处的错误可以忽略---");
-							}
+							dataList.add(Double.parseDouble(datavalue));
 
-							try {
-								Date nowtime = sf.parse(cm.getTime());
-
-								// 如果循环到第一个和最后一个的时候，将其存放在对应的list中，此处存是为了返回给前台设置对应的图表居中标题
-								if (i == 0 || (i == (loop - 1))) {
-									tempLegendList
-											.add(legendSf.format(nowtime));
-								}
-
-								// 将对应的年份添加到list中，用于前台展示图例用
-								tempYearList.add(yearSf.format(nowtime));
-							} catch (Exception e) {
-								tempLegendList.add("");
-								tempYearList.add("");
-								// logger.error("tempLegendList转换的时候报错了！");
-							}
 						} catch (Exception e) {
+							dataList.add(Double.parseDouble("0"));
 							logger.error(e);
+						}
+
+						// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
+						// 具体模块，不一一列出，请知悉
+						try {
+							Date nowtime = sf.parse(cm.getTime());
+							String val = sformat.format(nowtime);
+							cataList.add(val); // 添加X轴数据
+							tempExpExcelCataList.add(val); // 添加X轴数据
+						} catch (Exception e) {
+							cataList.add("");
+							tempExpExcelCataList.add("");
+							logger.error("---getOutSideChartData此处有可能在格式化时报错，此处的错误可以忽略---");
+						}
+
+						// 此处格式化时间格式，为的是将通过url返回的数据格式化成前台需要的X轴的数据，此处因多处调用，可能有极个别的模块调用时，会格式化错误，此时的错误可以忽略
+						// 具体模块，不一一列出，请知悉
+						try {
+							Date nowtime = sf.parse(cm.getTime());
+							tempExpExcelTimeList.add(excelFormat
+									.format(nowtime)); // 添加导出到excel中的X数据
+						} catch (Exception e) {
+							tempExpExcelTimeList.add("");
+							logger.error("---tempExpExcelTimeList此处有可能在格式化时报错，此处的错误可以忽略---");
+						}
+
+						try {
+							Date nowtime = sf.parse(cm.getTime());
+
+							// 如果循环到第一个和最后一个的时候，将其存放在对应的list中，此处存是为了返回给前台设置对应的图表居中标题
+							if (i == 0 || (i == (loop - 1))) {
+								tempLegendList
+										.add(legendSf.format(nowtime));
+							}
+
+							// 将对应的年份添加到list中，用于前台展示图例用
+							tempYearList.add(yearSf.format(nowtime));
+						} catch (Exception e) {
+							tempLegendList.add("");
+							tempYearList.add("");
+							logger.error("tempLegendList转换的时候报错了！");
 						}
 					}
 

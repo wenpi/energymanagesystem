@@ -2023,11 +2023,11 @@ border-bottom-left-radius: 7px;}
 
 .device_number > h3 {font-size: 16px; text-indent: 30px;}
 .device_number > p {font-size: 18px; text-indent: 40px;}
-.each_device_list .on .device_number h3 {color: #333;}
-.each_device_list .on .device_number p {color: #3DACAD;}
-.each_device_list .off .device_number h3 {color: #999;}
-.each_device_list .off .device_number p {color: #f00;}
-.each_device_list .off .device_para table {color: #CCC !important;}
+.each_device_list .ON .device_number h3 {color: #333;}
+.each_device_list .ON .device_number p {color: #3DACAD;}
+.each_device_list .OFF .device_number h3 {color: #999;}
+.each_device_list .OFF .device_number p {color: #f00;}
+.each_device_list .OFF .device_para table {color: #CCC !important;}
 
 .each_device_list .each_device .device_para > div {padding-top: 25px}
 .each_device_list .each_device .device_para table {width: 100%; color: #fff;}
