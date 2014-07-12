@@ -125,5 +125,12 @@ public interface BuildregioninfoService {
 	 * */
 	public Page getBuildregioninfos(String buildId,int pageIndex,int pageSize,Map<String,Object> mapParams);
 	
+	/**
+	 * 获取建筑区域信息
+	 * 
+	 * @return
+	 */
+	public List<Buildregioninfo> getAllBuildregioninfos();
+	
 	public List<Tree> getBuildregionComboTree(List<Buildinfo>buildinfosList);
 }

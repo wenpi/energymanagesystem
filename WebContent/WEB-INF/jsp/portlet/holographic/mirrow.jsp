@@ -53,9 +53,16 @@
 	};
 	
 	//zzx于20130924添加
-	var nowdate = new Date();
-	var <portlet:namespace />start_date = nowdate.getFullYear() + "-"
-			+ (nowdate.getMonth() + 1) + "-" + nowdate.getDate();
+	if("${holocfg.defaulttime}" != "") {
+		<portlet:namespace />start_date = "${holocfg.defaulttime}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
+	}
+	
 	var pubDateFrom = <portlet:namespace />start_date, pubDateTo = "";// 开始时间和结束时间  
 	var nowDateFrom = <portlet:namespace />start_date; //当前时间 
 	var prettyFrom = <portlet:namespace />start_date; // 开始时间 
@@ -78,7 +85,7 @@
 	</div>
 	<div id="swap_info">
 		<div class="span12 basic_imformation cur" id="devicemonitor_formdiv"
-			style="margin-left: -50px;">
+			style="margin-left: -50px; height: 1111px !important;">
 			<!-- 设备监测全局页面 -->
 			<div class="fir_inner_content overview">
 				<div class="span12 floor_left" id="floor_list">

@@ -31,6 +31,7 @@ public class BuildregioninfoDaoImpl extends AbstractDaoSupport implements
 	private final String GET_PARENT_BUILDREGIONINFOS="from Buildregioninfo where (buildregioninfo.regionId is null or buildregioninfo.regionId='') and buildinfo.buildId=?";
 	private final String GET_BUILDREGIONINFOS_BY_PARENTID="from Buildregioninfo where buildregioninfo.regionId=?";
 	private final String GET_PAGEED_BUILDREGIONINFOS="from Buildregioninfo order by regionId asc";
+	private final String GET_ALL_BUILDREGIONINFOS="from Buildregioninfo order by regionId asc";
 	private final String GET_MAX_BUILDREGIONINFO_BY_BUILDID = "from Buildregioninfo where buildinfo.buildId=? order by regionId desc";
 	
 	
@@ -48,6 +49,13 @@ public class BuildregioninfoDaoImpl extends AbstractDaoSupport implements
 			query = createQuery(GET_PAGEED_BUILDREGIONINFOS,startResult,maxRows);	
 		}
 		return new LinkedHashSet<Buildregioninfo>(query.list());
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Buildregioninfo> getAllBuildregioninfos() throws DataAccessException {
+		Query query = createQuery(GET_ALL_BUILDREGIONINFOS, 0, 100);	
+		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")

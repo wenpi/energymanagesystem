@@ -17,17 +17,12 @@
 		style="visibility: hidden; position: absolute; display: none"></iframe>
 	<div class="content center">
 		<div class="form_style">
+			<div style="color: red; font-size: 16px; margin-bottom: 10px;">启停状态/开启状态：0表示关闭，非0表示开启</div>
 			<div class="form_func_title">
 				<span class="list_title">${reportform.title}</span>
 				<div class="block build_select" id="choose_region">
 					<span class="select_name">选择楼层</span> 
-					<select id="regionSelect">
-						<option value="0000010700010001">0M</option> 
-						<option value="0000010700010002">5M</option> 
-						<option value="0000010700010003">33M</option> 
-						<option value="0000010700010004">41M</option> 
-						<option value="0000010700010005">49M</option>
-					</select>
+					<select id="regionSelect"></select>
 				</div>
 				<div class="block date_select">
 					<span class="select_name">选择类型</span> <select
@@ -59,7 +54,7 @@
 
 		<div id="<portlet:namespace />swap_info" class="table_style">
 			<div class="span12 basic_imformation cur">
-				<div id="<portlet:namespace />reportdiv" style="width: 100%; height:700px; overflow: auto;"></div>
+				<div id="<portlet:namespace />reportdiv" style="width: 100%; height: 555px; overflow: auto;"></div>
 			</div>
 		</div>
 	</div>
@@ -249,6 +244,7 @@ function buildTableData() {
 
 // 生成针对运行监测的报表
 function buildDynamic() {
+	
 	$.post('<portlet:resourceURL id="getReportDataList"></portlet:resourceURL>',
 			{
 				from : <portlet:namespace />starttime,
@@ -258,88 +254,109 @@ function buildDynamic() {
 				regionText : $("#regionSelect option:selected").text(),
 				regionId : $("#regionSelect").val()
 			}, function(data) {
-				var showCataList = data.showCataList;
-				var showDataList = data.showDataList;
-
-				var t_1 = data.row1, one = t_1.split(","), t1_len = one.length;
-				var t_2 = data.row2, two = t_2.split(","), t2_len = two.length;
-				var t_3 = data.row3, thr = t_3.split(","), t3_len = thr.length;
-				// 1.首先确定行数
-				var row = 3;
-				if(t_3 == "") { // 判断第三行是否配置了内容
-					row = 2, t3_len = 0;
-				} 
-				if(t_2 == "") { // 判断第二行是否配置了内容
-					row = 1, t2_len = 0;
-				}
-
-				// 2.确定列数
-				var t2t3_len = (t2_len == 0 ? 1 : t2_len) * (t3_len == 0 ? 1 : t3_len), total_col = t1_len * t2t3_len; // 第二行第三行总列数、总列数
-
-				// 3.确定每行的元素
-				var html = "<table align='center' class='form_detail' border='1'>", content = '';
-				var row1 = "<tr><td nowrap rowspan='" + row + "' style='width: 123px; text-align: center;'>日期</td>", row2 = "", row3 = "";
-
-				// 4.写入元素
-				var k = 0, v = 0; // 分别记录第一行、第二行的索引
-				for (var i = 1; i <= total_col; i++) {
-					
-					// 第一行数据
-					var index = (i - 1) % t2t3_len;
-					if (index == 0) {
-						row1 += '<td nowrap colspan="' + t2t3_len + '" style="width: 100px; text-align: center;">' + one[k] + '</td>';
-						k++;
+				
+				var message = data.message;
+				if(message == "none") { // 表示没有查到数据或者发生了异常
+					$('#<portlet:namespace />reportdiv').html("没有查到相应的数据！");
+				} else {
+				
+					var showCataList = data.showCataList;
+					var showDataList = data.showDataList;
+	
+					var t_1 = data.row1, one = t_1.split(","), t1_len = one.length;
+					var t_2 = data.row2, two = t_2.split(","), t2_len = two.length;
+					var t_3 = data.row3, thr = t_3.split(","), t3_len = thr.length;
+					// 1.首先确定行数
+					var row = 3;
+					if(t_3 == "") { // 判断第三行是否配置了内容
+						row = 2, t3_len = 0;
+					} 
+					if(t_2 == "") { // 判断第二行是否配置了内容
+						row = 1, t2_len = 0;
 					}
-					if (t2_len != 0) { // t2_len不为0，才考虑多行的情况
-						if (t3_len != 0) { // t3_len不为0，才操作第二行的数据
-							index = (i - 1) % t3_len;
-							if (index == 0) { // 循环写入第二行的数据
-								row2 += "<td nowrap colspan='" + t3_len + "' style='text-align: center; width: 100px;'>" + two[v] + "</td>";
-								v++;
-								if (v >= t2_len) { v = 0; }
+	
+					// 2.确定列数
+					var t2t3_len = (t2_len == 0 ? 1 : t2_len) * (t3_len == 0 ? 1 : t3_len), total_col = t1_len * t2t3_len; // 第二行第三行总列数、总列数
+	
+					// 3.确定每行的元素
+					var html = "<table align='center' class='form_detail' border='1'>", content = '';
+					var row1 = "<tr><td nowrap rowspan='" + row + "' style='width: 123px; text-align: center;'>日期</td>", row2 = "", row3 = "";
+	
+					// 4.写入元素
+					var k = 0, v = 0; // 分别记录第一行、第二行的索引
+					for (var i = 1; i <= total_col; i++) {
+						
+						// 第一行数据
+						var index = (i - 1) % t2t3_len;
+						if (index == 0) {
+							row1 += '<td nowrap colspan="' + t2t3_len + '" style="width: 100px; text-align: center;">' + one[k] + '</td>';
+							k++;
+						}
+						if (t2_len != 0) { // t2_len不为0，才考虑多行的情况
+							if (t3_len != 0) { // t3_len不为0，才操作第二行的数据
+								index = (i - 1) % t3_len;
+								if (index == 0) { // 循环写入第二行的数据
+									row2 += "<td nowrap colspan='" + t3_len + "' style='text-align: center; width: 100px;'>" + two[v] + "</td>";
+									v++;
+									if (v >= t2_len) { v = 0; }
+								}
+							}
+	
+							if (t3_len == 0) { // 第三行没有配置内容的情况
+								row2 += "<td nowrap style='text-align: center; width: 100px;'>" + two[index] + "</td>";
+							} else {
+								row3 += "<td nowrap style='text-align: center; width: 100px;'>" + thr[index] + "</td>";
 							}
 						}
-
-						if (t3_len == 0) { // 第三行没有配置内容的情况
-							row2 += "<td nowrap style='text-align: center; width: 100px;'>" + two[index] + "</td>";
-						} else {
-							row3 += "<td nowrap style='text-align: center; width: 100px;'>" + thr[index] + "</td>";
-						}
 					}
-				}
-				
-				// 循环添加内容数据
-				for (var i = 0; i < showCataList[0].length; i++) {
-					var title = "${reportform.title}", ca_val = "", da_val = "";
-					try {
-						ca_val = showCataList[0][i];
-						// 冷机报表和水系统报表需特殊处理
-						//if("${s_type}" == "day" && (title == "冷机报表" || title == "水系统报表")) {
-							//ca_val = "${show_tfrom} " + ca_val;
-						//}
-					} catch(e) {
-						ca_val = "";
-					}
-					content += "<tr align='center'><td nowrap style=' width: 100px;'>" + ca_val + "</td>";
-					for (var k = 0; k < total_col; k++) {
-						try { 
-							da_val = showDataList[k][i];
+					
+					// 循环添加内容数据
+					for (var i = 0; i < showCataList[0].length; i++) {
+						var title = "${reportform.title}", ca_val = "", da_val = "";
+						try {
+							ca_val = showCataList[0][i];
 						} catch(e) {
-							da_val = "";
+							ca_val = "";
 						}
-						content += '<td nowrap style=" width: 100px;">' + (da_val != undefined ? da_val : '') + '</td>';
+						content += "<tr align='center'><td nowrap style=' width: 100px;'>" + ca_val + "</td>";
+						for (var k = 0; k < total_col; k++) {
+							try { 
+								da_val = showDataList[k][i];
+							} catch(e) {
+								da_val = "";
+							}
+							content += '<td nowrap style=" width: 100px;">' + (da_val != undefined ? da_val : '') + '</td>';
+						}
+						content += "</tr>";
 					}
-					content += "</tr>";
+	
+					row2 = (row2 == "" ? "" : ("<tr>" + row2 + "</tr>"));
+					row3 = (row3 == "" ? "" : ("<tr>" + row3 + "</tr>"));
+					html = html + row1 + "</tr>" + row2 + row3 + content + "<table>";
+	
+					$('#<portlet:namespace />reportdiv').html("").html(html);
+					// 设置模块的高度，以适应版权的高度
+				    $('#<portlet:namespace />formdiv').height($('#<portlet:namespace />reportdiv').height() + 100);
 				}
-
-				row2 = (row2 == "" ? "" : ("<tr>" + row2 + "</tr>"));
-				row3 = (row3 == "" ? "" : ("<tr>" + row3 + "</tr>"));
-				html = html + row1 + "</tr>" + row2 + row3 + content + "<table>";
-
-				$('#<portlet:namespace />reportdiv').html("").html(html);
-				// 设置模块的高度，以适应版权的高度
-			    $('#<portlet:namespace />formdiv').height($('#<portlet:namespace />reportdiv').height() + 100);
 			}, 'json');
+}
+
+// 获取对应的楼层信息
+function getFloorData(defaultRegion) {
+	$.ajax({
+		type : "POST",
+		url : '<portlet:resourceURL id="getFloorData"></portlet:resourceURL>',
+		async : false,
+		success : function(result) {
+			var data = result.data;
+			for(var i=0;i<data.length;i++) {
+				$("#regionSelect").append("<option " + (defaultRegion == data[i].regionId ? " selected='selected' " : "") + "' value='" + data[i].regionId + "'>" + data[i].regionName + "</option>");
+			}
+		},
+		error : function(result) {
+			console.log('error');
+		}
+	});
 }
 
 $(function() {
@@ -360,7 +377,7 @@ $(function() {
 	if(distance != "") { // 针对运行监测特殊处理
 		if(distance == 'ahu' || distance == 'fau' || distance == 'acu') {
 			$("#choose_region").show();
-			$("#regionSelect").val("${regionid}");
+			getFloorData("${regionid}");
 		} else {
 			$("#choose_region").hide();
 		}

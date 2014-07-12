@@ -381,16 +381,17 @@
 	// 默认显示当前时间
 	<portlet:namespace />str2 = "与昨日相比";
 	<portlet:namespace />choose_type2 = "day";
-	if("${importantenergytarget.defaulttime2}" == ""){
-		var nowdate = new Date();
-		<portlet:namespace />start_date2 = nowdate.getFullYear() + "-" +(nowdate.getMonth()+1) + "-"
-				+ nowdate.getDate();
-		<portlet:namespace />str2_1 = (nowdate.getMonth()+1) + "月" + nowdate.getDate()+"日平均单位面积空调能耗";
-	} else {
+	if("${importantenergytarget.defaulttime2}" != "") {
 		<portlet:namespace />start_date2 = "${importantenergytarget.defaulttime2}";
-		<portlet:namespace />str2_1 = <portlet:namespace />start_date2+"日平均单位面积空调能耗";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date2 = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date2 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
 	}
 	
+	<portlet:namespace />str2_1 = <portlet:namespace />start_date2+"日平均单位面积空调能耗";
 	<portlet:namespace />exp_start_date2 = <portlet:namespace />start_date2;
 	<portlet:namespace />centerTitle2 = <portlet:namespace />start_date2; //居中标题
 	// 判断是否设置了参考值，如果设置了参考值，则显示对应的图例

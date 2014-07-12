@@ -1,24 +1,19 @@
 package com.managementsystem.energy.portlet.holographic.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.managementsystem.energy.dao.BuildregioninfoDao;
 import com.managementsystem.energy.dao.QuerySchemeDao;
-import com.managementsystem.energy.domain.Buildregioninfo;
 import com.managementsystem.energy.domain.QueryScheme;
 
 @Service
@@ -51,11 +46,8 @@ public class EquipService {
 						continue;
 					}
 
-					//
-					List<QueryScheme> oldList = region.get(regionId);
-					// System.out.println("oldList:"+oldList.size());
 					List<QueryScheme> newList = new LinkedList();
-					//
+					List<QueryScheme> oldList = region.get(regionId);
 					HashMap<String, QueryScheme> hm = new HashMap();
 					for (QueryScheme qs : oldList) {
 						hm.put(qs.getId(), qs);
@@ -68,7 +60,17 @@ public class EquipService {
 					}
 					// System.out.println("newList:"+newList.size());
 
-					//
+					// 对newList排序
+					try {
+						Collections.sort(newList, new Comparator<QueryScheme>() {
+				            public int compare(QueryScheme arg0, QueryScheme arg1) {
+				                return arg0.getId().compareTo(arg1.getId());
+				            }
+				        });
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
 					region.put(regionId, newList);
 
 				}

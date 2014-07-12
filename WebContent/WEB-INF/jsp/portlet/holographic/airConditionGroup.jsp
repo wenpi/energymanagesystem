@@ -84,7 +84,7 @@
 		<%--  end空调组 --%>
 	</div>
 
-	<span class="span12"> <br> <br> <br>
+	<span class="span12"> <br /> <br /> <br />
 	</span>
 
 
@@ -790,7 +790,7 @@
 							&& eqp.id != "ahu_5" && eqp.id != "ahu_41"
 							&& eqp.id != "ahu_49") {
 						html += "<option selected='selected' value="+eqp.id+">"
-								+ eqp.id + "</option>";
+								+ eqp.showId + "</option>";
 						$("#ahuArea").show();
 					}
 				});
@@ -807,7 +807,7 @@
 							&& eqp.id != "fau_5" && eqp.id != "fau_41"
 							&& eqp.id != "fau_49") {
 						html += "<option selected='selected' value="+eqp.id+">"
-								+ eqp.id + "</option>";
+								+ eqp.showId + "</option>";
 						$("#fauArea").show();
 					}
 				});

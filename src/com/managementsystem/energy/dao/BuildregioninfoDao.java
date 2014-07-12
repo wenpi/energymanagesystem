@@ -1,5 +1,6 @@
 package com.managementsystem.energy.dao;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,6 +54,13 @@ public interface BuildregioninfoDao extends DaoSupport {
 	 * @return 所有支路信息
 	 * */
 	public Page getBuildregioninfos(String buildId,int pageIndex,int pageSize,Map<String,Object> mapParams) throws DataAccessException;
+
+	/**
+	 * 获取建筑区域信息
+	 * 
+	 * @return
+	 */
+	public List<Buildregioninfo> getAllBuildregioninfos();
 
 	/**
 	 * 获取指定建筑的最大区域ID信息

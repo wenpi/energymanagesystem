@@ -312,12 +312,14 @@ function <portlet:namespace />comparetime() {
 
 	// 默认显示当前时间,如果配置了默认时间，则显示配置的时间 
 	<portlet:namespace />choose_type = "day";
-	if("${commonchart.defaulttime}" == ""){
+	if("${commonchart.defaulttime}" != "") {
+		<portlet:namespace />start_date = "${commonchart.defaulttime}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date = publicTime;
+	} else {
 		var nowdate = new Date();
 		<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
 				+ nowdate.getDate();
-	} else {
-		<portlet:namespace />start_date = "${commonchart.defaulttime}";
 	}
 	
 	<portlet:namespace />exp_start_date = <portlet:namespace />start_date;

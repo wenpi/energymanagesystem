@@ -151,12 +151,14 @@ function <portlet:namespace />changeColor4(type){
 
 	// 默认显示当前时间
 	choose_type4 = "day";
-	if("${importantenergytarget.defaulttime4}" == ""){
-		var nowdate = new Date();
-		start_date4 = nowdate.getFullYear() + "-" + (nowdate.getMonth() + 1) + "-"
-				+ nowdate.getDate();
+	if("${importantenergytarget.defaulttime4}" != "") {
+		<portlet:namespace />start_date4 = "${importantenergytarget.defaulttime4}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date4 = publicTime;
 	} else {
-		start_date4 = "${importantenergytarget.defaulttime4}";
+		var nowdate = new Date();
+		<portlet:namespace />start_date4 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
 	}
 	
 	// 获取页面数据的值

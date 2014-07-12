@@ -334,6 +334,7 @@ $("#<portlet:namespace/>dgrid5").datagrid({
 });
 
 $("#chartType_6_1").val('<%=prefs.getValue("chartType_6_1","")%>');
+$("#decimals5").val('<%=prefs.getValue("decimals5","")%>');
 // 默认时间
 $('#defaulttime5').datebox();
 </script>

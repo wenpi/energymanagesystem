@@ -15,6 +15,7 @@ public class QueryScheme implements java.io.Serializable {
 	private String num;
 	private String name;
 	private String id;
+	private String showId;
 	private String categoryId;
 	private String regionId;
 	private String tagid;
@@ -266,6 +267,14 @@ public class QueryScheme implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+
+	public String getShowId() {
+		return showId;
+	}
+
+	public void setShowId(String showId) {
+		this.showId = showId;
 	}
 
 }

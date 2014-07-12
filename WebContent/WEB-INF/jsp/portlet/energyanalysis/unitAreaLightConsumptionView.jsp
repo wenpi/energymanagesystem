@@ -380,16 +380,17 @@
 	// 默认显示当前时间
 	<portlet:namespace />str3 = "与昨日相比";
 	<portlet:namespace />choose_type3 = "day";
-	if("${importantenergytarget.defaulttime3}" == ""){
-		var nowdate = new Date();
-		<portlet:namespace />start_date3 = nowdate.getFullYear() + "-" +(nowdate.getMonth()+1) + "-"
-				+ nowdate.getDate();
-		<portlet:namespace />str3_1 = (nowdate.getMonth()+1) + "月" + nowdate.getDate()+"日平均单位面积照明能耗";
-	} else {
+	if("${importantenergytarget.defaulttime3}" != "") {
 		<portlet:namespace />start_date3 = "${importantenergytarget.defaulttime3}";
-		<portlet:namespace />str3_1 = <portlet:namespace />start_date3+"日平均单位面积照明能耗";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date3 = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date3 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
 	}
 	
+	<portlet:namespace />str3_1 = <portlet:namespace />start_date3+"日平均单位面积照明能耗";
 	<portlet:namespace />exp_start_date3 = <portlet:namespace />start_date3;
 	<portlet:namespace />centerTitle3 = <portlet:namespace />start_date3; //居中标题
 	// 判断是否设置了参考值，如果设置了参考值，则显示对应的图例

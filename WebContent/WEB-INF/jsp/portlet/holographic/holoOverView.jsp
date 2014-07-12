@@ -310,7 +310,7 @@ h4 {
 		$("#plantImg").attr("src", srcLoc);
 
 		if (!isNotChinaArts) { // 淘宝城项目，则显示 耗冷量 图表 
-			holoLevel = '49M'; // 目前为测试 
+			//holoLevel = '49M'; // 目前为测试 
 			$('#<portlet:namespace />costCool').show();// 显示“制冷量”对应的div
 			Build_Ele_Cool_Chart();
 			$('#quanxitu').height(1050);// 设置高度，目的是为了完整的显示版权信息

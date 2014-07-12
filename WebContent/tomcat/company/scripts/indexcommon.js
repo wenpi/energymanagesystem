@@ -21,13 +21,13 @@ $(function(){
 
 	// $(".holograph>div").hover(function(index){
 	// 	var temp = $(this).text();
-	// 	console.log(temp);
-	// 	console.log(typeof temp);
+	// 	// console.log(temp);
+	// 	// console.log(typeof temp);
 	// })
 	var content;
 	$(".holograph>div").hover(function(index){
 		content = $(this).text();
-		// console.log(content);
+		// // console.log(content);
 		
 		switch(content) {
 			case "P1" : 
@@ -49,12 +49,12 @@ $(function(){
 				return false;
 		}
 	},function(){
-		//console.log(content);
+		//// console.log(content);
 		$("." + content + "x").hide();
 	});
 
 	// $(".floor>li").click(function(){
-	// 	console.log($(this).text());
+	// 	// console.log($(this).text());
 	// });
 
 	$(".floor>li").each(function(index){
@@ -64,21 +64,21 @@ $(function(){
 			if (!($devicedom.attr("class"))) {
 				$devicedom.addClass("device" + index);
 			};
-			// console.log(index);
+			// // console.log(index);
 			var devicedom = $("#all_device>div")[index];
-			// console.log(index);
+			// // console.log(index);
 			$(".device"+index).click(function(){
 				alert("123");
 			})
-			// console.log(devicedom);
+			// // console.log(devicedom);
 			$(devicedom).show();
 		});
 
 	})
 	var deviceL = $("#all_device>div").length;
-	// console.log(deviceL);
+	// // console.log(deviceL);
 	// var len = $("#swap_info>div").length;
-	// console.log(s[0]);
+	// // console.log(s[0]);
 	
 	// $(".cold_classify").append($colddomTitle);
 	//var mk = $(".device_title")[0];
@@ -98,11 +98,11 @@ $(function(){
 			var clsNames = $(this).parent().parent().attr("class").split(" ");
 			var clicName = $(this).text();
 			turnName = clsNames[1] + clicName;
-			console.log(turnName);
+			// console.log(turnName);
 			// 跳转页面函数
 			//turnPage(turnName);
 		});
-		console.log(turnName);
+		// console.log(turnName);
 		arr3[i].css("font-size", "20px");
 	};
 	

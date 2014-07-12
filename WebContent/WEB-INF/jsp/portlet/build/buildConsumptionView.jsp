@@ -341,12 +341,14 @@ function <portlet:namespace />comparetime3() {
 
 	// 默认显示当前时间
 	<portlet:namespace />choose_type3 = "day";
-	if("${coreinfo.defaulttime3}" == ""){
+	if("${coreinfo.defaulttime3}" != "") {
+		<portlet:namespace />start_date3 = "${coreinfo.defaulttime3}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date3 = publicTime;
+	} else {
 		var nowdate = new Date();
 		<portlet:namespace />start_date3 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
 				+ nowdate.getDate();
-	} else {
-		<portlet:namespace />start_date3 = "${coreinfo.defaulttime3}";
 	}
 	
 	<portlet:namespace />exp_start_date3 = <portlet:namespace />start_date3; // 导出excel的开始时间

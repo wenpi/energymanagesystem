@@ -44,8 +44,10 @@ import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
+import com.managementsystem.energy.domain.Buildregioninfo;
 import com.managementsystem.energy.portlet.energystatistic.model.PreferenceInfo;
 import com.managementsystem.energy.portlet.energystatistic.service.EnergyStatisticService;
+import com.managementsystem.energy.service.BuildregioninfoService;
 import com.managementsystem.energy.service.PreferenceInfoService;
 import com.managementsystem.energy.service.QuerySchemeService;
 import com.managementsystem.energy.web.BaseController;
@@ -67,6 +69,9 @@ public class ReportFormViewController extends BaseController {
 	@Autowired
 	private QuerySchemeService querySchemeService;
 	
+	@Autowired
+	private BuildregioninfoService buildregioninfoService;
+
 	/**
 	 * 默认显示页面
 	 * 
@@ -144,7 +149,8 @@ public class ReportFormViewController extends BaseController {
 	@ResourceMapping(value = "getReportDataList")
 	public Map<String, Object> getReportDataList(PortletPreferences prefs,
 			ResourceRequest request, ResourceResponse response) {
-
+		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		
 		// 获取前台传递过来的参数，分别是类型（day/week/month/year）、开始时间、结束时间
 		String type = request.getParameter("type");
 		String from_date = request.getParameter("from");
@@ -168,38 +174,43 @@ public class ReportFormViewController extends BaseController {
 		String row2 = preferenceinfo.getLinkName_2();
 		String row3 = preferenceinfo.getLinkName_3();
 		
-		// 求name、id、ispd，主要针对中国馆的运行监测，报表输出
-		String distance = preferenceinfo.getDistance(); // 区分是什么报表
-		if(!distance.equals("")) {
-			
-			Map<String, Object> map = new HashMap<String, Object>();
-			
-			if("cwp".equalsIgnoreCase(distance)) { // 冷却泵数据输出
-				map = querySchemeService.getDataListByCondition("chiller", "", "冷却泵", distance, "");
-				map = getInfo(map, preferenceinfo);
+		try {
+			// 求name、id、ispd，主要针对中国馆的运行监测，报表输出
+			String distance = preferenceinfo.getDistance(); // 区分是什么报表
+			if(!distance.equals("")) {
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				if("cwp".equalsIgnoreCase(distance)) { // 冷却泵数据输出
+					map = querySchemeService.getDataListByCondition("chiller", "", "冷却泵", distance, "");
+					map = getInfo(map, preferenceinfo);
+				}
+				if("chwp".equalsIgnoreCase(distance)) { // 冷冻泵数据输出
+					map = querySchemeService.getDataListByCondition("chiller", "", "冷冻泵", distance, "");
+					map = getInfo(map, preferenceinfo);
+				}
+				if("ct".equalsIgnoreCase(distance)) { // 冷却塔数据输出
+					map = querySchemeService.getDataListByCondition("chiller", "", "冷却塔", distance, "");
+					map = getInfo(map, preferenceinfo);
+				}
+				if("ahu".equalsIgnoreCase(distance) || "fau".equalsIgnoreCase(distance) || "acu".equalsIgnoreCase(distance)) { // 空调箱数据输出
+					map = querySchemeService.getDataListByCondition("", "t_sa", "", distance, regionId);
+					row1 = regionText;
+					row2 = (String) map.get("showId");
+					map = getMapForDevices(map, preferenceinfo.getChoose_name(), preferenceinfo.getIspd());
+					map.put("row2", row2);
+					map.put("row3", row3);
+				}
+				name = (String) map.get("name");
+				id = (String) map.get("id");
+				ispd = (String) map.get("ispd");
+				row2 = (String) map.get("row2");
+				row3 = (String) map.get("row3");
+				
 			}
-			if("chwp".equalsIgnoreCase(distance)) { // 冷冻泵数据输出
-				map = querySchemeService.getDataListByCondition("chiller", "", "冷冻泵", distance, "");
-				map = getInfo(map, preferenceinfo);
-			}
-			if("ct".equalsIgnoreCase(distance)) { // 冷却塔数据输出
-				map = querySchemeService.getDataListByCondition("chiller", "", "冷却塔", distance, "");
-				map = getInfo(map, preferenceinfo);
-			}
-			if("ahu".equalsIgnoreCase(distance) || "fau".equalsIgnoreCase(distance) || "acu".equalsIgnoreCase(distance)) { // 空调箱数据输出
-				map = querySchemeService.getDataListByCondition("", "t_sa", "", distance, regionId);
-				row1 = regionText;
-				row2 = (String) map.get("id");
-				map = getMapForDevices(map, preferenceinfo.getChoose_name(), preferenceinfo.getIspd());
-				map.put("row2", row2);
-				map.put("row3", row3);
-			}
-			name = (String) map.get("name");
-			id = (String) map.get("id");
-			ispd = (String) map.get("ispd");
-			row2 = (String) map.get("row2");
-			row3 = (String) map.get("row3");
-			
+			resultMap.put("message", "success");
+		} catch (Exception e1) {
+			resultMap.put("message", "none");
 		}
 		
 		logger.info("-------getReportDataList------");
@@ -207,15 +218,15 @@ public class ReportFormViewController extends BaseController {
 		logger.info("id--" + id);
 		logger.info("ispd--" + ispd);
 
-		// 结果map
-		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 		try {
 			// 求对应的json数据
 			resultMap = energyStatisticService.printReportInfo(name, id, ispd,
 					type, from_date, to_date, decimals,
 					preferenceinfo.getMultiplier(),
 					preferenceinfo.getDistance(), preferenceinfo.getTitle());
+			resultMap.put("message", "success");
 		} catch (Exception e) {
+			resultMap.put("message", "none");
 			e.printStackTrace();
 		}
 
@@ -225,8 +236,6 @@ public class ReportFormViewController extends BaseController {
 		resultMap.put("row3", row3);
 		return resultMap;
 	}
-	
-	
 	
 	/**
 	 * 输出报表数据到EXCEL中
@@ -771,4 +780,20 @@ public class ReportFormViewController extends BaseController {
 		return realPath;
 	}
 	
+	
+	/**
+	 * 获取预览报表数据
+	 * */
+	@ResourceMapping(value = "getFloorData")
+	public Map<String, Object> getFloorData() {
+		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
+		try {
+			// 求对应的json数据
+			List<Buildregioninfo> list = buildregioninfoService.getAllBuildregioninfos();
+			resultMap.put("data", list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultMap;
+	}
 }

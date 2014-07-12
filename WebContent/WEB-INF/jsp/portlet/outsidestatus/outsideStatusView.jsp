@@ -403,12 +403,15 @@
 		 <portlet:namespace />getHumidityAndTemperature('S7_temp_display_OUTDOOR_HUMIDITY','chiller','3','humidity0','humidity1');
 	}
 	
-	if("${coreinfo.defaulttime1}" == ""){// 默认显示当前时间 
+	// 默认显示当前时间
+	if("${coreinfo.defaulttime1}" != "") {
+		<portlet:namespace />start_date1 = "${coreinfo.defaulttime1}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date1 = publicTime;
+	} else {
 		var nowdate = new Date();
 		<portlet:namespace />start_date1 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
 				+ nowdate.getDate();
-	} else {
-		<portlet:namespace />start_date1 = "${coreinfo.defaulttime1}";
 	}
 
 	<portlet:namespace />exp_start_date1 = <portlet:namespace />start_date1;// 导出到excel中的时间 

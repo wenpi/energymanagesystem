@@ -127,18 +127,17 @@
 	}
 	
 	// 默认显示当前时间
-	var nowdate = new Date();
-	<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth() + 1) + "-"
-			+ nowdate.getDate();
 	<portlet:namespace />choose_type = "day";
 	
-	//if ("${consumptionstatistics.defaulttime}" == "") {
-	//	var nowdate = new Date();
-	//	<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth() + 1)
-	//			+ "-" + nowdate.getDate();
-	//} else {
-	//	<portlet:namespace />start_date = "${consumptionstatistics.defaulttime}";
-	//}
+	if("${consumptionstatistics.defaulttime}" != "") {
+		<portlet:namespace />start_date = "${consumptionstatistics.defaulttime}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
+	}
 	
 	// 获取页面报表数据
 	<portlet:namespace />getChart();

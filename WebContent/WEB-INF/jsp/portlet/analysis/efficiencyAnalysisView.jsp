@@ -65,12 +65,14 @@
 	//默认显示当前时间
 	var <portlet:namespace />start_date = ''; // 开始时间
 	var <portlet:namespace />choose_type = "day";
-	if ("${efficiencyanalysis.defaulttime}" == "") {
-		var nowdate = new Date();
-		<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth() + 1)
-				+ "-" + nowdate.getDate();
-	} else {
+	if("${efficiencyanalysis.defaulttime}" != "") {
 		<portlet:namespace />start_date = "${efficiencyanalysis.defaulttime}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
 	}
 
 	$

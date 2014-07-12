@@ -174,6 +174,11 @@ public class BuildregioninfoServiceImpl implements BuildregioninfoService {
 			Map<String, Object> mapParams) {
 		return buildregioninfoDao.getBuildregioninfos(buildId,pageIndex, pageSize, mapParams);
 	}
+
+	@Transactional(readOnly = true)
+	public List<Buildregioninfo> getAllBuildregioninfos() {
+		return buildregioninfoDao.getAllBuildregioninfos();
+	}
 	
 	@Transactional(readOnly = true)
 	public List<Tree> getBuildregionComboTree(List<Buildinfo>buildinfosList){

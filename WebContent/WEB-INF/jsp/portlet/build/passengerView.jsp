@@ -337,14 +337,16 @@ function <portlet:namespace />comparetime2() {
 				}, 'json');
 	}
 
-	// 默认显示当前时间
 	<portlet:namespace />choose_type2 = "day";
-	if("${coreinfo.defaulttime2}" == ""){
+	// 默认显示当前时间
+	if("${coreinfo.defaulttime2}" != "") {
+		<portlet:namespace />start_date2 = "${coreinfo.defaulttime2}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date2 = publicTime;
+	} else {
 		var nowdate = new Date();
 		<portlet:namespace />start_date2 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
 				+ nowdate.getDate();
-	} else {
-		<portlet:namespace />start_date2 = "${coreinfo.defaulttime2}";
 	}
 
 	// 获取右侧显示数据

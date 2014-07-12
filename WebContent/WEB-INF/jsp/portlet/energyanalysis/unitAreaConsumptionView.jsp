@@ -384,15 +384,17 @@
 	// 默认显示当前时间
 	<portlet:namespace />str2 = "与昨日相比";
 	<portlet:namespace />choose_type1 = "day";
-	if("${importantenergytarget.defaulttime1}" == ""){
-		var nowdate = new Date();
-		<portlet:namespace />start_date1 = nowdate.getFullYear() + "-" +(nowdate.getMonth()+1) + "-"
-				+ nowdate.getDate();
-		<portlet:namespace />str1 = (nowdate.getMonth()+1) + "月" + nowdate.getDate()+"日单位面积总能耗";
-	} else {
+	if("${importantenergytarget.defaulttime1}" != "") {
 		<portlet:namespace />start_date1 = "${importantenergytarget.defaulttime1}";
-		<portlet:namespace />str1 = <portlet:namespace />start_date1+"日单位面积总能耗";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date1 = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date1 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
 	}
+	
+	<portlet:namespace />str1 = <portlet:namespace />start_date1+"日单位面积总能耗";
 	
 	<portlet:namespace />exp_start_date1 = <portlet:namespace />start_date1;
 	<portlet:namespace />centerTitle1 = <portlet:namespace />start_date1; //居中标题

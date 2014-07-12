@@ -373,14 +373,14 @@
 	// 默认显示当前时间
 	<portlet:namespace />str6 = "与昨日相比";
 	<portlet:namespace />choose_type6 = "day";
-	if("${importantenergytarget.defaulttime6}" == ""){
-		var nowdate = new Date();
-		<portlet:namespace />start_date6 = nowdate.getFullYear() + "-" +(nowdate.getMonth()+1) + "-"
-				+ nowdate.getDate();
-		<portlet:namespace />str6_1 = (nowdate.getMonth()+1) + "月" + nowdate.getDate()+"日冷机COP";
-	} else {
+	if("${importantenergytarget.defaulttime6}" != "") {
 		<portlet:namespace />start_date6 = "${importantenergytarget.defaulttime6}";
-		<portlet:namespace />str6_1 = <portlet:namespace />start_date6+"日冷机COP";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date6 = publicTime;
+	} else {
+		var nowdate = new Date();
+		<portlet:namespace />start_date6 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
+				+ nowdate.getDate();
 	}
 	
 	<portlet:namespace />exp_start_date6 = <portlet:namespace />start_date6;

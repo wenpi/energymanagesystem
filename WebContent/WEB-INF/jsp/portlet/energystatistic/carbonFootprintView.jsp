@@ -340,12 +340,14 @@ function <portlet:namespace />comparetime6() {
 
 	// 默认显示当前时间
 	<portlet:namespace />choose_type6 = "day";
-	if("${buildtotalconsumption.defaulttime6}" == ""){
+	if("${buildtotalconsumption.defaulttime6}" != "") {
+		<portlet:namespace />start_date6 = "${buildtotalconsumption.defaulttime6}";
+	} else if(publicTime != "") {
+		<portlet:namespace />start_date6 = publicTime;
+	} else {
 		var nowdate = new Date();
 		<portlet:namespace />start_date6 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
 				+ nowdate.getDate();
-	} else {
-		<portlet:namespace />start_date6 = "${buildtotalconsumption.defaulttime6}";
 	}
 	
 	<portlet:namespace />exp_start_date6 = <portlet:namespace />start_date6; // 导出excel的开始时间

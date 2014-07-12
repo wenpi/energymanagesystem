@@ -1,5 +1,7 @@
 package com.managementsystem.energy.portlet.holographic.service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -8,11 +10,13 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.portlet.ModelAndView;
+
 import com.managementsystem.energy.domain.Buildregioninfo;
 import com.managementsystem.energy.domain.QueryScheme;
 import com.managementsystem.energy.portlet.highcharts.jackson.JacksonIgnoreNullWapper;
@@ -538,6 +542,17 @@ public class HoloMainPageService {
 			for (String c : cates) {
 				List<QueryScheme> vavs = equipService.getEquipments(
 						getBuildId(), defaultRegionId, c);
+				
+				try {
+					Collections.sort(vavs, new Comparator<QueryScheme>() {
+			            public int compare(QueryScheme arg0, QueryScheme arg1) {
+			                return arg0.getId().compareTo(arg1.getId());
+			            }
+			        });
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 				qs.put(c, vavs);
 			}
 

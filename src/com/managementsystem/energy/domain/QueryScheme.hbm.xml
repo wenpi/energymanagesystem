@@ -18,6 +18,9 @@
         <property name="id" type="string">
             <column name="id" length="50" />
         </property>
+        <property name="showId" type="string">
+            <column name="show_id" length="50" />
+        </property>
         <property name="categoryId" type="string">
             <column name="category_id" length="50" />
         </property>

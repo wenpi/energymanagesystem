@@ -341,12 +341,14 @@ function <portlet:namespace />getChart5(tfrom,name,id,ispd,legendList,showLegend
 
 //默认显示当前时间
 <portlet:namespace />choose_type5 = "day";
-if("${commonpiechart.defaulttime5}" == ""){
+if("${commonpiechart.defaulttime5}" != "") {
+	<portlet:namespace />start_date5 = "${commonpiechart.defaulttime5}";
+} else if(publicTime != "") {
+	<portlet:namespace />start_date5 = publicTime;
+} else {
 	var nowdate = new Date();
 	<portlet:namespace />start_date5 = nowdate.getFullYear() + "-" + (nowdate.getMonth()+1) + "-"
 			+ nowdate.getDate();
-} else {
-	<portlet:namespace />start_date5 = "${commonpiechart.defaulttime5}";
 }
 
 <portlet:namespace />legendList5 = <portlet:namespace />start_date5; // 图例
