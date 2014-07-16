@@ -60,34 +60,41 @@ var exhaustWind_t_name = 'number_on', exhaustWind_t_id = 'pf', exhaustWind_t_isp
 var light_t_name = 'number_on', light_t_id = 'lighting', light_t_ispd = '2'; // 下方的风机盘管开启台数
 
 var ahu_build_id = 'A1'; // 记录新风机组点击的建筑，默认是A1
-var ahu_detail_build = 'A1'; // 记录新风机组详情中点击的建筑，默认是A1
-var ahu_detail_floor = 'JF'; // 记录新风机组详情中点击的楼层，默认是JF
+var default_build_id = 'A1'; // 记录点击的建筑，默认是A1
+var default_detail_floor = 'JF'; // 记录详情中点击的楼层，默认是JF
+var default_spf_detail_floor = 'B1'; // 记录详情中点击的楼层，默认是B1
+
+var ahu_detail_build = default_build_id; // 记录新风机组详情中点击的建筑，默认是A1
+var ahu_detail_floor = default_detail_floor; // 记录新风机组详情中点击的楼层，默认是JF
 var detail_floor = '1F'; // 记录照明回路详情中点击的楼层，默认是1F
 
-// 冷站1_小图
+// 冷站P1_小图
 var s_name_coldSite_one = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_coldSite_one = [['chiller_total_P1','total','total'],['chwp','total','total'],['cwp','total','total'],['ct','total','total']];
-var s_ispd_coldSite_one = [[2,0,0],[0,0,0],[2,0,0],[2,0,0]];
-// 冷站2_小图
+var s_id_coldSite_one = [['chiller_total_P1','total','total'],['chwp_total_P1','total','total'],['cwp_total_P1','total','total'],['ct_total_P1','total','total']];
+var s_ispd_coldSite_one = [[2,0,0],[2,0,0],[2,0,0],[2,0,0]];
+// 冷站P2_小图
 var s_name_coldSite_two = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_coldSite_two = [['chiller_total_P2','total','total'],['chwp','total','total'],['cwp','total','total'],['ct','total','total']];
-var s_ispd_coldSite_two = [[2,0,0],[0,0,0],[2,0,0],[2,0,0]];
-// 冷站3_小图
+var s_id_coldSite_two = [['chiller_total_P2','total','total'],['chwp_total_P2','total','total'],['cwp_total_P2','total','total'],['ct_total_P2','total','total']];
+var s_ispd_coldSite_two = [[2,0,0],[2,0,0],[2,0,0],[2,0,0]];
+// 冷站A1_小图
 var s_name_coldSite_three = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_coldSite_three = [['chiller_total_A1','total','total'],['chwp','total','total'],['cwp','total','total'],['ct','total','total']];
-var s_ispd_coldSite_three = [[2,0,0],[0,0,0],[2,0,0],[2,0,0]];
+var s_id_coldSite_three = [['chiller_total_A1','total','total'],['chwp_total_A1','total','total'],['cwp_total_A1','total','total'],['ct_total_A1','total','total']];
+var s_ispd_coldSite_three = [[2,0,0],[2,0,0],[2,0,0],[2,0,0]];
+
+
 // p1锅炉房_小图
 var s_name_boiler_room_P1 = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_boiler_room_P1 = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
+var s_id_boiler_room_P1 = [['boiler_total_P1','total','total'],['hwp_total_P1','total','total'],['heat_exchanger','total','total']];
 var s_ispd_boiler_room_P1 = [[2,0,0],[2,0,0],[2,0,0]];
 // p2锅炉房_小图
 var s_name_boiler_room_P2 = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_boiler_room_P2 = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
+var s_id_boiler_room_P2 = [['boiler_total_P2','total','total'],['hwp_total_P2','total','total'],['heat_exchanger','total','total']];
 var s_ispd_boiler_room_P2 = [[2,0,0],[2,0,0],[2,0,0]];
 // a1锅炉房_小图
 var s_name_boiler_room_A1 = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
-var s_id_boiler_room_A1 = [['boiler','total','total'],['hwp','total','total'],['heat_exchanger','total','total']];
+var s_id_boiler_room_A1 = [['boiler_total_A1','total','total'],['hwp_total_A1','total','total'],['heat_exchanger','total','total']];
 var s_ispd_boiler_room_A1 = [[2,0,0],[2,0,0],[2,0,0]];
+
 // 新风机组_小图
 var s_name_ahu = [['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity'],['number_on','electricity','electricity']];
 var s_id_ahu = [['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total'],['fau','total','total']];
@@ -216,12 +223,12 @@ var detail_0_down_expColumnName=[[],[],[],[],[]];//导出Excel文件头列名
 var detail_0_down_legendList=[[],[],[],[],[]];//图例列表
 
 // 冷站详情-冷水机组-冷冻水参数
-var detail_coldSiteColdParam_name = 't_chw_s,t_chw_r,t_evap'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_coldSiteColdParam_id = 'K_1_01_YL,K_1_01_YL,K_1_02_YL'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_coldSiteColdParam_ispd = '1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
+var detail_coldSiteColdParam_name = 't_chw_s,t_chw_r,t_evap,t_chw_s_sp'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度、冷冻水温度设定
+var detail_coldSiteColdParam_id = ''; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度、冷冻水温度设定
+var detail_coldSiteColdParam_ispd = '1,1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度、冷冻水温度设定
 // 冷站详情-冷水机组-冷却水参数
 var detail_coldSiteCoolParam_name = 't_cw_s,t_cw_r,t_cond'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_coldSiteCoolParam_id = 'K_1_01_YL,K_1_01_YL,K_1_02_YL'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
+var detail_coldSiteCoolParam_id = 'K_1_02_YL'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
 var detail_coldSiteCoolParam_ispd = '1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
 // 冷站详情-水流量-水流量
 var detail_waterFlow_name = 'flow_chw,flow_chw,flow_chw,flow_chw'; // 分别是冷冻水流量
@@ -229,29 +236,46 @@ var detail_waterFlow_id = 'total_T1,total_T2,total_T3,total_T4'; // 分别是冷
 var detail_waterFlow_ispd = '1,1,1,1'; // 分别是冷冻水流量
 // 冷站详情-水流量-压力
 var detail_waterPressure_name = 't_ra'; // 分别是水系统压力
-var detail_waterPressure_id = 'K_1_01_YL'; // 分别是水系统压力
+var detail_waterPressure_id = ''; // 分别是水系统压力
 var detail_waterPressure_ispd = '1'; // 分别是水系统压力
-// 冷站详情-水流量-冷冻水参数(目前只有冷冻水回水温度)
-var detail_waterColdParam_name = 't_chw_r,t_chw_r,t_chw_r,t_chw_r'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_waterColdParam_id = 'total_T1,total_T2,total_T3,total_T4'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
-var detail_waterColdParam_ispd = '1,1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度、蒸发温度
+// 冷站详情-水流量-冷冻水参数(目前没有压力)
+var detail_waterColdParamP1_name = 't_chw_s,t_chw_s,t_chw_r,t_chw_r'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamP1_id = 'ws_P1_1,ws_P1_2,ws_P1_1,ws_P1_2'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamP1_ispd = '1,1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamP2_name = 't_chw_s,t_chw_r'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamP2_id = 'ws_P2_1,ws_P2_1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamP2_ispd = '1,1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamA1_name = 't_chw_s,t_chw_r'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamA1_id = 'ws_A1_1,ws_A1_1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterColdParamA1_ispd = '1,1'; // 分别是冷冻水供水温度、冷冻水回水温度
 // 冷站详情-水流量-冷却水参数
-var detail_waterCoolParam_name = 't_ra,t_ra,t_sa_sp'; // 分别是冷却水供水温度、冷却水回水温度、冷凝温度
-var detail_waterCoolParam_id = 'K_1_01_YL,K_1_02_YL,K_1_01_YL'; // 分别是冷却水供水温度、冷却水回水温度、冷凝温度
-var detail_waterCoolParam_ispd = '1,1,1'; // 分别是冷却水供水温度、冷却水回水温度、冷凝温度
+var detail_waterCoolParamP1_name = 't_cw_s,t_cw_s,t_cw_r,t_cw_r'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamP1_id = 'ws_P1_1,ws_P1_2,ws_P1_1,ws_P1_2'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamP1_ispd = '1,1,1,1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamP2_name = 't_cw_s,t_cw_r'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamP2_id = 'ws_P2_1,ws_P2_1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamP2_ispd = '1,1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamA1_name = 't_cw_s,t_cw_r'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamA1_id = 'ws_A1_1,ws_A1_1'; // 分别是冷冻水供水温度、冷冻水回水温度
+var detail_waterCoolParamA1_ispd = '1,1'; // 分别是冷冻水供水温度、冷冻水回水温度
 // 冷站详情-冷却塔-风机频率
 var detail_towerWindFrequency_name = 't_ra'; 
-var detail_towerWindFrequency_id = 'K_1_01_YL'; 
+var detail_towerWindFrequency_id = ''; 
 var detail_towerWindFrequency_ispd = '1'; 
 // 冷站详情-冷却塔-冷却水参数
 var detail_towerCoolParam_name = 't_ra,t_ra'; // 分别是冷却水供水温度、冷却水回水温度
-var detail_towerCoolParam_id = 'K_1_01_YL,K_1_02_YL'; // 分别是冷却水供水温度、冷却水回水温度
+var detail_towerCoolParam_id = 'K_1_02_YL'; // 分别是冷却水供水温度、冷却水回水温度
 var detail_towerCoolParam_ispd = '1,1'; // 分别是冷却水供水温度、冷却水回水温度
 
 // 锅炉房-冷冻水参数
 var detail_hotWaterParam_name = 't_hw_s,t_hw_r'; // 分别是热水供水温度、热水回水温度
 var detail_hotWaterParam_id = 'boiler_P1_1,boiler_P1_2'; // 分别是热水供水温度、热水回水温度
 var detail_hotWaterParam_ispd = '1,1'; // 分别是热水供水温度、热水回水温度
+
+// 锅炉房-热水泵-频率
+var detail_hwpParam_name = 'frequency'; // 分别是频率
+var detail_hwpParam_id = 'hp_P1_1'; // 分别是频率
+var detail_hwpParam_ispd = '1'; // 分别是频率
 
 // 照明系统-照明回路
 var detail_lightOpenNum_name = 'number_on'; // 分别是开启台数
@@ -395,9 +419,11 @@ var detail_1_down_legendList=[[],[],[]];//图例列表
 //运行状态--设备顺序 A1、P1、P2、T1、T2、T3、T4、T5
 var detail_yxts_name = 'number_on'; // 运行台数
 var detail_yxts_id_fau = 'fau'; // 新风机组运行台数
-var detail_yxts_id_chiller = 'chiller'; // 冷机运行台数
-var detail_yxts_id_sendWind = 'sf'; // 送风机运行台数
-var detail_yxts_id_exhaustWind = 'pf'; // 排风机运行台数
+var detail_yxts_id_chiller = 'chiller_total_'; // 冷机运行台数
+var detail_yxts_id_boiler = "boiler"; // 锅炉运行台数
+var detail_yxts_id_hwp = "hwp"; // 锅炉运行台数
+var detail_yxts_id_sendWind = 'sf_total_'; // 送风机运行台数
+var detail_yxts_id_exhaustWind = 'pf_total_'; // 排风机运行台数
 var detail_yxts_ispd = '2'; // 运行台数
 var detail_yxts_type = 'day'; // 运行台数类型
 var detail_yxts_starttime = ''; // 运行台数开始时间
@@ -406,19 +432,19 @@ var detail_yxts_starttime = ''; // 运行台数开始时间
 var detail_wind_type = 'day'; // 运行台数类型
 var detail_wind_starttime = ''; // 运行台数开始时间
 //var detail_wind_name = 't_sa,t_ra,t_ra,t_sa_sp'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
-//var detail_wind_id = 'K_1_01_YL,K_1_01_YL,K_1_02_YL,K_1_01_YL'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
+//var detail_wind_id = 'K_1_02_YL,'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
 //var detail_wind_ispd = '1,1,1,1'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
 // 送风温度参数
 var detail_windTempParam_name = 't_sa,t_ra'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
-var detail_windTempParam_id = 'K_1_01_YL,K_1_01_YL'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
+var detail_windTempParam_id = ''; // 分别是送风温度、回风温度、新风温度、送风温度设定值
 var detail_windTempParam_ispd = '1,1'; // 分别是送风温度、回风温度、新风温度、送风温度设定值
 // 回风湿度参数
 var detail_windHumpParam_name = 'rh_ra,rh_sa'; // 分别是送风湿度、回风湿度
-var detail_windHumpParam_id = 'K_1_01_YL,K_1_04_YL'; // 分别是送风湿度、回风湿度 zzx?
+var detail_windHumpParam_id = 'K_1_04_YL'; // 分别是送风湿度、回风湿度 zzx?
 var detail_windHumpParam_ispd = '1,1'; // 分别是送风湿度、回风湿度
 // 水阀开度
 var detail_waterOpen_name = 'u_valve_cc_sp,u_valve_hc'; // 分别是冷水阀开度、热水阀开度
-var detail_waterOpen_id = 'K_1_01_YL,K_1_01_YL'; // 分别是送风湿度、回风湿度 zzx?
+var detail_waterOpen_id = ''; // 分别是送风湿度、回风湿度 zzx?
 var detail_waterOpen_ispd = '1,1'; // 分别是送风湿度、回风湿度
 // 风机频率
 var detail_fanFrequency_name = 'frequency_sf,frequency_sf'; // 分别是送风机频率、回风机频率
@@ -431,7 +457,7 @@ var detail_runFrequency_id = 'X_3_04_BJ'; // 分别是运行频率
 var detail_runFrequency_ispd = '1'; // 分别是运行频率
 
 var detail_runningWind_name = 'rh_ra,rh_ra'; // 分别是扬尘、流量
-var detail_runningWind_id = 'K_1_01_YL,K_1_04_YL'; // 分别是扬尘、流量 zzx?
+var detail_runningWind_id = 'K_1_04_YL'; // 分别是扬尘、流量 zzx?
 var detail_runningWind_ispd = '1,1'; // 分别是扬尘、流量
 
 var detail_2_up_name=[[''],[],[],[],[],[],[],[]]; // 运行台数

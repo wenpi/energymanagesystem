@@ -424,7 +424,7 @@ function <portlet:namespace/>getChart(tfrom, name, id, ispd, legend, showLegend,
                 								${eachEnergy.chartDataList_5} ];
 		var pieDataList = [];
 		for(var i=0;i<dataList.length;i++){
-			pieDataList.push(dataList[i][0]);
+			pieDataList.push(dataList[i][0] < 0 ? 0 : dataList[i][0]);
 		}
 
 		//填充图表

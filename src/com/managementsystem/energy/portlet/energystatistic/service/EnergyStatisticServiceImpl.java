@@ -77,7 +77,7 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 		// param.setType(("span".equalsIgnoreCase(type) ? "day" : type)); //
 		// 如果type传递过来是span，则暂时用day代替
 		param.setTfrom(tfrom);
-		param.setAttribute(attribute);
+		param.setAttribute(attribute == null ? "" : attribute);
 		param.setTspan(tspan);
 		param.setIspd(ispd);
 		param.setBuild_id(build_id);
@@ -547,7 +547,7 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 								double val = Double.parseDouble(cm.getValue());
 								tempList.add(df.format(val));
 							} catch (Exception e) {
-								logger.error("getDatasForBuilds----" + e.getMessage());
+								logger.error("getDatasForRegions----" + e.getMessage());
 								tempList.add(0);
 							}
 						}
@@ -640,10 +640,16 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 				List<Object> datalist = new ArrayList<Object>();
 				List<Object> catalist = new ArrayList<Object>();
 				// 获取httpConnection
-				HttpURLConnection httpConnection = getHttpConnection(
-						names[a], ids[a], type, tfrom, att, "",
-						ispds[a], build_id, region_id);
-				int responseCode = httpConnection.getResponseCode();
+				HttpURLConnection httpConnection = null;
+				int responseCode = 0;
+				try {
+					httpConnection = getHttpConnection(
+							names[a], ids[a], type, tfrom, att, "",
+							ispds[a], build_id, region_id);
+					responseCode = httpConnection.getResponseCode();
+				} catch (Exception e1) {
+					logger.error(e1);
+				}
 				if (responseCode == HttpURLConnection.HTTP_OK) { // 200表示，url正常返回了值
 					// 获取查询结果
 					list = returnList(httpConnection, CommonModel.class);
@@ -701,7 +707,7 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 				
 			}
 			resultMap.put("datalist", finalList);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			logger.error(e);
 		}
 		return resultMap;

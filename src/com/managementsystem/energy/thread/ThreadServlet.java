@@ -13,17 +13,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.managementsystem.energy.service.ImportService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import com.managementsystem.energy.service.ImportService;
 
 public class ThreadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     private final static Log logger = LogFactory.getLog(ThreadServlet.class);
 
-	@Autowired
-	private ImportService importService;
+//	@Autowired
+//	private ImportService importService;
 
 	public ThreadServlet() {
 		super();
@@ -64,66 +63,22 @@ public class ThreadServlet extends HttpServlet {
 							File file = new File(fileName);
 							if (file.isFile() && file.exists()) {
 								file.delete();
-								logger.info("删除单个文件" + fileName + "成功！");
+								logger.info("delete file [" + fileName + "] success！");
 							} else {
-								logger.info("删除单个文件" + fileName + "失败！");
+								logger.info("delete file [" + fileName + "] failure！");
 							}
 						}
 					}
 				}
 				
 				// 每隔10分钟连接一下数据库
-				if(date.getHours() % 2 == 0 && (date.getMinutes() == 0) && date.getSeconds() == 0) {
-					
-					logger.info("-------------------------添加临时记录开始！-------------------------");
-					importService.addTemp();
-					logger.info("-------------------------添加临时记录结束！-------------------------");
-					
-//					logger.info("-------------------------日志文件瘦身开始！-------------------------");
-//
-//					Connection conn = com.managementsystem.dbmanager.ConnectionManager
-//							.getConnection();
-////					CallableStatement cs = null;
-//					Statement stmt = conn.createStatement();
+//				if(date.getHours() % 2 == 0 && (date.getMinutes() == 0) && date.getSeconds() == 0) {
 //					
-//					String sql = "' USE [master] ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY SIMPLE WITH NO_WAIT ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY SIMPLE ' + Char(13)  + ' GO ' + Char(13)  + ' USE taobao ' + Char(13)  + ' GO ' + Char(13)  + ' DBCC SHRINKFILE (N''taobao_Log'' , 11, TRUNCATEONLY) ' + Char(13)  + ' GO ' + Char(13)  + ' USE [master] ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY FULL WITH NO_WAIT ' + Char(13)  + ' GO ' + Char(13)  + ' ALTER DATABASE taobao SET RECOVERY FULL ' + Char(13)  + ' GO '";
-//					try {
-//						
-//				        stmt.addBatch("USE [master]");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY SIMPLE WITH NO_WAIT");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY SIMPLE");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("USE taobao");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("DBCC SHRINKFILE (N'taobao_Log' , 11, TRUNCATEONLY) ");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("USE [master]");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY FULL WITH NO_WAIT");
-//				        // stmt.addBatch("GO");
-//				        stmt.addBatch("ALTER DATABASE taobao SET RECOVERY FULL ");
-//				        // stmt.addBatch("GO");
-//					       
-//						stmt.executeBatch();
-//						logger.info("瘦身的sql----" + sql);
-////						cs = conn.prepareCall(sql);
-////						cs.execute();
-//					} catch (Exception e) {
-//						logger.info("日志文件瘦身出错了" + sql);
-//						throw new java.lang.RuntimeException(e);
-//					} finally {
-//						// 数据库资源释放
-//						if (stmt != null) {
-//							stmt.close();
-//						}
-//						if (conn != null) {
-//							conn.close();
-//						}
-//					}
-//					logger.info("-------------------------日志文件瘦身完成！-------------------------");
-				}
+//					logger.info("-------------------------添加临时记录开始！-------------------------");
+//					importService.addTemp();
+//					logger.info("-------------------------添加临时记录结束！-------------------------");
+//					
+//				}
 			} catch (Exception e) {
 				// e.printStackTrace();
 			}

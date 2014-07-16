@@ -116,10 +116,10 @@
 												.append($("<div>")
 													.append($("<table>")
 														.append($("<tbody>")
-															.append($("<tr>").append($("<td>").addClass("value_floor").html(numList[i].total)))
-															.append($("<tr>").append($("<td>").addClass("total_floor").html('总数')))
 															.append($("<tr>").append($("<td>").addClass("value_floor").html(dataList[i][0])))
-															.append($("<tr>").append($("<td>").addClass("total_floor").html('开启数')))))))
+															.append($("<tr>").append($("<td>").addClass("total_floor").html('开启数')))
+															.append($("<tr>").append($("<td>").addClass("value_floor").html(numList[i].total)))
+															.append($("<tr>").append($("<td>").addClass("total_floor").html('总数')))))))
 							.appendTo(obj);
 				}
 				
@@ -152,6 +152,12 @@
 						$(this).addClass("noborderright");
 					}
 				});
+				
+				$(".display_more").css("display", "block");
+				$(".each_device_list > .each_device").css("height", "230px");
+				$(".each_device_list > .each_device > .device_para").css("height", "190px");
+				$(".sszt > .each_device_list").css("height", "230px");
+				
 				$(".display_more").toggle(function() {
 					$(this).prev().css({
 						"height" : "auto"

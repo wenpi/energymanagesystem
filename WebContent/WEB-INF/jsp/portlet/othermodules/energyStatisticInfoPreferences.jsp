@@ -27,8 +27,6 @@
 
 	<br />
 	<div class="ftitle">
-		<span class="spanwidth" align="right">增加小时数：</span> <input id="hours"
-			name="hours" type="text" value="<%=prefs.getValue("hours", "")%>">
 		<span> <a
 			href="<portlet:renderURL portletMode="view" windowState="normal"></portlet:renderURL>">«返回</a>
 		</span>
@@ -49,25 +47,6 @@
 		<br />
 
 		<div class="div-table">
-			<div class="div-table-row">
-				<div class="div-table-col"
-					style="height: 250px; width: 900px; margin-left: 30px;">
-					<div id="<portlet:namespace/>dgrid"></div>
-				</div>
-			</div>
-
-			<br />
-
-			<div class="div-table-row">
-				<div class="div-table-col">
-					<div id="buttons" style="margin-left: 30px;">
-						<a href="#" class="easyui-linkbutton"
-							onclick="<portlet:namespace/>setNameAndId('dgrid','choose_name','choose_id','ispd')">获取name和id</a>
-						<a href="#" class="easyui-linkbutton"
-							onclick="<portlet:namespace/>clear('choose_name','choose_id','ispd')">清空name/id/ispd</a>
-					</div>
-				</div>
-			</div>
 			<br />
 			<div class="div-table-row">
 				<div class="div-table-2col">
@@ -297,7 +276,6 @@ function renderDataGrid(id){
 }
 
 // 渲染建筑用能评分的效果
-renderDataGrid("dgrid");
 $("#chartType").val('<%=prefs.getValue("chartType","")%>');
 $("#decimals").val('<%=prefs.getValue("decimals","")%>');
 $('#defaulttime').datebox();//默认时间

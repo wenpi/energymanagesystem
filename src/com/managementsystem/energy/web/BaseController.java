@@ -156,10 +156,11 @@ public abstract class BaseController {
 		String comments = request.getParameter("comments");
 		String buildId = request.getParameter("buildId");
 		String regionId = request.getParameter("regionId");
+		String order = request.getParameter("order");
 		
 		Map<String, Object> resultMap = new LinkedHashMap<String, Object>();
 		try {
-			querySchemes = querySchemeService.getQuerySchemeListByCondition(id, name, comments, buildId, regionId);
+			querySchemes = querySchemeService.getQuerySchemeListByCondition(id, name, comments, buildId, regionId, order);
 			resultMap.put("result", querySchemes);
 		} catch (Exception e) {
 			e.printStackTrace();

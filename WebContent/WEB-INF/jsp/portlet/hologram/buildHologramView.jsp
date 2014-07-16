@@ -263,7 +263,7 @@ var <portlet:namespace />expColumnName3 = ''; //客流量图表导出表头
 			ispd: ispd,
 			decimals: decimals,
 			type: <portlet:namespace />choose_type,
-			region_id: ((<portlet:namespace />choose_build == "建筑总体" || id.indexOf("outdoor_") != -1) ? "" : 'total'),
+			region_id: ((<portlet:namespace />choose_build == "建筑总体" || id.indexOf("outdoor_") != -1 || name.indexOf("cooling_capacity") != -1) ? "" : 'total'),
 			build_id: (<portlet:namespace />choose_build == "建筑总体" ? "" : <portlet:namespace />choose_build)
 		},function(data){
 			var newLegendList = []; //用来保存新生成的个性图例说明列

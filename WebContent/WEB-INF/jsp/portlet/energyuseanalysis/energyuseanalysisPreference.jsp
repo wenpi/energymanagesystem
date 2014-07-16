@@ -39,25 +39,6 @@
 
 		<br />
 		<div class="div-table-row">
-			<div class="div-table-2col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid1"></div>
-			</div>
-		</div>
-
-		<br />
-		<div class="div-table-row">
-			<div class="div-table-2col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid1','choose_name1','choose_id1','ispd1')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name1','choose_id1','ispd1')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-		<br />
-		<div class="div-table-row">
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">Name：</span> <input
 					id="choose_name1" name="choose_name1" type="text"
@@ -78,6 +59,13 @@
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">标题：</span> <input id="title1"
 					name="title1" type="text" value="<%=prefs.getValue("title1", "")%>">
+			</div>
+		</div>
+
+		<div class="div-table-row">
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">是否需要乘数：</span> <input id="multiplier"
+					name="multiplier" type="text" value="<%=prefs.getValue("multiplier", "")%>">
 			</div>
 		</div>
 
@@ -259,28 +247,6 @@
 			</div>
 		</div>
 
-
-
-		<div class="div-table-row">
-			<div class="div-table-2col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid2"></div>
-			</div>
-		</div>
-
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-2col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid2','choose_name2','choose_id2','ispd2')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name2','choose_id2','ispd2')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
 		<br />
 		<div class="div-table-row">
 			<div class="div-table-2col">
@@ -485,25 +451,6 @@
 
 		<br />
 		<div class="div-table-row">
-			<div class="div-table-2col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid3"></div>
-			</div>
-		</div>
-
-		<br />
-		<div class="div-table-row">
-			<div class="div-table-2col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid3','choose_name3','choose_id3','ispd3')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name3','choose_id3','ispd3')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-		<br />
-		<div class="div-table-row">
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">Name：</span> <input
 					id="choose_name3" name="choose_name3" type="text"
@@ -668,24 +615,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="div-table-row">
-			<div class="div-table-2col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid4"></div>
-			</div>
-		</div>
-
-		<br />
-		<div class="div-table-row">
-			<div class="div-table-2col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid4','choose_name4','choose_id4','ispd4')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name4','choose_id4','ispd4')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
+		
 		<br />
 		<div class="div-table-row">
 			<div class="div-table-2col">
@@ -744,26 +674,6 @@
 			</div>
 		</div>
 
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-2col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid5"></div>
-			</div>
-		</div>
-
-		<br />
-		<div class="div-table-row">
-			<div class="div-table-2col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid5','choose_name5','choose_id5','ispd5')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name5','choose_id5','ispd5')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
 		<br />
 		<div class="div-table-row">
 			<div class="div-table-2col">
@@ -932,28 +842,6 @@
 			</div>
 		</div>
 
-
-
-		<div class="div-table-row">
-			<div class="div-table-2col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid6"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-2col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid6','choose_name6','choose_id6','ispd6')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name6','choose_id6','ispd6')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-		<br />
 		<div class="div-table-row">
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">Name：</span> <input
@@ -1224,41 +1112,29 @@ function renderDataGrid(id){
 }
 
 // 渲染总能耗的效果
-renderDataGrid("dgrid1");
 $("#chartType_1").val('<%=prefs.getValue("chartType_1","")%>');
 $("#chartType_1_1").val('<%=prefs.getValue("chartType_1_1","")%>');
 $("#decimals1").val('<%=prefs.getValue("decimals1","")%>');
-$('#defaulttime1').datebox();//默认时间
 
-//渲染能耗分项的效果
-renderDataGrid("dgrid2");
+// 渲染能耗分项的效果
 $("#chartType_2_1").val('<%=prefs.getValue("chartType_2_1","")%>');
 $("#decimals2").val('<%=prefs.getValue("decimals2","")%>');
-$('#defaulttime2').datebox();//默认时间
 
-//渲染总用电的效果
-renderDataGrid("dgrid3");
+// 渲染总用电的效果
 $("#chartType_3_1").val('<%=prefs.getValue("chartType_3_1","")%>');
 $("#chartType_3_2").val('<%=prefs.getValue("chartType_3_2","")%>');
 $("#decimals3").val('<%=prefs.getValue("decimals3","")%>');
-$('#defaulttime3').datebox();//默认时间
 
-//渲染 总用水 的效果
-renderDataGrid("dgrid4");
+// 渲染 总用水 的效果
 $("#chartType_4_1").val('<%=prefs.getValue("chartType_4_1","")%>');
 $("#chartType_4_2").val('<%=prefs.getValue("chartType_4_2","")%>');
 $("#decimals4").val('<%=prefs.getValue("decimals4","")%>');
-$('#defaulttime4').datebox();//默认时间
 
-//渲染 总用气  的效果
-renderDataGrid("dgrid5");
+// 渲染 总用气  的效果
 $("#chartType_5_1").val('<%=prefs.getValue("chartType_5_1","")%>');
 $("#chartType_5_2").val('<%=prefs.getValue("chartType_5_2","")%>');
 $("#decimals5").val('<%=prefs.getValue("decimals5","")%>');
-$('#defaulttime5').datebox();//默认时间
-//渲染碳足迹  的效果
-renderDataGrid("dgrid6");
+// 渲染碳足迹  的效果
 $("#chartType_6_1").val('<%=prefs.getValue("chartType_6_1","")%>');
 $("#decimals6").val('<%=prefs.getValue("decimals6","")%>');
-$('#defaulttime6').datebox();//默认时间
 </script>

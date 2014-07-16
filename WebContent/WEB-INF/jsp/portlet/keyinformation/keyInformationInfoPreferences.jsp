@@ -26,9 +26,8 @@
 
 	<br />
 	<div class="ftitle">
-		<span class="spanwidth" align="right">增加小时数：</span> <input id="hours"
-			name="hours" type="text" value="<%=prefs.getValue("hours", "")%>">
-		<a style="color: #666;" href="<portlet:renderURL portletMode="view" windowState="normal"></portlet:renderURL>">«返回</a>
+		<a style="color: #666;"
+			href="<portlet:renderURL portletMode="view" windowState="normal"></portlet:renderURL>">«返回</a>
 	</div>
 	<br />
 
@@ -69,28 +68,6 @@
 			<div class="div-table-col">
 				<div class="ftitle">
 					<span>室外状态</span>
-				</div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid1"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid1','choose_name1','choose_id1','ispd1')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name1','choose_id1','ispd1')">清空name/id/ispd</a>
 				</div>
 			</div>
 		</div>
@@ -269,28 +246,6 @@
 			<div class="div-table-col">
 				<div class="ftitle">
 					<span>客流量</span>
-				</div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid2"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid2','choose_name2','choose_id2','ispd2')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name2','choose_id2','ispd2')">清空name/id/ispd</a>
 				</div>
 			</div>
 		</div>
@@ -493,30 +448,6 @@
 			</div>
 		</div>
 
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid3"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid3','choose_name3','choose_id3','ispd3')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name3','choose_id3','ispd3')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-
-		<br />
-
 		<div class="div-table-row">
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">Name：</span> <input
@@ -713,29 +644,6 @@
 		</div>
 
 		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid4"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid4','choose_name4','choose_id4','ispd4')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name4','choose_id4','ispd4')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-
-		<br />
-
 		<div class="div-table-row">
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">Name：</span> <input
@@ -932,33 +840,6 @@
 				</div>
 			</div>
 		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid5"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid5','choose_name5','choose_id5','ispd5')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name5','choose_id5','ispd5')">清空name/id/ispd</a>
-					&nbsp;&nbsp;&nbsp; <a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid5','valuename','valueid','valueispd')">获取求值name、id、ispd</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('valuename','valueid','valueispd')">清空求值name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-
 		<br />
 
 		<div class="div-table-row">
@@ -1284,43 +1165,33 @@ function renderDataGrid(id){
 }
 
 //渲染室外状态的效果
-renderDataGrid("dgrid1");
 $("#chartType_1").val('<%=prefs.getValue("chartType_1","")%>');
 $("#chartType_1_1").val('<%=prefs.getValue("chartType_1_1","")%>');
 $("#decimals1").val('<%=prefs.getValue("decimals1","")%>');
-$('#defaulttime1').datebox();//默认时间
 $("#showXGridLine1").val('<%=prefs.getValue("showXGridLine1","")%>');
 $("#showYGridLine1").val('<%=prefs.getValue("showYGridLine1","")%>');
 //渲染建筑客流量的效果
-renderDataGrid("dgrid2");
 $("#chartType_2_1").val('<%=prefs.getValue("chartType_2_1","")%>');
 $("#chartType_2_2").val('<%=prefs.getValue("chartType_2_2","")%>');
 $("#decimals2").val('<%=prefs.getValue("decimals2","")%>');
-$('#defaulttime2').datebox();//默认时间
 $("#showXGridLine2").val('<%=prefs.getValue("showXGridLine2","")%>');
 $("#showYGridLine2").val('<%=prefs.getValue("showYGridLine2","")%>');
 
 //渲染 建筑总能耗 的效果
-renderDataGrid("dgrid3");
 $("#chartType_3_1").val('<%=prefs.getValue("chartType_3_1","")%>');
 $("#chartType_3_2").val('<%=prefs.getValue("chartType_3_2","")%>');
 $("#decimals3").val('<%=prefs.getValue("decimals3","")%>');
-$('#defaulttime3').datebox();//默认时间
 $("#showXGridLine3").val('<%=prefs.getValue("showXGridLine3","")%>');
 $("#showYGridLine3").val('<%=prefs.getValue("showYGridLine3","")%>');
 
 //渲染 建筑总用电量 的效果
-renderDataGrid("dgrid4");
 $("#chartType_4_1").val('<%=prefs.getValue("chartType_4_1","")%>');
 $("#chartType_4_2").val('<%=prefs.getValue("chartType_4_2","")%>');
 $("#decimals4").val('<%=prefs.getValue("decimals4","")%>');
-$('#defaulttime4').datebox();//默认时间
 $("#showXGridLine4").val('<%=prefs.getValue("showXGridLine4","")%>');
 $("#showYGridLine4").val('<%=prefs.getValue("showYGridLine4","")%>');
 
 //渲染 建筑用电分项  的效果
-renderDataGrid("dgrid5");
 $("#decimals5").val('<%=prefs.getValue("decimals5","")%>');
 $("#chartType_6_1").val('<%=prefs.getValue("chartType_6_1","")%>');
-$('#defaulttime5').datebox();//默认时间
 </script>

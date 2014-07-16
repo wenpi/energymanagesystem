@@ -53,9 +53,10 @@ public interface QuerySchemeDao extends DaoSupport {
 	 * @param comments
 	 * @param buildId
 	 * @param regionId
+	 * @param order
 	 * @return
 	 */
-	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId); 
+	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId, String order); 
 
 	public Map<String, Object> getDataListByCondition(String id, String name, String comments, String category_id, String region_id); 
 }

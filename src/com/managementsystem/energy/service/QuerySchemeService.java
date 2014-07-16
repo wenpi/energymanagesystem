@@ -51,10 +51,20 @@ public interface QuerySchemeService {
 	 * @param comments
 	 * @param buildId
 	 * @param regionId
+	 * @param order
 	 * @return
 	 */
-	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId); 
+	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId, String order); 
 	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param comments
+	 * @param category_id
+	 * @param region_id
+	 * @return
+	 */
 	public Map<String, Object> getDataListByCondition(String id, String name, String comments, String category_id, String region_id); 
 
 }

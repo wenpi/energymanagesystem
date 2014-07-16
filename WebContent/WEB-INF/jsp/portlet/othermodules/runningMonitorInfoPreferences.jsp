@@ -27,8 +27,6 @@
 	<br />
 
 	<div class="ftitle">
-		<span class="spanwidth" align="right">增加小时数：</span> <input id="hours"
-			name="hours" type="text" value="<%=prefs.getValue("hours", "")%>">
 		<span><a href="<portlet:renderURL portletMode="view" windowState="normal"></portlet:renderURL>">«返回</a></span>
 	</div>
 
@@ -42,27 +40,6 @@
 			</div>
 		</div>
 
-		<br />
-		<div class="div-table-row">
-			<div class="div-table-col"
-				style="height: 250px; width: 900px; margin-left: 30px;">
-				<div id="<portlet:namespace/>dgrid1"></div>
-			</div>
-		</div>
-
-		<br />
-
-		<div class="div-table-row">
-			<div class="div-table-col">
-				<div id="buttons" style="margin-left: 30px;">
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>setNameAndId('dgrid1','choose_name1','choose_id1','ispd1')">获取name和id</a>
-					<a href="#" class="easyui-linkbutton"
-						onclick="<portlet:namespace/>clear('choose_name1','choose_id1','ispd1')">清空name/id/ispd</a>
-				</div>
-			</div>
-		</div>
-		<br />
 		<div class="div-table-row">
 			<div class="div-table-2col">
 				<span class="spanwidth" align="right">Name：</span> <input
@@ -285,10 +262,8 @@ function renderDataGrid(id){
 }
 
 //渲染室外状态的效果
-renderDataGrid("dgrid1");
 $("#chartType_1").val('<%=prefs.getValue("chartType_1","")%>');
 $("#decimals1").val('<%=prefs.getValue("decimals1","")%>');
-$('#defaulttime1').datebox();//默认时间
 $("#showLegend1").val('<%=prefs.getValue("showLegend1","")%>');
 $("#showXGridLine1").val('<%=prefs.getValue("showXGridLine1","")%>');
 $("#showYGridLine1").val('<%=prefs.getValue("showYGridLine1","")%>');

@@ -20,7 +20,7 @@
 							<p class="open_count">
 								<span>3</span><sup>ON</sup>
 							</p>
-							<p class="device_count">共4台</p>
+							<p class="device_count">共13台</p>
 						</div>
 						<div>
 							<p class="device_list">新风机组</p>
@@ -30,11 +30,11 @@
 							<p class="device_count">共40台</p>
 						</div>
 						<div>
-							<p class="device_list">空调箱</p>
+							<p class="device_list">冷却塔</p>
 							<p class="open_count">
-								<span>30</span><sup>ON</sup>
+								<span>21</span><sup>ON</sup>
 							</p>
-							<p class="device_count">共40台</p>
+							<p class="device_count">共25台</p>
 						</div>
 					</div>
 				</div>
@@ -70,13 +70,13 @@ if(publicTime != ""){
 }
 
 function <portlet:namespace/>getChart() {
-	var catalist = ['冷机','锅炉','冷冻泵','冷却泵','新风机','空调箱'];
+	var catalist = ['冷机','锅炉','冷冻泵','冷却泵','冷却塔','新风机组'];
 	var datalist1 = [], datalist2 = [], atts = [];
-	for(var i = 0; i < catalist.length * 2; i++){
-		atts.push('sum');
-	}
-	
-	var url = '<portlet:resourceURL id="getValueListByNamesAndAtts"></portlet:resourceURL>&from='
+	//for(var i = 0; i < catalist.length * 2; i++){
+		//atts.push('span');
+	//}
+	//debugger;
+	var url = '<portlet:resourceURL id="getValueListByNames"></portlet:resourceURL>&from='
 			+ <portlet:namespace />start_date1
 			+ '&name='
 			+ <portlet:namespace />choose_name1
@@ -84,19 +84,19 @@ function <portlet:namespace/>getChart() {
 			+ <portlet:namespace />choose_id1
 			+ "&ispd="
 			+ <portlet:namespace />ispd1
-			+ "&att=" + atts.join() + "&type=day&decimals=${tbinfo.decimals}";
+			+ "&att=&type=span&decimals=${tbinfo.decimals}";
 	$.ajax({
 		type : "POST",
 		url : url,
-		async : false,
+		//async : false,
 		success : function(result) {
-			for(var i = 0; i < result.data.length; i++){
+			var valueList = result.dataList;
+			for(var i = 0; i < valueList.length; i++){
 				if(i < catalist.length) 
-					datalist1.push(parseFloat(result.data[i]));
-				else 
-					datalist2.push(parseFloat(result.data[i]));
+					datalist1.push(parseFloat(valueList[i][0]));
+				//else 
+					//datalist2.push(parseFloat(result.data[i]));
 			}
-
 			var chartColorList = <portlet:namespace />chartColors.split(",");
 			//该方法写在\tomcat-6.0.29\webapps\ROOT\html\company\scripts目录下的autoRenderToCharts.js中，用来生成图表
 			//其参数依次代表图表需要渲染到的id，图表类型，图表背景颜色，标题，标题颜色 ，标题水平对齐方式（默认为left），提示内容后缀，网格线样式，是否显示图例说明，是否显示X轴上网格线，是否显示Y轴上网格线 ，图表数据列颜色

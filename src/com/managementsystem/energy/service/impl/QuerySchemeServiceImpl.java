@@ -41,8 +41,8 @@ public class QuerySchemeServiceImpl implements QuerySchemeService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId) {
-		return querySchemeDao.getQuerySchemeListByCondition(id, name, comments, buildId, regionId); 
+	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId, String order) {
+		return querySchemeDao.getQuerySchemeListByCondition(id, name, comments, buildId, regionId, order); 
 	}
 	
 	@Transactional(readOnly = true)

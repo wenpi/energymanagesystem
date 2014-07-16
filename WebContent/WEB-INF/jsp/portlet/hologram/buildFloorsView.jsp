@@ -55,7 +55,7 @@
 				<div class="charts">
 					<div class="look_other center_text">
 						<label class="floor_times ect_time cursor_style "></label>
-						<div class="download" onclick=""></div>
+<!-- 						<div class="download" onclick=""></div> -->
 					</div>
 					<div class="chart floor_chart"
 						id="<portlet:namespace />floor_consumption"></div>
@@ -122,7 +122,7 @@
 				<div class="charts">
 					<div class="look_other center_text">
 						<label class="floor_times co2_time cursor_style "></label>
-						<div class="download"></div>
+<!-- 						<div class="download"></div> -->
 					</div>
 					<div class="chart floor_chart"
 						id="<portlet:namespace />floor_concentration"></div>
@@ -209,7 +209,7 @@
 					<div onclick="<portlet:namespace />areaDate('week')">周视图</div>
 					<div onclick="<portlet:namespace />areaDate('month')">月视图</div>
 				</div>
-				<div class="download"></div>
+<!-- 				<div class="download"></div> -->
 			</div>
 		</div>
 		<div class="block_swap">

@@ -243,10 +243,10 @@ function <portlet:namespace/>getChart1(tfrom, name, id, ispd, legend, showLegend
     		id : id,
     		ispd : ispd,
     		decimals : '${energyUseAnalysis.decimals1}', //显示小数位数，首选项传
-    		mult : '', //是否在获取的数据基础上乘数，首选项传（饼图）
+    		mult : '${energyUseAnalysis.multiplier}', //是否在获取的数据基础上乘数
     		type : <portlet:namespace/>choose_type1 //选取时间段
     	}, 
-        async : false, // 同步
+        //async : false, // 同步
         success : function(data) { 
         	var cateList = data.cataList;//x轴标签，数组
     		var dataList = data.dataList;//数据，数组集合

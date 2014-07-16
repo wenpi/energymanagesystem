@@ -35,19 +35,19 @@
 			<caption>建筑总能耗分项</caption>
 			<tbody class="build_subentry">
 				<tr>
-					<td>总用电</td>
+					<td>空调用电</td>
 					<td><span>↓ 30</span><sup><sup>%</sup></sup></td>
 				</tr>
 				<tr>
-					<td>总用水</td>
+					<td>照明用电</td>
 					<td><span>↓ 10</span><sup><sup>%</sup></sup></td>
 				</tr>
 				<tr>
-					<td>总用气</td>
+					<td>电梯用电</td>
 					<td><span>↓ 8</span><sup><sup>%</sup></sup></td>
 				</tr>
 				<tr>
-					<td>其他能耗</td>
+					<td>其他用电</td>
 					<td><span>↑ 5</span><sup><sup>%</sup></sup></td>
 				</tr>
 			</tbody>
@@ -445,8 +445,8 @@ function <portlet:namespace />getRightData5(){
 			var data = result.data;
 			$(".build_subentry > tr:eq(0) > td:eq(1) > span").text(returnUpOrDown(data[0][0][0]) + returnPositiveVal(data[0][0][0],'${tbinfo.decimals5}'));// change
 			$(".build_subentry > tr:eq(1) > td:eq(1) > span").text(returnUpOrDown(data[1][0][0]) + returnPositiveVal(data[1][0][0],'${tbinfo.decimals5}'));// change
-			$(".build_subentry > tr:eq(2) > td:eq(1) > span").text(returnUpOrDown(data[2][0][0]) + returnPositiveVal(data[2][0][0],'${tbinfo.decimals5}'));// change
-			$(".build_subentry > tr:eq(3) > td:eq(1) > span").text(returnUpOrDown(data[3][0][0]) + returnPositiveVal(data[3][0][0],'${tbinfo.decimals5}'));// change
+			$(".build_subentry > tr:eq(2) > td:eq(1) > span").text(returnUpOrDown(data[5][0][0]) + returnPositiveVal(data[5][0][0],'${tbinfo.decimals5}'));// change
+			$(".build_subentry > tr:eq(3) > td:eq(1) > span").text(returnUpOrDown(data[6][0][0]) + returnPositiveVal(data[6][0][0],'${tbinfo.decimals5}'));// change
 		},
 		error : function(result) {
 			console.log('getRightData5 + error');

@@ -27,8 +27,6 @@
 	<br />
 	
 	<div class="ftitle">
-		<span class="spanwidth" align="right">增加小时数：</span> <input id="hours"
-			name="hours" type="text" value="<%=prefs.getValue("hours", "")%>">
 		<span class=""><a
 			href="<portlet:renderURL portletMode="view" windowState="normal"></portlet:renderURL>">«返回</a></span>
 	</div>

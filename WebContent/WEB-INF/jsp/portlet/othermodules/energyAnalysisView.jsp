@@ -39,8 +39,7 @@
 						</tbody>
 					</table>
 					<div class="level">
-						<img
-							src="${pageContext.request.contextPath}/styles/second/images/level1.png" />
+						<img src="${pageContext.request.contextPath}/styles/second/images/level1.png" />
 					</div>
 				</div>
 				<div class="chart_bottom">
@@ -90,6 +89,47 @@ function <portlet:namespace />getButtomValue(){
 				$(".energy_analysis_text > div:eq(2) > .cosume_number").text(valueList[2][0][0]);
 			}, 'json');
 }
+// 获取建筑用能评分
+function <portlet:namespace />getGradeValue(){
+	$.post(
+			'<portlet:resourceURL id="getDatasForNamesAndAtts"></portlet:resourceURL>',
+			{
+				from : <portlet:namespace />start_date,
+				name : '${tbinfo.choose_name}',
+				id : '${tbinfo.choose_id}',
+				ispd : '${tbinfo.ispd}',
+				decimals : '${tbinfo.decimals}',
+				att : '',
+				type : 'span'
+			},
+			function(data) {
+				var value = parseFloat(data.data[0][0][0]);
+
+				var temp = 3;
+				if (value >= parseFloat(0.4)) { // 评分为E
+					temp = 5;
+				}
+
+				if (parseFloat(0.2) <= value
+						&& value <= parseFloat(0.4)) { // 评分为D
+					temp = 4;
+				}
+
+				if (parseFloat(0) <= value && value <= parseFloat(0.2)) { // 评分为C
+					temp = 3;
+				}
+
+				if (parseFloat(-0.2) <= value && value <= parseFloat(0)) { // 评分为B
+					temp = 2;
+				}
+
+				if (parseFloat(value) <= parseFloat(-0.2)) { // 评分为A
+					temp = 1;
+				}
+				
+				$(".level > img").attr("src", "${pageContext.request.contextPath}/styles/second/images/level" + temp + ".png");
+			}, 'json');
+}
 //根据首选项获取图表数据查询时间，默认显示当前时间
 if(publicTime != ""){
 	<portlet:namespace />start_date = publicTime;
@@ -103,4 +143,5 @@ if(publicTime != ""){
 	}
 }
 <portlet:namespace />getButtomValue();
+<portlet:namespace />getGradeValue();
 </script>

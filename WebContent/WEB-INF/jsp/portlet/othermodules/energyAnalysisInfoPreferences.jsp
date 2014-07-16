@@ -48,26 +48,6 @@
 		<div class="div-table">
 
 			<div class="div-table-row">
-				<div class="div-table-col"
-					style="height: 250px; width: 900px; margin-left: 30px;">
-					<div id="<portlet:namespace/>dgrid"></div>
-				</div>
-			</div>
-
-			<br />
-
-			<div class="div-table-row">
-				<div class="div-table-col">
-					<div id="buttons" style="margin-left: 30px;">
-						<a href="#" class="easyui-linkbutton"
-							onclick="<portlet:namespace/>setNameAndId('dgrid','choose_name','choose_id','ispd')">获取name和id</a>
-						<a href="#" class="easyui-linkbutton"
-							onclick="<portlet:namespace/>clear('choose_name','choose_id','ispd')">清空name/id/ispd</a>
-					</div>
-				</div>
-			</div>
-			<br />
-			<div class="div-table-row">
 				<div class="div-table-2col">
 					<span class="spanwidth" align="right">Name：</span> <input
 						id="choose_name" name="choose_name" type="text"
@@ -224,9 +204,7 @@ function renderDataGrid(id){
 }
 
 // 渲染 建筑用能评分  的效果
-renderDataGrid("dgrid");
 $("#chartType").val('<%=prefs.getValue("chartType","")%>');
 $("#decimals").val('<%=prefs.getValue("decimals","")%>');
-$('#defaulttime').datebox();//默认时间
 $("#gridLineDashStyle6").val('<%=prefs.getValue("gridLineDashStyle6","")%>');
 </script>

@@ -85,14 +85,14 @@ public class QuerySchemeDaoImpl extends AbstractDaoSupport implements
 	}
 
 	@Override
-	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId) {
+	public List<QueryScheme> getQuerySchemeListByCondition(String id, String name, String comments, String buildId, String regionId, String order) {
 		String sqlString = "from QueryScheme where 1=1";
 
 		if (id != null && !id.equals("")) {
-			sqlString += " and id like '%" + id + "%'";
+			sqlString += " and id like '" + id + "'";
 		}
 		if (name != null && !name.equals("")) {
-			sqlString += " and name like '%" + name + "%'";
+			sqlString += " and name like '" + name + "'";
 		}
 		if (buildId != null && !buildId.equals("")) {
 			sqlString += " and buildId = '" + buildId + "'";
@@ -101,7 +101,12 @@ public class QuerySchemeDaoImpl extends AbstractDaoSupport implements
 			sqlString += " and regionId = '" + regionId + "'";
 		}
 		if (comments != null && !comments.equals("")) { 
-			sqlString += " and comments like '%" + comments + "%'";
+			sqlString += " and comments like '" + comments + "'";
+		}
+
+		// 排序
+		if (order != null && !order.equals("")) { 
+			sqlString += " order by " + order ;
 		}
 		System.out.println("query: " + sqlString);
 		

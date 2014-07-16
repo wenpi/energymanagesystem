@@ -5,7 +5,7 @@
 	<p>设备详情</p>
 	<p class="today"></p>
 	<div>
-		<div class="download"></div>
+<!-- 		<div class="download"></div> -->
 		<div class="btn_group">
 			<input id="select_date_sbxq" type="hidden">
 			<div class="btn_press"
@@ -16,6 +16,18 @@
 		<div class="filter_widget">
 			<div class="filter_label has_border_radius_left">选择设备</div>
 			<select id="chooseDevice">
+			</select>
+		</div>
+		<div class="filter_widget fcuAndLighting">
+			<div class="filter_label has_border_radius_left">选择楼层</div>
+			<select id="chooseFloorList">
+				<option value="1F">一层</option>
+				<option value="2F">二层</option>
+				<option value="3F">三层</option>
+				<option value="4F">四层</option>
+				<option value="5F">五层</option>
+				<option value="6F">六层</option>
+				<option value="7F">七层</option>
 			</select>
 		</div>
 	</div>
@@ -175,7 +187,7 @@
 	<div class="fault_content">
 		<div class="fault_title">
 			<h3>冷却水参数</h3>
-			<span>冷却水额定供回水温度为<i> 37/32 </i>℃
+<!-- 			<span>冷却水额定供回水温度为<i> 37/32 </i>℃ -->
 			</span>
 		</div>
 		<div class="chart_content">
@@ -306,30 +318,30 @@
 			<div class="left_para">
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tbody class="waterColdParam_table">
+						<tr>
+							<td>供水温度最大值</td>
+							<td>17</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>供水温度最小值</td>
+							<td>15</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
 <!-- 						<tr> -->
-<!-- 							<td>供水温度最大值</td> -->
+<!-- 							<td>回水温度最大值</td> -->
 <!-- 							<td>17</td> -->
 <!-- 							<td class="tdClass"><sup>℃</sup></td> -->
 <!-- 							<td></td> -->
 <!-- 						</tr> -->
 <!-- 						<tr> -->
-<!-- 							<td>供水温度最小值</td> -->
-<!-- 							<td>15</td> -->
+<!-- 							<td>回水温度最小值</td> -->
+<!-- 							<td>17</td> -->
 <!-- 							<td class="tdClass"><sup>℃</sup></td> -->
 <!-- 							<td></td> -->
 <!-- 						</tr> -->
-						<tr>
-							<td>回水温度最大值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>回水温度最小值</td>
-							<td>17</td>
-							<td class="tdClass"><sup>℃</sup></td>
-							<td></td>
-						</tr>
 						<!-- <tr>
 							<td>蒸发温度最大值</td>
 							<td>17</td>
@@ -348,28 +360,28 @@
 			<div class="chart" id="waterColdParam_chart"></div>
 		</div>
 	</div>
-<!-- 	<div class="fault_content"> -->
-<!-- 		<div class="fault_title"> -->
-<!-- 			<h3>冷却水参数</h3> -->
+	<div class="fault_content">
+		<div class="fault_title">
+			<h3>冷却水参数</h3>
 <!-- 			<span>冷却水额定供回水温度为<i> 37/32 </i>℃ -->
-<!-- 			</span> -->
-<!-- 		</div> -->
-<!-- 		<div class="chart_content"> -->
-<!-- 			<div class="left_para"> -->
-<!-- 				<table border="0" cellpadding="0" cellspacing="0"> -->
-<!-- 					<tbody class="waterCoolParam_table"> -->
-<!-- 						<tr> -->
-<!-- 							<td>供水温度最大值</td> -->
-<!-- 							<td>17</td> -->
-<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
-<!-- 							<td></td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td>供水温度最小值</td> -->
-<!-- 							<td>17</td> -->
-<!-- 							<td class="tdClass"><sup>℃</sup></td> -->
-<!-- 							<td></td> -->
-<!-- 						</tr> -->
+			</span>
+		</div>
+		<div class="chart_content">
+			<div class="left_para">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody class="waterCoolParam_table">
+						<tr>
+							<td>供水温度最大值</td>
+							<td>17</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>供水温度最小值</td>
+							<td>17</td>
+							<td class="tdClass"><sup>℃</sup></td>
+							<td></td>
+						</tr>
 <!-- 						<tr> -->
 <!-- 							<td>回水温度最大值</td> -->
 <!-- 							<td>17</td> -->
@@ -382,7 +394,7 @@
 <!-- 							<td class="tdClass"><sup>℃</sup></td> -->
 <!-- 							<td></td> -->
 <!-- 						</tr> -->
-<!-- 						<tr>
+<!-- 						<tr> -->
 <!-- 							<td>冷凝温度最大值</td> -->
 <!-- 							<td>17</td> -->
 <!-- 							<td class="tdClass"><sup>℃</sup></td> -->
@@ -393,13 +405,13 @@
 <!-- 							<td>17</td> -->
 <!-- 							<td class="tdClass"><sup>℃</sup></td> -->
 <!-- 							<td></td> -->
-<!-- 						</tr> --> -->
-<!-- 					</tbody> -->
-<!-- 				</table> -->
-<!-- 			</div> -->
-<!-- 			<div class="chart" id="waterCoolParam_chart"></div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+<!-- 						</tr> -->
+					</tbody>
+				</table>
+			</div>
+			<div class="chart" id="waterCoolParam_chart"></div>
+		</div>
+	</div>
 </div>
 
 <!-- 冷站 - 常规制冷系统 | 冷却塔-->
@@ -810,11 +822,48 @@
 	</div>
 </div>
 
-<!-- 照明回路-开启台数 -->
+<!-- 热水泵参数 -->
+<div class="detail_chart hwpParamDiv none_div">
+	<div class="fault_content">
+		<div class="fault_title">
+			<h3>运行频率</h3>
+<!-- 			<span><i>额定供水温度：60℃  额定回水温度：50℃</i></span> -->
+		</div>
+		<div class="chart_content">
+			<div class="left_para">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tbody class="hwpParam_table">
+						<tr>
+							<td>日最大值</td>
+							<td>25</td>
+							<td class="tdClass"><sup>HZ</sup></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>日最小值</td>
+							<td>7</td>
+							<td class="tdClass"><sup>HZ</sup></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>日平均值</td>
+							<td>58</td>
+							<td class="tdClass"><sup>HZ</sup></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="chart" style="height: 300px !important;" id="hwpParam_chart"></div>
+		</div>
+	</div>
+</div>
+
+<!-- 照明回路-闭合回路 -->
 <div class="detail_chart lightOpenNumDiv none_div">
 	<div class="fault_content">
 		<div class="fault_title">
-			<h3>开启台数</h3>
+			<h3>闭合回路</h3>
 			<span><i></i></span>
 		</div>
 		<div class="chart_content">
@@ -823,7 +872,7 @@
 	</div>
 </div>
 
-<!-- 照明回路-开启台数 -->
+<!-- 风机盘管-开启台数 -->
 <div class="detail_chart fcuOpenNumDiv none_div">
 	<div class="fault_content">
 		<div class="fault_title">
@@ -934,7 +983,6 @@
 				}
 				//设备详情--绘图
 				var curId = $(".detail_page").attr("tip"); // 当前所处模块id
-				
 				if (curId == 'coldSite_one' || curId == 'coldSite_two' || curId == 'coldSite_three') { // 冷站1,2,3 | 常规制冷系统
 					
 					var child = $(".cur_tab").find("span").text();
@@ -949,88 +997,171 @@
 					} else if(child == '冷却塔'){ // 冷却塔
 						opeaCoolTower();
 					} 
-				}
-				
-				if(curId == 'ahu') { // 空调箱
+				} else if(curId == 'ahu') { // 空调箱
 					opeaAhu(); // 处理空调箱的信息
-				}
-				
-				if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
+				} else if(curId == 'sendWind' || curId == 'exhaustWind') { // 送风机或者排风机
 					opeaWindSite();
-				}
-				
-				if(curId == 'light') { // 照明回路
+				} else if(curId == 'light') { // 照明回路
 					opeaLight();
-				}
-				
-				if(curId == 'fcu') { // 风机盘管
+				} else if(curId == 'fcu') { // 风机盘管
 					opeaFcu();
+				} else if(curId.indexOf("boiler_room_") != -1) { // 锅炉房
+					var text = $(".device_floor > .tab_menu > ul > .cur_tab").find("p").text();
+					if(text == "热水泵") {
+						opeaHwp();
+					} else {
+						opeaBoiler(); // 显示锅炉房
+					}
 				}
-			
-				//getDevicesDetailChart('runFrequency'); // 送排风机运行频率 
-				//if ("${equipmentMonitor.isShowWindPressure}" != "none")
-				//	getDevicesDetailChart('runningWind'); // 送排风机运行风量、风压
-				return false;
-				getchart_sbxq(_time.getDateStr("yyyy-MM-dd"),
-						detail_0_down_yTtile[0].split(','),
-						detail_0_down_id[0], detail_0_down_name[0],
-						detail_0_down_ispd[0], type,
-						<portlet:namespace/>decimals,
-						<portlet:namespace/>yLeftTitle[0],
-						"${equipmentMonitor.chartColorList_1}", 'line', xStep,
-						true);
-				//choose_id、choose_name、ispd赋值
-
-				//导出到Excel中的时间
 			}
 		});
 	}
 	
 	// 根据设备信息，获取对应的设备的运行状态
-	function getDeviceStatus(total, deviceList) {
+	function getSsztTable(total, source, deviceList) {
 		var curId = $(".detail_page").attr("tip"); // 判断当前位置模块
 		var result = [];
 		if (deviceList == undefined || deviceList.length == 0) {
-			for (var i = 0; i < total; i++) {
+			for (var i = 0; i < total * 7; i++) {
 				result.push("   "); // 设置为空
 			}
+			buildTableHtml(total, source, deviceList, result);
 		} else {
 			
-			if(curId.indexOf("coldSite_") != -1) {
+			if(curId.indexOf("coldSite_") != -1 || curId.indexOf("boiler_room_" != -1) || curId == "ahu" || curId == "sendWind" || curId == "exhaustWind") { // 冷机、锅炉房、新风机组、送风机、排风机
 				
-				var names = [], ids = [], ispds = [];
-				for (var i = 0; i < deviceList.length; i++) {
-					names.push("status");
-					ids.push(deviceList[i]);
-					ispds.push("2"); 
+				var names = [], ids = [], ispds = [], region_id = "", build_id = "";
+				
+				if(source == 'coldSite') { // 冷水机组
+					
+					for (var i = 0; i < deviceList.length; i++) {
+						names.push("status,t_chw_s,t_chw_r,t_cw_s,t_cw_r,t_evap,t_cond");
+						ids.push(deviceList[i] + "," + deviceList[i] + "," + deviceList[i] + "," + deviceList[i] + "," + deviceList[i] + "," + deviceList[i] + "," + deviceList[i]);
+						ispds.push("2,1,1,1,1,1,1");
+					}
+					
+				} else if(source == 'waterSystem') { // 针对水系统
+					
+					var build = "P1";
+					if(curId == "coldSite_one") {
+						build = "P1";
+					} else if(curId == "coldSite_two") {
+						build = "P2";
+					} else if(curId == "coldSite_three") {
+						build = "A1";
+					}
+// 					console.log("build--" + build);
+					
+					if(build == "P1") {
+						
+						names.push("t_chw_s,t_chw_r,t_chw_s,t_chw_r,t_cw_s,t_cw_r,t_cw_s,t_cw_r");
+						ids.push("ws_P1_1,ws_P1_1,ws_P1_2,ws_P1_2,ws_P1_1,ws_P1_1,ws_P1_2,ws_P1_2");
+						ispds.push("1,1,1,1,1,1,1,1");
+						
+					} else if(build == "P2") {
+						
+						names.push("t_chw_s,t_chw_r,t_cw_s,t_cw_r");
+						ids.push("ws_P2_1,ws_P2_1,ws_P2_1,ws_P2_1");
+						ispds.push("1,1,1,1");
+						
+					} else if(build == "A1") {
+						
+						names.push("t_chw_s,t_chw_r,t_cw_s,t_cw_r");
+						ids.push("ws_A1_1,ws_A1_1,ws_A1_1,ws_A1_1");
+						ispds.push("1,1,1,1");
+
+					}
+					
+				} else if(source == 'coldPump' || source == 'coolPump' || source == 'coolTower' || source == "sendWind") { // 冷冻水泵、冷却水泵、冷却塔、送风机
+					
+					if(source == "sendWind") {
+						region_id = ahu_detail_floor;
+					 	build_id = ahu_detail_build;
+					}
+					for (var i = 0; i < deviceList.length; i++) {
+						names.push("status");
+						ids.push(deviceList[i]);
+						ispds.push("2");
+					}
+					
+				} else if(source == "boiler") { // 锅炉
+					
+					for (var i = 0; i < deviceList.length; i++) {
+						names.push("status,t_hw_s,t_hw_r");
+						ids.push(deviceList[i],deviceList[i],deviceList[i]);
+						ispds.push("2,1,1");
+					}
+					
+				} else if(source == "hwp") { // 热水泵
+					
+					for (var i = 0; i < deviceList.length; i++) {
+						names.push("status,frequency");
+						ids.push(deviceList[i],deviceList[i]);
+						ispds.push("2,1");
+					}
+					
+				} else if(source == "ahu") { // 新风机组
+					
+					for (var i = 0; i < deviceList.length; i++) {
+						names.push("status_sf,t_sa,t_ra,rh_sa,rh_ra");
+						ids.push(deviceList[i],deviceList[i],deviceList[i],deviceList[i],deviceList[i]);
+						ispds.push("2,1,1,1,1");
+					}
+
+				} else if(source == "exhaustWind") { // 排风机
+					
+					region_id = ahu_detail_floor;
+				 	build_id = ahu_detail_build;
+					for (var i = 0; i < deviceList.length; i++) {
+						names.push("status");
+						ids.push(deviceList[i]);
+						ispds.push("1");
+					}
+					
 				}
+				
+// 				console.log("-----------getSsztTable--------start");
+// 				console.log(names.join());
+// 				console.log(ids.join());
+// 				console.log(ispds.join());
+// 				console.log("-----------getSsztTable--------end");
+				
 				// 获取运行状态数据
 				$.ajax({
 					type : "post",
 					url : "<portlet:resourceURL id='getDatasByNamesForMonitor'></portlet:resourceURL>",
-					async : false, // 同步
+					//async : false, // 同步
 					data : {
-						from : '',
+						from : <portlet:namespace/>start_date,
 						name : names.join(),
-						id : deviceList.join(),
+						id : ids.join(),
 						ispd : ispds.join(),
-						decimals : '0',
+						decimals : '0.0',
 						type : 'span',
-						region_id : '',
-						build_id : ''
+						region_id : region_id,
+						build_id : region_id
 					},
 					success : function(data) {
 						var dataList = data.datalist;
-						
+// 						console.log(data);
+						if(source == 'waterSystem') { // 针对水系统,同冷水机组的OFF/ON
+							result.push("   ");
+						}
 						for (var i = 0; i < dataList.length; i++) {
 							try {
-								result.push((dataList[i][0] == 0) ? "OFF" : "ON"); // 设置为空
+								if((source == 'coldSite' && i % 7 == 0) || source == 'coldPump' || source == 'coolPump' || source == 'coolTower' || source == 'sendWind' || source == 'exhaustWind' || (source == "boiler" && i % 3 == 0) || (source == "hwp" && i % 2 == 0) || (source == "ahu" && i % 5 == 0)) { // 冷水机组、 冷冻水泵、冷却水泵、冷却塔、锅炉、热水泵、新风机组，特殊处理
+									result.push((dataList[i][0] == 0) ? "OFF" : "ON"); // 启停状态，0则表示OFF，否则表示ON
+								} else {
+									result.push(dataList[i][0]);
+								}
 							} catch (e) {
-								console.log(dataList);
+// 								console.log(dataList);
 								console.log("对比的时候出错了，导致result设置为OFF");
 								result.push("OFF"); // 设置为空
 							}
 						}
+						// 生成运行状态中的table
+						buildTableHtml(total, source, deviceList, result);
 					},
 					error : function(result) {
 						console.log('获取运行状态数据发生错误了  + error');
@@ -1038,7 +1169,5 @@
 				});
 			}
 		}
-
-		return result;
 	}
 </script>

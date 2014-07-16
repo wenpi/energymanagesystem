@@ -201,17 +201,18 @@
 			<span class="floor_select_block"> | <span class="floor_select">一层</span></span>
 			<div class="floor_list">
 				<ul>
-					<li title="B2">B2</li>
 					<li title="B1">B1</li>
+					<li title="B2">B2</li>
 					<li title="1F">一层</li>
+					<li title="JC">夹层</li>
 					<li title="2F">二层</li>
 					<li title="3F">三层</li>
 					<li title="4F">四层</li>
 					<li title="5F">五层</li>
 					<li title="6F">六层</li>
-					<!-- <li title="7F">七层</li>
+					<li title="7F">七层</li>
 					<li title="JF">机房</li>
-					<li title="WD">屋顶</li> -->
+					<li title="WD">屋顶</li>
 				</ul>
 			</div>
 			<table class="build_para_table">
@@ -385,7 +386,8 @@
 			url : "<portlet:resourceURL id='getQuerySchemeListByCondition'></portlet:resourceURL>",
 			data : {
 				buildId: holo_cur_build,
-				comments: 'co2浓度'
+				comments: '%co2浓度%',
+				order: ' id asc'
 			},
 			async: false,
 			success : function(result) {
