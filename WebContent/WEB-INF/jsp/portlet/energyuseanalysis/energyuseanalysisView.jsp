@@ -17,7 +17,7 @@
 				<div class="tab">
 					<div class="tab_menu">
 						<ul class="titleList">
-							<li class="cur_tab">
+							<li class="cur_tab cur_tab_for_analysis">
 								<div>
 									<img
 										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" />
@@ -124,6 +124,15 @@ $(function() {
 				crossfade : true
 			}
 		}
+	});
+	
+	$(".tab").each(function() {
+		$(this).find(".tab_menu li").each(function(index) {
+			$(this).on("click", function() {
+				$(this).siblings().removeClass("cur_tab_for_analysis");
+				$(this).addClass("cur_tab_for_analysis");
+			})
+		});
 	});
 });
 </script>

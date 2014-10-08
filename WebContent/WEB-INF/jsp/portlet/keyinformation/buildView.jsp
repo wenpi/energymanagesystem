@@ -16,7 +16,7 @@
 		<tr>
 			<td>${buildinfo.buildName}</td>
 			<td>${buildFunction}</td>
-			<td>8</span><sup><sup>栋</sup></sup></td>
+			<td>8<sup>栋</sup></td>
 		</tr>
 		<tr>
 			<td>建筑名称</td>
@@ -25,7 +25,7 @@
 		</tr>
 		<tr>
 			<td>${buildAirtype}</td>
-			<td><span id="<portlet:namespace />buildarea"></span><sup>m<sup> 2</sup></sup></td>
+			<td><span id="<portlet:namespace />buildarea"></span><sup>m²</sup></td>
 			<td>${buildinfo.buildYear}</td>
 		</tr>
 		<tr>

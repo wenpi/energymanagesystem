@@ -201,7 +201,7 @@
 				name : coldSite_t_name,
 				id : coldSite_t_id,
 				ispd : coldSite_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				decimals : '0',
 				region_id : 'total',
 				build_id : 'P1,P2,A1'
@@ -257,7 +257,7 @@
 				name : boiler_t_name,
 				id : boiler_t_id,
 				ispd : boiler_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				decimals : '0',
 				region_id : 'total',
 				build_id : 'P1,P2,A1'
@@ -303,7 +303,7 @@
 				name : ahu_t_name,
 				id : ahu_t_id,
 				ispd : ahu_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				decimals : '0',
 				region_id : 'total',
 				build_id : all_build_list.join()
@@ -346,7 +346,7 @@
 				name : fcu_t_name,
 				id : fcu_t_id,
 				ispd : fcu_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				decimals : '0',
 				region_id : 'total',
 				build_id : all_build_list.join()

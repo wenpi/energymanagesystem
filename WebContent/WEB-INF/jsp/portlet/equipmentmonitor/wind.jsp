@@ -56,7 +56,7 @@
 				name : sendWind_t_name,
 				id : sendWind_t_id,
 				ispd : sendWind_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				region_id : 'total',
 				build_id : all_build_list.join()
 			},
@@ -94,7 +94,7 @@
 				name : exhaustWind_t_name,
 				id : exhaustWind_t_id,
 				ispd : exhaustWind_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				region_id : 'total',
 				build_id : all_build_list.join()
 			},

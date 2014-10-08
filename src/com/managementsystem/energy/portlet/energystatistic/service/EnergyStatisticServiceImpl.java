@@ -1292,14 +1292,16 @@ public class EnergyStatisticServiceImpl implements EnergyStatisticService {
 									&& mult.trim().length() > 0) {
 								try {
 									// 如果满足以上条件的话，则需特殊处理，在数据基础上*mult的值
-									dvalue = Double
-											.valueOf(df.format(dvalue
-													* Double.parseDouble(mult)));
+									if(names[k].indexOf("t_oa") == -1) { // 温度不能乘数
+										dvalue = Double
+												.valueOf(df.format(dvalue
+														* Double.parseDouble(mult)));
+									}
 								} catch (Exception e) {
 									logger.error("getCommonChartData--multiplier转换的时候报错了！");
 								}
 							}
-
+							
 							String datavalue = df.format(dvalue);
 
 							dataList.add(Double.parseDouble(datavalue));

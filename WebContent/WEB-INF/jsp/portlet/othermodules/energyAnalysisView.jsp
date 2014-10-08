@@ -100,7 +100,7 @@ function <portlet:namespace />getGradeValue(){
 				ispd : '${tbinfo.ispd}',
 				decimals : '${tbinfo.decimals}',
 				att : '',
-				type : 'span'
+				type : (publicTime != "" ? 'test_span' : 'span')
 			},
 			function(data) {
 				var value = parseFloat(data.data[0][0][0]);

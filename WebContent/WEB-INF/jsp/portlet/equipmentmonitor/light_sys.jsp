@@ -41,7 +41,7 @@
 				name : light_t_name,
 				id : light_t_id,
 				ispd : light_t_ispd,
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				decimals : '0',
 				region_id : 'total',
 				build_id : all_build_list.join()
@@ -88,7 +88,7 @@
 				name : eval("detail_" + name + "OpenNum_name"),
 				id : eval(name + "OpenNum_id"),
 				ispd : eval("detail_" + name + "OpenNum_ispd"),
-				type : 'span',
+				type : (publicTime != "" ? 'test_span' : 'span'),
 				decimals : '0',
 				region_id : floor_code.join(),
 				build_id : ahu_detail_build

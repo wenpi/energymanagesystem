@@ -461,6 +461,7 @@
 		var obj = $(".each_device_list");
 		obj.empty();
 		$("div").remove(".display_more");
+		$(".fcuAndLighting").hide();
 		
 		if(firstN != null) {
 			// 设置详情页中的左上角文字
@@ -1144,7 +1145,7 @@
 							} else if (p_name == 'coldSiteColdParam') { // 冷站详情-冷水机组-冷冻水参数
 								chartid = 'coldSiteColdParam_chart',
 										lefttitle = '温度（℃）', unit = '℃';
-								chartLegendList = [ '冷冻水供水温度', '冷冻水回水湿度',
+								chartLegendList = [ '冷冻水供水温度', '冷冻水回水温度',
 										'蒸发温度', '冷冻水温度设定' ];
 								chartColorList = [ '#E46C0A', '#FF66FF',
 										'#403152', '#FF99FF' ];
@@ -1153,7 +1154,7 @@
 							} else if (p_name == 'coldSiteCoolParam') { // 冷站详情-冷水机组-冷却水参数
 								chartid = 'coldSiteCoolParam_chart',
 										lefttitle = '温度（℃）', unit = '℃';
-								chartLegendList = [ '冷却水供水温度', '冷却水回水湿度',
+								chartLegendList = [ '冷却水供水温度', '冷却水回水温度',
 										'冷凝温度' ];
 								chartColorList = [ '#00B050', '#00B0F0',
 										'#FFBFFF' ];

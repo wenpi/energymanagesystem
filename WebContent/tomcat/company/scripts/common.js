@@ -1,4 +1,4 @@
-var publicTime = ''; //全局的时间属性，如果设置了这个属性，则系统默认使用该时间，格式为（年-月-日）
+var publicTime = '2014-07-20'; //全局的时间属性，如果设置了这个属性，则系统默认使用该时间，格式为（年-月-日）
 var report_pageSize = 12; // 报表管理中放大页面的分页条数 
 var isShowRightTool = true; // false则不显示右侧工具集，true则显示
 var _todayTime = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate();

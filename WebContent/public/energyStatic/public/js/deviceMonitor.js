@@ -645,6 +645,7 @@ function getEquipDetail(curId, num) {
 		$(".sub_title_block:eq(1)").css('display', 'block');
 		$(".yxsj").css('display', 'block');
 		$(".filter_widget").css('display', 'block');
+		$(".fcuAndLighting").hide();
 		$(".btn_group").last().css('margin-left', '');
 		$(".sub_title_block:eq(2)>p:eq(0)").html('设备详情');
 	}
@@ -688,6 +689,7 @@ function getBoilerBay(curId, num) {
 			}
 		}
 	}
+	$(".fcuAndLighting").hide();
 	//getSsztTable(equip[num].total, equip);
 }
 

@@ -516,6 +516,15 @@ a:hover, a:active, a:focus { color:#fff; text-decoration:none; }
 /* 	border-top: 5px solid #11a8ab; */
 }
 
+.tab > .tab_menu .cur_tab_for_analysis {
+	height: 45px;
+	width: 146px;
+	line-height: 36px;
+/*	border-left: 1px solid #11a8ab;
+	border-right: 1px solid #11a8ab;*/
+	border-top: 5px solid #11a8ab;
+}
+
 .tab > .tab_menu .cur_tab img {
 	margin-right: 10px;
 }

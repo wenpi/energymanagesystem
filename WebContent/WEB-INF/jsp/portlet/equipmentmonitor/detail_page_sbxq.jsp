@@ -1120,11 +1120,11 @@
 					
 				}
 				
-// 				console.log("-----------getSsztTable--------start");
-// 				console.log(names.join());
-// 				console.log(ids.join());
-// 				console.log(ispds.join());
-// 				console.log("-----------getSsztTable--------end");
+				console.log("-----------getSsztTable--------start");
+				console.log(names.join());
+				console.log(ids.join());
+				console.log(ispds.join());
+				console.log("-----------getSsztTable--------end");
 				
 				// 获取运行状态数据
 				$.ajax({
@@ -1137,13 +1137,13 @@
 						id : ids.join(),
 						ispd : ispds.join(),
 						decimals : '0.0',
-						type : 'span',
+						type : (publicTime != "" ? 'test_span' : 'span'),
 						region_id : region_id,
-						build_id : region_id
+						build_id : build_id
 					},
 					success : function(data) {
 						var dataList = data.datalist;
-// 						console.log(data);
+						console.log(data);
 						if(source == 'waterSystem') { // 针对水系统,同冷水机组的OFF/ON
 							result.push("   ");
 						}

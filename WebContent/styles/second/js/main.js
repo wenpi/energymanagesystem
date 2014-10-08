@@ -1,4 +1,18 @@
 $(function(){
+	
+	// 测试标记某个div，[2014-09-11 zzx]
+	$(".markDiv").hover(function() {
+		$("#markerid").show();
+	}, function() {
+		$("#markerid").hide();
+	});
+	
+	$("#markerid").hover(function() {
+		$("#markerid").show();
+	}, function() {
+		$("#markerid").hide();
+	});
+	
 	/*tab左侧时间选择切换按钮效果*/
 	$(".date_select>div").click(function(){
 		$(this).siblings().removeClass("pressive");
@@ -90,3 +104,25 @@ function fitWidth(thisdom,count,tabdom) {
 	var eachLiWidth = width/count - (45 - count*4);
 	thisdom.css("width",eachLiWidth);
 }
+
+var mousex, mousey;
+function mouseMove(e) {
+	var obj = e || window.event;
+	var mousePos = mouseCoords(obj);
+	mousex = mousePos.x;
+	mousey = mousePos.y;
+}
+function mouseCoords(obj) {
+	if (obj.pageX || obj.pageY) {// FF浏览器
+		return {
+			x : obj.pageX,
+			y : obj.pageY
+		};
+	}
+	// IE浏览器
+	return {
+		x : obj.clientX + document.body.scrollLeft - document.body.clientLeft,
+		y : obj.clientY + document.body.scrollTop - document.body.clientTop
+	}
+}
+document.onmousemove = mouseMove;
