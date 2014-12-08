@@ -24,20 +24,20 @@
 									<p>单位面积总能耗</p>
 								</div>
 							</li>
-							<li>
-								<div>
-									<img
-										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" />
-									<p>单位面积耗冷量</p>
-								</div>
-							</li>
-							<li>
-								<div>
-									<img
-										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" />
-									<p>单位面积总用电量</p>
-								</div>
-							</li>
+<!-- 							<li> -->
+<!-- 								<div> -->
+<!-- 									<img -->
+<%-- 										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" /> --%>
+<!-- 									<p>单位面积耗冷量</p> -->
+<!-- 								</div> -->
+<!-- 							</li> -->
+<!-- 							<li> -->
+<!-- 								<div> -->
+<!-- 									<img -->
+<%-- 										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" /> --%>
+<!-- 									<p>单位面积总用电量</p> -->
+<!-- 								</div> -->
+<!-- 							</li> -->
 							<li>
 								<div>
 									<img
@@ -64,12 +64,12 @@
 					<div class="tab_content di_1 current">
 						<%@include file="eachUnitEnergyUse.jsp"%>
 					</div>
-					<div class="tab_content di_1">
-						<%@include file="eachUnitColdUse.jsp"%>
-					</div>
-					<div class="tab_content di_1">
-						<%@include file="eachUnitEleUse.jsp"%>
-					</div>
+<!-- 					<div class="tab_content di_1"> -->
+<%-- 						<%@include file="eachUnitColdUse.jsp"%> --%>
+<!-- 					</div> -->
+<!-- 					<div class="tab_content di_1"> -->
+<%-- 						<%@include file="eachUnitEleUse.jsp"%> --%>
+<!-- 					</div> -->
 					<div class="tab_content di_1">
 						<%@include file="buildingEnerEffiLevel.jsp"%>
 					</div>

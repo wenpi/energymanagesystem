@@ -32,7 +32,7 @@
 								<div>
 									<img
 										src="${pageContext.request.contextPath}/styles/second/images/dot.png" />
-									<p>建筑能耗指标</p>
+									<p>建筑碳足迹</p>
 								</div>
 
 							</li>
@@ -40,14 +40,14 @@
 								<div>
 									<img
 										src="${pageContext.request.contextPath}/styles/second/images/dot.png" />
-									<p>系统能效指标</p>
+									<p>空调系统能效比</p>
 								</div>
 							</li>
 							<li>
 								<div>
 									<img
 										src="${pageContext.request.contextPath}/styles/second/images/dot.png" />
-									<p>设备能效指标</p>
+									<p>制冷系统能效比</p>
 								</div>
 							</li>
 						</ul>

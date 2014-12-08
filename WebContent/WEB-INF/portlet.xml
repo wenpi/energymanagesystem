@@ -6,12 +6,12 @@
 
 	<!-- zzx -->
 	<portlet>
-		<description>dashboard</description>
-		<portlet-name>board</portlet-name>
+		<description>登录</description>
+		<portlet-name>login</portlet-name>
 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
 		<init-param>
 			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/board-portlet.xml</value>
+			<value>/WEB-INF/context/login-portlet.xml</value>
 		</init-param>
 		<expiration-cache>0</expiration-cache>
 		<supports>
@@ -23,60 +23,84 @@
 		</supports>
 		<resource-bundle>messages</resource-bundle>
 		<portlet-info>
-			<title>dashboard</title>
+			<title>login</title>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
 	</portlet>
-	<portlet>
-		<description>计量报表</description>
-		<portlet-name>measurereport</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/measurereport-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>计量报表</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
-	<portlet>
-		<description>故障诊断</description>
-		<portlet-name>fault</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/fault-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>故障诊断</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
+<!-- 	<portlet> -->
+<!-- 		<description>dashboard</description> -->
+<!-- 		<portlet-name>board</portlet-name> -->
+<!-- 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<name>contextConfigLocation</name> -->
+<!-- 			<value>/WEB-INF/context/board-portlet.xml</value> -->
+<!-- 		</init-param> -->
+<!-- 		<expiration-cache>0</expiration-cache> -->
+<!-- 		<supports> -->
+<!-- 			<mime-type>text/html</mime-type> -->
+<!-- 			<portlet-mode>view</portlet-mode> -->
+<!-- 			<portlet-mode>edit</portlet-mode> -->
+<!-- 			<window-state>NORMAL</window-state> -->
+<!-- 			<window-state>MAXIMIZED</window-state> -->
+<!-- 		</supports> -->
+<!-- 		<resource-bundle>messages</resource-bundle> -->
+<!-- 		<portlet-info> -->
+<!-- 			<title>dashboard</title> -->
+<!-- 		</portlet-info> -->
+<!-- 		<security-role-ref> -->
+<!-- 			<role-name>user</role-name> -->
+<!-- 		</security-role-ref> -->
+<!-- 	</portlet> -->
+<!-- 	<portlet> -->
+<!-- 		<description>计量报表</description> -->
+<!-- 		<portlet-name>measurereport</portlet-name> -->
+<!-- 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<name>contextConfigLocation</name> -->
+<!-- 			<value>/WEB-INF/context/measurereport-portlet.xml</value> -->
+<!-- 		</init-param> -->
+<!-- 		<expiration-cache>0</expiration-cache> -->
+<!-- 		<supports> -->
+<!-- 			<mime-type>text/html</mime-type> -->
+<!-- 			<portlet-mode>view</portlet-mode> -->
+<!-- 			<portlet-mode>edit</portlet-mode> -->
+<!-- 			<window-state>NORMAL</window-state> -->
+<!-- 			<window-state>MAXIMIZED</window-state> -->
+<!-- 		</supports> -->
+<!-- 		<resource-bundle>messages</resource-bundle> -->
+<!-- 		<portlet-info> -->
+<!-- 			<title>计量报表</title> -->
+<!-- 		</portlet-info> -->
+<!-- 		<security-role-ref> -->
+<!-- 			<role-name>user</role-name> -->
+<!-- 		</security-role-ref> -->
+<!-- 	</portlet> -->
+<!-- 	<portlet> -->
+<!-- 		<description>故障诊断</description> -->
+<!-- 		<portlet-name>fault</portlet-name> -->
+<!-- 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<name>contextConfigLocation</name> -->
+<!-- 			<value>/WEB-INF/context/fault-portlet.xml</value> -->
+<!-- 		</init-param> -->
+<!-- 		<expiration-cache>0</expiration-cache> -->
+<!-- 		<supports> -->
+<!-- 			<mime-type>text/html</mime-type> -->
+<!-- 			<portlet-mode>view</portlet-mode> -->
+<!-- 			<portlet-mode>edit</portlet-mode> -->
+<!-- 			<window-state>NORMAL</window-state> -->
+<!-- 			<window-state>MAXIMIZED</window-state> -->
+<!-- 		</supports> -->
+<!-- 		<resource-bundle>messages</resource-bundle> -->
+<!-- 		<portlet-info> -->
+<!-- 			<title>故障诊断</title> -->
+<!-- 		</portlet-info> -->
+<!-- 		<security-role-ref> -->
+<!-- 			<role-name>user</role-name> -->
+<!-- 		</security-role-ref> -->
+<!-- 	</portlet> -->
 	<portlet>
 		<description>图表展示MORE</description>
 		<portlet-name>commonchart</portlet-name>
@@ -453,80 +477,80 @@
 		</security-role-ref>
 	</portlet>
 	
-	<portlet>
-		<description>淘宝城首页_报表管理_运行参数</description>
-		<portlet-name>runningparameter</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/runningparameter-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_运行参数</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
+<!-- 	<portlet> -->
+<!-- 		<description>淘宝城首页_报表管理_运行参数</description> -->
+<!-- 		<portlet-name>runningparameter</portlet-name> -->
+<!-- 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<name>contextConfigLocation</name> -->
+<!-- 			<value>/WEB-INF/context/runningparameter-portlet.xml</value> -->
+<!-- 		</init-param> -->
+<!-- 		<expiration-cache>0</expiration-cache> -->
+<!-- 		<supports> -->
+<!-- 			<mime-type>text/html</mime-type> -->
+<!-- 			<portlet-mode>view</portlet-mode> -->
+<!-- 			<portlet-mode>edit</portlet-mode> -->
+<!-- 			<window-state>NORMAL</window-state> -->
+<!-- 			<window-state>MAXIMIZED</window-state> -->
+<!-- 		</supports> -->
+<!-- 		<resource-bundle>messages</resource-bundle> -->
+<!-- 		<portlet-info> -->
+<!-- 			<title>淘宝城首页_报表管理_运行参数</title> -->
+<!-- 		</portlet-info> -->
+<!-- 		<security-role-ref> -->
+<!-- 			<role-name>user</role-name> -->
+<!-- 		</security-role-ref> -->
+<!-- 	</portlet> -->
 	
-	<portlet>
-		<description>淘宝城首页_报表管理_设备台账</description>
-		<portlet-name>equipmentledger</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/equipmentledger-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_设备台账</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
+<!-- 	<portlet> -->
+<!-- 		<description>淘宝城首页_报表管理_设备台账</description> -->
+<!-- 		<portlet-name>equipmentledger</portlet-name> -->
+<!-- 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<name>contextConfigLocation</name> -->
+<!-- 			<value>/WEB-INF/context/equipmentledger-portlet.xml</value> -->
+<!-- 		</init-param> -->
+<!-- 		<expiration-cache>0</expiration-cache> -->
+<!-- 		<supports> -->
+<!-- 			<mime-type>text/html</mime-type> -->
+<!-- 			<portlet-mode>view</portlet-mode> -->
+<!-- 			<portlet-mode>edit</portlet-mode> -->
+<!-- 			<window-state>NORMAL</window-state> -->
+<!-- 			<window-state>MAXIMIZED</window-state> -->
+<!-- 		</supports> -->
+<!-- 		<resource-bundle>messages</resource-bundle> -->
+<!-- 		<portlet-info> -->
+<!-- 			<title>淘宝城首页_报表管理_设备台账</title> -->
+<!-- 		</portlet-info> -->
+<!-- 		<security-role-ref> -->
+<!-- 			<role-name>user</role-name> -->
+<!-- 		</security-role-ref> -->
+<!-- 	</portlet> -->
 	
-	<portlet>
-		<description>淘宝城首页_报表管理_建筑用能账单</description>
-		<portlet-name>buildconsumptionledger</portlet-name>
-		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
-		<init-param>
-			<name>contextConfigLocation</name>
-			<value>/WEB-INF/context/buildconsumptionledger-portlet.xml</value>
-		</init-param>
-		<expiration-cache>0</expiration-cache>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>view</portlet-mode>
-			<portlet-mode>edit</portlet-mode>
-			<window-state>NORMAL</window-state>
-			<window-state>MAXIMIZED</window-state>
-		</supports>
-		<resource-bundle>messages</resource-bundle>
-		<portlet-info>
-			<title>淘宝城首页_报表管理_建筑用能账单</title>
-		</portlet-info>
-		<security-role-ref>
-			<role-name>user</role-name>
-		</security-role-ref>
-	</portlet>
+<!-- 	<portlet> -->
+<!-- 		<description>淘宝城首页_报表管理_建筑用能账单</description> -->
+<!-- 		<portlet-name>buildconsumptionledger</portlet-name> -->
+<!-- 		<portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class> -->
+<!-- 		<init-param> -->
+<!-- 			<name>contextConfigLocation</name> -->
+<!-- 			<value>/WEB-INF/context/buildconsumptionledger-portlet.xml</value> -->
+<!-- 		</init-param> -->
+<!-- 		<expiration-cache>0</expiration-cache> -->
+<!-- 		<supports> -->
+<!-- 			<mime-type>text/html</mime-type> -->
+<!-- 			<portlet-mode>view</portlet-mode> -->
+<!-- 			<portlet-mode>edit</portlet-mode> -->
+<!-- 			<window-state>NORMAL</window-state> -->
+<!-- 			<window-state>MAXIMIZED</window-state> -->
+<!-- 		</supports> -->
+<!-- 		<resource-bundle>messages</resource-bundle> -->
+<!-- 		<portlet-info> -->
+<!-- 			<title>淘宝城首页_报表管理_建筑用能账单</title> -->
+<!-- 		</portlet-info> -->
+<!-- 		<security-role-ref> -->
+<!-- 			<role-name>user</role-name> -->
+<!-- 		</security-role-ref> -->
+<!-- 	</portlet> -->
 	
 		<portlet>
 		<description>淘宝城首页_运行监测_全息图</description>

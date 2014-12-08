@@ -81,7 +81,7 @@
 <div id="mask"></div>
 
 <div id="markerid" style="display: none; width: 90px; height: 36px; position: absolute; top: 50px; left: 973px; z-index: 9999;">
-	<button type="button">标记此处</button>
+<!-- 	<button type="button">标记此处</button> -->
 </div>
 <!-- 标记框内容 -->
 <div id="marker_content">

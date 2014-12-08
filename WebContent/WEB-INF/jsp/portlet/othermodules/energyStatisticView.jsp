@@ -18,17 +18,17 @@
 						<div>
 							<p class="device_list">日总用电量</p>
 							<p class="unit">kWh</p>
-							<p class="cosume_number">1,500</p>
+							<p class="cosume_number">1306944</p>
 						</div>
 						<div>
 							<p class="device_list">日空调用电量</p>
 							<p class="unit">kWh</p>
-							<p class="cosume_number">1,600</p>
+							<p class="cosume_number">67899</p>
 						</div>
 						<div>
 							<p class="device_list">日照明用电量</p>
 							<p class="unit">kWh</p>
-							<p class="cosume_number">230</p>
+							<p class="cosume_number">10869</p>
 						</div>
 					</div>
 				</div>
@@ -89,7 +89,7 @@ function <portlet:namespace />getButtomValue(){
 			{
 				from : <portlet:namespace />start_date,
 				name : 'electricity,electricity,electricity',
-				id : 'total,hvac,lighting',
+				id : 'total,hvac,lighting_fcu',
 				ispd : '0,0,0',
 				decimals : '${tbinfo.decimals}',
 				att : 'sum',
@@ -119,5 +119,5 @@ if(publicTime != ""){
 
 //获取页面报表数据
 <portlet:namespace />getChart();
-<portlet:namespace />getButtomValue();
+//<portlet:namespace />getButtomValue();
 </script>

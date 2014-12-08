@@ -3,9 +3,10 @@
 <display>
 	<category name="category.module">
 		<!-- zzx -->
-		<portlet id="measurereport"></portlet>
-		<portlet id="board"></portlet>
-		<portlet id="fault"></portlet>
+		<portlet id="login"></portlet>
+<!-- 		<portlet id="measurereport"></portlet> -->
+<!-- 		<portlet id="board"></portlet> -->
+<!-- 		<portlet id="fault"></portlet> -->
 		<portlet id="commonchart" />
 		<!-- ztl -->
 		<portlet id="totalEnergyUse"/>
@@ -23,9 +24,9 @@
 		<portlet id="reportmanagement" />
 		<portlet id="energyconsumptionreport" />
 		<portlet id="energyefficiencytarget" />
-		<portlet id="runningparameter" />
-		<portlet id="equipmentledger" />
-		<portlet id="buildconsumptionledger" />
+<!-- 		<portlet id="runningparameter" /> -->
+<!-- 		<portlet id="equipmentledger" /> -->
+<!-- 		<portlet id="buildconsumptionledger" /> -->
 		<portlet id="hologram" />
 	</category>
 </display>

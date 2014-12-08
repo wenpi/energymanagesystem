@@ -238,6 +238,11 @@
 					id="gridLineColor" name="gridLineColor" type="text"
 					value="<%=prefs.getValue("gridLineColor", "")%>">
 			</div>
+			<div class="div-table-2col">
+				<span class="spanwidth" align="right">是否需要乘数：</span> <input
+					id="multiplier" name="multiplier" type="text"
+					value="<%=prefs.getValue("multiplier", "")%>">
+			</div>
 		</div>
 
 

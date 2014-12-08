@@ -18,11 +18,15 @@
 		<div class="look_other">
 			<div class="filter_widget" id="<portlet:namespace />choose_build1">
 				<div class="filter_label has_border_radius_left">选择建筑</div>
-				<select class="selectpicker">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
+				<select class="selectpicker" id="1">
+					<option value="A1">A1</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T5">T5</option>
+					<option value="P1">P1</option>
+					<option value="P2">P2</option>
 				</select>
 			</div>
 			<div class="filter_widget">
@@ -311,7 +315,7 @@
 			// 判断是否显示冷机下拉列表
 			var showBuild = "${tbinfo.showLegendForm}";
 			if(showBuild == "show"){
-				$("#<portlet:namespace />choose_build1").show(); // 显示选择冷机项
+				$("#<portlet:namespace />choose_build1").hide(); // 显示选择冷机项
 			}else{ 
 				$("#<portlet:namespace />choose_build1").hide(); // 隐藏选择冷机项
 			}

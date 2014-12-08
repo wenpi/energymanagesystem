@@ -18,11 +18,15 @@
 		<div class="look_other">
 			<div class="filter_widget" id="<portlet:namespace />choose_build5">
 				<div class="filter_label has_border_radius_left">选择建筑</div>
-				<select class="selectpicker">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
+				<select class="selectpicker" id="chooseFloor5"> 
+					<option value="A1">A1</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T5">T5</option>
+					<option value="P1">P1</option>
+					<option value="P2">P2</option>
 				</select>
 			</div>
 			<div class="filter_widget">
@@ -153,7 +157,8 @@
 						id : id,
 						ispd : ispd,
 						decimals : '${tbinfo.decimals}',
-						type : <portlet:namespace />choose_type5
+						type : <portlet:namespace />choose_type5,
+						build_id : $("#chooseFloor5").val()
 					}, function(data) {
 						var newLegendList = [];//用来存储图例说明数据
 						var chartLegends = "${tbinfo.chartLegends9}";//配置项中的图例名称信息
@@ -265,7 +270,8 @@
 						id:'${tbinfo.form_id5}', // 设置id						
 						ispd:'${tbinfo.form_ispd5}', // 设置ispd
 						curPage:1,	// 当前页数
-						size:7	// 每页显示条数
+						size:7,	// 每页显示条数
+						build_id : $("#chooseFloor5").val()
 					},function(data){
 						var showCataList = data.showCataList; // 保存表头信息
 						var showDataList = data.showDataList; // 保存内容数据
@@ -362,6 +368,8 @@
 				var expUrl = "<portlet:resourceURL id='expDataToExcel'></portlet:resourceURL>"
 						+ "&name="
 						+ '${tbinfo.form_name5}'
+						+ "&build_id="
+						+ $("#chooseFloor5").val()
 						+ "&id="
 						+ '${tbinfo.form_id5}'
 						+ "&ispd="

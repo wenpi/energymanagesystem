@@ -18,11 +18,15 @@
 		<div class="look_other">
 			<div class="filter_widget" id="<portlet:namespace />choose_build1">
 				<div class="filter_label has_border_radius_left">选择建筑</div>
-				<select class="selectpicker">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
+				<select class="selectpicker" id="chooseFloor1">
+					<option value="A1">A1</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T5">T5</option>
+					<option value="P1">P1</option>
+					<option value="P2">P2</option>
 				</select>
 			</div>
 			<div class="filter_widget">
@@ -165,7 +169,8 @@
 						id : id,
 						ispd : ispd,
 						decimals : '${tbinfo.decimals}',
-						type : <portlet:namespace />choose_type1
+						type : <portlet:namespace />choose_type1,
+						build_id : $("#chooseFloor1").val()
 					}, function(data) {
 						var newLegendList = [];//用来存储图例说明数据
 						var chartLegends = "${tbinfo.chartLegends1}";//配置项中的图例名称信息
@@ -266,6 +271,28 @@
 		 * 异步获取右图表数据
 		 */
 		function <portlet:namespace />getRightChart1(tfrom,name,id,ispd) {
+			
+			// 为建筑用电分项报表填充数据
+			var categories = [${tbinfo.chartLegends2} ], colorsArr = [${tbinfo.chartColors2}];
+			var pieDataList = [68, 17, 14, 1];
+			//该方法写在\tomcat-6.0.29\webapps\ROOT\html\company\scripts目录下的autoRenderToCharts.js中，用来生成图表
+			autoRenderToPieChart('<portlet:namespace />consumptionRight1', //图表渲染位置
+					"${tbinfo.chartType3}", // 右图图表类型
+           			"${tbinfo.c_bgColor}",//右图背景颜色，默认为#394264
+					"${tbinfo.chartTitle2}",//图表标题
+					"${tbinfo.innerSize1}"+"%",//内环大小，按百分比计算
+           			categories,//数据列的名称列表 
+           			colorsArr, //数据列的颜色列表 
+           			pieDataList, //图表数据
+           			${tbinfo.showLegend},//是否显示图例说明，默认是true
+           			"${tbinfo.legendWidth}",//图例说明区域宽度，默认为80
+           			"${tbinfo.legendLayout1}",//图例说明内容的布局是水平horizontal或垂直vertical
+					"${tbinfo.legendAlign1}",//图例说明的对齐方式（left/center/right）
+					"${tbinfo.distance}",//图表中说明标签与图表之间的间距,默认为10
+					"${tbinfo.connLineWidth}",//连接线宽度
+					"${tbinfo.wordColor}");//图表中文字的颜色		
+			
+			return false;
 			$
 			.post(
 					'<portlet:resourceURL id="getMoreChartsByNames"></portlet:resourceURL>',
@@ -277,6 +304,7 @@
 						type : <portlet:namespace />choose_type1,
 						decimals : '${tbinfo.decimals}',// 保留小数位数
 						att : 'percents',
+						build_id : $("#chooseFloor1").val(),
 						mult : '${tbinfo.form_mul}' // 是否需要在获取的数据的基础上乘数，饼图需乘100，在首选项中配置
 					}, function(data) {
 						var dataList = data.dataList;
@@ -318,7 +346,8 @@
 						id:'${tbinfo.form_id1}', // 设置id						
 						ispd:'${tbinfo.form_ispd1}', // 设置ispd
 						curPage:1,	// 当前页数
-						size:7	// 每页显示条数
+						size:7,	// 每页显示条数
+						build_id : $("#chooseFloor1").val()
 					},function(data){
 						var showCataList = data.showCataList; // 保存表头信息
 						var showDataList = data.showDataList; // 保存内容数据
@@ -420,6 +449,8 @@
 				var expUrl = "<portlet:resourceURL id='expDataToExcel'></portlet:resourceURL>"
 						+ "&name="
 						+ '${tbinfo.form_name1}'
+						+ "&build_id="
+						+ $("#chooseFloor1").val()
 						+ "&id="
 						+ '${tbinfo.form_id1}'
 						+ "&ispd="

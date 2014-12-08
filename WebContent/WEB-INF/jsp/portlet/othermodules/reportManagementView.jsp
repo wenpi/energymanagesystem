@@ -24,7 +24,7 @@
 					<p>能源账单</p> -->
 					<p onclick = "javascript:document.location.href='/web/guest/report#_energyreport'">能耗报表</p>
 					<p onclick = "javascript:document.location.href='/web/guest/report#_energytarget'">能效指标</p>
-					<p onclick = "javascript:document.location.href='/web/guest/report#_measurereport'">计量报表</p>
+					<p onclick = "javascript:document.location.href='/web/guest/report#_measurereport'"></p>
 				</div>
 			</div>
 		</div>

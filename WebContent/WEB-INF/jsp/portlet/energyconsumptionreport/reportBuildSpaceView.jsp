@@ -18,11 +18,15 @@
 		<div class="look_other">
 			<div class="filter_widget" id="<portlet:namespace />choose_build4">
 				<div class="filter_label has_border_radius_left">选择建筑</div>
-				<select class="selectpicker">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
+				<select class="selectpicker" id="chooseFloor4">
+					<option value="A1">A1</option>
+					<option value="T1">T1</option>
+					<option value="T2">T2</option>
+					<option value="T3">T3</option>
+					<option value="T4">T4</option>
+					<option value="T5">T5</option> 
+<!-- 					<option value="P1">P1</option> -->
+<!-- 					<option value="P2">P2</option> -->
 				</select>
 			</div>
 			<div class="filter_widget">
@@ -156,16 +160,18 @@
 	 * 异步获取左图表数据
 	 */
 	function <portlet:namespace />getLeftChart4(tfrom,name,id,ispd,legendList) {
+		var floor = $("#chooseFloor4").val();
 		$
 			.post(
 					'<portlet:resourceURL id="getCommonChartData"></portlet:resourceURL>',
 					{
 						from : tfrom,
 						name : name,
-						id : id,
+						id : id + "_" + floor,
 						ispd : ispd,
 						decimals : '${tbinfo.decimals}',
-						type : <portlet:namespace />choose_type4
+						type : <portlet:namespace />choose_type4,
+						build_id : floor
 					}, function(data) {
 						var newLegendList = [];//用来存储图例说明数据
 						var chartLegends = "${tbinfo.chartLegends7}";//配置项中的图例名称信息
@@ -266,17 +272,24 @@
 		 * 异步获取右图表数据
 		 */
 		function <portlet:namespace />getRightChart4(tfrom,name,id,ispd) {
+			var ids = id.split(",");
+			var floor = $("#chooseFloor4").val(); // 选择的建筑
+			var temp = [];
+			for (var i=0;i<ids.length;i++) {
+				temp.push(ids[i] + "_" + floor);
+			}
 			$
 			.post(
 					'<portlet:resourceURL id="getMoreChartsByNames"></portlet:resourceURL>',
 					{
 						from : tfrom,
 						name : name,
-						id : id,
+						id : temp.join(),
 						ispd : ispd,
 						type : <portlet:namespace />choose_type4,
 						decimals : '${tbinfo.decimals}',// 保留小数位数
 						att : 'percents',
+						build_id : floor,
 						mult : '${tbinfo.form_mul}' // 是否需要在获取的数据的基础上乘数，饼图需乘100，在首选项中配置
 					}, function(data) {
 						var dataList = data.dataList;
@@ -318,7 +331,8 @@
 						id:'${tbinfo.form_id4}', // 设置id						
 						ispd:'${tbinfo.form_ispd4}', // 设置ispd
 						curPage:1,	// 当前页数
-						size:7	// 每页显示条数
+						size:7,	// 每页显示条数
+						build_id : $("#chooseFloor4").val()
 					},function(data){
 						var showCataList = data.showCataList; // 保存表头信息
 						var showDataList = data.showDataList; // 保存内容数据
@@ -420,6 +434,8 @@
 				var expUrl = "<portlet:resourceURL id='expDataToExcel'></portlet:resourceURL>"
 						+ "&name="
 						+ '${tbinfo.form_name4}'
+						+ "&build_id="
+						+ $("#chooseFloor4").val()
 						+ "&id="
 						+ '${tbinfo.form_id4}'
 						+ "&ispd="
@@ -449,7 +465,6 @@
 					contentType : 'application/x-msdownload;charset=UTF-8',
 					success : function(result) {
 						$("#<portlet:namespace />tmpFrame").attr('src', hSrc);
-
 					},
 					error : function(result) {
 						alert('error');

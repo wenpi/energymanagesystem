@@ -426,8 +426,13 @@ a:hover,a:active,a:focus {
 .charts_group_2>div>.top_chart {
 	height: 364px;
 	width: 100%;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff),
-		to(#D6D8DD));
+	background: linear-gradient(#fff, #D6D8DD);
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D6D8DD));
+	background: -webkit-linear-gradient(top,#fff 0,#D6D8DD 100%);
+	background: -moz-linear-gradient(top,#fff 0,#D6D8DD 100%);
+	background: -o-linear-gradient(top,#fff 0,#D6D8DD 100%);
+	background: linear-gradient(to bottom,#fff 0,#D6D8DD 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#fff,endColorstr=#D6D8DD,GradientType=0);
 	position: relative;
 	border-radius: 4px;
 }

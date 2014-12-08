@@ -24,13 +24,13 @@
 									<p>建筑总能耗</p>
 								</div>
 							</li>
-							<li>
-								<div>
-									<img
-										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" />
-									<p>建筑总能耗分项</p>
-								</div>
-							</li>
+<!-- 							<li> -->
+<!-- 								<div> -->
+<!-- 									<img -->
+<%-- 										src="${pageContext.request.contextPath }/public/energyStatic/public/images/dot.png" /> --%>
+<!-- 									<p>建筑总能耗分项</p> -->
+<!-- 								</div> -->
+<!-- 							</li> -->
 							<li>
 								<div>
 									<img
@@ -64,9 +64,9 @@
 					<div class="tab_content current di_2">
 						<%@include file="totalEnergyView.jsp"%>
 					</div>
-					<div class="tab_content di_2">
-						<%@include file="eachEnergyView.jsp"%>
-					</div>
+<!-- 					<div class="tab_content di_2"> -->
+<%-- 						<%@include file="eachEnergyView.jsp"%> --%>
+<!-- 					</div> -->
 					<div class="tab_content di_2">
 						<%@include file="totalEleView.jsp"%>
 					</div>

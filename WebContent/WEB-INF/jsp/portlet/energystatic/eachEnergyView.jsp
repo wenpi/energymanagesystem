@@ -30,19 +30,19 @@
 			<tbody class="build_subentry">
 				<tr>
 					<td>总用电</td>
-					<td><span>↓ 30</span><sup><sup>%</sup></sup></td>
+					<td><span>68</span><sup><sup>%</sup></sup></td>
 				</tr>
 				<tr>
 					<td>总用水</td>
-					<td><span>↓ 10</span><sup><sup>%</sup></sup></td>
+					<td><span>17</span><sup><sup>%</sup></sup></td>
 				</tr>
 				<tr>
 					<td>总用气</td>
-					<td><span>↓ 8</span><sup><sup>%</sup></sup></td>
+					<td><span>14</span><sup><sup>%</sup></sup></td>
 				</tr>
 				<tr>
 					<td>其他能耗</td>
-					<td><span>↑ 5</span><sup><sup>%</sup></sup></td>
+					<td><span>1</span><sup><sup>%</sup></sup></td>
 				</tr>
 			</tbody>
 		</table>
@@ -78,7 +78,7 @@
 	}
 	<portlet:namespace/>choose_type2 = "day";
 	<portlet:namespace/>step2 = "";//x轴标签间距,首选项获取
-	 <portlet:namespace/>c_times2=<portlet:namespace/>start_date2;
+	<portlet:namespace/>c_times2=<portlet:namespace/>start_date2;
 	<portlet:namespace/>centerTitle2 = <portlet:namespace/>start_date2;
 	var times02 = "", legend2 = [];
 	legend = <portlet:namespace/>legendList2.split(",");
@@ -222,6 +222,17 @@ function <portlet:namespace/>comparing2(){
  */
 function <portlet:namespace/>getChart2(tfrom, name, id, ispd, legend, showLegend,
 		isNotCompare) {
+	var categories = [ ${energyStatic.chartLegendList_2} ], colorsArr = [${energyStatic.chartColorList_2}], datas = [ ${energyStatic.chartDataList_2} ];
+	var pieDataList = [68, 17, 14, 1];
+	//填充图表
+	$("#<portlet:namespace/>now_data2").html(<portlet:namespace/>centerTitle2);
+	renderToBigRing('<portlet:namespace />chartArea2',
+			"${energyStatic.chartType_2}", categories, colorsArr, pieDataList , "${energyStatic.chartLegendLayout_2}",
+			"${energyStatic.chartLegendAlign_2}", "${energyStatic.backgroundColor_2}",''); 
+	
+	
+	return false;
+
 	<portlet:namespace />getRightData2(); // 获取右侧数据信息
 	$.post("<portlet:resourceURL id='getMoreChartsByNames'></portlet:resourceURL>", {
 		from : tfrom,
@@ -264,6 +275,42 @@ function <portlet:namespace/>getChart2(tfrom, name, id, ispd, legend, showLegend
 }
 //对比填充
 function <portlet:namespace/>getChart2_1(tfrom,name,id,ispd,legendList,showLegend2,isNotCompare,compareDate){
+	var newData = [];
+	newData.push([68, 17, 14, 1]);
+	newData.push([66, 18, 14, 2]);
+	var colorList= "${energyStatic.chartColorList_2}".replace(/'/g,"");
+	// 获取对应的数据列表，对应图表中的图形条数
+	seriesList = returnSeriesList("${energyStatic.chartType_2_1}",
+								  "", // 连接线线宽，为空则默认为2，为0则不显示连接线
+								  "", // 线宽，此为具体曲线点的点线宽  ，为空则默认为2
+								  <portlet:namespace />legendList2,
+								  colorList, // 颜色列表
+								  "${energyStatic.chartFillColorList_2}", // 填充颜色列表
+								  "${energyStatic.chartRadiusList_2}", // 曲线点半径列表,默认为4
+								  "", // 曲线点类型："circle", "square", "diamond", "triangle","triangle-down"，默认是"circle"
+								  "", // 参考值  
+								  "", // 参考值的图表类型
+								  "", // 参考值对应的图例名称
+								  "", // 参考值对应的颜色
+								  newData);
+	if("${energyStatic.xStep_2}"!=""){
+		<portlet:namespace />step2="${energyStatic.xStep_2}";
+	}
+	var cataList = ['总用电', '总用水', '总用气', '其它'];
+	// 将图表渲染到对应的位置上
+	$("#<portlet:namespace/>now_data2").html(<portlet:namespace/>centerTitle2);
+	renderToBigCommonChart("<portlet:namespace />chartArea2",
+					   <portlet:namespace />centerTitle2, // 居中标题
+					   <portlet:namespace />step2, // x轴的间隔
+					   cataList, // x轴列表
+					   '',
+					   '${energyStatic.yLeftTitle_2}', // Y轴左侧的标题
+					   '${energyStatic.ySymbol2}', // Y轴的单位
+					   showLegend2 == '' ? false :showLegend2,
+					   "",
+					   seriesList);
+	
+	return false;
 	var atts = [];
 	// 根据name的个数，来为att添加对应个数的值
 	var names = name.split(",");

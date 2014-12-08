@@ -394,7 +394,7 @@ function <portlet:namespace/>compareTime(size){
 			id : id,
 			ispd : ispd,
 			decimals :  '${totalEnergy.decimals}',//显示小数位数，首选项传
-			mult : '',//是否在获取的数据基础上乘数，首选项传（饼图）
+			mult : '${totalEnergy.multiplier}',//是否在获取的数据基础上乘数，首选项传（饼图）
 			type : <portlet:namespace/>choose_type
 		//选取时间段
 		}, function(data) {
